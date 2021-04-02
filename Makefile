@@ -159,8 +159,7 @@ dist: clean
 	@-rm -rf $(TMPDIR)/vdrdist/$(ARCHIVE)
 	@mkdir -p $(TMPDIR)/vdrdist/$(ARCHIVE)
 	@cp -a * $(TMPDIR)/vdrdist/$(ARCHIVE)
-	@ln -s $(ARCHIVE) $(TMPDIR)/vdrdist/$(PLUGIN)
-	@tar czf $(PACKAGE).tgz -C $(TMPDIR)/vdrdist $(ARCHIVE) $(PLUGIN)
+	@tar czf $(PACKAGE).tgz -C $(TMPDIR)/vdrdist $(ARCHIVE)
 	@-rm -rf $(TMPDIR)/vdrdist
 	@echo Distribution package created as $(PACKAGE).tgz
 

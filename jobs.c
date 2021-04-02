@@ -54,9 +54,11 @@ namespace vdr_burn
 			m_totalLength( 0, 0 )
 	{
 #if VDRVERSNUM >= 10703
-		m_isPesRecording = recording_->IsPesRecording();
+		m_isPesRecording  = recording_->IsPesRecording();
+		m_framesPerSecond = recording_->FramesPerSecond();
 #else
 		m_isPesRecording = true;
+		m_framesPerSecond = FRAMESPERSEC;
 #endif
 		std::string::size_type pos;
 		if ( global_setup().RemovePath && ( pos = m_name.rfind( '~' ) ) != std::string::npos )

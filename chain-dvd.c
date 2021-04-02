@@ -454,11 +454,19 @@ namespace vdr_burn
 			return true;
 
 		cMarks marks;
+#if VDRVERSNUM >= 10703
+		if (!marks.Load(m_currentRecording->get_filename().c_str(), m_currentRecording->get_FramesPerSecond(), m_currentRecording->get_PesRecording()) || !marks.Count())
+			return false;
+
+		cIndexFile ifile( m_currentRecording->get_filename().c_str(), false, m_currentRecording->get_PesRecording() );
+#else
 		if (!marks.Load(m_currentRecording->get_filename().c_str()) || !marks.Count())
 			return false;
 
+		cIndexFile ifile( m_currentRecording->get_filename().c_str(), false);
+#endif
+
 		// convert marks to bytepos
-		cIndexFile ifile( m_currentRecording->get_filename().c_str(), false );
 		ofstream cutfile( str( boost::format("%s/px.cut") % m_currentRecording->get_paths().data ).c_str() );
 
 		for (cMark *mark = marks.First(); mark != 0; mark = marks.Next(mark)) {

@@ -50,6 +50,7 @@ namespace vdr_burn {
 		path_pair              m_paths;
 		std::string            m_name;
 		bool				   m_isPesRecording;
+		double				   m_framesPerSecond;
 		track_info_list        m_tracks;
 
 		size_pair              m_totalSize;
@@ -75,6 +76,7 @@ namespace vdr_burn {
 		const std::string& get_datetime() const { return m_datetime; }
 		const std::string& get_name() const { return m_name; }
 		const bool get_PesRecording() const { return m_isPesRecording; }
+		const double get_FramesPerSecond() const { return m_framesPerSecond; }
 		const track_info_list& get_tracks() const { return m_tracks; }
 		track_info_list& get_tracks() { return m_tracks; }
 
