@@ -64,7 +64,7 @@ namespace proctools
 			m_environment.set();
 			setpgrp();
 			setpriority(PRIO_PGRP, 0, 19);
-			setlocale(LC_ALL, "C");
+			//setlocale(LC_ALL, "C");
 			_exit(run());
 		}
 

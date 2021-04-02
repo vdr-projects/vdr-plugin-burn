@@ -67,12 +67,12 @@ namespace vdr_burn
 	// --- requanttype --------------------------------------------------------
 
 	const char* requanttype_strings[requanttype_count] =
-			{ tr("M2VRequantizer"), tr("Transcode") };
+			{ tr("M2VRequantizer"), tr("Transcode") , tr("lxdvdrip") };
 
 const char *TitleChars = "abcdefghijklmnopqrstuvwxyz"
 						 "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
 						 "0123456789"
-						 "äöüÄÖÜß:- ";
+						 "ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½:- ";
 
 int ScanPageCount(const std::string& Path)
 {
@@ -143,7 +143,7 @@ string get_recording_datetime(const cRecording* recording_, char delimiter)
 	return title;
 }
 
-string get_recording_title(const cRecording* recording_, int level)
+string get_recording_osd_line(const cRecording* recording_, int level)
 {
 	stringstream result;
 	string name( recording_->Name() );
@@ -177,19 +177,26 @@ string get_recording_title(const cRecording* recording_, int level)
 	return result.str();
 }
 
+std::string get_recording_title(const cRecording* recording_)
+{
+	if (recording_->Info()->Title() != 0) {
+		return recording_->Info()->Title();
+	}
+	else return recording_->Name();
+}
+
 std::string get_recording_description(const cRecording* recording_)
 {
-#if VDRVERSNUM < 10300
-	if (recording_->Summary() != 0)
-		return recording_->Summary();
-#else
-	if (recording_->Info()->Description() != 0)
-		return recording_->Info()->Description();
-	else if (recording_->Info()->ShortText() != 0)
-		return recording_->Info()->ShortText();
-#endif
+	string description;
+	if (recording_->Info()->ShortText() != 0) {
+		description += recording_->Info()->ShortText();
+	}
+	if (recording_->Info()->Description() != 0) {
+		if (!description.empty()) description += "\n\n";
+		description += recording_->Info()->Description();
+	}
 
-	return "";
+	return description;
 }
 
 string string_replace( const string& text, char from, char to )

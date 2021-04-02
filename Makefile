@@ -23,7 +23,6 @@ CXXFLAGS ?= -O3 -Wall -Woverloaded-virtual -fPIC
 VDRDIR = ../../..
 LIBDIR = ../../lib
 TMPDIR = /tmp
-DISTDIR := $(shell mktemp -u)
 
 
 ### Allow user defined options to overwrite defaults:
@@ -62,29 +61,20 @@ DEFINES  += -DPLUGIN_NAME='"$(PLUGIN)"' -DPLUGIN_NAME_I18N='"$(PLUGIN)"' -D_GNU_
 
 ### The object files (add further files here):
 
-#OBJS = burn.o i18n.o menuburn.o menuitems.o common.o jobs.o process.o \
-#       process-dvd.o process-vdr.o config.o setup.o pipe.o render.o   \
-#       skins.o vdr_compat.o environment.o poller.o shell.o \
-#	   logger-vdr.o chain-vdr.o chain-dvd.o
-
 OBJS = burn.o chain-vdr.o chain-dvd.o jobs.o logger-vdr.o skins.o \
 	   chain-archive.o manager.o menuburn.o menubase.o \
 	   etsi-const.o tracks.o scanner.o gdwrapper.o iconvwrapper.o \
            menuitems.o setup.o common.o config.o render.o \
 	   genindex/pes.o
 
-ifeq ($(shell test $(APIVERSNUM) -lt 10507 ; echo $$?),0)
-  OBJS += i18n.o
-endif
-
 SUBDIRS = proctools # tinyxml
 
 LIBS += proctools/libproctools.a # tinyxml/libtinyxml.a
 
 
-ifdef DEBUG_OSD
-DEFINES += -DDEBUG_OSD
-endif
+#ifdef DEBUG_OSD
+#DEFINES += -DDEBUG_OSD
+#endif
 
 ifndef TMPDIR
 TMPDIR=/tmp
@@ -96,6 +86,10 @@ endif
 
 ifndef ISODIR
 ISODIR=/pub/export
+endif
+
+ifdef BURN_TTXTSUBTITLES
+DEFINES += -DTTXT_SUBTITLES
 endif
 
 DEFINES += -DTMPDIR='"$(TMPDIR)"' -DDVDDEV='"$(DVDDEV)"' -DISODIR='"$(ISODIR)"'
@@ -161,12 +155,14 @@ gd-test: gdwrapper.o gdtest.o
 	$(CXX) $(CXXFLAGS) $^ -o $@ $(LIBS)
 
 dist: clean
-	@mkdir -p $(DISTDIR)/$(ARCHIVE)
-	@cp -a * $(DISTDIR)/$(ARCHIVE)
-	@ln -s $(ARCHIVE) $(DISTDIR)/$(PLUGIN)
-	@tar czf $(PACKAGE).tgz -C $(DISTDIR) $(ARCHIVE) $(PLUGIN)
-	@-rm -rf $(DISTDIR)
+	@-rm -rf $(TMPDIR)/vdrdist/$(ARCHIVE)
+	@mkdir -p $(TMPDIR)/vdrdist/$(ARCHIVE)
+	@cp -a * $(TMPDIR)/vdrdist/$(ARCHIVE)
+	@ln -s $(ARCHIVE) $(TMPDIR)/vdrdist/$(PLUGIN)
+	@tar czf $(PACKAGE).tgz -C $(TMPDIR)/vdrdist $(ARCHIVE) $(PLUGIN)
+	@-rm -rf $(TMPDIR)/vdrdist
 	@echo Distribution package created as $(PACKAGE).tgz
+
 
 clean:
 	@-rm -f $(PODIR)/*.mo $(PODIR)/*.pot

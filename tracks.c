@@ -86,12 +86,13 @@ namespace vdr_burn
 		// to prevent that empty elements are created in the map
 		alpha_map::iterator it( alpha.find( language_ ) );
 		if ( it == alpha.end() ) {
-			logger::info( str( boost::format( "language '%s' invalid or not found in iso 639, setting default" ) % language_ ) );
+			//logger::info( str( boost::format( "language '%s' invalid or not found in iso 639, setting default" ) % language_ ) );
 			language = global_setup().DefaultLanguage;
+			logger::info( str( boost::format( "language code for stream %08x (%s) is invalid, setting to default" ) % cid % language_ ) );
 			return;
 		}
 
-		logger::info( str( boost::format( "language code for stream %02x (%s) is '%s'" ) % cid % language_ % it->second ) );
+		logger::info( str( boost::format( "language code for stream %08x (%s) is '%s'" ) % cid % language_ % it->second ) );
 		string_list::const_iterator listIt( find( get_language_codes().begin(), get_language_codes().end(), it->second ) );
 		language = distance( get_language_codes().begin(), listIt );
 	}
@@ -122,6 +123,16 @@ namespace vdr_burn
 		case track_info::streamtype_audio:
 			///result << tr("Audio track");
 			result << tr("Audio track") << " (" << hex << cid << ")";
+			break;
+
+		case track_info::streamtype_dvbsubtitle:
+			///result << tr("Subtitle track");
+			result << tr("Subtitle track") << " (" << hex << cid << ")";
+			break;
+
+		case track_info::streamtype_ttxtsubtitle:
+			///result << tr("Subtitle track") << " (" << tr("page") << " " << dec << ttxtsubtitle.page << ")";
+			result << tr("Subtitle track") << " (" << hex << cid << ") (" << tr("page") << " " << dec << ttxtsubtitle.page << ")";
 			break;
 
 		default:

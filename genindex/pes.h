@@ -63,27 +63,27 @@ protected:
   void UseRuleset(int num);
   int CurrentRuleset();
   void SetDefaultRule(eRule ru, const int num=0);
-  void SetRule(uchar type, eRule ru, const int num=0);
-  void SetRuleR(uchar ltype, uchar htype, eRule ru, const int num=0);
+  void SetRule(int type, eRule ru, const int num=0);
+  void SetRuleR(int ltype, int htype, eRule ru, const int num=0);
   void Reset();
   // Misc
-  unsigned int Seen(uchar type) const;
+  unsigned int Seen(int type) const;
   void ClearSeen();
   void Statistics();
   void ModifyPaketSize(int mod);
   // Data Processing
-  int Process(const uchar *data, int len);
+  int Process(const uchar *data, int len, int pid);
   void Redirect(eRule ru);
   void Clear();
   virtual int Output(const uchar *data, int len) { return len; }
-  virtual int Action1(uchar type, uchar *data, int len) { return len; }
-  virtual int Action2(uchar type, uchar *data, int len) { return len; }
-  virtual int Action3(uchar type, uchar *data, int len) { return len; }
-  virtual int Action4(uchar type, uchar *data, int len) { return len; }
-  virtual int Action5(uchar type, uchar *data, int len) { return len; }
-  virtual int Action6(uchar type, uchar *data, int len) { return len; }
-  virtual int Action7(uchar type, uchar *data, int len) { return len; }
-  virtual int Action8(uchar type, uchar *data, int len) { return len; }
+  virtual int Action1(int type, int pid, uchar *data, int len) { return len; }
+  virtual int Action2(int type, int pid, uchar *data, int len) { return len; }
+  virtual int Action3(int type, int pid, uchar *data, int len) { return len; }
+  virtual int Action4(int type, int pid, uchar *data, int len) { return len; }
+  virtual int Action5(int type, int pid, uchar *data, int len) { return len; }
+  virtual int Action6(int type, int pid, uchar *data, int len) { return len; }
+  virtual int Action7(int type, int pid, uchar *data, int len) { return len; }
+  virtual int Action8(int type, int pid, uchar *data, int len) { return len; }
   virtual void Skipped(uchar *data, int len) {}
 public:
   cPES(eRule ru=prPass);

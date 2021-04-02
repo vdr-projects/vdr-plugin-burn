@@ -184,10 +184,11 @@ namespace vdr_burn
 	enum requanttype
 	{
 		requanttype_metakine,
-		requanttype_transcode
+		requanttype_transcode,
+		requanttype_lxdvdrip,
 	};
 
-	const int requanttype_count = requanttype_transcode + 1;
+	const int requanttype_count = requanttype_lxdvdrip + 1;
 	extern const char* requanttype_strings[requanttype_count];
 
 extern const char *TitleChars;
@@ -199,7 +200,8 @@ std::string progress_bar(double current, double total, int length = 20);
 	//!--- recording helper functions -----------------------------------------
 
 	std::string get_recording_datetime(const cRecording* recording_, char delimiter = '\t');
-	std::string get_recording_title(const cRecording* recording_, int level);
+	std::string get_recording_osd_line(const cRecording* recording_, int level);
+	std::string get_recording_title(const cRecording* recording_);
 	std::string get_recording_description(const cRecording* recording_);
 	std::string get_recording_name(const cRecording* recording);
 

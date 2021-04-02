@@ -51,6 +51,7 @@ namespace vdr_burn
 	void chain_dvd::process_line(const string& line)
 	{
 		static const string px_found_id( "++> " );
+		static const string px_found_pid( ": PID " );
 		static const string px_found_pesid( " / PesID " );
 		static const string stat_vobu( "STAT: VOBU " );
 		static const string stat_fixing( "STAT: fixing VOBU at " );
@@ -59,14 +60,32 @@ namespace vdr_burn
 		switch (m_step) {
 		case build:
 			{
-				if (line.substr(0, px_found_id.length()) == px_found_id) {
-					size_t found = line.find(px_found_pesid);
-					istringstream parser( line.substr(found + px_found_pesid.length()) );
-					int cid;
-					parser >> setbase(16) >> cid;
+				// [demux] ++> Mpg Video: PID 0x006E / PesID 0xE0 / SubID 0x00 :
+				// [demux] ++> AC3/DTS Audio: PID 0x007D / PesID 0xBD / SubID 0x00 :
+				// [demux] ++> Teletext: PID 0x0082 / PesID 0xBD / SubID 0x10 :
+				// [demux] ++> Mpg Audio: PID 0x0079 / PesID 0xC1 / SubID 0x00 :
+				// [demux] ++> Mpg Audio: PID 0x0078 / PesID 0xC0 / SubID 0x00 :
+				// [demux] ++> Subpicture: PID 0x0083 / PesID 0xBD / SubID 0x20 :
 
-					///logger::info( str( boost::format( "px found id: 0x%02x" ) % cid ) );
-					if (cid >= 0xc0 && cid <= 0xdf) { // audio stream
+				if (line.substr(0, px_found_id.length()) == px_found_id) {
+					size_t found = line.find(px_found_pid);
+					string type = line.substr (px_found_id.length(), found - px_found_id.length());
+					logger::info( str( boost::format( "px found type: %s" ) % type) );
+
+					istringstream pidparser( line.substr(found + px_found_pid.length()) );
+					int pid;
+					pidparser >> setbase(16) >> pid;
+
+					found = line.find(px_found_pesid);
+					istringstream pesidparser( line.substr(found + px_found_pesid.length()) );
+					int pesid;
+					pesidparser >> setbase(16) >> pesid;
+
+					if (pesid >= 0xe0 && pesid <= 0xef) { // video stream
+						m_currentRecording->set_track_path( pid ? pid : pesid, "vdrsync.mpv");
+						logger::info( str( boost::format( "px found id: 0x%04x/0x%02x, vdrsync.mpv" ) % pid % pesid ) );
+					}
+					else if (pesid >= 0xc0 && pesid <= 0xdf) {
 						ostringstream filename;
 						filename << "vdrsync";
 						if (m_pxAudioIndex > 0) {
@@ -76,10 +95,16 @@ namespace vdr_burn
 								filename << m_pxAudioIndex;
 						}
 						filename << ".mpa";
-						m_currentRecording->set_track_path(cid, filename.str());
-						logger::info( str( boost::format( "px found id: 0x%02x, %s" ) % cid % filename.str()) );
+						m_currentRecording->set_track_path( pid ? pid : pesid, filename.str());
+						logger::info( str( boost::format( "px found id: 0x%04x/0x%02x, %s" ) % pid % pesid  % filename.str()) );
 						++m_pxAudioIndex;
 					}
+					else if (pesid == 0xbd && string::npos != type.find ("AC3", 0)) { // private stream
+						m_currentRecording->set_track_path( pid ? pid : pesid, "vdrsync.ac3");
+						logger::info( str( boost::format( "px found id: 0x%04x/0x%02x, vdrsync.ac3" ) % pid % pesid ) );
+					}
+					//else
+					//	logger::info( str( boost::format( "px found id: 0x%04x/0x%02x (unhandled)" ) % pid % pesid ) );
 				}
 				else if (line.substr(0, stat_vobu.length()) == stat_vobu) {
 					if (!elapsed_since(m_lastProgress, 1))
@@ -269,6 +294,9 @@ namespace vdr_burn
 		demux->put_environment("CONFIG_PATH",    plugin::get_config_path());
 		if (get_job().get_cut_on_demux() && prepare_cutmarks())
 			demux->put_environment("USE_CUTTING", "1");
+#ifdef TTXT_SUBTITLES
+		demux->put_environment("TTXT_OPTS",  m_currentRecording->get_TtxtPageOpts());
+#endif
 		add_process(demux);
 	}
 
@@ -278,8 +306,10 @@ namespace vdr_burn
 			const char* requant_call;
 			if ( global_setup().RequantType == requanttype_transcode )
 				requant_call = "tcrequant";
-			else
+			else if ( global_setup().RequantType == requanttype_metakine )
 				requant_call = "requant";
+			else
+				requant_call = "lxrequant";
 
 			shellprocess* requant = new shellprocess( "requant", shellescape( "vdrburn-dvd.sh" ) + requant_call );
 			requant->put_environment("VIDEO_FILE",     m_currentRecording->get_video_track_path());

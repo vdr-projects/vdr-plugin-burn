@@ -25,9 +25,7 @@ namespace vdr_burn
 
 	chain_vdr::chain_vdr(const string& name, job& job_):
 			chain(name),
-#if VDRVERSNUM >= 10300
 			cThread("burn: subprocess watcher"),
-#endif
 			m_job( job_ ),
 			m_paths( create_temp_path( BurnParameters.TempPath ), create_temp_path( BurnParameters.DataPath ) ),
 			m_progress(0),
@@ -42,10 +40,12 @@ namespace vdr_burn
 	chain_vdr::~chain_vdr()
 	{
 		stop();
-		if (return_status() != process::ok)
-			execute( shellescape( "rm" ) + "-rf" + m_job.get_iso_path() );
-		execute( shellescape( "rm" ) + "-rf" + m_paths.temp );
-		execute( shellescape( "rm" ) + "-rf" + m_paths.data );
+		if (!BurnParameters.KeepTempFiles) {
+			if (return_status() != process::ok)
+				execute( shellescape( "rm" ) + "-rf" + m_job.get_iso_path() );
+			execute( shellescape( "rm" ) + "-rf" + m_paths.temp );
+			execute( shellescape( "rm" ) + "-rf" + m_paths.data );
+		}
 	}
 
 	chain_vdr* chain_vdr::create_chain(job& job)
@@ -101,19 +101,7 @@ namespace vdr_burn
 
 	void chain_vdr::Action()
 	{
-#if VDRVERSNUM < 10300
-		logger::info(format("subprocess watcher thread started (pid={0})")
-					 % getpid());
-		setpriority(PRIO_PROCESS, 0, 19);
-#else
 		SetPriority(19);
-#endif
-
 		run();
-
-#if VDRVERSNUM < 10300
-		logger::info(format("subprocess watcher thread stopped (pid={0})")
-					 % getpid());
-#endif
 	}
 };

@@ -20,6 +20,7 @@
 #include "proctools/functions.h"
 #include "proctools/logger.h"
 #include "boost/bind.hpp"
+#include <boost/format.hpp>
 #include <string>
 #include <functional>
 #include <numeric>
@@ -45,9 +46,10 @@ namespace vdr_burn
 	recording::recording( job* owner_, const cRecording* recording_):
 			m_owner( owner_ ),
 			m_fileName( recording_->FileName() ),
+			m_title( get_recording_title(recording_) ),
 			m_summary( get_recording_description(recording_) ),
 			m_datetime( get_recording_datetime(recording_, ' ') ),
-			m_title( recording_->Name() ),
+			m_name( recording_->Name() ),
 			m_totalSize( 0, 0 ),
 			m_totalLength( 0, 0 )
 	{
@@ -57,12 +59,12 @@ namespace vdr_burn
 		m_isPesRecording = true;
 #endif
 		std::string::size_type pos;
-		if ( global_setup().RemovePath && ( pos = m_title.rfind( '~' ) ) != std::string::npos )
-			m_title.erase( 0, pos + 1 );
+		if ( global_setup().RemovePath && ( pos = m_name.rfind( '~' ) ) != std::string::npos )
+			m_name.erase( 0, pos + 1 );
 
         for ( pos = 0;; ++pos ) {
-            trim_left( m_title, "%@", pos );
-            if ( ( pos = m_title.find( '~', pos ) ) == std::string::npos )
+            trim_left( m_name, "%@", pos );
+            if ( ( pos = m_name.find( '~', pos ) ) == std::string::npos )
                 break;
         }
 	}
@@ -164,6 +166,26 @@ namespace vdr_burn
 		// XXX too much knowledge: ignored_cids, used by vdrsync.pl, must be
 		// pure hex, so do not prefix
 	}
+
+#ifdef TTXT_SUBTITLES
+	string recording::print_SubtitleOpt(int No, int Page) const
+	{
+		return str ( boost::format( "-set SubtitlePanel.TtxPage%d=%d" ) % No % Page);
+	}
+
+	string recording::get_TtxtPageOpts() const
+	{
+		int i = 1;
+		const_track_filter ttxtsubtitleTracks( m_tracks, track_info::streamtype_ttxtsubtitle, track_predicate::used );
+
+		std::string result;
+
+		for (const_track_filter::iterator cur = ttxtsubtitleTracks.begin(); cur != ttxtsubtitleTracks.end(); ++cur)
+			result += print_SubtitleOpt ( i++, cur->ttxtsubtitle.page);
+
+		return result;
+	}
+#endif
 
 	string recording::get_chapters(int mode) const
 	{

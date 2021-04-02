@@ -1,7 +1,32 @@
 VDR Plugin 'burn' Revision History
 ----------------------------------
 
-xxxx-xx-xx: Version 0.1.0
+2010-02-21: Version 0.2.0-beta1
+- rewrote line break for descriptions
+- added subtitle (the 'S'-entry from the info file) to the title menu
+- removed locale setting (interfered with VDR's locale settings when saving config file)
+- added support for mutliple SON subtitle tracks (thanks to Mikko Tuumanen)
+- dropped support for VDR version before 1.6.0. Now 1.6.0 is supported and version 1.7.11 or higher
+- refactored the TS stream recognition to support multiple audio streams with identical PES IDs
+- re-activated and adapted the option to demultiplex only the selected audio tracks
+- added support for lxdvdrip requantizer
+- implemented dvb subtitle selection (multiple subtitles are still experimental)
+- implemented teletext subtitle support (only for VDR 1.7.11+, VDR needs to be patched with 
+  vdr-1.7.12-tpid-Parser.diff which is supplied in the patches subdirectory)
+
+
+2009-06-27: Version 0.1.0-pre22-ff1
+- integrated the following patches:
+    * vdr-burn-0.1.0-pre22_i18n-gettext.diff.gz - UTF8 support for OSD
+    * vdr-burn-0.1.0-pre21-charset-vdr-1.5.diff - fixes Umlauts in DVD-Menus on UTF-8 systems
+    * vdr-burn-0.1.0-pre21-gcc43.diff - fixes for compilation with gcc 4.3
+    * vdr-burn-0.1.0-pre21-requantfactor.diff - corrects requant factor calculation for better DVD utilization
+    * vdr-burn-0.1.0-pre21-menu.diff - fixes SkipTitlemenu/SkipMainmenu typo
+    * vdr-burn-0.1.0pre21-missingvob.diff.gz - improves DVD player compatibility for DVDs without title menu by adding a dummy VOB
+- added basic support for TS recordings (which were invented by VDR 1.7.3)
+
+
+xxxx-xx-xx: Version 0.1.0 (not released)
 
 - clearing job after deleting last recording
 - implemented rudimentary skinning support (place menu-bg.png and/or 

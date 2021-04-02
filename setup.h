@@ -30,6 +30,7 @@ struct cBurnParameters
 	std::string DvdDevice;
 	std::string IsoPath;
 	bool fixedStoreMode;
+	bool KeepTempFiles;
 };
 
 extern cBurnParameters BurnParameters;

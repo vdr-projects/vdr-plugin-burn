@@ -44,10 +44,11 @@ namespace vdr_burn {
 
 		job*                   m_owner;
 		std::string            m_fileName;
+		std::string            m_title;
 		std::string            m_summary;
 		std::string            m_datetime;
 		path_pair              m_paths;
-		std::string            m_title;
+		std::string            m_name;
 		bool				   m_isPesRecording;
 		track_info_list        m_tracks;
 
@@ -69,9 +70,10 @@ namespace vdr_burn {
 
 		const path_pair& get_paths() const { return m_paths; }
 		const std::string& get_filename() const { return m_fileName; }
+		const std::string& get_title() const { return m_title; }
 		const std::string& get_summary() const { return m_summary; }
 		const std::string& get_datetime() const { return m_datetime; }
-		const std::string& get_title() const { return m_title; }
+		const std::string& get_name() const { return m_name; }
 		const bool get_PesRecording() const { return m_isPesRecording; }
 		const track_info_list& get_tracks() const { return m_tracks; }
 		track_info_list& get_tracks() { return m_tracks; }
@@ -89,6 +91,10 @@ namespace vdr_burn {
 		std::string get_buttons_highlight(int Page) const;
 		std::string get_menu_mpeg(int Page) const;
 		std::string get_graft_point() const;
+#ifdef TTXT_SUBTITLES
+		std::string print_SubtitleOpt(int No, int Page) const;
+		std::string get_TtxtPageOpts() const;
+#endif
 
 		// size information (original recording)
 //		size_pair::size_type get_total_size() const;

@@ -7,9 +7,6 @@
 
 #include "menuitems.h"
 #include "jobs.h"
-#if APIVERSNUM < 10507  
-#include "i18n.h"
-#endif
 #include "common.h"
 #include <algorithm>
 #include <boost/bind.hpp>
@@ -133,7 +130,7 @@ namespace menu
 	//!--- recording_item -------------------------------------------------
 
 	recording_item::recording_item(const cRecording* recording_, int level):
-			cOsdItem(get_recording_title(recording_, level).c_str()),
+			cOsdItem(get_recording_osd_line(recording_, level).c_str()),
 			m_recording(recording_),
 			m_total(0),
 			m_new(0)
@@ -154,7 +151,7 @@ namespace menu
 	// --- recording_edit_item --------------------------------------------
 
 	recording_edit_item::recording_edit_item( const recording_list::iterator recording_ ):
-			string_edit_item( recording_->get_datetime().c_str(), recording_->m_title, TitleChars ),
+			string_edit_item( recording_->get_datetime().c_str(), recording_->m_name, TitleChars ),
 			m_recording( recording_ )
 	{
 	}

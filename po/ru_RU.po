@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: VDR 1.5.7\n"
 "Report-Msgid-Bugs-To: <<vdr@smue.org>>\n"
-"POT-Creation-Date: 2009-06-15 21:32+0200\n"
+"POT-Creation-Date: 2010-01-31 17:54+0100\n"
 "PO-Revision-Date: 2008-02-02 22:42+0100\n"
 "Last-Translator: Vyacheslav Dikonov <sdiconov@mail.ru>\n"
 "Language-Team: <vdr@linuxtv.org>\n"
@@ -20,9 +20,6 @@ msgstr "Создание DVD из записей VDR"
 
 msgid "Create DVDs"
 msgstr "Создать DVD"
-
-msgid "iso8859-15"
-msgstr ""
 
 msgid "Burn job active"
 msgstr "DVD создаётся"
@@ -95,6 +92,9 @@ msgstr "M2VRequantizer"
 
 msgid "Transcode"
 msgstr "Transcode"
+
+msgid "lxdvdrip"
+msgstr ""
 
 msgid "Couldn't convert character sets!"
 msgstr ""
@@ -259,8 +259,8 @@ msgstr "Не смог прочитать индекс!"
 msgid "Couldn't browse recording"
 msgstr "Не смог пролистать записи!"
 
-msgid "analog"
-msgstr "аналоговый"
+msgid "mp2"
+msgstr ""
 
 msgid "dolby"
 msgstr "dolby"
@@ -367,5 +367,16 @@ msgstr "Дорожка видео"
 msgid "Audio track"
 msgstr "Дорожка аудио"
 
+#, fuzzy
+msgid "Subtitle track"
+msgstr "Дорожка видео"
+
+#, fuzzy
+msgid "page"
+msgstr "Цель"
+
 msgid "Unknown"
 msgstr "Неизвестно"
+
+#~ msgid "analog"
+#~ msgstr "аналоговый"

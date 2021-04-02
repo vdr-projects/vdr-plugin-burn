@@ -85,29 +85,29 @@ namespace gdwrapper
 		gdImageCopy( m_image, image_.m_image, position.x, position.y, 0, 0, image_.m_image->sx, image_.m_image->sy );
 	}
 
+
+	// wrap a given text string so that it doesn't break out of rectangle
+	// returns wrapped string and lineHeight
 	string image::wrap_text( int width, int& lineHeight, const string& text, const font_spec& font )
 	{
-		static const string delimiters( " -_" );
+		static const string delimiters( " -\n" );  // "_" deleted
 
 		const string fontPath( setup::get_font_path() + "/" + font.face + ".ttf" );
 		string result;
 		string oldresult;
-		string::const_iterator thisLine = text.begin();
+		string::const_iterator lineStart = text.begin();
+		string::const_iterator lastpos = lineStart;
 		lineHeight = 0;
 
-		for ( string::const_iterator pos = text.begin(); pos < text.end(); ++pos ) {
-			if ( (delimiters.find( *pos ) == string::npos) && (pos+1 < text.end() ) ) {
-				result += *pos;
-			}
-			else {
-				string sample( thisLine, pos );
-				string::const_iterator nextpos = pos;
-				sample += *nextpos;
-				++nextpos;
-				while ( (delimiters.find( *nextpos ) == string::npos) && (nextpos < text.end()) ) {
-					sample += *nextpos;
-					++nextpos;
-				}
+		// loop over each char of text
+		string::const_iterator pos = text.begin();
+		while ( pos < text.end()) {
+
+			if ( (pos+1 == text.end() ) || (delimiters.find( *pos ) != string::npos) ) {
+				// pos zeigt auf delimiter oder ist am Ende => Prüfen ob länger als erlaubt oder CR
+				string sample( lineStart, pos+1 );  // sample = text von lineStart bis pos)
+
+				// render sample
 				int bounds[8];
 				const char* error = gdImageStringFT( 0, bounds, 0, const_cast<char*>( fontPath.c_str() ), font.size, 0, 0, 0,
 								     const_cast<char*>( sample.c_str() ) );
@@ -118,24 +118,34 @@ namespace gdwrapper
 					logger::error( format( "Couldn't render text: {0}" ) % message, false );
 					throw user_exception( tr("Couldn't render menu images!") );
 				}
+				///isyslog("wt: %3d/%3d %2d=%s", lineHeight, bounds[3]-bounds[5], sample.length(), sample.c_str());
+
+				// bestimme neue Zeilenhöhe
 				int currentLineHeight = bounds[3] - bounds[5];
 				if (currentLineHeight > lineHeight)
 					lineHeight = currentLineHeight;
+
+				// länger als erlaubt? dann neue Zeile
 				int lineWidth = bounds[2] - bounds[0];
-				if (lineWidth>width) 
-					if (pos+1 == text.end() )
-						result = oldresult;
-					else {
-						result += "\n";
-						thisLine = pos+1;
-						if (*pos != ' ')
-							result += *pos;
-					}
+				if (lineWidth>width) {
+					result += string(lineStart, lastpos);
+					result += '\n';
+					///isyslog("wt1: %s", string(lineStart, lastpos).c_str());
+					pos = lineStart = lastpos+1;
+				}
 				else {
-					oldresult = sample;
-					result += *pos;
+					if (*pos == '\n' || pos+1 == text.end()) {
+						result += string(lineStart, pos+1);
+						///isyslog("wt2: %s", string(lineStart, pos+1).c_str());
+						lineStart = pos+1;
+						lastpos = pos+1;
+					}
+					else
+						lastpos = pos;
 				}
 			}
+
+			pos++;
 		}
 		return result;
 	}

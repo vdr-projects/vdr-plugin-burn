@@ -6,9 +6,6 @@
  */
 
 #include "common.h"
-#if APIVERSNUM < 10507  
-#include "i18n.h"
-#endif
 #include "manager.h"
 #include "menuburn.h"
 #include "menuitems.h"
@@ -130,6 +127,12 @@ namespace vdr_burn
 
 			switch (track.type) {
 			case track_info::streamtype_audio:
+				Add( new list_edit_item( str( boost::format("- %1$s") % tr("Language code") ), track.language, track_info::get_language_codes() ) );
+				m_indices.push_back(index);
+				break;
+
+			case track_info::streamtype_dvbsubtitle:
+			case track_info::streamtype_ttxtsubtitle:
 				Add( new list_edit_item( str( boost::format("- %1$s") % tr("Language code") ), track.language, track_info::get_language_codes() ) );
 				m_indices.push_back(index);
 				break;

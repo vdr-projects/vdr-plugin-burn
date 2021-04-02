@@ -25,7 +25,8 @@ namespace vdr_burn
 		{
 			streamtype_video = 1,
 			streamtype_audio,
-			streamtype_subtitle
+			streamtype_dvbsubtitle,
+			streamtype_ttxtsubtitle
 		};
 
 		enum aspectratio
@@ -106,6 +107,11 @@ namespace vdr_burn
 					} ac3;
 				};
 			} audio;
+
+			struct
+			{
+				int page;
+			} ttxtsubtitle;
 		};
 
 		track_info(int cid, streamtype type);
@@ -116,6 +122,8 @@ namespace vdr_burn
 
 		bool get_is_video() const { return type == streamtype_video; }
 		bool get_is_audio() const { return type == streamtype_audio; }
+		const int get_pesid() const { return (cid & 0xFFFF); }
+		const int get_pid() const { return (cid >> 16); }
 
 		std::string get_type_description() const;
 	};

@@ -34,7 +34,8 @@ cBurnParameters::cBurnParameters():
 		TempPath(TMPDIR),
 		DvdDevice(DVDDEV),
 		IsoPath(ISODIR),
-		fixedStoreMode( false )
+		fixedStoreMode( false ),
+		KeepTempFiles (false)
 {
 }
 
@@ -45,16 +46,18 @@ bool cBurnParameters::ProcessArgs(int argc, char *argv[])
 			{ "datadir", required_argument, NULL, 'd' },
 			{ "dvd",     required_argument, NULL, 'D' },
 			{ "iso",     required_argument, NULL, 'i' },
+			{ "keep",    no_argument,       NULL, 'k' },
 			{ NULL }
 	};
 
 	int c, optind = 0;
-	while ((c = getopt_long(argc, argv, "t:d:D:i:", opts, &optind)) != -1) {
+	while ((c = getopt_long(argc, argv, "t:d:D:i:k", opts, &optind)) != -1) {
 		switch (c) {
 			case 't': TempPath = optarg; break;
 			case 'd': DataPath = optarg; break;
 			case 'D': DvdDevice = optarg; break;
 			case 'i': IsoPath = optarg; break;
+			case 'k': KeepTempFiles = true; break;
 			default:  return false;
 		}
 	}

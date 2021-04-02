@@ -10,7 +10,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: VDR 1.5.7\n"
 "Report-Msgid-Bugs-To: <<vdr@smue.org>>\n"
-"POT-Creation-Date: 2009-06-15 21:32+0200\n"
+"POT-Creation-Date: 2010-01-31 17:54+0100\n"
 "PO-Revision-Date: 2008-02-02 22:42+0100\n"
 "Last-Translator: Nicolas Huillard <nhuillard@e-dition.fr>\n"
 "Language-Team: <vdr@linuxtv.org>\n"
@@ -23,9 +23,6 @@ msgstr "Plugin convertiseur et graveur universel"
 
 msgid "Create DVDs"
 msgstr "Graver des DVD"
-
-msgid "iso8859-15"
-msgstr ""
 
 msgid "Burn job active"
 msgstr "Tâche de gravure est active"
@@ -97,6 +94,9 @@ msgid "M2VRequantizer"
 msgstr ""
 
 msgid "Transcode"
+msgstr ""
+
+msgid "lxdvdrip"
 msgstr ""
 
 msgid "Couldn't convert character sets!"
@@ -262,7 +262,7 @@ msgstr ""
 msgid "Couldn't browse recording"
 msgstr ""
 
-msgid "analog"
+msgid "mp2"
 msgstr ""
 
 msgid "dolby"
@@ -369,6 +369,14 @@ msgstr "Piste vidéo"
 
 msgid "Audio track"
 msgstr "Piste audio"
+
+#, fuzzy
+msgid "Subtitle track"
+msgstr "Piste vidéo"
+
+#, fuzzy
+msgid "page"
+msgstr "Cible"
 
 msgid "Unknown"
 msgstr "inconnue"

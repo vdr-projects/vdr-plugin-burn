@@ -193,8 +193,24 @@ namespace vdr_burn
 					audioTrack++;
 				}
 
-// 				m_file << "<subpicture " << get_audio_language( track_info::get_language_codes()[ setup::get().DefaultLanguage ] )
-//				  << "/>" << endl
+				const_track_filter ttxtsubtitleTracks( rec->get_tracks(), track_info::streamtype_dvbsubtitle, track_predicate::used );
+				const_track_filter::iterator ttxtsubtitleTrack = ttxtsubtitleTracks.begin();
+				while  (ttxtsubtitleTrack != ttxtsubtitleTracks.end()) {
+					const track_info& track = *ttxtsubtitleTrack;
+					m_file << "      <subpicture " << get_audio_language(track.language) << "/>"
+					  << "  <!-- " << track.language << " - " << track.description << " -->" << endl;
+					ttxtsubtitleTrack++;
+				}
+
+				const_track_filter subtitleTracks( rec->get_tracks(), track_info::streamtype_ttxtsubtitle, track_predicate::used );
+				const_track_filter::iterator subtitleTrack = subtitleTracks.begin();
+				while  (subtitleTrack != subtitleTracks.end()) {
+					const track_info& track = *subtitleTrack;
+					m_file << "      <subpicture " << get_audio_language(track.language) << "/>"
+					  << "  <!-- " << track.language << " - " << track.description << " -->" << endl;
+					subtitleTrack++;
+				}
+
 				m_file << "      <pgc>" << endl
 				  << "        <vob file=\"" << rec->get_movie_path() << "\" chapters=\""
 				  << rec->get_chapters(m_job.get_chapters_mode()) << "\"/>" << endl;

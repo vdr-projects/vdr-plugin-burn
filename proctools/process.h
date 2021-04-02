@@ -58,9 +58,9 @@ namespace proctools
 	template<typename From>
 	void process::put_environment(const std::string& name, const From& value)
 	{
-		std::setlocale(LC_ALL, "C");
+		//std::setlocale(LC_ALL, "C");
 		m_environment.put(name, convert<std::string>(value));
-		std::setlocale(LC_ALL, "");
+		//std::setlocale(LC_ALL, "");
 	}
 
 	template<>

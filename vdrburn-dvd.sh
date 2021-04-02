@@ -8,25 +8,58 @@ set -e
 
 # TODO
 # Variables passed in (not up-to-date):
-# $RECORDING_PATH           Path of VDR recording (/video0/%Bla/2004-01-...rec)
-# $MPEG_PATH                Path where streams and movie are stored
-# $VIDEO_FILE               Full path- and filename of demuxed video stream
-# $AUDIO_FILES              Space-separated list of demuxed audio streams
-# $MOVIE_FILE               Full path- and filename of muxed movie
-# $REQUANT_FACTOR           Factor by that video shall be shrinked
-# $IGNORE_TRACKS            Comma-separated list of audio track IDs to be
-#                           ignored
-# $USED_TRACKS              Comma-separated list of audio track IDs to be used
-# $DVDAUTHOR_XML            Full path- and filename of the DVDAuthor XML
-# $DVDAUTHOR_PATH           Full path of the written DVD structure
-# $TRACK_ON_DVD             Number of track on dvd in which VDR recording is
-#                           saved (2 digits)
-# $ISO_FILE                 Full path- and filename of target ISO
-# $ISO_PIPE                 Fifo where the created ISO should be piped into
-# $DVD_DEVICE               Full path- and filename of the DVD burner device
-# $CONFIG_PATH              Full path to burn's config directory
-# $TEMP_PATH                Full path to burn's temp directory (namely the same
-#                           as $MPEG_TMP_PATH)
+
+# RECORDING_PATH	(demux, recordingmark, dmharchive)
+#					Path of VDR recording (/video0/%Bla/2004-01-...rec)
+# MPEG_TMP_PATH		(demux, mplex)
+#					a linux filesystem where fifos are created
+# MPEG_DATA_PATH	(demux, mplex)
+#					Path where streams and movie are stored
+# VIDEO_FILE		(requant, mplex)
+#					Full path- and filename of demuxed video stream
+# AUDIO_FILES		(mplex)
+#					Space-separated list of demuxed audio streams
+# MOVIE_FILE		(mplex)
+#					Full path- and filename of muxed movie
+# REQUANT_FACTOR	(requant)
+#					Factor by that video shall be shrinked
+# IGNORE_TRACKS		(demux)
+#					Comma-separated list of audio track IDs to be ignored
+# USED_TRACKS		(demux)
+#					Comma-separated list of audio track IDs to be used
+# DVDAUTHOR_XML		(author)
+#					Full path- and filename of the DVDAuthor XML
+# DVDAUTHOR_PATH	(author, burn, dmharchive, archivemark)
+#					Full path of the written DVD structure
+# TRACK_ON_DVD		(dmharchive)
+#					Number of track on dvd in which VDR recording is saved (2 digits)
+
+# ISO_FILE			(burn, pipe, author)
+#					Full path- and filename of target ISO
+# ISO_PIPE			(burn, pipe)
+#					Fifo where the created ISO should be piped into
+# DVD_DEVICE		(burn, author)
+#					Full path- and filename of the DVD burner device
+# CONFIG_PATH			(pipe, recordingmark, archivemark, demux, dmharchive)
+#					Full path to burn's config directory
+# TEMP_PATH			(dmharchive)
+#					Full path to burn's temp directory (namely the same as $MPEG_TMP_PATH)
+
+# GRAFT_POINTS		(burn, pipe)
+# DISC_ID			(burn, pipe)
+# BURN_SPEED		(burn)
+# USE_CUTTING		(demux)
+# REQUANT_FILE		(requant)
+# VIDEO_SIZE		(requant)
+# MENU_BACKGROUND	(render)
+# MENU_SOUNDTRACK	(render)
+# MENU_XML			(render)
+# MENU_M2V			(render)
+# MENU_MPEG			(render)
+
+
+
+
 
 if [ -z $JAVA_HOME ]; then
 	export JAVA_HOME=/opt/j2re1.4.2
@@ -81,18 +114,28 @@ case $1 in
 		$JAVA_HOME/bin/java -Djava.awt.headless=true \
 				-jar $PROJECTX_HOME/ProjectX.jar \
 				-ini $CONFIG_PATH/ProjectX.ini \
-				$CUT \
+				$TTXT_OPTS \
+				$CUT -id $USED_TRACKS \
 				-demux -out "$MPEG_DATA_PATH" -name vdrsync \
 				$(ls "$MPEG_TMP_PATH/convert/"[0-9][0-9][0-9]*.*)
 	;;
 
 	requant)
+		REQUANT_FACTOR=$(echo "$REQUANT_FACTOR" | tr ',' '.')
+		echo requant $REQUANT_FACTOR 3 $VIDEO_SIZE
 		requant $REQUANT_FACTOR 3 $VIDEO_SIZE < "$VIDEO_FILE" > "$REQUANT_FILE"
 		rm -f "$VIDEO_FILE"
 	;;
 
 	tcrequant)
+		REQUANT_FACTOR=$(echo "$REQUANT_FACTOR" | tr ',' '.')
+		echo tcrequant -f $REQUANT_FACTOR
 		tcrequant -f $REQUANT_FACTOR < "$VIDEO_FILE" > "$REQUANT_FILE"
+		rm -f "$VIDEO_FILE"
+	;;
+
+	lxrequant)
+		requant_lxdvdrip -f $REQUANT_FACTOR -i "$VIDEO_FILE" -o "$REQUANT_FILE"
 		rm -f "$VIDEO_FILE"
 	;;
 
@@ -103,29 +146,34 @@ case $1 in
 
  		### Subtitles
 		SON=$(find "$MPEG_DATA_PATH" -name \*.son)
- 		SRT=$(find "$MPEG_DATA_PATH" -name \*.srt)
+		SRT=$(find "$MPEG_DATA_PATH" -name \*.srt)
 		SUP=$(find "$MPEG_DATA_PATH" -name \*.sup)
 		if [ "!" "x$SON" = "x" ]; then
-			# spumux.xml generation is based on son2spumux.sh: http://brigitte.dna.fi/~apm/
-			echo "<subpictures>" > "$MPEG_DATA_PATH/spumux.xml"
-			echo "  <stream>" >> "$MPEG_DATA_PATH/spumux.xml"
-			cat "$SON" | tail -n +11 | while read l1
-			do
-				read l2 || exit 1
-				x=`echo $l1 | cut -f2 -d\( | awk '{printf("%d", $1);}'`
-				y=`echo $l1 | cut -f2 -d\( | awk '{printf("%d", $2);}'`
-				t1=`echo $l2 | awk '{t1=substr($2,1,8); t2=substr($2,10,2); printf("%s.%s", t1, t2);}'`
-				t2=`echo $l2 | awk '{t1=substr($3,1,8); t2=substr($3,10,2); printf("%s.%s", t1, t2);}'`
-				i=`echo $l2 | awk '{printf("%s", $NF);}'`
-				echo "    <spu start=\"$t1\"" >> "$MPEG_DATA_PATH/spumux.xml"
-				echo "         end=\"$t2\"" >> "$MPEG_DATA_PATH/spumux.xml"
-				echo "         image=\"$MPEG_DATA_PATH/$i\"" >> "$MPEG_DATA_PATH/spumux.xml"
-				echo "         xoffset=\"$x\" yoffset=\"$y\"" >> "$MPEG_DATA_PATH/spumux.xml"
-				echo "         transparent=\"000060\" />" >> "$MPEG_DATA_PATH/spumux.xml"
+			SPUFILES=0
+			find "$MPEG_DATA_PATH" -name \*.son | while read SPUFILE ; do 
+				# spumux.xml generation is based on son2spumux.sh: http://brigitte.dna.fi/~apm/
+				echo "<subpictures>" > "$MPEG_DATA_PATH/spumux.xml"
+				echo "  <stream>" >> "$MPEG_DATA_PATH/spumux.xml"
+				cat "$SPUFILE" | tail -n +11 | while read l1
+				do
+					read l2 || exit 1
+					x=`echo $l1 | cut -f2 -d\( | awk '{printf("%d", $1);}'`
+					y=`echo $l1 | cut -f2 -d\( | awk '{printf("%d", $2);}'`
+					t1=`echo $l2 | awk '{t1=substr($2,1,8); t2=substr($2,10,2); printf("%s.%s", t1, t2);}'`
+					t2=`echo $l2 | awk '{t1=substr($3,1,8); t2=substr($3,10,2); printf("%s.%s", t1, t2);}'`
+					i=`echo $l2 | awk '{printf("%s", $NF);}'`
+					echo "    <spu start=\"$t1\"" >> "$MPEG_DATA_PATH/spumux.xml"
+					echo "         end=\"$t2\"" >> "$MPEG_DATA_PATH/spumux.xml"
+					echo "         image=\"$MPEG_DATA_PATH/$i\"" >> "$MPEG_DATA_PATH/spumux.xml"
+					echo "         xoffset=\"$x\" yoffset=\"$y\"" >> "$MPEG_DATA_PATH/spumux.xml"
+					echo "         transparent=\"000060\" />" >> "$MPEG_DATA_PATH/spumux.xml"
+				done
+				echo "  </stream>" >> "$MPEG_DATA_PATH/spumux.xml"
+				echo "</subpictures>" >> "$MPEG_DATA_PATH/spumux.xml"
+				mv "$MPEG_DATA_PATH/spumux.xml" "$MPEG_DATA_PATH/spumux$SPUFILES.xml"
+				SPUFILES=$(($SPUFILES+1))
+				# spumux.xml done
 			done
-			echo "  </stream>" >> "$MPEG_DATA_PATH/spumux.xml"
-			echo "</subpictures>" >> "$MPEG_DATA_PATH/spumux.xml"
-			# spumux.xml done
  			SPU=$MPEG_DATA_PATH
  		elif [ "!" "x$SRT" = "x" ]; then
  			echo "<subpictures>" > "$MPEG_DATA_PATH/spumux.xml"
@@ -146,10 +194,20 @@ case $1 in
 			SPU=$(find "$MPEG_DATA_PATH" -name \*.d)
 		fi
 
-		if [ ! "x$SPU" = "x" -a -f "$SPU/spumux.xml" ]; then
-			mkfifo "$MPEG_TMP_PATH/subtmp.mpg"
-			mplex -f 8 $MPLEX_OPTS -o "$MPEG_TMP_PATH/subtmp.mpg" "$VIDEO_FILE" $AUDIO_FILES &
-			spumux -v 2 "$SPU/spumux.xml" < "$MPEG_TMP_PATH/subtmp.mpg" > "$MOVIE_FILE"
+		if [ ! "x$SPU" = "x" -a -f "$SPU/spumux0.xml" ]; then
+			SPUFILES=$(find "$MPEG_DATA_PATH" -name spumux\*xml |wc -l)
+			N=0
+			mkfifo "$MPEG_TMP_PATH/subtmp0.mpg"
+			mplex -f 8 $MPLEX_OPTS -o "$MPEG_TMP_PATH/subtmp0.mpg" "$VIDEO_FILE" $AUDIO_FILES &
+			echo We have $SPUFILES spufiles.
+			while [ "$N" -lt "$SPUFILES" ] ; do
+				echo Spumuxing $N
+				NEXT=$(($N+1))
+				mkfifo "$MPEG_TMP_PATH/subtmp$NEXT.mpg"
+				spumux -s $N -v 2 "$SPU/spumux$N.xml" < "$MPEG_TMP_PATH/subtmp$N.mpg" > "$MPEG_TMP_PATH/subtmp$NEXT.mpg" &
+				N=$NEXT
+			done
+			cat "$MPEG_TMP_PATH/subtmp$NEXT.mpg" > "$MOVIE_FILE"
 		else
 			mplex -f 8 $MPLEX_OPTS -o "$MOVIE_FILE" "$VIDEO_FILE" $AUDIO_FILES
 		fi
@@ -215,14 +273,14 @@ case $1 in
 				  -V "$DISC_ID" -dvd-video "$DVDAUTHOR_PATH"
 	;;
 
-    burndircd)
-        SPEED=""
-        if [ $BURN_SPEED -gt 0 ]; then
-        	SPEED="speed=$(($BURN_SPEED * 4))"
-        fi
-        mkisofs -V "$DISC_ID" -dvd-video "$DVDAUTHOR_PATH" \
+	burndircd)
+		SPEED=""
+		if [ $BURN_SPEED -gt 0 ]; then
+			SPEED="speed=$(($BURN_SPEED * 4))"
+		fi
+		mkisofs -V "$DISC_ID" -dvd-video "$DVDAUTHOR_PATH" \
 			| cdrecord "dev=$DVD_DEVICE" driveropts=burnfree fs=10m $SPEED -
-    ;;
+	;;
 
 	pipeiso)
 		mkisofs -V "$DISC_ID" -dvd-video "$DVDAUTHOR_PATH" \

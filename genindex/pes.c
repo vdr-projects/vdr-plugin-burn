@@ -73,12 +73,12 @@ void cPES::SetDefaultRule(eRule ru, const int num)
     for(int i=0 ; i<NUM_RULES ; i++) rules[num][i]=ru;
 }
 
-void cPES::SetRule(uchar type, eRule ru, const int num)
+void cPES::SetRule(int type, eRule ru, const int num)
 {
   if(ValidRuleset(num)) rules[num][type]=ru;
 }
 
-void cPES::SetRuleR(uchar ltype, uchar htype, eRule ru, const int num)
+void cPES::SetRuleR(int ltype, int htype, eRule ru, const int num)
 {
   if(ValidRuleset(num)) {
     if(ltype<htype) for( ; ltype<=htype ; ltype++) rules[num][ltype]=ru;
@@ -86,7 +86,7 @@ void cPES::SetRuleR(uchar ltype, uchar htype, eRule ru, const int num)
     }
 }
 
-unsigned int cPES::Seen(uchar type) const
+unsigned int cPES::Seen(int type) const
 {
   return seen[type];
 }
@@ -268,7 +268,7 @@ int cPES::Return(int used, int len)
   return used;
 }
 
-int cPES::Process(const uchar *data, int len)
+int cPES::Process(const uchar *data, int len, int pid)
 {
   Lock(); // lock is released in Return()
   PD("PES: enter data=%p len=%d mode=%d have=%d need=%d old=%d\n",
@@ -391,14 +391,14 @@ int cPES::Process(const uchar *data, int len)
             // fall through
           case prPass: n=n; break;
           case prSkip: n=-n; break;
-          case prAct1: n=Action1(type,c,n); break;
-          case prAct2: n=Action2(type,c,n); break;
-          case prAct3: n=Action3(type,c,n); break;
-          case prAct4: n=Action4(type,c,n); break;
-          case prAct5: n=Action5(type,c,n); break;
-          case prAct6: n=Action6(type,c,n); break;
-          case prAct7: n=Action7(type,c,n); break;
-          case prAct8: n=Action8(type,c,n); break;
+          case prAct1: n=Action1(type,pid,c,n); break;
+          case prAct2: n=Action2(type,pid,c,n); break;
+          case prAct3: n=Action3(type,pid,c,n); break;
+          case prAct4: n=Action4(type,pid,c,n); break;
+          case prAct5: n=Action5(type,pid,c,n); break;
+          case prAct6: n=Action6(type,pid,c,n); break;
+          case prAct7: n=Action7(type,pid,c,n); break;
+          case prAct8: n=Action8(type,pid,c,n); break;
           }
         if(n==0) {
           if(redirect) { redirect=false; continue; }

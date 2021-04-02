@@ -12,6 +12,7 @@
 #include <vector>
 #include <utility>
 #include <vdr/recording.h>
+#include <vdr/remux.h>
 
 namespace vdr_burn
 {
@@ -54,18 +55,21 @@ namespace vdr_burn
 
         const recording& get_result() const  { return m_scanResult; }
 
-    protected:
-		void scan_track_description(track_info& track);
-        void scan_total_sizes(recording_index& index, cMarks& marks);
-        void scan_audio_track_size(track_info& track);
-        void scan_video_track_size(track_info& track);
+	protected:
+		void scan_track_descriptions(track_info_list& tracks);
+		void scan_total_sizes(recording_index& index, cMarks& marks);
+		void scan_audio_track_size(track_info& track);
+		void scan_video_track_size(track_info& track);
 
-    private:
-        const cRecording* m_itemToScan;
-        size_pair m_totalSize;
-        length_pair m_totalLength;
-        recording m_scanResult;
-    };
+	private:
+		const cRecording* m_itemToScan;
+		size_pair m_totalSize;
+		length_pair m_totalLength;
+#if VDRVERSNUM >= 10711
+		cPatPmtParser m_PatPmtParser;
+#endif
+		recording m_scanResult;
+	};
 
 }
 

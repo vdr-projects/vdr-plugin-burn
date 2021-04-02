@@ -9,9 +9,6 @@
 
 #include "burn.h"
 #include "gdwrapper.h"
-#if APIVERSNUM < 10507  
-#include "i18n.h"
-#endif
 #include "logger-vdr.h"
 #include "manager.h"
 #include "menuburn.h"
@@ -24,13 +21,31 @@
 #include <vdr/plugin.h>
 #include <vdr/videodir.h>
 
+// plugin needs VDR 1.6.0 or 1.7.11+
+#if VDRVERSNUM < 10600
+#error This plugin requires VDR 1.6.0 or VDR 1.7.11+
+#endif
+
+
+#if VDRVERSNUM >= 10699
+#if VDRVERSNUM <= 10710
+#error This plugin requires VDR 1.6.0 or VDR 1.7.11+
+#endif
+#endif
+
+#ifdef TTXT_SUBTITLES
+#warning Compiling WITH teletext subtitle support
+#else
+#warning Compiling WITHOUT teletext subtitle support
+#endif
+
 namespace vdr_burn
 {
 
 	using namespace std;
 	using proctools::format;
 
-	const char* plugin::VERSION        = "0.1.0-pre22-ff1";
+	const char* plugin::VERSION        = "0.2.0-beta1";
 	const char* plugin::DESCRIPTION    = trNOOP("Versatile convert-and-burn plugin");
 	const char* plugin::MAINMENUENTRY  = tr("Create DVDs");
 
@@ -47,16 +62,10 @@ namespace vdr_burn
 
 	string plugin::get_character_encoding()
 	{
-#if VDRVERSNUM >= 10503
 		if (cCharSetConv::SystemCharacterTable())
 			return cCharSetConv::SystemCharacterTable();
 		else
 			return "utf-8";
-#elif defined(UTF8PATCH)
-		return "utf-8";
-#else
-		return tr("iso8859-15");
-#endif
 	}
 
 	const char *plugin::CommandLineHelp()
@@ -91,9 +100,6 @@ namespace vdr_burn
 
 		manager::start();
 		logger_vdr::start();
-#if APIVERSNUM < 10507
-		RegisterI18n( i18n::get_phrases() );
-#endif
 		gdwrapper::setup::set_font_path( m_configPath + "/fonts" );
 		if ( !skin_list::get().load( get_config_path() ) )
 			return false;
