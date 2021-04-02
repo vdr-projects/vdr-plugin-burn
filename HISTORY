@@ -1,6 +1,13 @@
 VDR Plugin 'burn' Revision History
 ----------------------------------
 
+2010-0x-xx: Version 0.2.0-beta4
+- fixed teletext page calculation (reported by Petri Helin)
+- refactored handling of subtitles (dvb and teletext). Subtitels are now intergrated in the standard job handling
+- hide recordings from selection which have H.264_AVC as stream content type in their component
+  description ("X 5 ..." in info(.vdr))
+- added Dutch translations (thanks to Carel Willemse)
+
 2010-04-10: Version 0.2.0-beta3
 - fixed cutting of PES recordings (reported by caps!@vdr-portal.de)
 - removed vdr-1.7.12-tpid-Parser.diff because it's no longer needed

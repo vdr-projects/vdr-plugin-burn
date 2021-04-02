@@ -178,12 +178,13 @@ namespace vdr_burn
 	string recording::get_TtxtPageOpts() const
 	{
 		int i = 1;
-		const_track_filter ttxtsubtitleTracks( m_tracks, track_info::streamtype_ttxtsubtitle, track_predicate::used );
+		const_track_filter subtitleTracks( m_tracks, track_info::streamtype_subtitle, track_predicate::used );
 
 		std::string result;
 
-		for (const_track_filter::iterator cur = ttxtsubtitleTracks.begin(); cur != ttxtsubtitleTracks.end(); ++cur)
-			result += print_SubtitleOpt ( i++, cur->ttxtsubtitle.page);
+		for (const_track_filter::iterator cur = subtitleTracks.begin(); cur != subtitleTracks.end(); ++cur)
+			if (cur->subtitle.type == track_info::subtitletype_teletext)
+				result += print_SubtitleOpt ( i++, cur->subtitle.teletextpage);
 
 		return result;
 	}
@@ -300,6 +301,7 @@ namespace vdr_burn
 	{
         recording_scanner scanner( this, vdrRecording );
     	scanner.scan();
+		//TODO remove non-MPEG2 recordings
 
 		recording newRec( scanner.get_result() );
 		if ( m_title.empty() )

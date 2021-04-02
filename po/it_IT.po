@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: VDR 1.5.7\n"
 "Report-Msgid-Bugs-To: <<vdr@smue.org>>\n"
-"POT-Creation-Date: 2010-01-31 17:54+0100\n"
+"POT-Creation-Date: 2010-05-02 22:10+0200\n"
 "PO-Revision-Date: 2010-03-03 00:37+0100\n"
 "Last-Translator: Diego Pierotto <vdr-italian@tiscali.it>\n"
 "Language-Team:  <vdr@linuxtv.org>\n"
@@ -379,4 +379,3 @@ msgstr "pagina"
 
 msgid "Unknown"
 msgstr "Sconosciuta"
-

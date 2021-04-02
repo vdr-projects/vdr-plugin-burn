@@ -25,8 +25,7 @@ namespace vdr_burn
 		{
 			streamtype_video = 1,
 			streamtype_audio,
-			streamtype_dvbsubtitle,
-			streamtype_ttxtsubtitle
+			streamtype_subtitle
 		};
 
 		enum aspectratio
@@ -73,6 +72,12 @@ namespace vdr_burn
 		{
 		};
 
+		enum subtitletype
+		{
+			subtitletype_dvb = 1,
+			subtitletype_teletext
+		};
+
 		int cid;
 		std::string filename;
 		int language;
@@ -110,8 +115,9 @@ namespace vdr_burn
 
 			struct
 			{
-				int page;
-			} ttxtsubtitle;
+				subtitletype type;
+				int teletextpage;
+			} subtitle;
 		};
 
 		track_info(int cid, streamtype type);

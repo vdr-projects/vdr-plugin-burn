@@ -193,16 +193,7 @@ namespace vdr_burn
 					audioTrack++;
 				}
 
-				const_track_filter ttxtsubtitleTracks( rec->get_tracks(), track_info::streamtype_dvbsubtitle, track_predicate::used );
-				const_track_filter::iterator ttxtsubtitleTrack = ttxtsubtitleTracks.begin();
-				while  (ttxtsubtitleTrack != ttxtsubtitleTracks.end()) {
-					const track_info& track = *ttxtsubtitleTrack;
-					m_file << "      <subpicture " << get_audio_language(track.language) << "/>"
-					  << "  <!-- " << track.language << " - " << track.description << " -->" << endl;
-					ttxtsubtitleTrack++;
-				}
-
-				const_track_filter subtitleTracks( rec->get_tracks(), track_info::streamtype_ttxtsubtitle, track_predicate::used );
+				const_track_filter subtitleTracks( rec->get_tracks(), track_info::streamtype_subtitle, track_predicate::used );
 				const_track_filter::iterator subtitleTrack = subtitleTracks.begin();
 				while  (subtitleTrack != subtitleTracks.end()) {
 					const track_info& track = *subtitleTrack;

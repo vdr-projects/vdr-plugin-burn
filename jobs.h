@@ -88,9 +88,12 @@ namespace vdr_burn {
 		std::string get_used_cids() const;
 		std::string get_ignored_cids() const;
 		std::string get_movie_path() const;
+		std::string get_spumux_path(int number) const;
+		std::string get_subtitle_path(int number) const;
 		std::string get_menu_background(int Page) const;
 		std::string get_buttons_normal() const;
 		std::string get_buttons_highlight(int Page) const;
+		std::string get_buttons_select(int Page) const;
 		std::string get_menu_mpeg(int Page) const;
 		std::string get_graft_point() const;
 #ifdef TTXT_SUBTITLES
@@ -120,6 +123,19 @@ namespace vdr_burn {
 	}
 
 	inline
+	std::string recording::get_spumux_path(int number) const
+	{
+		return proctools::format( "{0}/spumux{1}.xml" ) % m_paths.data % number;
+	}
+
+
+	inline
+	std::string recording::get_subtitle_path(int number) const
+	{
+		return proctools::format( "{0}/subtmp{1}.mpg" ) % m_paths.temp % number;
+	}
+
+	inline
 	std::string recording::get_menu_background(int page) const
 	{
 		return proctools::format("{0}/menu-bg-{1}.png") % m_paths.data % page;
@@ -135,6 +151,12 @@ namespace vdr_burn {
 	std::string recording::get_buttons_highlight(int page) const
 	{
 		return proctools::format("{0}/menu-buttons-h-{1}.png") % m_paths.data % page;
+	}
+
+	inline
+	std::string recording::get_buttons_select(int page) const
+	{
+		return proctools::format("{0}/menu-buttons-s-{1}.png") % m_paths.data % page;
 	}
 
 	inline

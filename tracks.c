@@ -125,14 +125,13 @@ namespace vdr_burn
 			result << tr("Audio track") << " (" << hex << cid << ")";
 			break;
 
-		case track_info::streamtype_dvbsubtitle:
-			///result << tr("Subtitle track");
-			result << tr("Subtitle track") << " (" << hex << cid << ")";
-			break;
-
-		case track_info::streamtype_ttxtsubtitle:
+		case track_info::streamtype_subtitle:
 			///result << tr("Subtitle track") << " (" << tr("page") << " " << dec << ttxtsubtitle.page << ")";
-			result << tr("Subtitle track") << " (" << hex << cid << ") (" << tr("page") << " " << dec << ttxtsubtitle.page << ")";
+			if (subtitle.type == track_info::subtitletype_teletext)
+				result << tr("Subtitle track") << " (" << hex << cid << ") (" << tr("page") << " " << dec << subtitle.teletextpage << ")";
+			else
+				result << tr("Subtitle track") << " (" << hex << cid << ")";
+
 			break;
 
 		default:

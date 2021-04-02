@@ -403,8 +403,8 @@ namespace vdr_burn
 					else if (PatPmtParser.GetVersions(PatVersion, PmtVersion)) {
 						PmtFound = true;
 						int streams = 0;
-						logger::debug(format( "PID found: PMT PID=0x{0}, Vpid=0x{1}") % format::base( PatPmtParser.PmtPid(), 16 ) % format::base( PatPmtParser.Vpid(), 16 ));
-						if ( PatPmtParser.Vpid() ) {
+						logger::debug(format( "PID found: PMT PID=0x{0}, Vpid=0x{1}, Vtype=0x{2}") % format::base( PatPmtParser.PmtPid(), 16 ) % format::base( PatPmtParser.Vpid(), 16 ) % format::base( PatPmtParser.Vtype(), 16 ));
+						if ( PatPmtParser.Vpid() && (PatPmtParser.Vtype() == 2)) { // accept only MPEG2
 							track_info track( PatPmtParser.Vpid(), track_info::streamtype_video );
 							m_tracks.push_back( track );
 							streams++;
@@ -445,7 +445,8 @@ namespace vdr_burn
 						i = 0;
 						while (PatPmtParser.Spid(i)) {
 							logger::debug(format( "PID found: Spid{0}=0x{1}") % i % format::base( PatPmtParser.Spid(i), 16 ));
-							track_info track( PatPmtParser.Spid(i), track_info::streamtype_dvbsubtitle );
+							track_info track( PatPmtParser.Spid(i), track_info::streamtype_subtitle );
+							track.subtitle.type = track_info::subtitletype_dvb;
 							track.set_language( PatPmtParser.Slang(i));
 							m_tracks.push_back( track );
 							PidConverter newstream;
@@ -460,10 +461,11 @@ namespace vdr_burn
 							logger::debug(format( "PID found: Tpid{0}=0x{1}, max {2}") % i % format::base( PatPmtParser.Tpid(), 16 ) % PatPmtParser.TotalTeletextSubtitlePages());
 							for (int i = 0; i < PatPmtParser.TotalTeletextSubtitlePages(); i++) {
 								const tTeletextSubtitlePage *ttxtSubtitlePage = PatPmtParser.TeletextSubtitlePages();
-								track_info track( PatPmtParser.Tpid(), track_info::streamtype_ttxtsubtitle );
+								track_info track( PatPmtParser.Tpid(), track_info::streamtype_subtitle );
 								track.set_language( PatPmtParser.TeletextSubtitlePages()[i].ttxtLanguage);
-								track.ttxtsubtitle.page = ttxtSubtitlePage[i].ttxtPage + 100*ttxtSubtitlePage[i].ttxtMagazine;
-								logger::debug(format( "Tpid 0x{0} adding page {1}") % format::base( PatPmtParser.Tpid(), 16 ) % track.ttxtsubtitle.page);
+								track.subtitle.type = track_info::subtitletype_teletext;
+								track.subtitle.teletextpage = 100*ttxtSubtitlePage[i].ttxtMagazine + 10*(ttxtSubtitlePage[i].ttxtPage >> 4) + (ttxtSubtitlePage[i].ttxtPage & 0x0F);
+								logger::debug(format( "Tpid 0x{0} adding page {1}") % format::base( PatPmtParser.Tpid(), 16 ) % track.subtitle.teletextpage);
 								m_tracks.push_back( track );
 								streams++;
 							}
@@ -796,17 +798,18 @@ namespace vdr_burn
 
 	bool video_track_finder(const tComponent& component)
 	{
-		return component.stream == etsi::sc_video;
+		return component.stream == etsi::sc_video_MPEG2;
 	}
 
 	bool ac3_track_finder(const tComponent& component)
 	{
-		return component.stream == etsi::sc_audio && component.type == etsi::cta_surround;
+		return (component.stream == etsi::sc_audio_MP2 && component.type == etsi::cta_surround) ||
+			   (component.stream == etsi::sc_audio_AC3);
 	}
 
 	bool mp2_track_finder(const tComponent& component)
 	{
-		return component.stream == etsi::sc_audio && component.type != etsi::cta_surround;
+		return component.stream == etsi::sc_audio_MP2 && component.type != etsi::cta_surround;
 
 	}
 	bool subtitle_track_finder(const tComponent& component)
@@ -842,7 +845,7 @@ namespace vdr_burn
 					case track_info::streamtype_video:
 						for (int i = 0; i < Components->NumComponents(); i++) {
 							const tComponent *p = Components->Component(i);
-							if (p->stream == etsi::sc_video) {
+							if (p->stream == etsi::sc_video_MPEG2) {
 								component = p;
 								break;
 							}
@@ -854,7 +857,8 @@ namespace vdr_burn
 							count = NumDpids;
 							for (int i = 0; i < Components->NumComponents(); i++) {
 								const tComponent *p = Components->Component(i);
-								if (p->stream == etsi::sc_audio && p->type == etsi::cta_surround) {
+								if ((p->stream == etsi::sc_audio_MP2 && p->type == etsi::cta_surround) ||
+									(p->stream == etsi::sc_audio_AC3)) {
 									if (!count) {
 										component = p;
 										NumDpids++;
@@ -867,7 +871,7 @@ namespace vdr_burn
 							count = NumApids;
 							for (int i = 0; i < Components->NumComponents(); i++) {
 								const tComponent *p = Components->Component(i);
-								if (p->stream == etsi::sc_audio && p->type != etsi::cta_surround) {
+								if (p->stream == etsi::sc_audio_MP2 && p->type != etsi::cta_surround) {
 									if (!count) {
 										component = p;
 										NumApids++;
@@ -879,17 +883,19 @@ namespace vdr_burn
 						}
 						break;
 		
-					case track_info::streamtype_dvbsubtitle:
-						count = NumSpids;
-						for (int i = 0; i < Components->NumComponents(); i++) {
-							const tComponent *p = Components->Component(i);
-							if (p->stream == etsi::sc_subtitle) {
-								if (!count) {
-									component = p;
-									NumSpids++;
-									break;
-								} else
-									count--;
+					case track_info::streamtype_subtitle:
+						if (track->subtitle.type == track_info::subtitletype_dvb ) {
+							count = NumSpids;
+							for (int i = 0; i < Components->NumComponents(); i++) {
+								const tComponent *p = Components->Component(i);
+								if (p->stream == etsi::sc_subtitle) {
+									if (!count) {
+										component = p;
+										NumSpids++;
+										break;
+									} else
+										count--;
+								}
 							}
 						}
 						break;

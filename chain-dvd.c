@@ -232,7 +232,6 @@ namespace vdr_burn
 				 bind( &chain_dvd::make_fifo, this,
 				 	   bind( &recording::get_track_path, rec, _1 )
 				));
-
 	}
 
 	bool chain_dvd::prepare_job()
@@ -302,6 +301,7 @@ namespace vdr_burn
 
 	void chain_dvd::prepare_mplex()
 	{
+		// insert requant step if required
 		if (get_job().get_requant_factor() > 1) {
 			const char* requant_call;
 			if ( global_setup().RequantType == requanttype_transcode )
@@ -319,8 +319,34 @@ namespace vdr_burn
 			add_process(requant);
 		}
 
+		/// subtitle handling
+		const_track_filter subtitleTracks( m_currentRecording->get_tracks(), track_info::streamtype_subtitle, track_predicate::used );
+		int subtitletrack_no = 0;
+		const_track_filter::iterator subtitleTrack = subtitleTracks.begin();
+		while  (subtitleTrack != subtitleTracks.end()) {
+			make_fifo( m_currentRecording->get_subtitle_path(subtitletrack_no) );
+			shellprocess* subtitle = new shellprocess( str ( boost::format( "subtitle%d" ) % subtitletrack_no), shellescape( "vdrburn-dvd.sh" ) + "subtitle" );
+			subtitle->put_environment("NUMBER",         subtitletrack_no);
+			if (subtitleTrack->subtitle.type == track_info::subtitletype_teletext)
+				subtitle->put_environment("TTXTPAGE",       subtitleTrack->subtitle.teletextpage);
+			subtitle->put_environment("MPEG_DATA_PATH", m_currentRecording->get_paths().data);
+			subtitle->put_environment("SPUMUX_FILE",    m_currentRecording->get_spumux_path(subtitletrack_no));
+			subtitle->put_environment("MOVIE_FILE",     m_currentRecording->get_subtitle_path(subtitletrack_no));
+			subtitleTrack++;
+			subtitle->put_environment("SUBTITLED_FILE",
+				(subtitleTrack == subtitleTracks.end())
+					? m_currentRecording->get_movie_path()
+					: m_currentRecording->get_subtitle_path(subtitletrack_no+1));
+			add_process(subtitle);
+			subtitletrack_no++;
+		}
+
 		shellprocess* mplex = new shellprocess( "mplex", shellescape( "vdrburn-dvd.sh" ) + "mplex" );
-		mplex->put_environment("MOVIE_FILE",     m_currentRecording->get_movie_path());
+		mplex->put_environment("MOVIE_FILE",
+				subtitleTracks.begin() != subtitleTracks.end()
+					? m_currentRecording->get_subtitle_path(0)
+					: m_currentRecording->get_movie_path());
+
 		mplex->put_environment("MPEG_DATA_PATH", m_currentRecording->get_paths().data);
 		mplex->put_environment("MPEG_TMP_PATH",  m_currentRecording->get_paths().temp);
 		mplex->put_environment("VIDEO_FILE",

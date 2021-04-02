@@ -131,8 +131,7 @@ namespace vdr_burn
 				m_indices.push_back(index);
 				break;
 
-			case track_info::streamtype_dvbsubtitle:
-			case track_info::streamtype_ttxtsubtitle:
+			case track_info::streamtype_subtitle:
 				Add( new list_edit_item( str( boost::format("- %1$s") % tr("Language code") ), track.language, track_info::get_language_codes() ) );
 				m_indices.push_back(index);
 				break;
@@ -268,6 +267,22 @@ namespace vdr_burn
 			string lastText;
 			for (cRecording *rec = Recordings.First(); rec != NULL; rec = Recordings.Next(rec)) {
 				string recName( rec->Name() );
+
+				// remove H.264 videos
+				bool H264_found = false;
+				if (rec->Info() && rec->Info()->Components()) {
+					const cComponents *Components = rec->Info()->Components();
+					for (int i = 0; i < Components->NumComponents(); i++) {
+						const tComponent *p = Components->Component(i);
+						if (p->stream == etsi::sc_video_H264_AVC) {
+							//isyslog("burn: removing H.264 recording %s", rec->Name());
+							H264_found = true;
+							break;
+						}
+					}
+					if (H264_found)
+						continue;
+				}
 
 				if ( manager::is_recording_queued( rec->FileName() ) )
 					continue;

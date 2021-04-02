@@ -1,88 +1,85 @@
 # VDR plugin language source file.
 # Copyright (C) 2007 Klaus Schmidinger <kls@cadsoft.de>
 # This file is distributed under the same license as the VDR package.
-# Hannu Savolainen <hannu@opensound.com>, 2002
-# Jaakko Hyv‰tti <jaakko@hyvatti.iki.fi>, 2002
-# Niko Tarnanen <niko.tarnanen@hut.fi>, 2003
-# Rolf Ahrenberg <rahrenbe@cc.hut.fi>, 2003
+# Klaus Schmidinger <kls@cadsoft.de>, 2000
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: VDR 1.5.7\n"
 "Report-Msgid-Bugs-To: <<vdr@smue.org>>\n"
-"POT-Creation-Date: 2010-05-02 22:10+0200\n"
+"POT-Creation-Date: 2010-01-31 17:54+0100\n"
 "PO-Revision-Date: 2008-02-02 22:42+0100\n"
-"Last-Translator: Rolf Ahrenberg <rahrenbe@cc.hut.fi>\n"
+"Last-Translator: Carel Willemse <carel.willemse@online.nl>\n"
 "Language-Team: <vdr@linuxtv.org>\n"
 "MIME-Version: 1.0\n"
-"Content-Type: text/plain; charset=ISO-8859-15\n"
+"Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
 msgid "Versatile convert-and-burn plugin"
-msgstr "Monipuolinen DVD-tyˆkalu"
+msgstr "Universele 'converteer en brand' plugin"
 
 msgid "Create DVDs"
-msgstr "Polta DVD-levy"
+msgstr "DVDs maken"
 
 msgid "Burn job active"
-msgstr "Polttoteht‰v‰ aktiivinen"
+msgstr "Brandopdracht aktief"
 
 msgid "Please enter the burn plugin"
-msgstr "Siirry \"Polta DVD-levy\"-laajennokseen"
+msgstr "Start burn-plugin a.u.b."
 
 msgid "Please insert an empty disk and press Ok"
-msgstr "Aseta tyhj‰ levy asemaan ja paina 'OK'"
+msgstr "Plaats een lege DVD en druk OK"
 
 msgid "DVD with menus"
-msgstr "DVD valikolla"
+msgstr "DVD met menus"
 
 msgid "DVD without menus"
-msgstr "DVD ilman valikkoa"
+msgstr "DVD zonder menus"
 
 msgid "Archive disk"
-msgstr "arkistolevy"
+msgstr "Archiefdisk"
 
 msgid "Create ISO only"
-msgstr "vain levyimage"
+msgstr "Alleen ISO image maken"
 
 msgid "Write to Disc"
-msgstr "vain poltto"
+msgstr "Alleen branden"
 
 msgid "Create ISO and write"
-msgstr "levyimage ja poltto"
+msgstr "ISO image maken en branden"
 
 msgid "No chapters"
-msgstr "ei kappaleita"
+msgstr "Geen hoofdstukken"
 
 msgid "Use editing marks"
-msgstr "leikkausmerkinn‰t"
+msgstr "Gebruik bewerkingsmarkeringen"
 
 msgid "Every 5 minutes"
-msgstr "joka 5. minuutti"
+msgstr "Iedere 5 minuten"
 
 msgid "Every 10 minutes"
-msgstr "joka 10. minuutti"
+msgstr "Iedere 10 minuten"
 
 msgid "Every 15 minutes"
-msgstr "joka 15. minuutti"
+msgstr "Ieder kwartier"
 
 msgid "Every 30 minutes"
-msgstr "joka 30. minuutti"
+msgstr "Ieder half uur"
 
 msgid "Every hour"
-msgstr "kerran tunnissa"
+msgstr "Ieder heel uur"
 
 msgid "Single Layer"
-msgstr "yksikerros"
+msgstr "Single Layer"
 
 msgid "Double Layer"
-msgstr "kaksikerros"
+msgstr "Double Layer"
 
 msgid "CD-R"
 msgstr "CD-R"
 
 msgid "Custom"
-msgstr "s‰‰dett‰v‰"
+msgstr "Gebruiker-gedefinieerd"
 
 msgid "VDRSync"
 msgstr "VDRSync"
@@ -97,289 +94,283 @@ msgid "Transcode"
 msgstr "Transcode"
 
 msgid "lxdvdrip"
-msgstr ""
+msgstr "lxdvdrip"
 
 msgid "Couldn't convert character sets!"
-msgstr ""
+msgstr "Kan karaktersets niet converteren!"
 
 msgid "Couldn't open image file!"
-msgstr ""
+msgstr "Kan afbeeldingbestand niet openen!"
 
 msgid "Couldn't create new image!"
-msgstr ""
+msgstr "kan geen nieuwe afbeelding maken!"
 
 msgid "Couldn't render menu images!"
-msgstr ""
+msgstr "Kan geen menu afbeeldingen maken!"
 
 msgid "Couldn't save image file!"
-msgstr ""
+msgstr "Kan afbeeldingbestand niet opslaan!"
 
 msgid "Recording too big for disc type!"
-msgstr "Tallenne ei mahdu levytyypille!"
+msgstr "Opname te groot voor dit type Disk!"
 
 msgid "Disc too big for disc type!"
-msgstr "Levy ei mahdu levytyypille!"
+msgstr "Dis te groot voor gekozen conversie!"
 
 msgid "A job failed!"
-msgstr "Polttaminen ep‰onnistui!"
+msgstr "Opdracht mislukt!"
 
 msgid "A job was finished successfully."
-msgstr "Polttaminen onnistui."
+msgstr "Er is een opdracht afgerond"
 
 msgid "Recordings"
-msgstr "tallenteet"
+msgstr "Opnamen"
 
 msgid "List"
-msgstr "Lista"
+msgstr "Lijst"
 
 msgid "Status"
-msgstr "status"
+msgstr "Status"
 
 msgid "Move down"
-msgstr "Alasp‰in"
+msgstr "Naar beneden"
 
 msgid "Track$Off"
-msgstr "Poissa"
+msgstr "Uit"
 
 msgid "Track$On"
-msgstr "P‰‰ll‰"
+msgstr "Aan"
 
 msgid "Language code"
-msgstr "Kielitunnus"
+msgstr "Taalcode"
 
 msgid "Choose title"
-msgstr ""
+msgstr "Kies titel"
 
 #, c-format
 msgid "$Recordings: %1$d, total size: %2$.1f MB"
-msgstr "Tallenteita: %1$d, yhteens‰: %2$.1f MB"
+msgstr "Opnamen: %1$d, Totale grootte: %2$.1f MB"
 
 msgid "No recordings marked for burning"
-msgstr "Tallenteita ei ole merkitty poltettavaksi"
+msgstr "Er zijn geen opnamen geselecteerd om te branden"
 
 msgid "Write DVDs"
-msgstr "Polta DVD-levy"
+msgstr "DVDs branden"
 
 msgid "Choose"
-msgstr "Valitse"
+msgstr "Kiezen"
 
 msgid "Analyzing recording..."
-msgstr "Analysoidaan tallennetta..."
+msgstr "Opname wordt geanalyseerd..."
 
 msgid "Job"
-msgstr "teht‰v‰"
+msgstr "Opdracht"
 
 msgid "DVD title"
-msgstr "DVD:n nimi"
+msgstr "Titel van de DVD"
 
 msgid "Archive-ID"
-msgstr "Arkistotunnus"
+msgstr "Archief-ID"
 
 msgid "Job options"
-msgstr "Teht‰v‰n asetukset"
+msgstr "Opdrachtinstellingen"
 
 msgid "No recordings marked"
-msgstr "Ei valittuja tallenteita"
+msgstr "Geen opnamen gemarkeerd"
 
 msgid "Button$Start"
-msgstr "Aloita"
+msgstr "Starten"
 
 msgid "Remove"
-msgstr "Poista"
+msgstr "Verwijderen"
 
-#, fuzzy
 msgid "No MPEG2 video track selected!"
-msgstr "Yht‰‰n kuvaraitaa ei ole valittu!"
+msgstr "Geen MPEG2 videospoor geselecteerd!"
 
 msgid "No audio track selected!"
-msgstr "Yht‰‰n ‰‰niraitaa ei ole valittu!"
+msgstr "geen audiospoor geselecteerd!"
 
 msgid "Not enough free disk space!"
-msgstr "Liian v‰h‰n vapaata levytilaa!"
+msgstr "Onvoldoende opslagcapaciteit!"
 
 msgid "Remove recording from list?"
-msgstr "Poistetaanko tallenne listalta?"
+msgstr "Opname uit lijst verwijderen?"
 
 #, c-format
 msgid "$Job active (Writing: %1$d%%)"
-msgstr "Teht‰v‰‰ suoritetaan (poltto: %1$d%%)"
+msgstr "Opdracht actief (Schrijft: %1$d%%)"
 
 msgid "Job active (Converting)"
-msgstr "Teht‰v‰‰ suoritetaan (konvertointi)"
+msgstr "Opdracht actief (Converteert)"
 
 msgid "No active or waiting jobs present"
-msgstr "Ei aktiivisia eik‰ odottavia teht‰vi‰"
+msgstr "Geen actieve of wachtende opdrachtsen aanwezig"
 
 msgid "Canceled jobs"
-msgstr "Perutut teht‰v‰t"
+msgstr "Afgebroken opdrachtsen"
 
 msgid "Erroneous jobs"
-msgstr "Ep‰onnistuneet teht‰v‰t"
+msgstr "Foutieve opdrachtsen"
 
 msgid "Restart"
-msgstr "Aloita uudelleen"
+msgstr "Herstart"
 
 msgid "Retry"
-msgstr "Yrit‰ uudelleen"
+msgstr "Herhalen"
 
 msgid "Cancel"
-msgstr "Peru"
+msgstr "Afbreken"
 
 msgid "Replace current job?"
-msgstr "Korvataanko nykyinen teht‰v‰?"
+msgstr "Huidig opdracht vervangen?"
 
 msgid "Job still active - really cancel?"
-msgstr "Teht‰v‰‰ suoritetaan yh‰ - perutaanko?"
+msgstr "Opdracht nog actief - werkelijk afbreken?"
 
 msgid "Remove job from list?"
-msgstr "Poistetaanko teht‰v‰ listalta?"
+msgstr "Opdracht uit lijst verwijderen?"
 
 #, c-format
 msgid "$Total size: %1$.1f MB %2$s"
-msgstr "Yhteens‰: %1$.1f MB %2$s"
+msgstr "totale grootte: %1$.1f MB %2$s"
 
 msgid "(would be shrinked)"
-msgstr "(joudutaan pienent‰m‰‰n)"
+msgstr "(zal worden gecomprimeerd)"
 
 msgid "Aspect ratio"
-msgstr "Kuvasuhde"
+msgstr "Beeldverhouding"
 
 msgid "Previous page"
-msgstr "Edellinen sivu"
+msgstr "Vorige pagina"
 
 msgid "Next page"
-msgstr "Seuraava sivu"
+msgstr "Volgende pagina"
 
 msgid "Play movie"
-msgstr "Toista tallenne"
+msgstr "Film afspelen"
 
 msgid "Back"
-msgstr "Takaisin"
+msgstr "Terug"
 
 msgid "Couldn't read index"
-msgstr "Indeksin lukeminen ep‰onnistui!"
+msgstr "Kan index niet lezen!"
 
 msgid "Couldn't browse recording"
-msgstr "Tallenteen selaaminen ep‰onnistui!"
+msgstr "Kan niet zoeken naar opname"
 
 msgid "mp2"
-msgstr ""
+msgstr "mp2"
 
 msgid "dolby"
 msgstr "dolby"
 
 msgid "Couldn't read marks"
-msgstr ""
+msgstr "Kan bewerkingsmarkeringen niet lezen"
 
 msgid "Recording is too short"
-msgstr "Tallenne on liian lyhyt"
+msgstr "Opname is te kort"
 
 msgid "Target"
-msgstr "Kohde"
+msgstr "Bestemming"
 
 msgid "Disk type"
-msgstr "Levyn tyyppi"
+msgstr "DVD-type"
 
 msgid "DMH-archive"
-msgstr "DMH-arkistointi"
+msgstr "DMH-Archief"
 
 msgid "Skin"
-msgstr "Ulkoasu"
+msgstr "Uiterlijk"
 
 msgid "Chapters"
-msgstr "Kappaleet"
+msgstr "Hoofdstukken"
 
 msgid "Disk size"
-msgstr "Levyn koko"
+msgstr "Diskgrootte"
 
 msgid "Cut"
-msgstr "Leikkaa"
+msgstr "Bewerken"
 
 msgid "Skip empty titlemenu"
-msgstr "Ohita tyhj‰ nimikevalikko"
+msgstr "Leeg titelmenu negeren"
 
 msgid "Skip short mainmenu"
-msgstr "Ohita lyhyt p‰‰valikko"
+msgstr "Kort hoofdmenu negeren"
 
 msgid "--- Common settings --------------------------------------------------"
-msgstr "--- Yleiset asetukset -----------------------------------------------"
+msgstr "--- Algemene Instellingen --------------------------------------------"
 
 msgid "Remove path component"
-msgstr "Poista polku"
+msgstr "Verwijder pad uit bestandnaam"
 
 msgid "Demux using"
-msgstr "Demuksausohjelmisto"
+msgstr "Demultiplexer"
 
 msgid "Requant using"
-msgstr "Requant-ohjelmisto"
+msgstr "Verkleinen met"
 
 msgid "Burn speed"
-msgstr "Polttonopeus"
+msgstr "Brandsnelheid"
 
 msgid "unlimited"
-msgstr "ei rajoitusta"
+msgstr "onbegrenst"
 
 msgid "Preserve logfiles"
-msgstr "S‰ilyt‰ lokitiedostot"
+msgstr "Logbestanden bewaren"
 
 msgid "Spare language code"
-msgstr "Oletuskielitunnus"
+msgstr "Vervangende taalcode"
 
 msgid "Status in main menu"
-msgstr "N‰yt‰ status p‰‰valikossa"
+msgstr "Status im hoofdmenu"
 
 msgid "Custom disk size (MB)"
-msgstr "S‰‰dett‰v‰ levyn koko (MB)"
+msgstr "Gebruikergedefinieerde grootte (MB)"
 
 msgid "--- Job menu settings ------------------------------------------------"
-msgstr "--- Teht‰v‰valikon asetukset ----------------------------------------"
+msgstr "--- Opdrachtmenu instellingen -----------------------------------------"
 
 msgid "Offer disk type"
-msgstr "Tarjoa levyn tyyppi‰"
+msgstr "Stel type disk voor"
 
 msgid "Offer chapters"
-msgstr "Tarjoa kappaleita"
+msgstr "Stel hoofdstuk voor"
 
 msgid "Offer target"
-msgstr "Tarjoa kohdetta"
+msgstr "Stel bestemming voor"
 
 msgid "Offer disk size"
-msgstr "Tarjoa levyn kokoa"
+msgstr "Stel diskgrootte voor"
 
 msgid "Offer cutting"
-msgstr "Tarjoa leikkausta"
+msgstr "Stel bewerken voor"
 
 msgid "Offer DMH-archive"
-msgstr "Tarjoa DMH-arkistointia"
+msgstr "Stel DMH-archief voor"
 
 msgid "Offer skip titlemenu"
-msgstr "Tarjoa nimikevalikon ohitusta"
+msgstr "Stel negeren titelmenu voor"
 
 msgid "Offer skip mainmenu"
-msgstr "Tarjoa p‰‰valikon ohitusta"
+msgstr "Stel negeren hoofdmenu voor"
 
 msgid "--- Job defaults -----------------------------------------------------"
-msgstr "--- Oletusasetukset teht‰ville ---------------------------------------"
+msgstr "--- Standaard Opdrachtinstellingen ------------------------------------"
 
 msgid "Default"
-msgstr "Oletus"
+msgstr "Standaardinstelling"
 
 msgid "Video track"
-msgstr "Kuvaraita"
+msgstr "Videospoor"
 
 msgid "Audio track"
-msgstr "ƒ‰niraita"
+msgstr "Audiospoor"
 
-#, fuzzy
 msgid "Subtitle track"
-msgstr "Kuvaraita"
+msgstr "Ondertitelingspoor"
 
-#, fuzzy
 msgid "page"
-msgstr "Kohde"
+msgstr "pagina"
 
 msgid "Unknown"
-msgstr "Tuntematon"
-
-#~ msgid "analog"
-#~ msgstr "analoginen"
+msgstr "Onbekend"

@@ -135,6 +135,7 @@ case $1 in
 	;;
 
 	lxrequant)
+		echo requant_lxdvdrip -f $REQUANT_FACTOR
 		requant_lxdvdrip -f $REQUANT_FACTOR -i "$VIDEO_FILE" -o "$REQUANT_FILE"
 		rm -f "$VIDEO_FILE"
 	;;
@@ -144,16 +145,29 @@ case $1 in
 		(mplex -h 2>&1 | grep -q -- --ignore-seqend-markers) && \
 			MPLEX_OPTS="$MPLEX_OPTS -M"
 
- 		### Subtitles
-		SON=$(find "$MPEG_DATA_PATH" -name \*.son)
-		SRT=$(find "$MPEG_DATA_PATH" -name \*.srt)
-		SUP=$(find "$MPEG_DATA_PATH" -name \*.sup)
+		echo mplex -f 8 $MPLEX_OPTS -o "$MOVIE_FILE" "$VIDEO_FILE" $AUDIO_FILES
+		mplex -f 8 $MPLEX_OPTS -o "$MOVIE_FILE" "$VIDEO_FILE" $AUDIO_FILES
+		
+		rm -f "$VIDEO_FILE" $AUDIO_FILES
+	;;
+
+	subtitle)
+		#echo SPUMUX_FILE $SPUMUX_FILE
+		#echo MOVIE_FILE $MOVIE_FILE
+		#echo SUBTITLED_FILE $SUBTITLED_FILE
+		#echo NUMBER $NUMBER
+		#echo TTXTPAGE $TTXTPAGE
+
+		SON=$(find "$MPEG_DATA_PATH" -name \*${TTXTPAGE}\*.son)
+ 		SRT=$(find "$MPEG_DATA_PATH" -name \*${TTXTPAGE}\*.srt)
+		SUP=$(find "$MPEG_DATA_PATH" -name \*${TTXTPAGE}\*.sup)
 		if [ "!" "x$SON" = "x" ]; then
+			echo found SON files: $SON
 			SPUFILES=0
-			find "$MPEG_DATA_PATH" -name \*.son | while read SPUFILE ; do 
+			find "$MPEG_DATA_PATH" -name \*${TTXTPAGE}\*.son | while read SPUFILE ; do
 				# spumux.xml generation is based on son2spumux.sh: http://brigitte.dna.fi/~apm/
-				echo "<subpictures>" > "$MPEG_DATA_PATH/spumux.xml"
-				echo "  <stream>" >> "$MPEG_DATA_PATH/spumux.xml"
+				echo "<subpictures>" > "$SPUMUX_FILE"
+				echo "  <stream>" >> "$SPUMUX_FILE"
 				cat "$SPUFILE" | tail -n +11 | while read l1
 				do
 					read l2 || exit 1
@@ -162,58 +176,36 @@ case $1 in
 					t1=`echo $l2 | awk '{t1=substr($2,1,8); t2=substr($2,10,2); printf("%s.%s", t1, t2);}'`
 					t2=`echo $l2 | awk '{t1=substr($3,1,8); t2=substr($3,10,2); printf("%s.%s", t1, t2);}'`
 					i=`echo $l2 | awk '{printf("%s", $NF);}'`
-					echo "    <spu start=\"$t1\"" >> "$MPEG_DATA_PATH/spumux.xml"
-					echo "         end=\"$t2\"" >> "$MPEG_DATA_PATH/spumux.xml"
-					echo "         image=\"$MPEG_DATA_PATH/$i\"" >> "$MPEG_DATA_PATH/spumux.xml"
-					echo "         xoffset=\"$x\" yoffset=\"$y\"" >> "$MPEG_DATA_PATH/spumux.xml"
-					echo "         transparent=\"000060\" />" >> "$MPEG_DATA_PATH/spumux.xml"
+					echo "    <spu start=\"$t1\"" >> "$SPUMUX_FILE"
+					echo "         end=\"$t2\"" >> "$SPUMUX_FILE"
+					echo "         image=\"$MPEG_DATA_PATH/$i\"" >> "$SPUMUX_FILE"
+					echo "         xoffset=\"$x\" yoffset=\"$y\"" >> "$SPUMUX_FILE"
+					echo "         transparent=\"000060\" />" >> "$SPUMUX_FILE"
 				done
-				echo "  </stream>" >> "$MPEG_DATA_PATH/spumux.xml"
-				echo "</subpictures>" >> "$MPEG_DATA_PATH/spumux.xml"
+				echo "  </stream>" >> "$SPUMUX_FILE"
+				echo "</subpictures>" >> "$SPUMUX_FILE"
 				mv "$MPEG_DATA_PATH/spumux.xml" "$MPEG_DATA_PATH/spumux$SPUFILES.xml"
 				SPUFILES=$(($SPUFILES+1))
-				# spumux.xml done
 			done
- 			SPU=$MPEG_DATA_PATH
  		elif [ "!" "x$SRT" = "x" ]; then
- 			echo "<subpictures>" > "$MPEG_DATA_PATH/spumux.xml"
- 			echo "  <stream>" >> "$MPEG_DATA_PATH/spumux.xml"
- 			echo "         <textsub filename=\"$SRT\" characterset=\"ISO8859-1\"" >> "$MPEG_DATA_PATH/spumux.xml"
- 			echo "         fontsize=\"28.0\" font=\"arial.ttf\" horizontal-alignment=\"center\"" >> "$MPEG_DATA_PATH/spumux.xml"
- 			echo "         vertical-alignment=\"bottom\" left-margin=\"60\" right-margin=\"60\"" >> "$MPEG_DATA_PATH/spumux.xml"
- 			echo "         top-margin=\"20\" bottom-margin=\"30\" subtitle-fps=\"25\"" >> "$MPEG_DATA_PATH/spumux.xml"
- 			echo "         movie-fps=\"25\" movie-width=\"720\" movie-height=\"574\"" >> "$MPEG_DATA_PATH/spumux.xml"
- 			echo "      />" >> "$MPEG_DATA_PATH/spumux.xml"
- 			echo "  </stream>" >> "$MPEG_DATA_PATH/spumux.xml"
- 			echo "</subpictures>" >> "$MPEG_DATA_PATH/spumux.xml"
- 			# spumux.xml done
- 			SPU=$MPEG_DATA_PATH
+			echo found SRT files: $SRT
+ 			echo "<subpictures>" > "$SPUMUX_FILE"
+ 			echo "  <stream>" >> "$SPUMUX_FILE"
+ 			echo "         <textsub filename=\"$SRT\" characterset=\"ISO8859-1\"" >> "$SPUMUX_FILE"
+ 			echo "         fontsize=\"28.0\" font=\"arial.ttf\" horizontal-alignment=\"center\"" >> "$SPUMUX_FILE"
+ 			echo "         vertical-alignment=\"bottom\" left-margin=\"60\" right-margin=\"60\"" >> "$SPUMUX_FILE"
+ 			echo "         top-margin=\"20\" bottom-margin=\"30\" subtitle-fps=\"25\"" >> "$SPUMUX_FILE"
+ 			echo "         movie-fps=\"25\" movie-width=\"720\" movie-height=\"574\"" >> "$SPUMUX_FILE"
+ 			echo "      />" >> "$SPUMUX_FILE"
+ 			echo "  </stream>" >> "$SPUMUX_FILE"
+ 			echo "</subpictures>" >> "$SPUMUX_FILE"
 		elif [ "!" "x$SUP" = "x" ]; then
-			# from http://www.guru-group.fi/~too/sw/m2vmp2cut/
-			pxsup2dast "$SUP"*
-			SPU=$(find "$MPEG_DATA_PATH" -name \*.d)
+			echo found SUP files: $SUP
+			pxsup2dast "${SUP}" "${SUP}.IFO"
+			mv "${SUP%sup}d/spumux.xml" "$SPUMUX_FILE"
 		fi
 
-		if [ ! "x$SPU" = "x" -a -f "$SPU/spumux0.xml" ]; then
-			SPUFILES=$(find "$MPEG_DATA_PATH" -name spumux\*xml |wc -l)
-			N=0
-			mkfifo "$MPEG_TMP_PATH/subtmp0.mpg"
-			mplex -f 8 $MPLEX_OPTS -o "$MPEG_TMP_PATH/subtmp0.mpg" "$VIDEO_FILE" $AUDIO_FILES &
-			echo We have $SPUFILES spufiles.
-			while [ "$N" -lt "$SPUFILES" ] ; do
-				echo Spumuxing $N
-				NEXT=$(($N+1))
-				mkfifo "$MPEG_TMP_PATH/subtmp$NEXT.mpg"
-				spumux -s $N -v 2 "$SPU/spumux$N.xml" < "$MPEG_TMP_PATH/subtmp$N.mpg" > "$MPEG_TMP_PATH/subtmp$NEXT.mpg" &
-				N=$NEXT
-			done
-			cat "$MPEG_TMP_PATH/subtmp$NEXT.mpg" > "$MOVIE_FILE"
-		else
-			mplex -f 8 $MPLEX_OPTS -o "$MOVIE_FILE" "$VIDEO_FILE" $AUDIO_FILES
-		fi
-		### End Subtitles
-
-		rm -f "$VIDEO_FILE" $AUDIO_FILES
+		spumux -s $NUMBER -v 2 "$SPUMUX_FILE" < "$MOVIE_FILE" > "$SUBTITLED_FILE"
 	;;
 
 	author)

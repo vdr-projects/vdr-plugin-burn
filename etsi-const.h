@@ -20,10 +20,13 @@ namespace etsi
 	 */
 	enum stream_content
 	{
-		sc_reserved = 0x00,
-		sc_video    = 0x01,
-		sc_audio    = 0x02,
-		sc_subtitle = 0x03
+		sc_reserved       = 0x00,
+		sc_video_MPEG2    = 0x01,
+		sc_audio_MP2      = 0x02, // MPEG 1 Layer 2 audio
+		sc_subtitle       = 0x03,
+		sc_audio_AC3      = 0x04,
+		sc_video_H264_AVC = 0x05,
+		sc_audio_HEAAC    = 0x06,
 	};
 
 	/* Possible values of the component type descriptor
