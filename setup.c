@@ -88,7 +88,7 @@ bool cBurnParameters::ProcessArgs(int argc, char *argv[])
 			PROCTOOLS_INIT_PROPERTY( RemovePath,          false ),
 			PROCTOOLS_INIT_PROPERTY( CustomDiskSize,      200 ),
 			PROCTOOLS_INIT_PROPERTY( BurnSpeed,           0 ),
-			PROCTOOLS_INIT_PROPERTY( RequantType,         requanttype_m2vrequantiser ),
+			PROCTOOLS_INIT_PROPERTY( RequantType,         requanttype_transcode ),
 			PROCTOOLS_INIT_PROPERTY( PreserveLogFiles,    false ),
 			PROCTOOLS_INIT_PROPERTY( DefaultLanguage,     0 ),
 			PROCTOOLS_INIT_PROPERTY( MainMenuStatus,      true ),
