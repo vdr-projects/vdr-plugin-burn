@@ -322,7 +322,7 @@ namespace vdr_burn
 #if VDRVERSNUM >= 10711
 			cTsToPes *TsToPes;
 #endif
-			unsigned int counter;
+			unsigned int packets;
 			unsigned int PesID;
 		} ;
 
@@ -383,18 +383,17 @@ namespace vdr_burn
 	{
 		logger::debug(format( "scanning ts positions: {0}/{1}-{2}/{3}") % start.first % start.second % end.first % end.second);
 
-		bool AllTracksFound = false;
 		bool PmtFound = false;
 		int PatVersion, PmtVersion;
 
 		PatPmtParser.Reset();
 		m_vdrFile.seek(start);
-		while (m_vdrFile && !m_vdrFile.eof() && !AllTracksFound) { // && end <= m_vdrFile.tell() && !PmtFound) {
+		while (m_vdrFile && !m_vdrFile.eof() && end > m_vdrFile.tell()) {
 			uchar Data[KILOBYTE(64)/TS_SIZE*TS_SIZE];
 			int length = m_vdrFile.readsome( Data, sizeof(Data));
 			uchar *DataPtr = Data;
 
-			while (length >= TS_SIZE && !AllTracksFound) {
+			while (length >= TS_SIZE) {
 				int Pid = TsPid(DataPtr);
 				if (!PmtFound) {
 					if ( Pid == 0)
@@ -458,66 +457,61 @@ namespace vdr_burn
 						}
 #ifdef TTXT_SUBTITLES
 						if (PatPmtParser.Tpid()) {
-							logger::debug(format( "PID found: Tpid{0}=0x{1}") % i % format::base( PatPmtParser.Tpid(), 16 ));
-							i = 0;
-							while (PatPmtParser.Tpages(i)) {
+							logger::debug(format( "PID found: Tpid{0}=0x{1}, max {2}") % i % format::base( PatPmtParser.Tpid(), 16 ) % PatPmtParser.TotalTeletextSubtitlePages());
+							for (int i = 0; i < PatPmtParser.TotalTeletextSubtitlePages(); i++) {
+								const tTeletextSubtitlePage *ttxtSubtitlePage = PatPmtParser.TeletextSubtitlePages();
 								track_info track( PatPmtParser.Tpid(), track_info::streamtype_ttxtsubtitle );
-								track.set_language( PatPmtParser.Tlang(i));
-								track.ttxtsubtitle.page = PatPmtParser.Tpages(i);
+								track.set_language( PatPmtParser.TeletextSubtitlePages()[i].ttxtLanguage);
+								track.ttxtsubtitle.page = ttxtSubtitlePage[i].ttxtPage + 100*ttxtSubtitlePage[i].ttxtMagazine;
+								logger::debug(format( "Tpid 0x{0} adding page {1}") % format::base( PatPmtParser.Tpid(), 16 ) % track.ttxtsubtitle.page);
 								m_tracks.push_back( track );
-								i++;
 								streams++;
 							}
 						}
-
 #endif
-						logger::debug(format( "found {0} streams with {1} converters ") % streams % m_PidConverters.size());
-		
-						for (track_info_list::iterator it = m_tracks.begin(); it != m_tracks.end(); it++)
-							logger::debug(format( "m_tracks PID: {0}") % format::base( it->get_pesid(), 16 ));
-
-						//PidConverter_list::iterator it2;
-						//for (it2 = m_PidConverters.begin(); it2 != m_PidConverters.end(); it2++)
-						//	logger::debug(format( "Converter PID: {0}") % format::base( it2->Pid, 16 ));
-		
 					}
 				}
 				else
-				{
-					bool processed = false;
-					// find correct converter
-					PidConverter_list::iterator it;
-					for (it = m_PidConverters.begin(); it != m_PidConverters.end() && it->Pid != Pid; it++);
+				{	// PMT found and parsed, list of converters complete
 
-					if (it != m_PidConverters.end() ) {
+					// find correct converter
+					PidConverter_list::iterator converter;
+					for (converter = m_PidConverters.begin(); converter != m_PidConverters.end() && converter->Pid != Pid; converter++);
+
+					if (converter != m_PidConverters.end() ) {
 						if (TsPayloadStart(DataPtr)) {
 							int PesLength;
 							const uchar * PesBuffer = NULL;
 	
-							while ((PesBuffer = it->TsToPes->GetPes(PesLength))) {
+							while ((PesBuffer = converter->TsToPes->GetPes(PesLength))) {
 								//logger::debug(format( "Converter: Processing {0} len={1}") % format::base( Pid, 16 ) % PesLength );
 								Process(PesBuffer, PesLength, Pid);
-								//processed = true; // how to find out if processed? only via bitrate != 0 ?
 							}
-							it->TsToPes->Reset();
+							converter->TsToPes->Reset();
 						}
 
-						if (processed) {
-							m_PidConverters.erase(it);
-							AllTracksFound = (0 == m_PidConverters.size());
-						}
-						else
-							it->TsToPes->PutTs(DataPtr, TS_SIZE); // push new packet into queue
+						converter->TsToPes->PutTs(DataPtr, TS_SIZE); // push new packet into queue
+						converter->packets++;
 					}
 				}
 				length -= TS_SIZE;
 				DataPtr += TS_SIZE;
 			}
-
-			if (end <= m_vdrFile.tell())
-				break;
 		}
-        return m_tracks;
+
+		// check if all steams appeared
+		for (PidConverter_list::iterator it2 = m_PidConverters.begin(); it2 != m_PidConverters.end(); it2++) {
+			logger::debug(format( "PID 0x{0} has {1} packets") % format::base( it2->Pid, 16 ) % it2->packets);
+			if ( 0 == it2->packets) {
+				// delete track if it didn't appear
+				logger::debug(format( "erasing PID 0x{0} due to lack of packets") % format::base( it2->Pid, 16 ));
+				track_info_list::iterator it = m_tracks.find_cid( it2->Pid );
+				if (it != m_tracks.end())
+					m_tracks.erase(it);
+			}
+		}
+
+		return m_tracks;
     }
 #endif
 
@@ -535,20 +529,16 @@ namespace vdr_burn
     int pes_scanner::Action1(int pesid, int pid, uchar* data, int length)
     {
         static const payload_header seqheader[] = { { reinterpret_cast<const uchar*>("\x00\x00\x01\xb3"), 4 } };
-
-		///logger::debug(format( "Action1 {0}-{1}" ) % format::base(pid, 16) % format::base(pesid, 16));
+		//logger::debug(format( "Action1 {0}-{1}" ) % format::base(pid, 16) % format::base(pesid, 16));
 
 		track_info_list::iterator it = m_tracks.find_cid( pid ? pid : pesid );
 		if (it != m_tracks.end() && ( 0 == pid || 0 != it->bitrate))
     		return length;
 
-		///logger::debug(format( "Action1 1 {0}-{1}" ) % format::base(pid, 16) % format::base(pesid, 16));
-
 		uchar* payload = find_payload(data, length, seqheader);
 		if (payload == 0 || payload + 16 >= data + length) // no header found or frame too small
 			return length;
 		payload += seqheader[0].length;
-		///logger::debug(format( "Action1 2 {0}-{1}" ) % format::base(pid, 16) % format::base(pesid, 16));
 
 		track_info track( pesid, track_info::streamtype_video );
 		logger::debug(format( "found video stream {0}" ) % format::base(int( (pid<<16)|pesid ), 16));
@@ -591,7 +581,6 @@ namespace vdr_burn
 			it->filename = "vdrsync.mpv";
 		}
 
-		///logger::debug(format( "Action1 3 {0}-{1}" ) % format::base(pid, 16) % format::base(pesid, 16));
 		return length;
 	}
 
@@ -600,7 +589,7 @@ namespace vdr_burn
 		static const payload_header frameheaders[] = { { reinterpret_cast<const uchar*>("\xff\xfc"), 2 },
 													   { reinterpret_cast<const uchar*>("\xff\xfd"), 2 } };
 
-		///logger::debug(format( "Action2 {0}-{1}" ) % format::base(pid, 16) % format::base(pesid, 16));
+		//logger::debug(format( "Action2 {0}-{1}" ) % format::base(pid, 16) % format::base(pesid, 16));
 
 		track_info_list::iterator it = m_tracks.find_cid( pid ? pid : pesid );
 		if (it != m_tracks.end() && ( 0 == pid || 0 != it->bitrate))
@@ -672,7 +661,7 @@ namespace vdr_burn
     {
     	static const payload_header frameheader[] = { { reinterpret_cast<const uchar*>( "\x0b\x77" ), 2 } };
 
-		///logger::debug(format( "Action3 {0}-{1}" ) % format::base(pid, 16) % format::base(pesid, 16));
+		//logger::debug(format( "Action3 {0}-{1}" ) % format::base(pid, 16) % format::base(pesid, 16));
 
 		track_info_list::iterator it = m_tracks.find_cid( pid ? pid : pesid );
 		if (it != m_tracks.end() && ( 0 == pid || 0 != it->bitrate))
@@ -738,18 +727,23 @@ namespace vdr_burn
 
     void recording_scanner::scan()
     {
+		logger::debug( format("scanning recording \"{0}\"" ) % m_scanResult.get_filename() );
+
+		cMarks marks;
+		bool marks_loaded = false;
 #if VDRVERSNUM >= 10703
         recording_index index( m_scanResult.get_filename(), m_itemToScan->IsPesRecording() );
         const int frames_into_movie = 10 *  m_itemToScan->FramesPerSecond();
         const int frames_to_scan = 10 *  m_itemToScan->FramesPerSecond();
+		marks_loaded = marks.Load(m_itemToScan->FileName(), m_itemToScan->FramesPerSecond(), m_itemToScan->IsPesRecording());
 #else
         recording_index index( m_scanResult.get_filename() );
         static const int frames_into_movie = 10 * FRAMESPERSEC;
         static const int frames_to_scan = 10 * FRAMESPERSEC;
+		marks_loaded = marks.Load(m_itemToScan->FileName());
 #endif
 
-        cMarks marks;
-        if (!marks.Load(m_itemToScan->FileName())) {
+        if (!marks_loaded) {
             logger::error(format( "couldn't read marks from {0}" ) % m_itemToScan->FileName());
             throw user_exception( tr("Couldn't read marks") );
         }
@@ -766,6 +760,10 @@ namespace vdr_burn
 		if (startIndex + frames_to_scan >= index.get_last_index()) {
 			logger::error( format("movie {0} is too short to scan") % m_itemToScan->FileName() );
 			throw user_exception( tr("Recording is too short") );
+		}
+
+		if ( 1 == marks.Count() % 2) {
+			marks.Add(index.get_last_index());
 		}
 
 #if VDRVERSNUM >= 10703
@@ -824,90 +822,92 @@ namespace vdr_burn
 		int count = 0;
 		const tComponent* component;
 
-		const cComponents *Components = m_itemToScan->Info()->Components();
-		for (int i = 0; i < Components->NumComponents(); i++) {
-			const tComponent *p = Components->Component(i);
-			logger::debug(format ("comp{0}: stream={1} type={2} lang={3} desc={4}") % i % int(p->stream) % int(p->type) %  p->language % p->description );
-		}
-
-		for (track_info_list::iterator track = tracks.begin(); track != tracks.end(); track++) {
-			component = NULL;
-
+		if (m_itemToScan->Info()) {
 			const cComponents *Components = m_itemToScan->Info()->Components();
-			// logger::debug(format ("comp{0}: stream={1} type={2} lang={3} desc={4}") 
-			//	% i % int(p->stream) % int(p->type) %  p->language % p->description );
+			if (Components) {
+				//for (int i = 0; i < Components->NumComponents(); i++) {
+				//	const tComponent *p = Components->Component(i);
+				//	logger::debug(format ("comp{0}: stream={1} type={2} lang={3} desc={4}") % i % int(p->stream) % int(p->type) %  p->language % p->description );
+				//}
 
-			switch (track->type)
-			{
-			case track_info::streamtype_video:
-				for (int i = 0; i < Components->NumComponents(); i++) {
-					const tComponent *p = Components->Component(i);
-					if (p->stream == etsi::sc_video) {
-						component = p;
+				for (track_info_list::iterator track = tracks.begin(); track != tracks.end(); track++) {
+					component = NULL;
+		
+					const cComponents *Components = m_itemToScan->Info()->Components();
+					// logger::debug(format ("comp{0}: stream={1} type={2} lang={3} desc={4}") 
+					//	% i % int(p->stream) % int(p->type) %  p->language % p->description );
+		
+					switch (track->type)
+					{
+					case track_info::streamtype_video:
+						for (int i = 0; i < Components->NumComponents(); i++) {
+							const tComponent *p = Components->Component(i);
+							if (p->stream == etsi::sc_video) {
+								component = p;
+								break;
+							}
+						}
+						break;
+		
+					case track_info::streamtype_audio:
+						if (track->audio.type == track_info::audiotype_ac3) {
+							count = NumDpids;
+							for (int i = 0; i < Components->NumComponents(); i++) {
+								const tComponent *p = Components->Component(i);
+								if (p->stream == etsi::sc_audio && p->type == etsi::cta_surround) {
+									if (!count) {
+										component = p;
+										NumDpids++;
+										break;
+									} else
+										count--;
+								}
+							}
+						} else {
+							count = NumApids;
+							for (int i = 0; i < Components->NumComponents(); i++) {
+								const tComponent *p = Components->Component(i);
+								if (p->stream == etsi::sc_audio && p->type != etsi::cta_surround) {
+									if (!count) {
+										component = p;
+										NumApids++;
+										break;
+									} else
+										count--;
+								}
+							}
+						}
+						break;
+		
+					case track_info::streamtype_dvbsubtitle:
+						count = NumSpids;
+						for (int i = 0; i < Components->NumComponents(); i++) {
+							const tComponent *p = Components->Component(i);
+							if (p->stream == etsi::sc_subtitle) {
+								if (!count) {
+									component = p;
+									NumSpids++;
+									break;
+								} else
+									count--;
+							}
+						}
+						break;
+		
+					default:
 						break;
 					}
-				}
-				break;
-
-			case track_info::streamtype_audio:
-				if (track->audio.type == track_info::audiotype_ac3) {
-					count = NumDpids;
-					for (int i = 0; i < Components->NumComponents(); i++) {
-						const tComponent *p = Components->Component(i);
-						if (p->stream == etsi::sc_audio && p->type == etsi::cta_surround) {
-							if (!count) {
-								component = p;
-								NumDpids++;
-								break;
-							} else
-								count--;
-						}
-					}
-				} else {
-					count = NumApids;
-					for (int i = 0; i < Components->NumComponents(); i++) {
-						const tComponent *p = Components->Component(i);
-						if (p->stream == etsi::sc_audio && p->type != etsi::cta_surround) {
-							if (!count) {
-								component = p;
-								NumApids++;
-								break;
-							} else
-								count--;
-						}
+		
+					if (component) {
+						if (component->language != 0)
+							track->set_language( component->language );
+			
+						if (component->description != 0)
+								track->description = component->description;
 					}
 				}
-				break;
-
-			case track_info::streamtype_dvbsubtitle:
-					count = NumSpids;
-					for (int i = 0; i < Components->NumComponents(); i++) {
-						const tComponent *p = Components->Component(i);
-						if (p->stream == etsi::sc_subtitle) {
-							if (!count) {
-								component = p;
-								NumSpids++;
-								break;
-							} else
-								count--;
-						}
-					}
-				break;
-		//TODO ttxtsubtitles??
-
-			default:
-				break;
-			}
-
-			if (component) {
-				if (component->language != 0)
-					track->set_language( component->language );
-	
-				if (component->description != 0)
-						track->description = component->description;
 			}
 		}
-
 	}
 
 

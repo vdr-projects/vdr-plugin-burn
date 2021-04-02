@@ -62,12 +62,19 @@ namespace vdr_burn
 									 % path);
 			return;
 		}
-		f << "<?xml version=\"1.0\" encoding=\"" << plugin::get_character_encoding() << "\"?>"
-			 "<subpictures><stream><spu force=\"yes\" start=\"00:00:00.00\" image=\""
-		  << m_item.get_buttons_normal() << "\" select=\""
-		  << m_item.get_buttons_normal() << "\" highlight=\""
-		  << m_item.get_buttons_highlight(page) << "\" autooutline=\"infer\" "
-			 "outlinewidth=\"5\" autoorder=\"columns\"/></stream></subpictures>"
+		f << "<?xml version=\"1.0\" encoding=\"" << plugin::get_character_encoding() << "\"?>" << std::endl
+		  << "<subpictures>" << std::endl
+		  << "  <stream>" << std::endl
+		  << "    <spu force=\"yes\"" << std::endl
+		  << "      start=\"00:00:00.00\"" << std::endl
+		  << "      image=\""     << m_item.get_buttons_normal() << "\"" << std::endl
+		  << "      select=\""    << m_item.get_buttons_normal() << "\"" << std::endl
+		  << "      highlight=\"" << m_item.get_buttons_highlight(page) << "\"" << std::endl
+		  << "      autooutline=\"infer\"" << std::endl
+ 		  << "      outlinewidth=\"5\"" << std::endl
+		  << "      autoorder=\"columns\"/>" << std::endl
+		  << "  </stream>\n"
+		  << "</subpictures>"
 		  << std::endl;
 	}
 

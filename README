@@ -34,13 +34,12 @@ boost >= 1.32.0  - http://www.boost.org
   ** http://linux.kompiliert.net/contrib/boost-for-burn-1.33.0.tgz
   ** (see below)
 
-vdrsync.pl       - http://vdrsync.vdrportal.de
-  ** Tested with 0.1.3PRE1-050322
-  ** http://vdrsync.vdr-portal.de/releases/vdrsync-050322.tgz
-
-RECOMMENDED ALTERNATIVE for vdrsync.pl:
 ProjectX >= 0.90.4.00.b29     - http://sourceforge.net/projects/project-x/develop
   ** Tested with 0.90.4.00.b32
+
+NOT recommended any longer:
+vdrsync.pl       - http://vdrsync.vdrportal.de
+  ** http://vdrsync.vdr-portal.de/releases/vdrsync-050322.tgz
 
 SUBTITLE SUPPORT:
 pxsup2dast       - http://www.guru-group.fi/~too/sw/m2vmp2cut/
@@ -55,10 +54,7 @@ GD               - http://www.boutell.com/gd/
   ** needs at least PNG and FreeType support
 
 dvdauthor        - http://dvdauthor.sourceforge.net
-  ** Tested with 0.6.10
-  ** recommended: 0.6.12-alpha-2992-GfD-5 from
-  ** http://www.videohelp.com/~gfd/edcounter.php?file=download/dvdauthor-0.6.12-alpha-2992-GfD-5.zip
-  ** if you want to create discs with titles longer than 10000 seconds
+  ** 0.6.14 or higher
 
 growisofs
 (dvd+rwtools)    - http://fy.chalmers.se/~appro/linux/DVD+RW
@@ -69,7 +65,7 @@ png2yuv
 mpeg2enc
 mplex
 (mjpegtools)     - http://mjpeg.sourceforge.net/
-  ** Tested with 1.6.2
+  ** Tested with 1.9.0.0
 
 Installation
 ------------
@@ -95,11 +91,6 @@ Installation
 
    # make DVDDEV=/dev/cdrecorder ISODIR=/export plugins
 
-3c.(optional) If you would like to burn teletext subtitles onto DVD add the parameter
-   BURN_TTXTSUBTITLES to make:
-   
-   # make BURN_TTXTSUBTITLES=1 plugins
-
 4. Copy the scripts vdrburn-dvd.sh, vdrburn-archive.sh (for vdrsync.pl also the program
    burn-buffers) to some location inside your $PATH.
 
@@ -123,6 +114,29 @@ Installation
 
 7. Enjoy! :-)
 
+
+Parameters
+----------
+
+The plugin accepts the following parameters at the VDR command line:
+
+  -t DIR,   --tempdir=DIR   use DIR for temporary files
+                            MUST be on UNIX filesystem
+                            (default: /tmp)
+  -d DIR,   --datadir=DIR   use DIR for temporary datafiles
+                            (default: /var/spool/video)
+  -D DEV    --dvd=DEV       use DEV as DVD Writer
+                            (default: /dev/dvd)
+  -i DIR    --iso=DIR       use DIR to store ISO images
+                            (default: /pub/export)
+
+So when you want your ISO images stored on /largefiles and use dvd writer
+/dev/sr0 then the VDR command line should look like this:
+
+  /usr/sbin/vdr -P"burn -i /largefiles -D /dev/sr0"
+
+If you are using precompiled packages as delivered by distributions have a look
+at the distributions docu where the command line arguments need to be entered.
 
 Usage
 -----
@@ -188,4 +202,4 @@ Caveats
 -------
 
 - No transcoding is done (will fail with non-DVD-compliant DVB-streams)
-
+- does not support HD recordings

@@ -24,6 +24,9 @@ VDRDIR = ../../..
 LIBDIR = ../../lib
 TMPDIR = /tmp
 
+### Make sure that necessary options are included:
+
+-include $(VDRDIR)/Make.global
 
 ### Allow user defined options to overwrite defaults:
 
@@ -72,10 +75,6 @@ SUBDIRS = proctools # tinyxml
 LIBS += proctools/libproctools.a # tinyxml/libtinyxml.a
 
 
-#ifdef DEBUG_OSD
-#DEFINES += -DDEBUG_OSD
-#endif
-
 ifndef TMPDIR
 TMPDIR=/tmp
 endif
@@ -88,9 +87,11 @@ ifndef ISODIR
 ISODIR=/pub/export
 endif
 
-ifdef BURN_TTXTSUBTITLES
+# compile only with ttxtsub support if core VDR is patched
+ifneq ($(strip $(wildcard $(VDRDIR)/vdrttxtsubshooks.h)),)
 DEFINES += -DTTXT_SUBTITLES
 endif
+
 
 DEFINES += -DTMPDIR='"$(TMPDIR)"' -DDVDDEV='"$(DVDDEV)"' -DISODIR='"$(ISODIR)"'
 

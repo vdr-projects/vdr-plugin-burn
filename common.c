@@ -106,6 +106,9 @@ std::string progress_bar(double current, double total, int length)
 	if (current > total)
 		current = total;
 
+	if (current < 0)
+		current = 0;
+
 	int l = static_cast<int>(current * (length - 2) / total);
 	ostringstream builder;
 

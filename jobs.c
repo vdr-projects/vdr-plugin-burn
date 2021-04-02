@@ -170,7 +170,7 @@ namespace vdr_burn
 #ifdef TTXT_SUBTITLES
 	string recording::print_SubtitleOpt(int No, int Page) const
 	{
-		return str ( boost::format( "-set SubtitlePanel.TtxPage%d=%d" ) % No % Page);
+		return str ( boost::format( "-set SubtitlePanel.TtxPage%d=%d " ) % No % Page);
 	}
 
 	string recording::get_TtxtPageOpts() const

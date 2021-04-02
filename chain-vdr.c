@@ -35,6 +35,7 @@ namespace vdr_burn
 	{
 		job_.set_paths(m_paths);
 		logger_vdr::set_logfile( get_log_path() );
+		logger::debug(format ("writing detail log to {0}") % get_log_path());
 	}
 
 	chain_vdr::~chain_vdr()
@@ -96,6 +97,7 @@ namespace vdr_burn
 			string target = BurnParameters.IsoPath.empty() ? BurnParameters.TempPath : BurnParameters.IsoPath;
 			execute( shellescape( "cp" ) + get_log_path() +
 					 str( format( "{0}/vdrburn-{1}.log" ) % target % m_job.get_title() ) );
+			logger::debug(format ("moving detail log to {0}/vdrburn-{1}.log") % target % m_job.get_title() );
 		}
 	}
 

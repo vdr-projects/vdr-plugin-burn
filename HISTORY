@@ -1,6 +1,20 @@
 VDR Plugin 'burn' Revision History
 ----------------------------------
 
+2010-04-05: Version 0.2.0-beta2
+- added support for ttxtsub plugin 0.2.0+ (dropping support for all earlier ttxtsubs releases)
+- automatically compile with ttxtsubs support if VDR supports it/is patched
+- added italian translations (thanks to Diego Pierotto)
+- added log messages where to find the detailed logfile dvd.log
+- added include of VDRs 1.7.13+ Make.global (optional for not breaking compatibility with earlier VDR versions)
+- fixed crash when no stream info in info file is present (reported by TEDDYXXL@vdr-portal.de)
+- beautified menu subpicture xml output
+- delete track from track list if it was announced in PMT but did not appear (reported by lini@vdr-portal.de)
+- fixed a memory leak which occurs only under rare circumstances and eats up all available memory and even more
+- fixed loading of marks for PES recordings (VDR 1.6.0 and 1.7.x)
+- fixed length calculation for recordings with an odd number of marks
+- fixed Project X options for multiple ttxt tracks
+
 2010-02-21: Version 0.2.0-beta1
 - rewrote line break for descriptions
 - added subtitle (the 'S'-entry from the info file) to the title menu
