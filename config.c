@@ -145,7 +145,7 @@ namespace vdr_burn
 		}
 		m_file << "<?xml version=\"1.0\" encoding=\"" << plugin::get_character_encoding() << "\"?>" << endl;
 		m_file << "<dvdauthor dest=\"" << get_author_path() << "\">" << endl
-		  << "  <vmgm>" << endl;
+		       << "  <vmgm>" << endl;
 
 		bool createMenu = (m_job.get_disk_type() == disktype_dvd_menu);
 		if (createMenu) {
@@ -188,7 +188,7 @@ namespace vdr_burn
 				while  (audioTrack != audioTracks.end()) {
 					const track_info& track = *audioTrack;
 					m_file << "      <audio " << get_audio_language(track.language) << "/>"
-					  << "  <!-- " << track.language << " - " << track.description << " -->" << endl;
+					       << "  <!-- " << track.language << " - " << track.description << " -->" << endl;
 					audioTrack++;
 				}
 
@@ -197,26 +197,26 @@ namespace vdr_burn
 				while  (subtitleTrack != subtitleTracks.end()) {
 					const track_info& track = *subtitleTrack;
 					m_file << "      <subpicture " << get_audio_language(track.language) << "/>"
-					  << "  <!-- " << track.language << " - " << track.description << " -->" << endl;
+					       << "  <!-- " << track.language << " - " << track.description << " -->" << endl;
 					subtitleTrack++;
 				}
 
 				m_file << "      <pgc>" << endl
-				  << "        <vob file=\"" << rec->get_movie_path() << "\" chapters=\""
-				  << rec->get_chapters(m_job.get_chapters_mode()) << "\"/>" << endl;
+				       << "        <vob file=\"" << rec->get_movie_path() << "\" chapters=\""
+				       << rec->get_chapters(m_job.get_chapters_mode()) << "\"/>" << endl;
 
 				m_file << "        <post>call vmgm menu;</post>" << endl;
 				m_file << "      </pgc>" << endl
-				  << "    </titles>" << endl
-				  << "  </titleset>" << endl;
+				       << "    </titles>" << endl
+				       << "  </titleset>" << endl;
 			}
 		}
 		else
-		{
+		{	// DVD without menus
 			m_file << "    <fpc>g3=1;jump vmgm menu 1;</fpc>" << endl
-			  << "    <menus>" << endl
-			  << "      <pgc entry=\"title\">" << endl
-			  << "        <pre>" << endl;
+			       << "    <menus>" << endl
+			       << "      <pgc entry=\"title\">" << endl
+			       << "        <pre>" << endl;
 			int titleset = 1;
 			for (recording_list::const_iterator rec = m_job.get_recordings().begin();
 				 rec != m_job.get_recordings().end(); ++rec) {
@@ -225,10 +225,10 @@ namespace vdr_burn
 				titleset++;
 			}
 			m_file << "        </pre>" << endl
-			  << "        <!-- dummy vob required: vob file= -->" << endl
-			  << "      </pgc>" << endl
-			  << "    </menus>" << endl
-			  << "  </vmgm>" << endl;
+			       << "        <!-- dummy vob required: vob file= -->" << endl
+			       << "      </pgc>" << endl
+			       << "    </menus>" << endl
+			       << "  </vmgm>" << endl;
 			int t = 1;
 			for (recording_list::const_iterator rec = m_job.get_recordings().begin();
 				 rec != m_job.get_recordings().end(); ++rec) {
@@ -246,16 +246,23 @@ namespace vdr_burn
 				while  (audioTrack != audioTracks.end()) {
 					const track_info& track = *audioTrack;
 					m_file << "      <audio " << get_audio_language(track.language) << "/>"
-					  << "  <!-- " << track.language << " - " << track.description << " -->" << endl;
+					       << "  <!-- " << track.language << " - " << track.description << " -->" << endl;
 					audioTrack++;
 				}
 
-// 				m_file << "<subpicture " << get_audio_language( track_info::get_language_codes()[ setup::get().DefaultLanguage ] )
-//				  << "/>" << endl
+				const_track_filter subtitleTracks( rec->get_tracks(), track_info::streamtype_subtitle, track_predicate::used );
+				const_track_filter::iterator subtitleTrack = subtitleTracks.begin();
+				while  (subtitleTrack != subtitleTracks.end()) {
+					const track_info& track = *subtitleTrack;
+					m_file << "      <subpicture " << get_audio_language(track.language) << "/>"
+					       << "  <!-- " << track.language << " - " << track.description << " -->" << endl;
+					subtitleTrack++;
+				}
+
 				m_file << "      <pgc>" << endl
-				  << "        <vob file=\"" << rec->get_movie_path()
-				  << "\" chapters=\""
-				  << rec->get_chapters(m_job.get_chapters_mode()) << "\" pause=\"2\" />" << endl;
+				       << "        <vob file=\"" << rec->get_movie_path()
+				       << "\" chapters=\""
+				       << rec->get_chapters(m_job.get_chapters_mode()) << "\" pause=\"2\" />" << endl;
 				if (t+1 < titleset) {
 					m_file << "        <post>g3=" << ++t <<";call vmgm menu 1;</post>" << endl;
 				}

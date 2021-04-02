@@ -30,7 +30,7 @@ namespace vdr_burn
 cBurnParameters BurnParameters;
 
 cBurnParameters::cBurnParameters():
-		DataPath(VideoDirectory),
+		DataPath(TMPDIR),
 		TempPath(TMPDIR),
 		DvdDevice(DVDDEV),
 		IsoPath(ISODIR),
@@ -91,7 +91,6 @@ bool cBurnParameters::ProcessArgs(int argc, char *argv[])
 			PROCTOOLS_INIT_PROPERTY( RemovePath,          false ),
 			PROCTOOLS_INIT_PROPERTY( CustomDiskSize,      200 ),
 			PROCTOOLS_INIT_PROPERTY( BurnSpeed,           0 ),
-			PROCTOOLS_INIT_PROPERTY( DemuxType,           demuxtype_projectx ),
 			PROCTOOLS_INIT_PROPERTY( RequantType,         requanttype_metakine ),
 			PROCTOOLS_INIT_PROPERTY( PreserveLogFiles,    false ),
 			PROCTOOLS_INIT_PROPERTY( DefaultLanguage,     0 ),
@@ -121,6 +120,7 @@ bool cBurnParameters::ProcessArgs(int argc, char *argv[])
 			PROCTOOLS_INIT_PROPERTY( DiskType,            disktype_dvd_menu ),
 			PROCTOOLS_INIT_PROPERTY( SkinIndex,           0 ),
 			PROCTOOLS_INIT_PROPERTY( SkinAspectIndex,     0 ),
+			PROCTOOLS_INIT_PROPERTY( TitleType,           titletype_epgtitle ),
 			PROCTOOLS_INIT_PROPERTY( ChaptersMode,        chaptersmode_10 ),
 			PROCTOOLS_INIT_PROPERTY( StoreMode,           storemode_burn ),
 #ifdef ENABLE_DMH_ARCHIVE
@@ -129,7 +129,8 @@ bool cBurnParameters::ProcessArgs(int argc, char *argv[])
 			PROCTOOLS_INIT_PROPERTY( DiskSize,            disksize_singlelayer ),
 			PROCTOOLS_INIT_PROPERTY( CutOnDemux,          false ),
 			PROCTOOLS_INIT_PROPERTY( SkipTitlemenu,       true ),
-			PROCTOOLS_INIT_PROPERTY( SkipMainmenu,        true )
+			PROCTOOLS_INIT_PROPERTY( SkipMainmenu,        true ),
+			PROCTOOLS_INIT_PROPERTY( UseSubtitleTracks,   false )
 	{
 	}
 
@@ -158,6 +159,7 @@ bool cBurnParameters::ProcessArgs(int argc, char *argv[])
 			m_diskTypeItem( 0 ),
 			m_skinItem( 0 ),
 			m_skinAspectItem( 0 ),
+			m_titleTypeItem( 0 ),
 			m_chaptersItem( 0 ),
 			m_diskSizeItem( 0 ),
 			m_cutItem( 0 ),
@@ -166,6 +168,7 @@ bool cBurnParameters::ProcessArgs(int argc, char *argv[])
 #endif
 			m_skipTitleItem( 0 ),
 			m_skipMainItem( 0 ),
+			m_useSubtitleTracks( 0 ),
 			m_options( options_ ),
 			m_showAll( showAll_ )
 	{
@@ -192,6 +195,9 @@ bool cBurnParameters::ProcessArgs(int argc, char *argv[])
 		if ( m_showAll || skin_list::get().size() > 0 )
 			Add( m_skinAspectItem = new menu::list_edit_item( tr("Skin Aspect Ratio"), m_options.SkinAspectIndex, skinaspect_strings ) );
 
+		if ( m_showAll)
+			Add( m_titleTypeItem = new menu::list_edit_item( tr("Title source"), m_options.TitleType, titletype_strings, true) );
+
 		if ( m_showAll || global_setup().OfferChapters )
 			Add( m_chaptersItem = new menu::list_edit_item( tr("Chapters"), m_options.ChaptersMode, chaptersmode_strings ) );
 
@@ -206,6 +212,9 @@ bool cBurnParameters::ProcessArgs(int argc, char *argv[])
 
 		if ( m_showAll || global_setup().OfferSkipMainmenu )
 			Add( m_skipMainItem = new menu::bool_edit_item( tr("Skip short mainmenu"), m_options.SkipMainmenu ) );
+
+		if ( m_showAll )
+			Add( m_useSubtitleTracks = new menu::bool_edit_item( tr("Use subtitle tracks"), m_options.UseSubtitleTracks ) );
 	}
 
 	//!--- plugin_setup_editor ----------------------------------------------------
@@ -218,7 +227,6 @@ bool cBurnParameters::ProcessArgs(int argc, char *argv[])
 
 		Add( new menu::text_item( tr("--- Common settings --------------------------------------------------") ) );
 		Add( new menu::bool_edit_item( tr("Remove path component"), m_setup.RemovePath ) );
-		Add( new menu::list_edit_item( tr("Demux using"), m_setup.DemuxType, demuxtype_strings ) );
 		Add( new menu::list_edit_item( tr("Requant using"), m_setup.RequantType, requanttype_strings ) );
 		Add( new menu::number_edit_item( tr("Burn speed"), m_setup.BurnSpeed, 0, 32, tr("unlimited") ) );
 		Add( new menu::bool_edit_item( tr("Preserve logfiles"), m_setup.PreserveLogFiles ) );

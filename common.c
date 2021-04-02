@@ -77,7 +77,12 @@ namespace vdr_burn
 	// --- requanttype --------------------------------------------------------
 
 	const char* requanttype_strings[requanttype_count] =
-			{ tr("M2VRequantizer"), tr("Transcode") , tr("lxdvdrip") };
+			{ tr("M2VRequantizer"), tr("Transcode"), tr("lxdvdrip") };
+
+	// --- titletype --------------------------------------------------------
+
+	const char* titletype_strings[titletype_count] =
+			{ tr("EPG Title"), tr("EPG Title - Short Text"), tr("EPG Short Text"), tr("Recording") };
 
 int ScanPageCount(const std::string& Path)
 {
@@ -172,7 +177,12 @@ string get_recording_osd_line(const cRecording* recording_, int level)
 			result << ' ';
 #endif
 
-		result << (recording_->IsNew() ? '*' : ' ') << '\t' << name;
+		string RecLength("--");
+		int length = cIndexFile::Length(recording_->FileName(), recording_->IsPesRecording());
+		if (length >= 0)
+			RecLength = string(format( "{0}'") % (length / SecondsToFrames(60, recording_->FramesPerSecond())));
+
+		result << (recording_->IsNew() ? '*' : ' ') << '\t' << RecLength << '\t' << name;
 		return result.str();
 	}
 
@@ -187,7 +197,7 @@ string get_recording_osd_line(const cRecording* recording_, int level)
 	return result.str();
 }
 
-std::string get_recording_eventtitle(const cRecording* recording_)
+std::string get_recording_event_title(const cRecording* recording_)
 {
 	if ((recording_->Info()) && (recording_->Info()->Title())) {
 		return recording_->Info()->Title();
@@ -195,7 +205,15 @@ std::string get_recording_eventtitle(const cRecording* recording_)
 	else return recording_->Name();
 }
 
-std::string get_recording_eventdescription(const cRecording* recording_)
+std::string get_recording_event_shorttext(const cRecording* recording_)
+{
+	if ((recording_->Info()) && (recording_->Info()->ShortText())) {
+		return recording_->Info()->ShortText();
+	}
+	else return "";
+}
+
+std::string get_recording_event_description(const cRecording* recording_)
 {
 	string description;
 	if (recording_->Info()->ShortText() != 0) {

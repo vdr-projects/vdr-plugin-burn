@@ -7,76 +7,187 @@ msgid ""
 msgstr ""
 "Project-Id-Version: VDR 1.5.7\n"
 "Report-Msgid-Bugs-To: <<vdr@smue.org>>\n"
-"POT-Creation-Date: 2010-12-11 14:10+0100\n"
+"POT-Creation-Date: 2011-08-08 14:57+0200\n"
 "PO-Revision-Date: 2008-02-02 22:42+0100\n"
 "Last-Translator: Vyacheslav Dikonov <sdiconov@mail.ru>\n"
 "Language-Team: <vdr@linuxtv.org>\n"
+"Language: \n"
 "MIME-Version: 1.0\n"
-"Content-Type: text/plain; charset=ISO-8859-5\n"
+"Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-msgid "Versatile convert-and-burn plugin"
-msgstr "¡ﬁ◊‘–›ÿ’ DVD ÿ◊ ◊–ﬂÿ·’Ÿ VDR"
+msgid "Recording too big for disc type!"
+msgstr "–ó–∞–ø–∏—Å—å —Å–ª–∏—à–∫–æ–º –±–æ–ª—å—à–∞—è –¥–ª—è –≤—ã–±—Ä–∞–Ω–Ω–æ–≥–æ —Ç–∏–ø–∞ –¥–∏—Å–∫–∞!"
 
-msgid "Create DVDs"
-msgstr "¡ﬁ◊‘–‚Ï DVD"
+msgid "Disc too big for disc type!"
+msgstr "–î–∏—Å–∫ —Å–ª–∏—à–∫–æ–º –≤–µ–ª–∏–∫ –¥–ª—è —ç—Ç–æ–≥–æ —Ç–∏–ø–∞!"
 
-msgid "Burn job active"
-msgstr "DVD ·ﬁ◊‘–Ò‚·Ô"
+msgid "Target"
+msgstr "–¶–µ–ª—å"
 
-msgid "Please enter the burn plugin"
-msgstr "øﬁ÷–€„Ÿ·‚–, ◊–ﬂ„·‚ÿ‚’ ‹ﬁ‘„€Ï ‘€Ô ·ﬁ◊‘–›ÿÔ DVD"
+msgid "Disk type"
+msgstr "–¢–∏–ø –¥–∏—Å–∫–∞"
 
-msgid "Please insert an empty disk and press Ok"
-msgstr "≤·‚–“Ï‚’ ﬂ„·‚ﬁŸ ‘ÿ·⁄ DVD ÿ ›–÷‹ÿ‚’ æ∫"
+msgid "DMH-archive"
+msgstr "–ê—Ä—Ö–∏–≤ DMH"
+
+msgid "Skin"
+msgstr "–í–Ω–µ—à–Ω–∏–π –≤–∏–¥"
+
+#, fuzzy
+msgid "Skin Aspect Ratio"
+msgstr "–°–æ–æ—Ç–Ω–æ—à–µ–Ω–∏–µ —Å—Ç–æ—Ä–æ–Ω"
+
+#, fuzzy
+msgid "Title source"
+msgstr "–î–æ—Ä–æ–∂–∫–∞ –≤–∏–¥–µ–æ"
+
+msgid "Chapters"
+msgstr "–ì–ª–∞–≤—ã"
+
+msgid "Disk size"
+msgstr "–†–∞–∑–º–µ—Ä –¥–∏—Å–∫–∞"
+
+msgid "Cut"
+msgstr "–ú–æ–Ω—Ç–∞–∂"
+
+msgid "Skip empty titlemenu"
+msgstr "–ü—Ä–æ–ø—É—Å–∫–∞—Ç—å –ø—É—Å—Ç–æ–µ –º–µ–Ω—é –Ω–∞–∑–≤–∞–Ω–∏–π"
+
+msgid "Skip short mainmenu"
+msgstr "–ü—Ä–æ–ø—É—Å–∫–∞—Ç—å –ø—É—Å—Ç–æ–µ –≥–ª–∞–≤–Ω–æ–µ –º–µ–Ω—é"
+
+#, fuzzy
+msgid "Use subtitle tracks"
+msgstr "–î–æ—Ä–æ–∂–∫–∞ –≤–∏–¥–µ–æ"
+
+msgid "--- Common settings --------------------------------------------------"
+msgstr "--- –û–±—â–∏–µ –Ω–∞—Å—Ç—Ä–æ–π–∫–∏ ------------------------------------------------"
+
+msgid "Remove path component"
+msgstr "–û–±—Ä–µ–∑–∞—Ç—å –ø—É—Ç—å"
+
+msgid "Requant using"
+msgstr "–£–º–µ–Ω—å—à–∏—Ç—å —Å –ø–æ–º–æ—â—å—é"
+
+msgid "Burn speed"
+msgstr "–°–∫–æ—Ä–æ—Å—Ç—å –∑–∞–ø–∏—Å–∏"
+
+msgid "unlimited"
+msgstr "–Ω–µ–æ–≥—Ä–∞–Ω–∏—á–µ–Ω–∞"
+
+msgid "Preserve logfiles"
+msgstr "–°–æ—Ö—Ä–∞–Ω–∏—Ç—å –ª–æ–≥–∏"
+
+msgid "Spare language code"
+msgstr "–ó–∞–ø–∞—Å–Ω–æ–π –∫–æ–¥ —è–∑—ã–∫–∞"
+
+msgid "Status in main menu"
+msgstr "–°–æ—Å—Ç–æ—è–Ω–∏–µ –≤ –≥–ª–∞–≤–Ω–æ–º –º–µ–Ω—é"
+
+msgid "Custom disk size (MB)"
+msgstr "–ü–æ–ª—å–∑–æ–≤–∞—Ç–µ–ª—å—Å–∫–∏–π —Ä–∞–∑–º–µ—Ä –¥–∏—Å–∫–∞ (–ú–ë)"
+
+msgid "--- Job menu settings ------------------------------------------------"
+msgstr "--- –ù–∞—Å—Ç—Ä–æ–π–∫–∏ –º–µ–Ω—é –∑–∞–¥–∞–Ω–∏–π -------------------------------------------"
+
+msgid "Offer disk type"
+msgstr "–ü—Ä–µ–¥–ª–∞–≥–∞—Ç—å –≤–∏–¥ DVD"
+
+msgid "Offer chapters"
+msgstr "–ü—Ä–µ–¥–ª–∞–≥–∞—Ç—å –≥–ª–∞–≤—ã"
+
+msgid "Offer target"
+msgstr "–ü—Ä–µ–¥–ª–∞–≥–∞—Ç—å —Ü–µ–ª—å"
+
+msgid "Offer disk size"
+msgstr "–ü—Ä–µ–¥–ª–∞–≥–∞—Ç—å —Ä–∞–∑–º–µ—Ä –¥–∏—Å–∫–∞"
+
+msgid "Offer cutting"
+msgstr "–ü—Ä–µ–¥–ª–∞–≥–∞—Ç—å –º–æ–Ω—Ç–∞–∂"
+
+msgid "Offer DMH-archive"
+msgstr "–ü—Ä–µ–¥–ª–∞–≥–∞—Ç—å –∞—Ä—Ö–∏–≤ DMH"
+
+msgid "Offer skip titlemenu"
+msgstr "–ü—Ä–µ–¥–ª–∞–≥–∞—Ç—å –ø—Ä–æ–ø—É—Å–∫ –ø—É—Å—Ç–æ–≥–æ –º–µ–Ω—é"
+
+msgid "Offer skip mainmenu"
+msgstr "–ü—Ä–µ–¥–ª–∞–≥–∞—Ç—å –ø—Ä–æ–ø—É—Å–∫ –ø—É—Å—Ç–æ–≥–æ –≥–ª–∞–≤–Ω–æ–≥–æ –º–µ–Ω—é"
+
+msgid "--- Job defaults -----------------------------------------------------"
+msgstr "--- –°—Ç–∞–Ω–¥–∞—Ä—Ç–Ω—ã–µ –Ω–∞—Å—Ç—Ä–æ–π–∫–∏ –∑–∞–¥–∞–Ω–∏–π ------------------------------------"
+
+msgid "Write DVDs"
+msgstr "–°–æ–∑–¥–∞—Ç—å DVD"
+
+msgid "Job options"
+msgstr "–û–ø—Ü–∏–∏ –∑–∞–¥–∞–Ω–∏–π"
+
+msgid "Video track"
+msgstr "–î–æ—Ä–æ–∂–∫–∞ –≤–∏–¥–µ–æ"
+
+msgid "Audio track"
+msgstr "–î–æ—Ä–æ–∂–∫–∞ –∞—É–¥–∏–æ"
+
+#, fuzzy
+msgid "Subtitle track"
+msgstr "–î–æ—Ä–æ–∂–∫–∞ –≤–∏–¥–µ–æ"
+
+#, fuzzy
+msgid "page"
+msgstr "–¶–µ–ª—å"
+
+msgid "Unknown"
+msgstr "–ù–µ–∏–∑–≤–µ—Å—Ç–Ω–æ"
 
 msgid "DVD with menus"
-msgstr "DVD · ‹’›Ó"
+msgstr "DVD —Å –º–µ–Ω—é"
 
 msgid "DVD without menus"
-msgstr "DVD —’◊ ‹’›Ó"
+msgstr "DVD –±–µ–∑ –º–µ–Ω—é"
 
 msgid "Archive disk"
-msgstr "∞‡Âÿ“›ÎŸ ‘ÿ·⁄"
+msgstr "–ê—Ä—Ö–∏–≤–Ω—ã–π –¥–∏—Å–∫"
 
 msgid "Create ISO only"
-msgstr "¬ﬁ€Ï⁄ﬁ ·ﬁ◊‘–‚Ï ﬁ—‡–◊"
+msgstr "–¢–æ–ª—å–∫–æ —Å–æ–∑–¥–∞—Ç—å –æ–±—Ä–∞–∑"
 
 msgid "Write to Disc"
-msgstr "∂’ÁÏ ›– DVD"
+msgstr "–ñ–µ—á—å –Ω–∞ DVD"
 
 msgid "Create ISO and write"
-msgstr "¡ﬁ◊‘–‚Ï ﬁ—‡–◊ ÿ ÷’ÁÏ"
+msgstr "–°–æ–∑–¥–∞—Ç—å –æ–±—Ä–∞–∑ –∏ –∂–µ—á—å"
 
 msgid "No chapters"
-msgstr "±’◊ ”€–“"
+msgstr "–ë–µ–∑ –≥–ª–∞–≤"
 
 msgid "Use editing marks"
-msgstr "∏·ﬂﬁ€Ï◊ﬁ“–‚Ï ‹ﬁ›‚–÷›Î’ ‹’‚⁄ÿ"
+msgstr "–ò—Å–ø–æ–ª—å–∑–æ–≤–∞—Ç—å –º–æ–Ω—Ç–∞–∂–Ω—ã–µ –º–µ—Ç–∫–∏"
 
 msgid "Every 5 minutes"
-msgstr "∫–÷‘Î’ 5 ‹ÿ›„‚"
+msgstr "–ö–∞–∂–¥—ã–µ 5 –º–∏–Ω—É—Ç"
 
 msgid "Every 10 minutes"
-msgstr "∫–÷‘Î’ 10 ‹ÿ›„‚"
+msgstr "–ö–∞–∂–¥—ã–µ 10 –º–∏–Ω—É—Ç"
 
 msgid "Every 15 minutes"
-msgstr "∫–÷‘Î’ 15 ‹ÿ›„‚"
+msgstr "–ö–∞–∂–¥—ã–µ 15 –º–∏–Ω—É—Ç"
 
 msgid "Every 30 minutes"
-msgstr "∫–÷‘Î’ 30 ‹ÿ›„‚"
+msgstr "–ö–∞–∂–¥—ã–µ 30 –º–∏–Ω—É—Ç"
 
 msgid "Every hour"
-msgstr "∫–÷‘ÎŸ Á–·"
+msgstr "–ö–∞–∂–¥—ã–π —á–∞—Å"
 
 msgid "Single Layer"
-msgstr "æ‘ÿ› ·€ﬁŸ"
+msgstr "–û–¥–∏–Ω —Å–ª–æ–π"
 
 msgid "Double Layer"
-msgstr "¥“– ·€ﬁÔ"
+msgstr "–î–≤–∞ —Å–ª–æ—è"
 
 msgid "Custom"
-msgstr "øﬁ€Ï◊ﬁ“–‚’€Ï·⁄ÿŸ"
+msgstr "–ü–æ–ª—å–∑–æ–≤–∞—Ç–µ–ª—å—Å–∫–∏–π"
 
 msgid "ProjectX"
 msgstr "ProjectX"
@@ -89,6 +200,19 @@ msgstr "Transcode"
 
 msgid "lxdvdrip"
 msgstr ""
+
+msgid "EPG Title"
+msgstr ""
+
+msgid "EPG Title - Short Text"
+msgstr ""
+
+msgid "EPG Short Text"
+msgstr ""
+
+#, fuzzy
+msgid "Recording"
+msgstr "–ó–∞–ø–∏—Å–∏"
 
 msgid "Couldn't convert character sets!"
 msgstr ""
@@ -105,286 +229,180 @@ msgstr ""
 msgid "Couldn't save image file!"
 msgstr ""
 
-msgid "Recording too big for disc type!"
-msgstr "∑–ﬂÿ·Ï ·€ÿË⁄ﬁ‹ —ﬁ€ÏË–Ô ‘€Ô “Î—‡–››ﬁ”ﬁ ‚ÿﬂ– ‘ÿ·⁄–!"
+msgid "Versatile convert-and-burn plugin"
+msgstr "–°–æ–∑–¥–∞–Ω–∏–µ DVD –∏–∑ –∑–∞–ø–∏—Å–µ–π VDR"
 
-msgid "Disc too big for disc type!"
-msgstr "¥ÿ·⁄ ·€ÿË⁄ﬁ‹ “’€ÿ⁄ ‘€Ô Ì‚ﬁ”ﬁ ‚ÿﬂ–!"
+msgid "Create DVDs"
+msgstr "–°–æ–∑–¥–∞—Ç—å DVD"
+
+msgid "Burn job active"
+msgstr "DVD —Å–æ–∑–¥–∞—ë—Ç—Å—è"
+
+msgid "Please enter the burn plugin"
+msgstr "–ü–æ–∂–∞–ª—É–π—Å—Ç–∞, –∑–∞–ø—É—Å—Ç–∏—Ç–µ –º–æ–¥—É–ª—å –¥–ª—è —Å–æ–∑–¥–∞–Ω–∏—è DVD"
+
+msgid "Please insert an empty disk and press Ok"
+msgstr "–í—Å—Ç–∞–≤—å—Ç–µ –ø—É—Å—Ç–æ–π –¥–∏—Å–∫ DVD –∏ –Ω–∞–∂–º–∏—Ç–µ –û–ö"
+
+msgid "Default"
+msgstr "–ü–æ —É–º–æ–ª—á–∞–Ω–∏—é"
 
 msgid "A job failed!"
-msgstr "æËÿ—⁄– ﬂ‡ÿ ·ﬁ◊‘–›ÿÿ DVD!"
+msgstr "–û—à–∏–±–∫–∞ –ø—Ä–∏ —Å–æ–∑–¥–∞–Ω–∏–∏ DVD!"
 
 msgid "A job was finished successfully."
-msgstr "DVD ·ﬁ◊‘–› „·ﬂ’Ë›ﬁ."
+msgstr "DVD —Å–æ–∑–¥–∞–Ω —É—Å–ø–µ—à–Ω–æ."
 
 msgid "Recordings"
-msgstr "∑–ﬂÿ·ÿ"
+msgstr "–ó–∞–ø–∏—Å–∏"
 
 msgid "List"
-msgstr "¡ﬂÿ·ﬁ⁄"
+msgstr "–°–ø–∏—Å–æ–∫"
 
 msgid "Status"
-msgstr "¡ﬁ·‚ﬁÔ›ÿ’"
-
-msgid "Move down"
-msgstr "≤›ÿ◊"
-
-msgid "Track$Off"
-msgstr "≤Î⁄€."
-
-msgid "Track$On"
-msgstr "≤⁄€."
-
-msgid "Language code"
-msgstr "∫ﬁ‘ Ô◊Î⁄–"
-
-msgid "Choose title"
-msgstr ""
-
-#, c-format
-msgid "$Recordings: %1$d, total size: %2$.1f MB"
-msgstr "∑–ﬂÿ·’Ÿ: %1$d, ﬁ—ÈÿŸ ‡–◊‹’‡: %2$.1f º±"
-
-msgid "No recordings marked for burning"
-msgstr "Ω’‚ ◊–ﬂÿ·’Ÿ ‘€Ô ·ﬁ◊‘–›ÿÔ DVD"
-
-msgid "Write DVDs"
-msgstr "¡ﬁ◊‘–‚Ï DVD"
-
-msgid "Choose"
-msgstr "≤Î—‡–‚Ï"
-
-msgid "Analyzing recording..."
-msgstr "∞›–€ÿ◊ÿ‡„Ó ◊–ﬂÿ·ÿ..."
-
-msgid "Job"
-msgstr "∑–‘–›ÿ’"
-
-msgid "DVD title"
-msgstr "Ω–◊“–›ÿ’ DVD"
-
-msgid "Archive-ID"
-msgstr "ID ∞‡Âÿ“–"
-
-msgid "Job options"
-msgstr "æﬂÊÿÿ ◊–‘–›ÿŸ"
-
-msgid "No recordings marked"
-msgstr "Ω’‚ “Î—‡–›ÎÂ ◊–ﬂÿ·’Ÿ"
-
-msgid "Button$Start"
-msgstr "ø„·⁄"
-
-msgid "Remove"
-msgstr "√‘–€ÿ‚Ï"
-
-#, fuzzy
-msgid "No MPEG2 video track selected!"
-msgstr "≤ÿ‘’ﬁ-‘ﬁ‡ﬁ÷⁄– ›’ “Î—‡–›–!"
-
-msgid "No audio track selected!"
-msgstr "∞„‘ÿﬁ-‘ﬁ‡ﬁ÷⁄– ›’ “Î—‡–›–!"
-
-msgid "Not enough free disk space!"
-msgstr "Ω’‘ﬁ·‚–‚ﬁÁ›ﬁ ‹’·‚– ›– ‘ÿ·⁄’"
-
-msgid "Remove recording from list?"
-msgstr "√‘–€ÿ‚Ï ◊–ﬂÿ·ÿ ÿ◊ ·ﬂÿ·⁄–?"
-
-#, c-format
-msgid "$Job active (Writing: %1$d%%)"
-msgstr "∑–‘–›ÿ’ “Îﬂﬁ€›Ô’‚·Ô (∑–ﬂÿ·Ï: %1$d%%)"
-
-msgid "Job active (Converting)"
-msgstr "∑–‘–›ÿ’ “Îﬂﬁ€›Ô’‚·Ô (∫ﬁ›“’‡‚–ÊÿÔ)"
-
-msgid "No active or waiting jobs present"
-msgstr "Ω’‚ “Îﬂﬁ€›Ô’‹ÎÂ ÿ€ÿ ÷‘„ÈÿÂ ◊–‘–›ÿŸ"
-
-msgid "Canceled jobs"
-msgstr "æ‚‹’›Ò››Î’ ◊–‘–›ÿÔ"
-
-msgid "Erroneous jobs"
-msgstr "∑–‘–›ÿÔ, ﬂ‡’‡“–››Î’ ﬂﬁ ﬂ‡ÿÁÿ›’ ﬁËÿ—⁄ÿ"
-
-msgid "Restart"
-msgstr "ø’‡’·‚–‡‚ﬁ“–‚Ï"
-
-msgid "Retry"
-msgstr "øﬁ“‚ﬁ‡ÿ‚Ï"
-
-msgid "Cancel"
-msgstr "æ‚‹’›ÿ‚Ï"
-
-msgid "Replace current job?"
-msgstr "∑–‹’›ÿ‚Ï ‘’Ÿ·‚“„ÓÈ’’ ◊–‘–›ÿ’?"
-
-msgid "Job still active - really cancel?"
-msgstr "∑–‘–›ÿ’ “Îﬂﬁ€›Ô’‚·Ô - ‘’Ÿ·‚“ÿ‚’€Ï›ﬁ ﬁ‚‹’›ÿ‚Ï?"
-
-msgid "Remove job from list?"
-msgstr "√‘–€ÿ‚Ï ◊–‘–›ÿ’ ÿ◊ ·ﬂÿ·⁄–"
+msgstr "–°–æ—Å—Ç–æ—è–Ω–∏–µ"
 
 #, c-format
 msgid "$Total size: %1$.1f MB %2$s"
-msgstr "æ—ÈÿŸ ‡–◊‹’‡: %1$.1f º± %2$s"
+msgstr "–û–±—â–∏–π —Ä–∞–∑–º–µ—Ä: %1$.1f –ú–ë %2$s"
 
 msgid "(would be shrinked)"
-msgstr "(—„‘’‚ ·÷–‚ﬁ)"
+msgstr "(–±—É–¥–µ—Ç —Å–∂–∞—Ç–æ)"
 
 msgid "Aspect ratio"
-msgstr "¡ﬁﬁ‚›ﬁË’›ÿ’ ·‚ﬁ‡ﬁ›"
+msgstr "–°–æ–æ—Ç–Ω–æ—à–µ–Ω–∏–µ —Å—Ç–æ—Ä–æ–Ω"
+
+msgid "track editor"
+msgstr ""
+
+#, fuzzy
+msgid "title in menu"
+msgstr "–°–æ—Å—Ç–æ—è–Ω–∏–µ –≤ –≥–ª–∞–≤–Ω–æ–º –º–µ–Ω—é"
+
+msgid "Choose"
+msgstr "–í—ã–±—Ä–∞—Ç—å"
+
+msgid "Move down"
+msgstr "–í–Ω–∏–∑"
+
+msgid "Track$Off"
+msgstr "–í—ã–∫–ª."
+
+msgid "Track$On"
+msgstr "–í–∫–ª."
+
+msgid "Language code"
+msgstr "–ö–æ–¥ —è–∑—ã–∫–∞"
+
+#, fuzzy
+msgid "Choose title"
+msgstr "–í—ã–±—Ä–∞—Ç—å"
+
+#, fuzzy
+msgid "DVD menu title for "
+msgstr "–ù–∞–∑–≤–∞–Ω–∏–µ DVD"
+
+#, c-format
+msgid "$Recordings: %1$d, total size: %2$.1f MB"
+msgstr "–ó–∞–ø–∏—Å–µ–π: %1$d, –æ–±—â–∏–π —Ä–∞–∑–º–µ—Ä: %2$.1f –ú–ë"
+
+msgid "No recordings marked for burning"
+msgstr "–ù–µ—Ç –∑–∞–ø–∏—Å–µ–π –¥–ª—è —Å–æ–∑–¥–∞–Ω–∏—è DVD"
+
+msgid "Analyzing recording..."
+msgstr "–ê–Ω–∞–ª–∏–∑–∏—Ä—É—é –∑–∞–ø–∏—Å–∏..."
+
+msgid "Job"
+msgstr "–ó–∞–¥–∞–Ω–∏–µ"
+
+msgid "DVD title"
+msgstr "–ù–∞–∑–≤–∞–Ω–∏–µ DVD"
+
+msgid "Archive-ID"
+msgstr "ID –ê—Ä—Ö–∏–≤–∞"
+
+msgid "No recordings marked"
+msgstr "–ù–µ—Ç –≤—ã–±—Ä–∞–Ω—ã—Ö –∑–∞–ø–∏—Å–µ–π"
+
+msgid "Button$Start"
+msgstr "–ü—É—Å–∫"
+
+msgid "Remove"
+msgstr "–£–¥–∞–ª–∏—Ç—å"
+
+#, fuzzy
+msgid "No MPEG2 video track selected!"
+msgstr "–í–∏–¥–µ–æ-–¥–æ—Ä–æ–∂–∫–∞ –Ω–µ –≤—ã–±—Ä–∞–Ω–∞!"
+
+msgid "No audio track selected!"
+msgstr "–ê—É–¥–∏–æ-–¥–æ—Ä–æ–∂–∫–∞ –Ω–µ –≤—ã–±—Ä–∞–Ω–∞!"
+
+msgid "Not enough free disk space!"
+msgstr "–ù–µ–¥–æ—Å—Ç–∞—Ç–æ—á–Ω–æ –º–µ—Å—Ç–∞ –Ω–∞ –¥–∏—Å–∫–µ"
+
+msgid "Remove recording from list?"
+msgstr "–£–¥–∞–ª–∏—Ç—å –∑–∞–ø–∏—Å–∏ –∏–∑ —Å–ø–∏—Å–∫–∞?"
+
+#, c-format
+msgid "$Job active (Writing: %1$d%%)"
+msgstr "–ó–∞–¥–∞–Ω–∏–µ –≤—ã–ø–æ–ª–Ω—è–µ—Ç—Å—è (–ó–∞–ø–∏—Å—å: %1$d%%)"
+
+msgid "Job active (Converting)"
+msgstr "–ó–∞–¥–∞–Ω–∏–µ –≤—ã–ø–æ–ª–Ω—è–µ—Ç—Å—è (–ö–æ–Ω–≤–µ—Ä—Ç–∞—Ü–∏—è)"
+
+msgid "No active or waiting jobs present"
+msgstr "–ù–µ—Ç –≤—ã–ø–æ–ª–Ω—è–µ–º—ã—Ö –∏–ª–∏ –∂–¥—É—â–∏—Ö –∑–∞–¥–∞–Ω–∏–π"
+
+msgid "Canceled jobs"
+msgstr "–û—Ç–º–µ–Ω—ë–Ω–Ω—ã–µ –∑–∞–¥–∞–Ω–∏—è"
+
+msgid "Erroneous jobs"
+msgstr "–ó–∞–¥–∞–Ω–∏—è, –ø—Ä–µ—Ä–≤–∞–Ω–Ω—ã–µ –ø–æ –ø—Ä–∏—á–∏–Ω–µ –æ—à–∏–±–∫–∏"
+
+msgid "Restart"
+msgstr "–ü–µ—Ä–µ—Å—Ç–∞—Ä—Ç–æ–≤–∞—Ç—å"
+
+msgid "Retry"
+msgstr "–ü–æ–≤—Ç–æ—Ä–∏—Ç—å"
+
+msgid "Cancel"
+msgstr "–û—Ç–º–µ–Ω–∏—Ç—å"
+
+msgid "Replace current job?"
+msgstr "–ó–∞–º–µ–Ω–∏—Ç—å –¥–µ–π—Å—Ç–≤—É—é—â–µ–µ –∑–∞–¥–∞–Ω–∏–µ?"
+
+msgid "Job still active - really cancel?"
+msgstr "–ó–∞–¥–∞–Ω–∏–µ –≤—ã–ø–æ–ª–Ω—è–µ—Ç—Å—è - –¥–µ–π—Å—Ç–≤–∏—Ç–µ–ª—å–Ω–æ –æ—Ç–º–µ–Ω–∏—Ç—å?"
+
+msgid "Remove job from list?"
+msgstr "–£–¥–∞–ª–∏—Ç—å –∑–∞–¥–∞–Ω–∏–µ –∏–∑ —Å–ø–∏—Å–∫–∞"
 
 msgid "Previous page"
-msgstr "Ω–◊–‘"
+msgstr "–ù–∞–∑–∞–¥"
 
 msgid "Next page"
-msgstr "¥–€’’"
+msgstr "–î–∞–ª–µ–µ"
 
 msgid "Play movie"
-msgstr "≤ﬁ·ﬂ‡ﬁÿ◊“’·‚ÿ"
+msgstr "–í–æ—Å–ø—Ä–æ–∏–∑–≤–µ—Å—Ç–∏"
 
 msgid "Back"
-msgstr "º’›Ó"
+msgstr "–ú–µ–Ω—é"
 
 msgid "Couldn't read index"
-msgstr "Ω’ ·‹ﬁ” ﬂ‡ﬁÁÿ‚–‚Ï ÿ›‘’⁄·!"
+msgstr "–ù–µ —Å–º–æ–≥ –ø—Ä–æ—á–∏—Ç–∞—Ç—å –∏–Ω–¥–µ–∫—Å!"
 
 msgid "Couldn't browse recording"
-msgstr "Ω’ ·‹ﬁ” ﬂ‡ﬁ€ÿ·‚–‚Ï ◊–ﬂÿ·ÿ!"
+msgstr "–ù–µ —Å–º–æ–≥ –ø—Ä–æ–ª–∏—Å—Ç–∞—Ç—å –∑–∞–ø–∏—Å–∏!"
 
 msgid "mp2"
-msgstr ""
+msgstr "mp2"
 
 msgid "dolby"
 msgstr "dolby"
 
 msgid "Couldn't read marks"
-msgstr "Ω’ ·‹ﬁ” ﬂ‡ﬁÁÿ‚–‚Ï ‹’‚⁄ÿ!"
+msgstr "–ù–µ —Å–º–æ–≥ –ø—Ä–æ—á–∏—Ç–∞—Ç—å –º–µ—Ç–∫–∏!"
 
 msgid "Recording is too short"
-msgstr "∑–ﬂÿ·Ï ·€ÿË⁄ﬁ‹ ⁄ﬁ‡ﬁ‚⁄–Ô"
-
-msgid "Target"
-msgstr "∆’€Ï"
-
-msgid "Disk type"
-msgstr "¬ÿﬂ ‘ÿ·⁄–"
-
-msgid "DMH-archive"
-msgstr "∞‡Âÿ“ DMH"
-
-msgid "Skin"
-msgstr "≤›’Ë›ÿŸ “ÿ‘"
-
-#, fuzzy
-msgid "Skin Aspect Ratio"
-msgstr "¡ﬁﬁ‚›ﬁË’›ÿ’ ·‚ﬁ‡ﬁ›"
-
-msgid "Chapters"
-msgstr "≥€–“Î"
-
-msgid "Disk size"
-msgstr "¿–◊‹’‡ ‘ÿ·⁄–"
-
-msgid "Cut"
-msgstr "ºﬁ›‚–÷"
-
-msgid "Skip empty titlemenu"
-msgstr "ø‡ﬁﬂ„·⁄–‚Ï ﬂ„·‚ﬁ’ ‹’›Ó ›–◊“–›ÿŸ"
-
-msgid "Skip short mainmenu"
-msgstr "ø‡ﬁﬂ„·⁄–‚Ï ﬂ„·‚ﬁ’ ”€–“›ﬁ’ ‹’›Ó"
-
-msgid "--- Common settings --------------------------------------------------"
-msgstr "--- æ—Èÿ’ ›–·‚‡ﬁŸ⁄ÿ ------------------------------------------------"
-
-msgid "Remove path component"
-msgstr "æ—‡’◊–‚Ï ﬂ„‚Ï"
-
-msgid "Demux using"
-msgstr "¥’‹„€Ï‚ÿﬂ€’⁄·ﬁ‡"
-
-msgid "Requant using"
-msgstr "√‹’›ÏËÿ‚Ï · ﬂﬁ‹ﬁÈÏÓ"
-
-msgid "Burn speed"
-msgstr "¡⁄ﬁ‡ﬁ·‚Ï ◊–ﬂÿ·ÿ"
-
-msgid "unlimited"
-msgstr "›’ﬁ”‡–›ÿÁ’›–"
-
-msgid "Preserve logfiles"
-msgstr "¡ﬁÂ‡–›ÿ‚Ï €ﬁ”ÿ"
-
-msgid "Spare language code"
-msgstr "∑–ﬂ–·›ﬁŸ ⁄ﬁ‘ Ô◊Î⁄–"
-
-msgid "Status in main menu"
-msgstr "¡ﬁ·‚ﬁÔ›ÿ’ “ ”€–“›ﬁ‹ ‹’›Ó"
-
-msgid "Custom disk size (MB)"
-msgstr "øﬁ€Ï◊ﬁ“–‚’€Ï·⁄ÿŸ ‡–◊‹’‡ ‘ÿ·⁄– (º±)"
-
-msgid "--- Job menu settings ------------------------------------------------"
-msgstr "--- Ω–·‚‡ﬁŸ⁄ÿ ‹’›Ó ◊–‘–›ÿŸ -------------------------------------------"
-
-msgid "Offer disk type"
-msgstr "ø‡’‘€–”–‚Ï “ÿ‘ DVD"
-
-msgid "Offer chapters"
-msgstr "ø‡’‘€–”–‚Ï ”€–“Î"
-
-msgid "Offer target"
-msgstr "ø‡’‘€–”–‚Ï Ê’€Ï"
-
-msgid "Offer disk size"
-msgstr "ø‡’‘€–”–‚Ï ‡–◊‹’‡ ‘ÿ·⁄–"
-
-msgid "Offer cutting"
-msgstr "ø‡’‘€–”–‚Ï ‹ﬁ›‚–÷"
-
-msgid "Offer DMH-archive"
-msgstr "ø‡’‘€–”–‚Ï –‡Âÿ“ DMH"
-
-msgid "Offer skip titlemenu"
-msgstr "ø‡’‘€–”–‚Ï ﬂ‡ﬁﬂ„·⁄ ﬂ„·‚ﬁ”ﬁ ‹’›Ó"
-
-msgid "Offer skip mainmenu"
-msgstr "ø‡’‘€–”–‚Ï ﬂ‡ﬁﬂ„·⁄ ﬂ„·‚ﬁ”ﬁ ”€–“›ﬁ”ﬁ ‹’›Ó"
-
-msgid "--- Job defaults -----------------------------------------------------"
-msgstr "--- ¡‚–›‘–‡‚›Î’ ›–·‚‡ﬁŸ⁄ÿ ◊–‘–›ÿŸ ------------------------------------"
-
-msgid "Default"
-msgstr "øﬁ „‹ﬁ€Á–›ÿÓ"
-
-msgid "Video track"
-msgstr "¥ﬁ‡ﬁ÷⁄– “ÿ‘’ﬁ"
-
-msgid "Audio track"
-msgstr "¥ﬁ‡ﬁ÷⁄– –„‘ÿﬁ"
-
-#, fuzzy
-msgid "Subtitle track"
-msgstr "¥ﬁ‡ﬁ÷⁄– “ÿ‘’ﬁ"
-
-#, fuzzy
-msgid "page"
-msgstr "∆’€Ï"
-
-msgid "Unknown"
-msgstr "Ω’ÿ◊“’·‚›ﬁ"
-
-#, fuzzy
-#~ msgid "title"
-#~ msgstr "Ω–◊“–›ÿ’ DVD"
-
-#~ msgid "CD-R"
-#~ msgstr "CD-R"
-
-#~ msgid "VDRSync"
-#~ msgstr "VDRSync"
-
-#~ msgid "analog"
-#~ msgstr "–›–€ﬁ”ﬁ“ÎŸ"
+msgstr "–ó–∞–ø–∏—Å—å —Å–ª–∏—à–∫–æ–º –∫–æ—Ä–æ—Ç–∫–∞—è"

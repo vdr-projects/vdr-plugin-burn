@@ -69,6 +69,7 @@ namespace vdr_burn
 		cPatPmtParser m_PatPmtParser;
 #endif
 		recording m_scanResult;
+		bool m_useSubtitleTracks;
 	};
 
 }

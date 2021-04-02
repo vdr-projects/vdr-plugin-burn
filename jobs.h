@@ -29,8 +29,9 @@ namespace vdr_burn {
 	namespace menu
 	{
 		class track_editor;
+		class title_chooser;
 		class job_editor;
-		class recording_edit_item;
+		class recording_list_item;
 	}
 
 	// --- recording ----------------------------------------------------------
@@ -40,18 +41,22 @@ namespace vdr_burn {
 	private:
 		friend class menu::job_editor;
 		friend class menu::track_editor;
-		friend class menu::recording_edit_item;
+		friend class menu::title_chooser;
+		friend class menu::recording_list_item;
 
 		job*                   m_owner;
 		std::string            m_fileName;
-		std::string            m_eventTitle;
-		std::string            m_eventDescription;
+		std::string            m_name;              // Name of Recording
+		std::string            m_title;
+		std::string            m_eventTitle;        // EPG title
+		std::string            m_eventShortText;    // EPG short text
+		std::string            m_eventDescription;  // EPG description
 		std::string            m_datetime;
 		path_pair              m_paths;
-		std::string            m_name;
-		bool				   m_isPesRecording;
-		double				   m_framesPerSecond;
+		bool                   m_isPesRecording;
+		double                 m_framesPerSecond;
 		track_info_list        m_tracks;
+		int                    m_titleSource;
 
 		size_pair              m_totalSize;
 		length_pair            m_totalLength;
@@ -71,6 +76,7 @@ namespace vdr_burn {
 
 		const path_pair& get_paths() const { return m_paths; }
 		const std::string& get_filename() const { return m_fileName; }
+		const std::string& get_title() const { return m_title; }
 		const std::string& get_eventTitle() const { return m_eventTitle; }
 		const std::string& get_eventDescription() const { return m_eventDescription; }
 		const std::string& get_datetime() const { return m_datetime; }
@@ -190,7 +196,7 @@ namespace vdr_burn {
 //		};
 
 	private:
-		std::string m_title;
+		std::string m_jobtitle;
 		job_options m_options;
 		recording_list m_recordings;
 		path_pair m_paths;
@@ -212,7 +218,6 @@ namespace vdr_burn {
 		recording_list& get_recordings() { return m_recordings; }
 		const recording_list& get_recordings() const { return m_recordings; }
 
-//		job_options& get_options() { return m_options; }
 		const job_options& get_options() const { return m_options; }
 		bool set_options( const job_options& options_, std::string& error_ );
 
@@ -229,8 +234,8 @@ namespace vdr_burn {
 		size_pair::size_type get_tracks_size( track_info::streamtype type = track_info::streamtype( 0 ) ) const;
 
 		const path_pair& get_paths() const { return m_paths; }
-		std::string& get_title() { return m_title; }
-		const std::string& get_title() const { return m_title; }
+		std::string& get_title() { return m_jobtitle; }
+		const std::string& get_title() const { return m_jobtitle; }
 		int get_disk_type() const { return m_options.DiskType; }
 #ifdef ENABLE_DMH_ARCHIVE
 		bool get_dmh_archive_mode() const { return m_options.DmhArchiveMode; }
@@ -299,7 +304,7 @@ namespace vdr_burn {
 	inline
 	std::string job::get_volume_id() const
 	{
-		return std::string( m_title ).substr( 0, 32 );
+		return std::string( m_jobtitle ).substr( 0, 32 );
 	}
 
 	typedef std::deque<job*> job_queue;

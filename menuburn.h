@@ -40,7 +40,7 @@ namespace vdr_burn
 
 		// --- track_editor ---------------------------------------------------
 
-		class track_editor: public cMenuSetupPage
+		class track_editor: public cOsdMenu
 		{
 		public:
 			track_editor(pagebase& parent, recording& recording_);
@@ -50,7 +50,6 @@ namespace vdr_burn
 			void add_track(track_info& track);
 			bool can_move_down();
 			void set_help_keys();
-			eOSState dispatch_key(eKeys key);
 			void move_down();
 
 			virtual void Store();
@@ -60,6 +59,8 @@ namespace vdr_burn
 			pagebase& m_parent;
 			recording& m_recording;
 			track_info_list m_tracks;
+			std::string m_title;
+			int m_titleSource;
 			std::vector<int> m_indices;
 		};
 
@@ -67,10 +68,9 @@ namespace vdr_burn
 
 		class title_chooser: public cOsdMenu
 		{
-			typedef std::vector<std::string> title_list;
 
 		public:
-			title_chooser(const std::string& fileName);
+			title_chooser( const recording& recording_, std::string& title_, int* titleSource_);
 
 		protected:
 			void refresh();
@@ -79,8 +79,11 @@ namespace vdr_burn
 			virtual eOSState ProcessKey(eKeys key);
 
 		private:
-			title_list m_data;
+			recording m_recording;
+			std::string& m_title;
+			int* m_titleSource;
 		};
+
 
 		// --- recordings -----------------------------------------------------
 
@@ -124,7 +127,7 @@ namespace vdr_burn
 			virtual eOSState yellow_pressed();
 
 		private:
-			typedef std::vector< menu::recording_edit_item* > recording_items;
+			typedef std::vector< menu::recording_list_item* > recording_items;
 
 			recording_items m_recordingItems;
 			menu::size_text_item* m_infoTextItem;

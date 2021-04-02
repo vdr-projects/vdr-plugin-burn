@@ -7,28 +7,134 @@ msgid ""
 msgstr ""
 "Project-Id-Version: VDR 1.5.7\n"
 "Report-Msgid-Bugs-To: <<vdr@smue.org>>\n"
-"POT-Creation-Date: 2010-12-11 14:10+0100\n"
+"POT-Creation-Date: 2011-08-08 14:57+0200\n"
 "PO-Revision-Date: 2010-12-11-19:50+0100\n"
 "Last-Translator: Christoph Haubrich\n"
 "Language-Team: <vdr@linuxtv.org>\n"
+"Language: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-msgid "Versatile convert-and-burn plugin"
-msgstr "Universelles Umwandlungs- und Brennplugin"
+msgid "Recording too big for disc type!"
+msgstr "Aufnahme zu groß für Disk-Typ!"
 
-msgid "Create DVDs"
-msgstr "DVDs erstellen"
+msgid "Disc too big for disc type!"
+msgstr "Disc zu groß für diese Art!"
 
-msgid "Burn job active"
-msgstr "Brennjob läuft"
+msgid "Target"
+msgstr "Ziel"
 
-msgid "Please enter the burn plugin"
-msgstr "Bitte Brenn-Plugin aufrufen"
+msgid "Disk type"
+msgstr "Art der DVD"
 
-msgid "Please insert an empty disk and press Ok"
-msgstr "Bitte legen Sie eine leere DVD ein und drücken Sie Ok"
+msgid "DMH-archive"
+msgstr "DMH-Archiv"
+
+msgid "Skin"
+msgstr "Aussehen"
+
+msgid "Skin Aspect Ratio"
+msgstr "Menü-Seitenverhältnis"
+
+msgid "Title source"
+msgstr "Titelquelle"
+
+msgid "Chapters"
+msgstr "Kapitel"
+
+msgid "Disk size"
+msgstr "Größe der Disk"
+
+msgid "Cut"
+msgstr "Schneiden"
+
+msgid "Skip empty titlemenu"
+msgstr "Leeres Titelmenü überspringen"
+
+msgid "Skip short mainmenu"
+msgstr "Kurzes Hauptmenü überspringen"
+
+msgid "Use subtitle tracks"
+msgstr "Benutze Untertitelspuren"
+
+msgid "--- Common settings --------------------------------------------------"
+msgstr "--- Allgemeine Einstellungen -----------------------------------------"
+
+msgid "Remove path component"
+msgstr "Pfad abschneiden"
+
+msgid "Requant using"
+msgstr "Verkleinern mit"
+
+msgid "Burn speed"
+msgstr "Brenngeschwindigkeit"
+
+msgid "unlimited"
+msgstr "unbegrenzt"
+
+msgid "Preserve logfiles"
+msgstr "Logfiles behalten"
+
+msgid "Spare language code"
+msgstr "Ersatzsprachkennung"
+
+msgid "Status in main menu"
+msgstr "Status im Hauptmenü"
+
+msgid "Custom disk size (MB)"
+msgstr "Benutzerdef. Größe (MB)"
+
+msgid "--- Job menu settings ------------------------------------------------"
+msgstr "--- Jobmenü-Einstellungen --------------------------------------------"
+
+msgid "Offer disk type"
+msgstr "Art der DVD anbieten"
+
+msgid "Offer chapters"
+msgstr "Kapitel anbieten"
+
+msgid "Offer target"
+msgstr "Ziel anbieten"
+
+msgid "Offer disk size"
+msgstr "Größe der Disk anbieten"
+
+msgid "Offer cutting"
+msgstr "Schneiden anbieten"
+
+msgid "Offer DMH-archive"
+msgstr "DMH-Archiv anbieten"
+
+msgid "Offer skip titlemenu"
+msgstr "Titelmenü überspringen anbieten"
+
+msgid "Offer skip mainmenu"
+msgstr "Hauptmenü überspringen anbieten"
+
+msgid "--- Job defaults -----------------------------------------------------"
+msgstr "--- Standard Job-Einstellungen ---------------------------------------"
+
+msgid "Write DVDs"
+msgstr "DVDs brennen"
+
+msgid "Job options"
+msgstr "Jobeinstellungen"
+
+msgid "Video track"
+msgstr "Videospur"
+
+msgid "Audio track"
+msgstr "Tonspur"
+
+msgid "Subtitle track"
+msgstr "Untertitel"
+
+msgid "page"
+msgstr "Seite"
+
+msgid "Unknown"
+msgstr "Unbekannt"
 
 msgid "DVD with menus"
 msgstr "DVD mit Menüs"
@@ -90,26 +196,50 @@ msgstr "Transcode"
 msgid "lxdvdrip"
 msgstr "lxdvdrip"
 
+msgid "EPG Title"
+msgstr "EPG Titel"
+
+msgid "EPG Title - Short Text"
+msgstr "EPG Titel - Kurzbeschreibung"
+
+msgid "EPG Short Text"
+msgstr "EPG Kurzbeschreibung"
+
+msgid "Recording"
+msgstr "Aufzeichnung"
+
 msgid "Couldn't convert character sets!"
-msgstr ""
+msgstr "Konnte Zeichensatz nicht konvertieren!"
 
 msgid "Couldn't open image file!"
 msgstr "Kann Abbilddatei nicht öffnen!"
 
 msgid "Couldn't create new image!"
-msgstr ""
+msgstr "Konnte Abbild nicht erstellen!"
 
 msgid "Couldn't render menu images!"
-msgstr ""
+msgstr "Konnte Menübilder nicht erstellen!"
 
 msgid "Couldn't save image file!"
-msgstr ""
+msgstr "Konnte Abbild nicht sichern!"
 
-msgid "Recording too big for disc type!"
-msgstr "Aufnahme zu groß für Disk-Typ!"
+msgid "Versatile convert-and-burn plugin"
+msgstr "Universelles Umwandlungs- und Brennplugin"
 
-msgid "Disc too big for disc type!"
-msgstr "Disc zu groß für diese Art!"
+msgid "Create DVDs"
+msgstr "DVDs erstellen"
+
+msgid "Burn job active"
+msgstr "Brennjob läuft"
+
+msgid "Please enter the burn plugin"
+msgstr "Bitte Brenn-Plugin aufrufen"
+
+msgid "Please insert an empty disk and press Ok"
+msgstr "Bitte legen Sie eine leere DVD ein und drücken Sie Ok"
+
+msgid "Default"
+msgstr "Vorgabe"
 
 msgid "A job failed!"
 msgstr "Ein Auftrag ist fehlgeschlagen!"
@@ -126,6 +256,25 @@ msgstr "Liste"
 msgid "Status"
 msgstr "Status"
 
+#, c-format
+msgid "$Total size: %1$.1f MB %2$s"
+msgstr "Gesamtgröße: %1$.1f MB %2$s"
+
+msgid "(would be shrinked)"
+msgstr "(würden geschrumpft)"
+
+msgid "Aspect ratio"
+msgstr "Seitenverhältnis"
+
+msgid "track editor"
+msgstr "Spureneditor"
+
+msgid "title in menu"
+msgstr "Titel im Hauptmenü"
+
+msgid "Choose"
+msgstr "Wählen"
+
 msgid "Move down"
 msgstr "Nach unten"
 
@@ -141,18 +290,15 @@ msgstr "Sprachkennung"
 msgid "Choose title"
 msgstr "Titel wählen"
 
+msgid "DVD menu title for "
+msgstr "DVD Menütitel von "
+
 #, c-format
 msgid "$Recordings: %1$d, total size: %2$.1f MB"
 msgstr "Aufzeichnungen: %1$d, Gesamtgröße: %2$.1f MB"
 
 msgid "No recordings marked for burning"
 msgstr "Keine Aufzeichnungen zum Brennen markiert"
-
-msgid "Write DVDs"
-msgstr "DVDs brennen"
-
-msgid "Choose"
-msgstr "Wählen"
 
 msgid "Analyzing recording..."
 msgstr "Aufzeichnung wird analysiert..."
@@ -165,9 +311,6 @@ msgstr "Titel der DVD"
 
 msgid "Archive-ID"
 msgstr "Archiv-ID"
-
-msgid "Job options"
-msgstr "Jobeinstellungen"
 
 msgid "No recordings marked"
 msgstr "Keine Aufzeichnungen markiert"
@@ -224,16 +367,6 @@ msgstr "Auftrag noch aktiv - wirklich beenden?"
 msgid "Remove job from list?"
 msgstr "Auftrag aus Liste entfernen?"
 
-#, c-format
-msgid "$Total size: %1$.1f MB %2$s"
-msgstr "Gesamtgröße: %1$.1f MB %2$s"
-
-msgid "(would be shrinked)"
-msgstr "(würden geschrumpft)"
-
-msgid "Aspect ratio"
-msgstr "Seitenverhältnis"
-
 msgid "Previous page"
 msgstr "Vorherige Seite"
 
@@ -264,119 +397,3 @@ msgstr "Konnte Marken nicht lesen"
 msgid "Recording is too short"
 msgstr "Aufzeichnung ist zu kurz"
 
-msgid "Target"
-msgstr "Ziel"
-
-msgid "Disk type"
-msgstr "Art der DVD"
-
-msgid "DMH-archive"
-msgstr "DMH-Archiv"
-
-msgid "Skin"
-msgstr "Aussehen"
-
-msgid "Skin Aspect Ratio"
-msgstr "Menü-Seitenverhältnis"
-
-msgid "Chapters"
-msgstr "Kapitel"
-
-msgid "Disk size"
-msgstr "Größe der Disk"
-
-msgid "Cut"
-msgstr "Schneiden"
-
-msgid "Skip empty titlemenu"
-msgstr "Leeres Titelmenü überspringen"
-
-msgid "Skip short mainmenu"
-msgstr "Kurzes Hauptmenü überspringen"
-
-msgid "--- Common settings --------------------------------------------------"
-msgstr "--- Allgemeine Einstellungen -----------------------------------------"
-
-msgid "Remove path component"
-msgstr "Pfad abschneiden"
-
-msgid "Demux using"
-msgstr "Demultiplexer"
-
-msgid "Requant using"
-msgstr "Verkleinern mit"
-
-msgid "Burn speed"
-msgstr "Brenngeschwindigkeit"
-
-msgid "unlimited"
-msgstr "unbegrenzt"
-
-msgid "Preserve logfiles"
-msgstr "Logfiles behalten"
-
-msgid "Spare language code"
-msgstr "Ersatzsprachkennung"
-
-msgid "Status in main menu"
-msgstr "Status im Hauptmenü"
-
-msgid "Custom disk size (MB)"
-msgstr "Benutzerdef. Größe (MB)"
-
-msgid "--- Job menu settings ------------------------------------------------"
-msgstr "--- Jobmenü-Einstellungen --------------------------------------------"
-
-msgid "Offer disk type"
-msgstr "Art der DVD anbieten"
-
-msgid "Offer chapters"
-msgstr "Kapitel anbieten"
-
-msgid "Offer target"
-msgstr "Ziel anbieten"
-
-msgid "Offer disk size"
-msgstr "Größe der Disk anbieten"
-
-msgid "Offer cutting"
-msgstr "Schneiden anbieten"
-
-msgid "Offer DMH-archive"
-msgstr "DMH-Archiv anbieten"
-
-msgid "Offer skip titlemenu"
-msgstr "Titelmenü überspringen anbieten"
-
-msgid "Offer skip mainmenu"
-msgstr "Hauptmenü überspringen anbieten"
-
-msgid "--- Job defaults -----------------------------------------------------"
-msgstr "--- Standard Job-Einstellungen ---------------------------------------"
-
-msgid "Default"
-msgstr "Vorgabe"
-
-msgid "Video track"
-msgstr "Videospur"
-
-msgid "Audio track"
-msgstr "Tonspur"
-
-msgid "Subtitle track"
-msgstr "Untertitel"
-
-msgid "page"
-msgstr "Seite"
-
-msgid "Unknown"
-msgstr "Unbekannt"
-
-#~ msgid "title"
-#~ msgstr "Titel"
-
-#~ msgid "CD-R"
-#~ msgstr "CD-R"
-
-#~ msgid "VDRSync"
-#~ msgstr "VDRSync"

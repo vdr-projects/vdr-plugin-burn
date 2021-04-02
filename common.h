@@ -188,7 +188,6 @@ namespace vdr_burn
 
 	enum demuxtype
 	{
-		//demuxtype_vdrsync,
 		demuxtype_projectx
 	};
 
@@ -207,6 +206,20 @@ namespace vdr_burn
 	const int requanttype_count = requanttype_lxdvdrip + 1;
 	extern const char* requanttype_strings[requanttype_count];
 
+	//!--- titletype --------------------------------------------------------
+
+	enum titletype
+	{
+		titletype_epgtitle,
+		titletype_epgtitleshorttext,
+		titletype_epgshorttext,
+		titletype_rectitle,
+	};
+
+	const int titletype_count = titletype_rectitle + 1;
+	extern const char* titletype_strings[titletype_count];
+
+
 	int ScanPageCount(const std::string& Path);
 	std::string progress_bar(double current, double total, int length = 20);
 	void trim_left( std::string& text_, const char* characters_, std::string::size_type offset_ = 0 );
@@ -215,8 +228,9 @@ namespace vdr_burn
 
 	std::string get_recording_datetime(const cRecording* recording_, char delimiter = '\t');
 	std::string get_recording_osd_line(const cRecording* recording_, int level);
-	std::string get_recording_eventtitle(const cRecording* recording_);
-	std::string get_recording_eventdescription(const cRecording* recording_);
+	std::string get_recording_event_title(const cRecording* recording_);
+	std::string get_recording_event_shorttext(const cRecording* recording_);
+	std::string get_recording_event_description(const cRecording* recording_);
 	std::string get_recording_name(const cRecording* recording);
 
 	std::string string_replace( const std::string& text, char from, char to );

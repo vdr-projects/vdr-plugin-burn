@@ -7,28 +7,137 @@ msgid ""
 msgstr ""
 "Project-Id-Version: VDR 1.5.7\n"
 "Report-Msgid-Bugs-To: <<vdr@smue.org>>\n"
-"POT-Creation-Date: 2010-12-11 14:10+0100\n"
+"POT-Creation-Date: 2011-08-08 14:57+0200\n"
 "PO-Revision-Date: 2008-02-02 22:42+0100\n"
 "Last-Translator: Carel Willemse <carel.willemse@online.nl>\n"
 "Language-Team: <vdr@linuxtv.org>\n"
+"Language: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-msgid "Versatile convert-and-burn plugin"
-msgstr "Universele 'converteer en brand' plugin"
+msgid "Recording too big for disc type!"
+msgstr "Opname te groot voor dit type Disk!"
 
-msgid "Create DVDs"
-msgstr "DVDs maken"
+msgid "Disc too big for disc type!"
+msgstr "Dis te groot voor gekozen conversie!"
 
-msgid "Burn job active"
-msgstr "Brandopdracht aktief"
+msgid "Target"
+msgstr "Bestemming"
 
-msgid "Please enter the burn plugin"
-msgstr "Start burn-plugin a.u.b."
+msgid "Disk type"
+msgstr "DVD-type"
 
-msgid "Please insert an empty disk and press Ok"
-msgstr "Plaats een lege DVD en druk OK"
+msgid "DMH-archive"
+msgstr "DMH-Archief"
+
+msgid "Skin"
+msgstr "Uiterlijk"
+
+#, fuzzy
+msgid "Skin Aspect Ratio"
+msgstr "Beeldverhouding"
+
+#, fuzzy
+msgid "Title source"
+msgstr "Ondertitelingspoor"
+
+msgid "Chapters"
+msgstr "Hoofdstukken"
+
+msgid "Disk size"
+msgstr "Diskgrootte"
+
+msgid "Cut"
+msgstr "Bewerken"
+
+msgid "Skip empty titlemenu"
+msgstr "Leeg titelmenu negeren"
+
+msgid "Skip short mainmenu"
+msgstr "Kort hoofdmenu negeren"
+
+#, fuzzy
+msgid "Use subtitle tracks"
+msgstr "Ondertitelingspoor"
+
+msgid "--- Common settings --------------------------------------------------"
+msgstr "--- Algemene Instellingen --------------------------------------------"
+
+msgid "Remove path component"
+msgstr "Verwijder pad uit bestandnaam"
+
+msgid "Requant using"
+msgstr "Verkleinen met"
+
+msgid "Burn speed"
+msgstr "Brandsnelheid"
+
+msgid "unlimited"
+msgstr "onbegrenst"
+
+msgid "Preserve logfiles"
+msgstr "Logbestanden bewaren"
+
+msgid "Spare language code"
+msgstr "Vervangende taalcode"
+
+msgid "Status in main menu"
+msgstr "Status im hoofdmenu"
+
+msgid "Custom disk size (MB)"
+msgstr "Gebruikergedefinieerde grootte (MB)"
+
+msgid "--- Job menu settings ------------------------------------------------"
+msgstr "--- Opdrachtmenu instellingen -----------------------------------------"
+
+msgid "Offer disk type"
+msgstr "Stel type disk voor"
+
+msgid "Offer chapters"
+msgstr "Stel hoofdstuk voor"
+
+msgid "Offer target"
+msgstr "Stel bestemming voor"
+
+msgid "Offer disk size"
+msgstr "Stel diskgrootte voor"
+
+msgid "Offer cutting"
+msgstr "Stel bewerken voor"
+
+msgid "Offer DMH-archive"
+msgstr "Stel DMH-archief voor"
+
+msgid "Offer skip titlemenu"
+msgstr "Stel negeren titelmenu voor"
+
+msgid "Offer skip mainmenu"
+msgstr "Stel negeren hoofdmenu voor"
+
+msgid "--- Job defaults -----------------------------------------------------"
+msgstr "--- Standaard Opdrachtinstellingen ------------------------------------"
+
+msgid "Write DVDs"
+msgstr "DVDs branden"
+
+msgid "Job options"
+msgstr "Opdrachtinstellingen"
+
+msgid "Video track"
+msgstr "Videospoor"
+
+msgid "Audio track"
+msgstr "Audiospoor"
+
+msgid "Subtitle track"
+msgstr "Ondertitelingspoor"
+
+msgid "page"
+msgstr "pagina"
+
+msgid "Unknown"
+msgstr "Onbekend"
 
 msgid "DVD with menus"
 msgstr "DVD met menus"
@@ -90,6 +199,19 @@ msgstr "Transcode"
 msgid "lxdvdrip"
 msgstr "lxdvdrip"
 
+msgid "EPG Title"
+msgstr ""
+
+msgid "EPG Title - Short Text"
+msgstr ""
+
+msgid "EPG Short Text"
+msgstr ""
+
+#, fuzzy
+msgid "Recording"
+msgstr "Opnamen"
+
 msgid "Couldn't convert character sets!"
 msgstr "Kan karaktersets niet converteren!"
 
@@ -105,11 +227,23 @@ msgstr "Kan geen menu afbeeldingen maken!"
 msgid "Couldn't save image file!"
 msgstr "Kan afbeeldingbestand niet opslaan!"
 
-msgid "Recording too big for disc type!"
-msgstr "Opname te groot voor dit type Disk!"
+msgid "Versatile convert-and-burn plugin"
+msgstr "Universele 'converteer en brand' plugin"
 
-msgid "Disc too big for disc type!"
-msgstr "Dis te groot voor gekozen conversie!"
+msgid "Create DVDs"
+msgstr "DVDs maken"
+
+msgid "Burn job active"
+msgstr "Brandopdracht aktief"
+
+msgid "Please enter the burn plugin"
+msgstr "Start burn-plugin a.u.b."
+
+msgid "Please insert an empty disk and press Ok"
+msgstr "Plaats een lege DVD en druk OK"
+
+msgid "Default"
+msgstr "Standaardinstelling"
 
 msgid "A job failed!"
 msgstr "Opdracht mislukt!"
@@ -126,6 +260,26 @@ msgstr "Lijst"
 msgid "Status"
 msgstr "Status"
 
+#, c-format
+msgid "$Total size: %1$.1f MB %2$s"
+msgstr "totale grootte: %1$.1f MB %2$s"
+
+msgid "(would be shrinked)"
+msgstr "(zal worden gecomprimeerd)"
+
+msgid "Aspect ratio"
+msgstr "Beeldverhouding"
+
+msgid "track editor"
+msgstr ""
+
+#, fuzzy
+msgid "title in menu"
+msgstr "Status im hoofdmenu"
+
+msgid "Choose"
+msgstr "Kiezen"
+
 msgid "Move down"
 msgstr "Naar beneden"
 
@@ -141,18 +295,16 @@ msgstr "Taalcode"
 msgid "Choose title"
 msgstr "Kies titel"
 
+#, fuzzy
+msgid "DVD menu title for "
+msgstr "Titel van de DVD"
+
 #, c-format
 msgid "$Recordings: %1$d, total size: %2$.1f MB"
 msgstr "Opnamen: %1$d, Totale grootte: %2$.1f MB"
 
 msgid "No recordings marked for burning"
 msgstr "Er zijn geen opnamen geselecteerd om te branden"
-
-msgid "Write DVDs"
-msgstr "DVDs branden"
-
-msgid "Choose"
-msgstr "Kiezen"
 
 msgid "Analyzing recording..."
 msgstr "Opname wordt geanalyseerd..."
@@ -165,9 +317,6 @@ msgstr "Titel van de DVD"
 
 msgid "Archive-ID"
 msgstr "Archief-ID"
-
-msgid "Job options"
-msgstr "Opdrachtinstellingen"
 
 msgid "No recordings marked"
 msgstr "Geen opnamen gemarkeerd"
@@ -224,16 +373,6 @@ msgstr "Opdracht nog actief - werkelijk afbreken?"
 msgid "Remove job from list?"
 msgstr "Opdracht uit lijst verwijderen?"
 
-#, c-format
-msgid "$Total size: %1$.1f MB %2$s"
-msgstr "totale grootte: %1$.1f MB %2$s"
-
-msgid "(would be shrinked)"
-msgstr "(zal worden gecomprimeerd)"
-
-msgid "Aspect ratio"
-msgstr "Beeldverhouding"
-
 msgid "Previous page"
 msgstr "Vorige pagina"
 
@@ -263,122 +402,3 @@ msgstr "Kan bewerkingsmarkeringen niet lezen"
 
 msgid "Recording is too short"
 msgstr "Opname is te kort"
-
-msgid "Target"
-msgstr "Bestemming"
-
-msgid "Disk type"
-msgstr "DVD-type"
-
-msgid "DMH-archive"
-msgstr "DMH-Archief"
-
-msgid "Skin"
-msgstr "Uiterlijk"
-
-#, fuzzy
-msgid "Skin Aspect Ratio"
-msgstr "Beeldverhouding"
-
-msgid "Chapters"
-msgstr "Hoofdstukken"
-
-msgid "Disk size"
-msgstr "Diskgrootte"
-
-msgid "Cut"
-msgstr "Bewerken"
-
-msgid "Skip empty titlemenu"
-msgstr "Leeg titelmenu negeren"
-
-msgid "Skip short mainmenu"
-msgstr "Kort hoofdmenu negeren"
-
-msgid "--- Common settings --------------------------------------------------"
-msgstr "--- Algemene Instellingen --------------------------------------------"
-
-msgid "Remove path component"
-msgstr "Verwijder pad uit bestandnaam"
-
-msgid "Demux using"
-msgstr "Demultiplexer"
-
-msgid "Requant using"
-msgstr "Verkleinen met"
-
-msgid "Burn speed"
-msgstr "Brandsnelheid"
-
-msgid "unlimited"
-msgstr "onbegrenst"
-
-msgid "Preserve logfiles"
-msgstr "Logbestanden bewaren"
-
-msgid "Spare language code"
-msgstr "Vervangende taalcode"
-
-msgid "Status in main menu"
-msgstr "Status im hoofdmenu"
-
-msgid "Custom disk size (MB)"
-msgstr "Gebruikergedefinieerde grootte (MB)"
-
-msgid "--- Job menu settings ------------------------------------------------"
-msgstr "--- Opdrachtmenu instellingen -----------------------------------------"
-
-msgid "Offer disk type"
-msgstr "Stel type disk voor"
-
-msgid "Offer chapters"
-msgstr "Stel hoofdstuk voor"
-
-msgid "Offer target"
-msgstr "Stel bestemming voor"
-
-msgid "Offer disk size"
-msgstr "Stel diskgrootte voor"
-
-msgid "Offer cutting"
-msgstr "Stel bewerken voor"
-
-msgid "Offer DMH-archive"
-msgstr "Stel DMH-archief voor"
-
-msgid "Offer skip titlemenu"
-msgstr "Stel negeren titelmenu voor"
-
-msgid "Offer skip mainmenu"
-msgstr "Stel negeren hoofdmenu voor"
-
-msgid "--- Job defaults -----------------------------------------------------"
-msgstr "--- Standaard Opdrachtinstellingen ------------------------------------"
-
-msgid "Default"
-msgstr "Standaardinstelling"
-
-msgid "Video track"
-msgstr "Videospoor"
-
-msgid "Audio track"
-msgstr "Audiospoor"
-
-msgid "Subtitle track"
-msgstr "Ondertitelingspoor"
-
-msgid "page"
-msgstr "pagina"
-
-msgid "Unknown"
-msgstr "Onbekend"
-
-#, fuzzy
-#~ msgid "title"
-#~ msgstr "Titel van de DVD"
-
-#~ msgid "CD-R"
-#~ msgstr "CD-R"
-
-#~ msgid "VDRSync"
-#~ msgstr "VDRSync"

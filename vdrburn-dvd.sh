@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 
 # For DEBUG Output - can be left since logfiles are deleted when job finishes
 set -x
@@ -75,6 +75,8 @@ unset SUDO_COMMAND
 
 echo "Script invokation: $*"
 
+IO_NICE=$(which ionice >/dev/null 2>&1 && echo "ionice -c 3")
+
 case $1 in
 	render)
 		ASPECT="-a 3" # 16:9
@@ -87,24 +89,6 @@ case $1 in
 	;;
 
 	demux)
-		IGNORE=""
-		if [ ! -z $IGNORE_TRACKS ]; then
-			IGNORE="-ignore $IGNORE_TRACKS"
-		fi
-
-		CUT=""
-		if [ ! -z $USE_CUTTING ]; then
-			CUT="-cut"
-		fi
-
-		vdrsync.pl -o "$MPEG_TMP_PATH" \
-			-v-filter "burn-buffers" \
-			-a-filter "burn-buffers" \
-			-ac3-filter "burn-buffers" \
-			$CUT $IGNORE "$RECORDING_PATH/"
-	;;
-
-	demuxpx)
 		test -e "$MPEG_TMP_PATH/convert" && rm "$MPEG_TMP_PATH/convert"
 		ln -s "$RECORDING_PATH" "$MPEG_TMP_PATH/convert"
 
@@ -113,7 +97,7 @@ case $1 in
 			CUT="-cut $MPEG_DATA_PATH/px.cut"
 		fi
 
-		$JAVA_HOME/bin/java -Djava.awt.headless=true \
+		$IO_NICE $JAVA_HOME/bin/java -Djava.awt.headless=true \
 				-jar $PROJECTX_HOME/ProjectX.jar \
 				-ini $CONFIG_PATH/ProjectX.ini \
 				$TTXT_OPTS \
@@ -125,20 +109,20 @@ case $1 in
 	requant)
 		REQUANT_FACTOR=$(echo "$REQUANT_FACTOR" | tr ',' '.')
 		echo requant $REQUANT_FACTOR 3 $VIDEO_SIZE
-		requant $REQUANT_FACTOR 3 $VIDEO_SIZE < "$VIDEO_FILE" > "$REQUANT_FILE"
+		$IO_NICE requant $REQUANT_FACTOR 3 $VIDEO_SIZE < "$VIDEO_FILE" > "$REQUANT_FILE"
 		rm -f "$VIDEO_FILE"
 	;;
 
 	tcrequant)
 		REQUANT_FACTOR=$(echo "$REQUANT_FACTOR" | tr ',' '.')
 		echo tcrequant -f $REQUANT_FACTOR
-		tcrequant -f $REQUANT_FACTOR < "$VIDEO_FILE" > "$REQUANT_FILE"
+		$IO_NICE tcrequant -f $REQUANT_FACTOR < "$VIDEO_FILE" > "$REQUANT_FILE"
 		rm -f "$VIDEO_FILE"
 	;;
 
 	lxrequant)
 		echo requant_lxdvdrip -f $REQUANT_FACTOR
-		requant_lxdvdrip -f $REQUANT_FACTOR -i "$VIDEO_FILE" -o "$REQUANT_FILE"
+		$IO_NICE requant_lxdvdrip -f $REQUANT_FACTOR -i "$VIDEO_FILE" -o "$REQUANT_FILE"
 		rm -f "$VIDEO_FILE"
 	;;
 
@@ -147,8 +131,8 @@ case $1 in
 		(mplex -h 2>&1 | grep -q -- --ignore-seqend-markers) && \
 			MPLEX_OPTS="$MPLEX_OPTS -M"
 
-		echo mplex -f 8 $MPLEX_OPTS -o "$MOVIE_FILE" "$VIDEO_FILE" $AUDIO_FILES
-		mplex -f 8 $MPLEX_OPTS -o "$MOVIE_FILE" "$VIDEO_FILE" $AUDIO_FILES
+		#echo mplex -f 8 $MPLEX_OPTS -o "$MOVIE_FILE" "$VIDEO_FILE" $AUDIO_FILES
+		$IO_NICE mplex -f 8 $MPLEX_OPTS -o "$MOVIE_FILE" "$VIDEO_FILE" $AUDIO_FILES
 		
 		rm -f "$VIDEO_FILE" $AUDIO_FILES
 	;;
@@ -165,7 +149,6 @@ case $1 in
 		SUP=$(find "$MPEG_DATA_PATH" -name \*${TTXTPAGE}\*.sup)
 		if [ "!" "x$SON" = "x" ]; then
 			echo found SON files: $SON
-			SPUFILES=0
 			find "$MPEG_DATA_PATH" -name \*${TTXTPAGE}\*.son | while read SPUFILE ; do
 				# spumux.xml generation is based on son2spumux.sh: http://brigitte.dna.fi/~apm/
 				echo "<subpictures>" > "$SPUMUX_FILE"
@@ -186,8 +169,6 @@ case $1 in
 				done
 				echo "  </stream>" >> "$SPUMUX_FILE"
 				echo "</subpictures>" >> "$SPUMUX_FILE"
-				mv "$MPEG_DATA_PATH/spumux.xml" "$MPEG_DATA_PATH/spumux$SPUFILES.xml"
-				SPUFILES=$(($SPUFILES+1))
 			done
  		elif [ "!" "x$SRT" = "x" ]; then
 			echo found SRT files: $SRT
@@ -207,11 +188,11 @@ case $1 in
 			mv "${SUP%sup}d/spumux.xml" "$SPUMUX_FILE"
 		fi
 
-		spumux -s $NUMBER -v 2 "$SPUMUX_FILE" < "$MOVIE_FILE" > "$SUBTITLED_FILE"
+		$IO_NICE spumux -s $NUMBER -v 2 "$SPUMUX_FILE" < "$MOVIE_FILE" > "$SUBTITLED_FILE"
 	;;
 
 	author)
-		dvdauthor -x "$DVDAUTHOR_XML"
+		$IO_NICE dvdauthor -x "$DVDAUTHOR_XML"
 	;;
 
 	dmharchive)
@@ -266,7 +247,7 @@ case $1 in
 	;;
 
 	mkiso)
-		mkisofs -V "$DISC_ID" -dvd-video "$DVDAUTHOR_PATH" > "$ISO_FILE"
+		$IO_NICE mkisofs -V "$DISC_ID" -dvd-video "$DVDAUTHOR_PATH" > "$ISO_FILE"
 	;;
 
 	burndir)
@@ -274,12 +255,12 @@ case $1 in
 		if [ $BURN_SPEED -gt 0 ]; then
 			SPEED="-speed=$BURN_SPEED"
 		fi
-		growisofs -use-the-force-luke=tty $SPEED -dvd-compat -Z "$DVD_DEVICE" \
+		$IO_NICE growisofs -use-the-force-luke=tty $SPEED -dvd-compat -Z "$DVD_DEVICE" \
 				  -V "$DISC_ID" -dvd-video "$DVDAUTHOR_PATH"
 	;;
 
 	pipeiso)
-		mkisofs -V "$DISC_ID" -dvd-video "$DVDAUTHOR_PATH" \
+		$IO_NICE mkisofs -V "$DISC_ID" -dvd-video "$DVDAUTHOR_PATH" \
 			| tee "$ISO_FILE" > "$ISO_PIPE"
 	;;
 
@@ -288,7 +269,7 @@ case $1 in
 		if [ $BURN_SPEED -gt 0 ]; then
 			SPEED="-speed=$BURN_SPEED"
 		fi
-		growisofs -use-the-force-luke=tty $SPEED -dvd-compat \
+		$IO_NICE growisofs -use-the-force-luke=tty $SPEED -dvd-compat \
 				  -Z "$DVD_DEVICE=$ISO_PIPE"
 	;;
 

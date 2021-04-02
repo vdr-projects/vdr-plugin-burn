@@ -245,12 +245,12 @@ namespace menu {
 		bool is_directory() const { return !m_name.empty(); }
 	};
 
-	//!--- recording_edit_item --------------------------------------------
+	//!--- recording_list_item --------------------------------------------
 
-	class recording_edit_item: public string_edit_item
+	class recording_list_item: public text_item
 	{
 	public:
-		recording_edit_item( const recording_list::iterator recording_ );
+		recording_list_item( const recording_list::iterator recording_ );
 
 		const recording_list::iterator get_recording() const { return m_recording; }
 

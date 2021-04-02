@@ -44,6 +44,7 @@ namespace menu
 		static void cycle_display();
 		static void set_display(display::type display_);
 		static std::string get_next_display();
+		static display::type get_current_display() { return m_instance->m_display; }
 
 	protected:
 		eOSState show_menu();
@@ -96,7 +97,6 @@ namespace menu
 		void check_waiting_user();
 
 		virtual void set_help_keys() { set_help(); }
-		virtual eOSState dispatch_key(eKeys key);
 
 		virtual bool menu_closing() { return true; }
 		virtual eOSState menu_update() { return osContinue; }

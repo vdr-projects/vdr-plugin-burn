@@ -89,10 +89,7 @@ namespace vdr_burn
 						ostringstream filename;
 						filename << "vdrsync";
 						if (m_pxAudioIndex > 0) {
-							if (global_setup().DemuxType == demuxtype_projectx)
-								filename << "-" << setw(2) << setfill('0') << m_pxAudioIndex+1;
-							else
-								filename << m_pxAudioIndex;
+							filename << "-" << setw(2) << setfill('0') << m_pxAudioIndex+1;
 						}
 						filename << ".mpa";
 						m_currentRecording->set_track_path( pid ? pid : pesid, filename.str());
@@ -165,7 +162,7 @@ namespace vdr_burn
 	{
 		if (proc->return_status() == process::ok) {
 			// positive return
-			if (proc->name() == "demux" && global_setup().DemuxType == demuxtype_projectx)
+			if (proc->name() == "demux")
 				prepare_mplex();
 			else if (proc->name() == "mplex") {
 				m_lastRecSize = m_currentRecording->get_tracks_size();
@@ -174,7 +171,7 @@ namespace vdr_burn
 					// prevent this to happen again when author quits before mplex
 					++m_currentRecording;
 					if (m_currentRecording != get_recordings().end())
-						prepare_recording();
+						prepare_demux();
 				}
 			}
 			else if (proc->name() == "author") {
@@ -248,7 +245,7 @@ namespace vdr_burn
 			// render menu's
 			renderer render_menus( get_job(), *this );
 
-#warning error handling
+#warning error handling render_menus
 			if ( !render_menus() ) {
 				logger::error("rendering menu failed - aborting job");
 				return false;
@@ -259,7 +256,7 @@ namespace vdr_burn
 		xml.write();
 
 		// prepare first recording
-		prepare_recording();
+		prepare_demux();
 
 		// start authoring
 		shellprocess* author = new shellprocess( "author", shellescape( "vdrburn-dvd.sh" ) + "author" );
@@ -272,25 +269,12 @@ namespace vdr_burn
 		return true;
 	}
 
-	void chain_dvd::prepare_recording()
-	{
-		prepare_demux();
-		if (global_setup().DemuxType != demuxtype_projectx)
-			prepare_mplex();
-	}
-
 	void chain_dvd::prepare_demux()
 	{
-		const char* demux_call;
-		if ( global_setup().DemuxType == demuxtype_projectx )
-			demux_call = "demuxpx";
-		else
-			demux_call = "demux";
-
 		m_pxAudioIndex = 0;
 
 		// processes
-		shellprocess* demux = new shellprocess( "demux", shellescape( "vdrburn-dvd.sh" ) + demux_call);
+		shellprocess* demux = new shellprocess( "demux", shellescape( "vdrburn-dvd.sh" ) + "demux" );
 		demux->put_environment("RECORDING_PATH", m_currentRecording->get_filename());
 		demux->put_environment("IGNORE_TRACKS",  m_currentRecording->get_ignored_cids());
 		demux->put_environment("USED_TRACKS",    m_currentRecording->get_used_cids());

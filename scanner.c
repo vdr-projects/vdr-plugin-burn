@@ -191,6 +191,7 @@ namespace vdr_burn
             struct stat statBuffer;
             if (stat(path.c_str(), &statBuffer) != 0) {
                 logger::error(format( "couldn't read size of {0}" ) % path);
+                closedir(videoDir);
                 throw user_exception( tr("Couldn't browse recording") );
             }
 
@@ -203,6 +204,7 @@ namespace vdr_burn
         if (result != 0) {
             errno = result;
             logger::error(format( "couldn't browse {0} while trying to scan recording" ) % m_fileName);
+            closedir(videoDir);
             throw user_exception( tr("Couldn't browse recording") );
         }
         closedir(videoDir);
@@ -302,7 +304,7 @@ namespace vdr_burn
 
         track_info_list& pes_scan(const vdr_file::position& first, const vdr_file::position& last);
 #if VDRVERSNUM >= 10711
-        track_info_list& ts_scan (cPatPmtParser& PatPmtParser, const vdr_file::position& first, const vdr_file::position& last);
+        track_info_list& ts_scan (cPatPmtParser& PatPmtParser, const vdr_file::position& first, const vdr_file::position& last, const bool UseSubtitleTracks);
 #endif
 
     protected:
@@ -380,7 +382,7 @@ namespace vdr_burn
     }
 
 #if VDRVERSNUM >= 10711
-	track_info_list& pes_scanner::ts_scan(cPatPmtParser& PatPmtParser, const vdr_file::position& start, const vdr_file::position& end)
+	track_info_list& pes_scanner::ts_scan(cPatPmtParser& PatPmtParser, const vdr_file::position& start, const vdr_file::position& end, const bool UseSubtitleTracks)
 	{
 		logger::debug(format( "scanning ts positions: {0}/{1}-{2}/{3}") % start.first % start.second % end.first % end.second);
 
@@ -449,6 +451,7 @@ namespace vdr_burn
 							track_info track( PatPmtParser.Spid(i), track_info::streamtype_subtitle );
 							track.subtitle.type = track_info::subtitletype_dvb;
 							track.set_language( PatPmtParser.Slang(i));
+							track.used = UseSubtitleTracks;
 							m_tracks.push_back( track );
 							PidConverter newstream;
 							newstream.Pid = PatPmtParser.Spid(i);
@@ -464,6 +467,7 @@ namespace vdr_burn
 								const tTeletextSubtitlePage *ttxtSubtitlePage = PatPmtParser.TeletextSubtitlePages();
 								track_info track( PatPmtParser.Tpid(), track_info::streamtype_subtitle );
 								track.set_language( PatPmtParser.TeletextSubtitlePages()[i].ttxtLanguage);
+								track.used = UseSubtitleTracks;
 								track.subtitle.type = track_info::subtitletype_teletext;
 								track.subtitle.teletextpage = 100*ttxtSubtitlePage[i].ttxtMagazine + 10*(ttxtSubtitlePage[i].ttxtPage >> 4) + (ttxtSubtitlePage[i].ttxtPage & 0x0F);
 								logger::debug(format( "Tpid 0x{0} adding page {1}") % format::base( PatPmtParser.Tpid(), 16 ) % track.subtitle.teletextpage);
@@ -482,6 +486,7 @@ namespace vdr_burn
 					for (converter = m_PidConverters.begin(); converter != m_PidConverters.end() && converter->Pid != Pid; converter++);
 
 					if (converter != m_PidConverters.end() ) {
+						int totalPesLength = 0;
 						if (TsPayloadStart(DataPtr)) {
 							int PesLength;
 							const uchar * PesBuffer = NULL;
@@ -489,12 +494,14 @@ namespace vdr_burn
 							while ((PesBuffer = converter->TsToPes->GetPes(PesLength))) {
 								//logger::debug(format( "Converter: Processing {0} len={1}") % format::base( Pid, 16 ) % PesLength );
 								Process(PesBuffer, PesLength, Pid);
+								totalPesLength += PesLength;
 							}
 							converter->TsToPes->Reset();
 						}
 
 						converter->TsToPes->PutTs(DataPtr, TS_SIZE); // push new packet into queue
-						converter->packets++;
+						if (totalPesLength)
+							converter->packets++;
 					}
 				}
 				length -= TS_SIZE;
@@ -504,10 +511,10 @@ namespace vdr_burn
 
 		// check if all steams appeared
 		for (PidConverter_list::iterator it2 = m_PidConverters.begin(); it2 != m_PidConverters.end(); it2++) {
-			logger::debug(format( "PID 0x{0} has {1} packets") % format::base( it2->Pid, 16 ) % it2->packets);
+			logger::debug(format( "PID 0x{0} has {1} packets") % format::width(format::fill(format::base( it2->Pid, 16 ), '0'), 4) % it2->packets);
 			if ( 0 == it2->packets) {
 				// delete track if it didn't appear
-				logger::debug(format( "erasing PID 0x{0} due to lack of packets") % format::base( it2->Pid, 16 ));
+				logger::debug(format( "erasing PID 0x{0} due to lack of packets") % format::width(format::fill(format::base( it2->Pid, 16 ), '0'), 4));
 				track_info_list::iterator it = m_tracks.find_cid( it2->Pid );
 				if (it != m_tracks.end())
 					m_tracks.erase(it);
@@ -724,7 +731,8 @@ namespace vdr_burn
 #if VDRVERSNUM >= 10711
 			m_PatPmtParser( false ),
 #endif
-			m_scanResult( owner, recording )
+			m_scanResult( owner, recording ),
+			m_useSubtitleTracks( owner->get_options().UseSubtitleTracks )
 	{
 	}
 
@@ -775,7 +783,7 @@ namespace vdr_burn
 		pes_scanner pes( m_scanResult.get_filename(), isPesRecording );
 
 		track_info_list& tracks = isPesRecording ?  pes.pes_scan(index.get_position(startIndex), index.get_position(startIndex + frames_to_scan)) :
-													pes.ts_scan(m_PatPmtParser, index.get_position(startIndex), index.get_position(startIndex + frames_to_scan));
+													pes.ts_scan(m_PatPmtParser, index.get_position(startIndex), index.get_position(startIndex + frames_to_scan), m_useSubtitleTracks);
 #else
 		bool isPesRecording = true;
 

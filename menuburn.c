@@ -37,7 +37,7 @@ namespace vdr_burn
 	namespace menu
 	{
 
-		// --- recording_info -------------------------------------------------
+		/// --- recording_info -------------------------------------------------
 
 		recording_info::recording_info(const cRecording* recording):
 				cOsdMenu( get_recording_name( recording ).c_str() ),
@@ -80,17 +80,20 @@ namespace vdr_burn
 			return state;
 		}
 
-		// --- track_editor ---------------------------------------------------
+		/// --- track_editor ---------------------------------------------------
 
 		track_editor::track_editor(pagebase& parent, recording& recording_):
+				cOsdMenu( tr("track editor"), 17 ),
 				m_parent( parent ),
 				m_recording( recording_ ),
-				m_tracks( recording_.get_tracks() )
+				m_tracks( recording_.get_tracks() ),
+				m_title( recording_.m_title ),
+				m_titleSource( recording_.m_titleSource )
 		{
 			refresh();
 		}
 
-		#define HEAD_LINES 2
+		#define TRACKS_STARTLINE 4
 
 		void track_editor::refresh()
 		{
@@ -98,19 +101,23 @@ namespace vdr_burn
 			Clear();
 			m_indices.clear();
 
-			Add( new menu::text_item(m_recording.m_eventTitle) );
+			Add( new menu::text_item(m_recording.m_name) );
+			Add( new menu::text_item( "" ) );
+			Add( new menu::string_edit_item( tr("title in menu"), m_title, NULL ) );
 			Add( new menu::text_item( "" ) );
 
 			for_each(m_tracks.begin(), m_tracks.end(),
 					 bind( &track_editor::add_track, this, _1 ));
-			SetCurrent(Get(current == -1 ? HEAD_LINES : current));
+			SetCurrent(Get(current == -1 ? 2 : current));
 			set_help_keys();
 			Display();
 		}
 
 		bool track_editor::can_move_down()
 		{
-			track_info_list::size_type current( m_indices[Current()-HEAD_LINES] );
+			if (Current() < TRACKS_STARTLINE)
+				return false;
+			track_info_list::size_type current( m_indices[Current()-TRACKS_STARTLINE] );
 			if (current == m_tracks.size() - 1 || m_tracks[current].get_is_video())
 				return false;
 			return true;
@@ -118,10 +125,14 @@ namespace vdr_burn
 
 		void track_editor::set_help_keys()
 		{
-			const char* green = 0;
+			const char* red = NULL;
+			const char* green = NULL;
+			if (Current() == 2)
+				red = tr("Choose");
 			if (can_move_down())
 				green = tr("Move down");
-			SetHelp(0, green);
+			//isyslog("burn: trackeditor:set_help_keys() %s-%s", red, green);
+			SetHelp(red, green);
 		}
 
 		void track_editor::add_track(track_info& track)
@@ -150,27 +161,12 @@ namespace vdr_burn
 			}
 		}
 
-		eOSState track_editor::dispatch_key(eKeys key)
-		{
-			switch (key)
-			{
-			case kGreen:
-				move_down();
-				break;
-
-			default:
-				break;
-			}
-
-			return osContinue;
-		}
-
 		void track_editor::move_down()
 		{
 			if (!can_move_down())
 				return;
 
-			track_info_list::size_type current( m_indices[Current()-HEAD_LINES] );
+			track_info_list::size_type current( m_indices[Current()-TRACKS_STARTLINE] );
 			std::swap(m_tracks[current], m_tracks[current + 1]);
 			SetCurrent(Get(Current() +2));
 			refresh();
@@ -179,35 +175,85 @@ namespace vdr_burn
 		void track_editor::Store()
 		{
 			m_recording.get_tracks() = m_tracks;
+			m_recording.m_title = m_title;
 		}
 
 		eOSState track_editor::ProcessKey(eKeys key)
 		{
-			eOSState state = cMenuSetupPage::ProcessKey(key);
-			switch (state) {
-			case osBack: m_parent.submenu_closing(); return state;
-			case osUnknown: return dispatch_key(key);
-			default: set_help_keys(); return state;
+			int current = Current();
+
+			bool hadSubMenu = HasSubMenu();
+			eOSState state = cOsdMenu::ProcessKey(key);
+
+			if (state == osUnknown)
+			{
+				 if (HasSubMenu())
+					return osContinue;
+
+				switch (key)
+				{
+					case kGreen:
+						move_down();
+						state = osContinue;
+						break;
+					case kRed:
+						return AddSubMenu( new title_chooser( m_recording, m_title, &m_titleSource) );
+						
+					case kOk:
+						Store();
+						state = osBack;
+						break;
+					default:
+						break;
+				}
 			}
+			
+			if (!HasSubMenu()) {
+				if (hadSubMenu)
+					refresh();
+			
+				if (key != kNone) {
+					menu_item_base& item = dynamic_cast< menu_item_base& >( *Get( current ) );
+					//isyslog("burn: track_editor::Processkey !kNone state=%d key=%d edit=%d (%d)", state, key, item.is_editing()?1:0, time(NULL));
+					if ( !item.is_editing() )
+						set_help_keys();
+				}
+			}
+				
+			return state;
 		}
 
-		// --- title_chooser --------------------------------------------------
+		/// --- title_chooser --------------------------------------------------
 
-		title_chooser::title_chooser(const string& fileName):
-				cOsdMenu(tr("Choose title"))
+		title_chooser::title_chooser( const recording& recording_, std::string& title_, int* titleSource_):
+				cOsdMenu(tr("Choose title")),
+				m_recording( recording_ ),
+				m_title( title_ ),
+				m_titleSource( titleSource_ )
 		{
-			string::size_type last = 0, pos;
-			while ((pos = fileName.find('~', last)) != string::npos) {
-				m_data.push_back(fileName.substr(last, pos - last));
-				++last;
-			}
 			refresh();
 		}
 
 		void title_chooser::refresh()
 		{
+			std::string tmp_title;
+			
 			Clear();
-			for_each(m_data.begin(), m_data.end(), bind( &title_chooser::add_title, this, _1 ));
+			Add( new menu::text_item(tr("DVD menu title for ") + m_recording.m_name) );
+			Add( new menu::text_item( "" ) );
+
+			Add( new menu::text_item( m_recording.m_eventTitle, true ) );
+
+			if (!m_recording.m_eventShortText.empty()) {
+				tmp_title = m_recording.m_eventTitle + " - " + m_recording.m_eventShortText;
+				Add( new menu::text_item( tmp_title, true ) );
+				
+				Add( new menu::text_item( m_recording.m_eventShortText, true ) );
+			}
+			Add( new menu::text_item( m_recording.m_name, true ) );
+			
+			//TODO: setCurrent from TitleSource ?
+			
 			Display();
 		}
 
@@ -219,13 +265,25 @@ namespace vdr_burn
 		eOSState title_chooser::ProcessKey(eKeys key)
 		{
 			eOSState state = cOsdMenu::ProcessKey(key);
+			if (state == osUnknown) {
+				switch (key) {
+					case kOk:
+						m_title = string(Get(Current())->Text());
+						//isyslog("burn: titlechooser result: %s %s", m_title.c_str(), Get(Current())->Text());
+						state = osBack;
+						break;
+					default:
+						break;
+				}
+			}
+			
 			return state;
 		}
 
-		// --- recordings -----------------------------------------------------
+		/// --- recordings -----------------------------------------------------
 
 		recordings::recordings():
-				pagebase( "", 9, 7),
+				pagebase( "", 9, 7, 3),
 				m_pathLevel(0),
 				m_pathChanged(false),
 				m_recordingCount(0)
@@ -275,20 +333,17 @@ namespace vdr_burn
 			for (cRecording *rec = Recordings.First(); rec != NULL; rec = Recordings.Next(rec)) {
 				string recName( rec->Name() );
 
-				// remove H.264 videos
+				// find H.264 videos
 				bool is_H264 = false;
 				if (rec->Info() && rec->Info()->Components()) {
 					const cComponents *Components = rec->Info()->Components();
 					for (int i = 0; i < Components->NumComponents(); i++) {
 						const tComponent *p = Components->Component(i);
 						if (p->stream == etsi::sc_video_H264_AVC) {
-							//isyslog("burn: removing H.264 recording %s", rec->Name());
 							is_H264 = true;
 							break;
 						}
 					}
-					if (is_H264)
-						continue;
 				}
 
 				if ( manager::is_recording_queued( rec->FileName() ) )
@@ -300,6 +355,7 @@ namespace vdr_burn
 
 				menu::recording_item* item = new menu::recording_item(rec, m_pathLevel);
 				string itemText( item->Text() );
+				item->SetSelectable(!is_H264);
 				if (itemText.length() != 0 && (lastItem == 0 || itemText != lastText)) {
 					// select directory we are coming from as current item
 					if (recName.find(m_lastPath) == 0 && rec->Name()[m_lastPath.length()] == '~') {
@@ -319,6 +375,7 @@ namespace vdr_burn
 			}
 
 			set_current(current);
+			set_help_keys();
 			pagebase::display();
 		}
 
@@ -402,7 +459,7 @@ namespace vdr_burn
 			return osContinue;
 		}
 
-		// --- job_editor -----------------------------------------------------
+		/// --- job_editor -----------------------------------------------------
 
 		job_editor::job_editor():
 				pagebase( str( boost::format( "%1$s - %2$s" ) % tr("Write DVDs") % tr("Job") ), 16 )
@@ -418,16 +475,18 @@ namespace vdr_burn
 			recording_list& recordings = pending.get_recordings();
 			if (recordings.size() == 0) {
 				show_empty_list();
+				set_help_keys();
 				pagebase::display();
 				return;
 			}
 
 			m_recordingItems.reserve( recordings.size() );
 			for ( recording_list::iterator rec = recordings.begin(); rec != recordings.end(); ++rec ) {
-				menu::recording_edit_item* item;
-				Add( item = new menu::recording_edit_item( rec ) );
+				menu::recording_list_item* item;
+				Add( item = new menu::recording_list_item( rec ) );
 				m_recordingItems.push_back( item );
 			}
+			SetCurrent(m_recordingItems.front());
 
 			Add( new menu::text_item( "" ) );
 			Add( new menu::string_edit_item( tr("DVD title"), pending.get_title(), NULL ) );
@@ -486,7 +545,7 @@ namespace vdr_burn
 			if ( m_archiveIdItem != 0 )
 				m_archiveIdItem->SetSelectable( manager::get_pending().get_options().DmhArchiveMode );
 #endif
-
+			set_help_keys();
 			display();
 			return osContinue;
 		}
@@ -502,7 +561,7 @@ namespace vdr_burn
 			if ( !is_recording_item( current ) )
 				return osContinue;
 
-			recording_edit_item& item = static_cast< recording_edit_item& >( *current );
+			recording_list_item& item = static_cast< recording_list_item& >( *current );
 #ifdef ENABLE_DMH_ARCHIVE
 			if ( pending.get_disk_type() >= disktype_archive )
 				return osContinue;
@@ -552,13 +611,14 @@ namespace vdr_burn
 			if ( !is_recording_item( current ) || current == m_recordingItems.back() )
 				return osContinue;
 
-			recording_edit_item& item = static_cast< recording_edit_item& >( *current );
+			recording_list_item& item = static_cast< recording_list_item& >( *current );
 			recording_list::iterator thisRec( item.get_recording() );
 			recording_list::iterator nextRec( thisRec );
 			++nextRec;
 
 			iter_swap(thisRec, nextRec);
 			Move( current, Next( current ) );
+			set_help_keys();
 			pagebase::display();
 			return osContinue;
 		}
@@ -570,7 +630,7 @@ namespace vdr_burn
 				return osContinue;
 
 			job& pending = manager::get_pending();
-			recording_edit_item& item = static_cast< recording_edit_item& >( *current );
+			recording_list_item& item = static_cast< recording_list_item& >( *current );
 
 			pending.erase_recording( item.get_recording() );
 
@@ -578,11 +638,12 @@ namespace vdr_burn
 			Del( Current() );
 			if ( m_recordingItems.size() == 0 )
 				show_empty_list();
+			set_help_keys();
 			pagebase::display();
 			return osContinue;
 		}
 
-		// --- status ---------------------------------------------------------
+		/// --- status ---------------------------------------------------------
 
 		status::status():
 				pagebase( str( boost::format( "%1$s - %2$s" ) % tr("Write DVDs") % tr("Status") ), 16 )
@@ -644,6 +705,7 @@ namespace vdr_burn
 				}
 			}
 			set_current(current);
+			set_help_keys();
 			pagebase::display();
 		}
 
@@ -655,7 +717,7 @@ namespace vdr_burn
 			manager::lock man_lock;
 
 			string green, yellow;
-			if (item != 0) {
+			if (item != 0 && item->get_job() == manager::get_active()) {
 				if (item->get_job()->get_is_canceled())
 					green = tr("Restart");
 				else if (item->get_job()->get_return_status() == process::error)
@@ -671,6 +733,7 @@ namespace vdr_burn
 
 		eOSState status::menu_update()
 		{
+			set_help_keys();
 			display();
 			return osContinue;
 		}

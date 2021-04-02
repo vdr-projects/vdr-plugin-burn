@@ -10,28 +10,138 @@ msgid ""
 msgstr ""
 "Project-Id-Version: VDR 1.5.7\n"
 "Report-Msgid-Bugs-To: <<vdr@smue.org>>\n"
-"POT-Creation-Date: 2010-12-11 14:10+0100\n"
+"POT-Creation-Date: 2011-08-08 14:57+0200\n"
 "PO-Revision-Date: 2008-02-02 22:42+0100\n"
 "Last-Translator: Nicolas Huillard <nhuillard@e-dition.fr>\n"
 "Language-Team: <vdr@linuxtv.org>\n"
+"Language: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-msgid "Versatile convert-and-burn plugin"
-msgstr "Plugin convertiseur et graveur universel"
+msgid "Recording too big for disc type!"
+msgstr "Enregistrement trop volumineux pour ce type de disque!"
 
-msgid "Create DVDs"
-msgstr "Graver des DVD"
-
-msgid "Burn job active"
-msgstr "Tâche de gravure est active"
-
-msgid "Please enter the burn plugin"
+msgid "Disc too big for disc type!"
 msgstr ""
 
-msgid "Please insert an empty disk and press Ok"
-msgstr "Veuilliez introduire un DVD vierge et appuyez sur OK"
+msgid "Target"
+msgstr "Cible"
+
+msgid "Disk type"
+msgstr "Genre de DVD"
+
+msgid "DMH-archive"
+msgstr "Archivage DMH"
+
+msgid "Skin"
+msgstr "Apparence"
+
+msgid "Skin Aspect Ratio"
+msgstr ""
+
+#, fuzzy
+msgid "Title source"
+msgstr "Piste vidéo"
+
+msgid "Chapters"
+msgstr "Chapitre"
+
+msgid "Disk size"
+msgstr "Taille du disque"
+
+msgid "Cut"
+msgstr "Couper"
+
+msgid "Skip empty titlemenu"
+msgstr ""
+
+msgid "Skip short mainmenu"
+msgstr ""
+
+#, fuzzy
+msgid "Use subtitle tracks"
+msgstr "Piste vidéo"
+
+msgid "--- Common settings --------------------------------------------------"
+msgstr ""
+
+msgid "Remove path component"
+msgstr "Couper de chemin"
+
+msgid "Requant using"
+msgstr ""
+
+msgid "Burn speed"
+msgstr "Vitesse de gravure"
+
+msgid "unlimited"
+msgstr "sans limite"
+
+msgid "Preserve logfiles"
+msgstr ""
+
+msgid "Spare language code"
+msgstr ""
+
+msgid "Status in main menu"
+msgstr ""
+
+msgid "Custom disk size (MB)"
+msgstr "Taille définit par l'utilisateur (Mo)"
+
+msgid "--- Job menu settings ------------------------------------------------"
+msgstr ""
+
+msgid "Offer disk type"
+msgstr ""
+
+msgid "Offer chapters"
+msgstr "Proposer les chapitres"
+
+msgid "Offer target"
+msgstr "Proposer la cible"
+
+msgid "Offer disk size"
+msgstr "Proposer la taille du disque"
+
+msgid "Offer cutting"
+msgstr "Proposer la coupe"
+
+msgid "Offer DMH-archive"
+msgstr "Proposer l'archivage DMH"
+
+msgid "Offer skip titlemenu"
+msgstr ""
+
+msgid "Offer skip mainmenu"
+msgstr ""
+
+msgid "--- Job defaults -----------------------------------------------------"
+msgstr ""
+
+msgid "Write DVDs"
+msgstr "Gravure DVD"
+
+msgid "Job options"
+msgstr ""
+
+msgid "Video track"
+msgstr "Piste vidéo"
+
+msgid "Audio track"
+msgstr "Piste audio"
+
+#, fuzzy
+msgid "Subtitle track"
+msgstr "Piste vidéo"
+
+#, fuzzy
+msgid "page"
+msgstr "Cible"
+
+msgid "Unknown"
+msgstr "inconnue"
 
 msgid "DVD with menus"
 msgstr "DVD avec menu"
@@ -93,6 +203,19 @@ msgstr ""
 msgid "lxdvdrip"
 msgstr ""
 
+msgid "EPG Title"
+msgstr ""
+
+msgid "EPG Title - Short Text"
+msgstr ""
+
+msgid "EPG Short Text"
+msgstr ""
+
+#, fuzzy
+msgid "Recording"
+msgstr "enregistrement"
+
 msgid "Couldn't convert character sets!"
 msgstr ""
 
@@ -108,11 +231,23 @@ msgstr ""
 msgid "Couldn't save image file!"
 msgstr ""
 
-msgid "Recording too big for disc type!"
-msgstr "Enregistrement trop volumineux pour ce type de disque!"
+msgid "Versatile convert-and-burn plugin"
+msgstr "Plugin convertiseur et graveur universel"
 
-msgid "Disc too big for disc type!"
+msgid "Create DVDs"
+msgstr "Graver des DVD"
+
+msgid "Burn job active"
+msgstr "Tâche de gravure est active"
+
+msgid "Please enter the burn plugin"
 msgstr ""
+
+msgid "Please insert an empty disk and press Ok"
+msgstr "Veuilliez introduire un DVD vierge et appuyez sur OK"
+
+msgid "Default"
+msgstr "Par défaut"
 
 msgid "A job failed!"
 msgstr "La tâche a echouée!"
@@ -129,6 +264,25 @@ msgstr "Liste"
 msgid "Status"
 msgstr "Status"
 
+#, c-format
+msgid "$Total size: %1$.1f MB %2$s"
+msgstr "Volume total: %1$.1f MO %2$s"
+
+msgid "(would be shrinked)"
+msgstr ""
+
+msgid "Aspect ratio"
+msgstr ""
+
+msgid "track editor"
+msgstr ""
+
+msgid "title in menu"
+msgstr ""
+
+msgid "Choose"
+msgstr "Choisir"
+
 msgid "Move down"
 msgstr "Vers en bas"
 
@@ -141,8 +295,13 @@ msgstr ""
 msgid "Language code"
 msgstr ""
 
+#, fuzzy
 msgid "Choose title"
-msgstr ""
+msgstr "Choisir"
+
+#, fuzzy
+msgid "DVD menu title for "
+msgstr "Titre du DVD"
 
 #, c-format
 msgid "$Recordings: %1$d, total size: %2$.1f MB"
@@ -150,12 +309,6 @@ msgstr "Enregistrements: %1$d, Taille totale: %2$.1fMo"
 
 msgid "No recordings marked for burning"
 msgstr "Aucun enregistrement marqué pour la gravure"
-
-msgid "Write DVDs"
-msgstr "Gravure DVD"
-
-msgid "Choose"
-msgstr "Choisir"
 
 msgid "Analyzing recording..."
 msgstr "Analyser l'enregistrement..."
@@ -168,9 +321,6 @@ msgstr "Titre du DVD"
 
 msgid "Archive-ID"
 msgstr "ID-Archive"
-
-msgid "Job options"
-msgstr ""
 
 msgid "No recordings marked"
 msgstr "Pas d'enregistrements marqués pour la gravure"
@@ -228,16 +378,6 @@ msgstr "Tâche encore active - vraiment intérompre?"
 msgid "Remove job from list?"
 msgstr "Enlever la tâche de la liste?"
 
-#, c-format
-msgid "$Total size: %1$.1f MB %2$s"
-msgstr "Volume total: %1$.1f MO %2$s"
-
-msgid "(would be shrinked)"
-msgstr ""
-
-msgid "Aspect ratio"
-msgstr ""
-
 msgid "Previous page"
 msgstr "La page précédante"
 
@@ -267,123 +407,3 @@ msgstr ""
 
 msgid "Recording is too short"
 msgstr ""
-
-msgid "Target"
-msgstr "Cible"
-
-msgid "Disk type"
-msgstr "Genre de DVD"
-
-msgid "DMH-archive"
-msgstr "Archivage DMH"
-
-msgid "Skin"
-msgstr "Apparence"
-
-msgid "Skin Aspect Ratio"
-msgstr ""
-
-msgid "Chapters"
-msgstr "Chapitre"
-
-msgid "Disk size"
-msgstr "Taille du disque"
-
-msgid "Cut"
-msgstr "Couper"
-
-msgid "Skip empty titlemenu"
-msgstr ""
-
-msgid "Skip short mainmenu"
-msgstr ""
-
-msgid "--- Common settings --------------------------------------------------"
-msgstr ""
-
-msgid "Remove path component"
-msgstr "Couper de chemin"
-
-msgid "Demux using"
-msgstr "Demultipléxeur"
-
-msgid "Requant using"
-msgstr ""
-
-msgid "Burn speed"
-msgstr "Vitesse de gravure"
-
-msgid "unlimited"
-msgstr "sans limite"
-
-msgid "Preserve logfiles"
-msgstr ""
-
-msgid "Spare language code"
-msgstr ""
-
-msgid "Status in main menu"
-msgstr ""
-
-msgid "Custom disk size (MB)"
-msgstr "Taille définit par l'utilisateur (Mo)"
-
-msgid "--- Job menu settings ------------------------------------------------"
-msgstr ""
-
-msgid "Offer disk type"
-msgstr ""
-
-msgid "Offer chapters"
-msgstr "Proposer les chapitres"
-
-msgid "Offer target"
-msgstr "Proposer la cible"
-
-msgid "Offer disk size"
-msgstr "Proposer la taille du disque"
-
-msgid "Offer cutting"
-msgstr "Proposer la coupe"
-
-msgid "Offer DMH-archive"
-msgstr "Proposer l'archivage DMH"
-
-msgid "Offer skip titlemenu"
-msgstr ""
-
-msgid "Offer skip mainmenu"
-msgstr ""
-
-msgid "--- Job defaults -----------------------------------------------------"
-msgstr ""
-
-msgid "Default"
-msgstr "Par défaut"
-
-msgid "Video track"
-msgstr "Piste vidéo"
-
-msgid "Audio track"
-msgstr "Piste audio"
-
-#, fuzzy
-msgid "Subtitle track"
-msgstr "Piste vidéo"
-
-#, fuzzy
-msgid "page"
-msgstr "Cible"
-
-msgid "Unknown"
-msgstr "inconnue"
-
-#, fuzzy
-#~ msgid "title"
-#~ msgstr "Titre du DVD"
-
-#~ msgid "CD-R"
-#~ msgstr "CD-R"
-
-#~ msgid "VDRSync"
-#~ msgstr "VDRSync"

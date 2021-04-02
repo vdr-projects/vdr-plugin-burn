@@ -148,10 +148,10 @@ namespace menu
 								 m_name.c_str()));
 	}
 
-	//! --- recording_edit_item --------------------------------------------
+	//! --- recording_list_item --------------------------------------------
 
-	recording_edit_item::recording_edit_item( const recording_list::iterator recording_ ):
-			string_edit_item( recording_->get_datetime().c_str(), recording_->m_eventTitle, NULL ),
+	recording_list_item::recording_list_item( const recording_list::iterator recording_ ):
+			text_item( recording_->get_datetime().c_str() + std::string("\t") + recording_->m_name, true ),
 			m_recording( recording_ )
 	{
 	}

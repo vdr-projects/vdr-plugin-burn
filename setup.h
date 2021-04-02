@@ -40,13 +40,13 @@ extern cBurnParameters BurnParameters;
 	struct plugin_setup : public proctools::property_bag
 	{
 		proctools::property< bool > RemovePath;
-		proctools::property< int > CustomDiskSize;
-		proctools::property< int > BurnSpeed;
-		proctools::property< int > DemuxType;
-		proctools::property< int > RequantType;
+		proctools::property< int >  CustomDiskSize;
+		proctools::property< int >  BurnSpeed;
+		proctools::property< int >  RequantType;
 		proctools::property< bool > PreserveLogFiles;
-		proctools::property< int > DefaultLanguage;
+		proctools::property< int >  DefaultLanguage;
 		proctools::property< bool > MainMenuStatus;
+		//proctools::property< int >  TitleType;
 
 		proctools::property< bool > OfferDiskType;
 		proctools::property< bool > OfferChapters;
@@ -71,6 +71,7 @@ extern cBurnParameters BurnParameters;
 		proctools::property< int >  DiskType;
 		proctools::property< int >  SkinIndex;
 		proctools::property< int >  SkinAspectIndex;
+		proctools::property< int >  TitleType;
 		proctools::property< int >  ChaptersMode;
 		proctools::property< int >  StoreMode;
 #ifdef ENABLE_DMH_ARCHIVE
@@ -80,6 +81,7 @@ extern cBurnParameters BurnParameters;
 		proctools::property< bool > CutOnDemux;
 		proctools::property< bool > SkipTitlemenu;
 		proctools::property< bool > SkipMainmenu;
+		proctools::property< bool > UseSubtitleTracks;
 
 		job_options();
 
@@ -101,6 +103,7 @@ extern cBurnParameters BurnParameters;
 		menu::list_edit_item* m_diskTypeItem;
 		menu::list_edit_item* m_skinItem;
 		menu::list_edit_item* m_skinAspectItem;
+		menu::list_edit_item* m_titleTypeItem;
 		menu::list_edit_item* m_chaptersItem;
 		menu::list_edit_item* m_diskSizeItem;
 		menu::bool_edit_item* m_cutItem;
@@ -109,6 +112,7 @@ extern cBurnParameters BurnParameters;
 #endif
 		menu::bool_edit_item* m_skipTitleItem;
 		menu::bool_edit_item* m_skipMainItem;
+		menu::bool_edit_item* m_useSubtitleTracks;
 
 	private:
 		job_options& m_options;

@@ -11,30 +11,138 @@ msgid ""
 msgstr ""
 "Project-Id-Version: VDR 1.5.7\n"
 "Report-Msgid-Bugs-To: <<vdr@smue.org>>\n"
-"POT-Creation-Date: 2010-12-11 19:52+0100\n"
-"PO-Revision-Date: 2010-08-28 23:46+0300\n"
+"POT-Creation-Date: 2011-08-08 14:57+0200\n"
+"PO-Revision-Date: 2010-12-13 18:42+0200\n"
 "Last-Translator: Ville Skyttä <ville.skytta@iki.fi>\n"
 "Language-Team: Finnish <gnome-fi-laatu@lists.sourceforge.net>\n"
+"Language: fi\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Lokalize 1.0\n"
+"X-Generator: Lokalize 1.1\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-msgid "Versatile convert-and-burn plugin"
-msgstr "Monipuolinen DVD-työkalu"
+msgid "Recording too big for disc type!"
+msgstr "Tallenne ei mahdu levytyypille!"
 
-msgid "Create DVDs"
+msgid "Disc too big for disc type!"
+msgstr "Levy ei mahdu levytyypille!"
+
+msgid "Target"
+msgstr "Kohde"
+
+msgid "Disk type"
+msgstr "Levyn tyyppi"
+
+msgid "DMH-archive"
+msgstr "DMH-arkistointi"
+
+msgid "Skin"
+msgstr "Ulkoasu"
+
+msgid "Skin Aspect Ratio"
+msgstr "Ulkoasun kuvasuhde"
+
+#, fuzzy
+msgid "Title source"
+msgstr "Tekstitysraita"
+
+msgid "Chapters"
+msgstr "Kappaleet"
+
+msgid "Disk size"
+msgstr "Levyn koko"
+
+msgid "Cut"
+msgstr "Leikkaa"
+
+msgid "Skip empty titlemenu"
+msgstr "Ohita tyhjä nimikevalikko"
+
+msgid "Skip short mainmenu"
+msgstr "Ohita lyhyt päävalikko"
+
+#, fuzzy
+msgid "Use subtitle tracks"
+msgstr "Tekstitysraita"
+
+msgid "--- Common settings --------------------------------------------------"
+msgstr "--- Yleiset asetukset -----------------------------------------------"
+
+msgid "Remove path component"
+msgstr "Poista polku"
+
+msgid "Requant using"
+msgstr "Requant-ohjelmisto"
+
+msgid "Burn speed"
+msgstr "Polttonopeus"
+
+msgid "unlimited"
+msgstr "ei rajoitusta"
+
+msgid "Preserve logfiles"
+msgstr "Säilytä lokitiedostot"
+
+msgid "Spare language code"
+msgstr "Oletuskielitunnus"
+
+msgid "Status in main menu"
+msgstr "Näytä status päävalikossa"
+
+msgid "Custom disk size (MB)"
+msgstr "Säädettävä levyn koko (MB)"
+
+msgid "--- Job menu settings ------------------------------------------------"
+msgstr "--- Tehtävävalikon asetukset ----------------------------------------"
+
+msgid "Offer disk type"
+msgstr "Tarjoa levyn tyyppiä"
+
+msgid "Offer chapters"
+msgstr "Tarjoa kappaleita"
+
+msgid "Offer target"
+msgstr "Tarjoa kohdetta"
+
+msgid "Offer disk size"
+msgstr "Tarjoa levyn kokoa"
+
+msgid "Offer cutting"
+msgstr "Tarjoa leikkausta"
+
+msgid "Offer DMH-archive"
+msgstr "Tarjoa DMH-arkistointia"
+
+msgid "Offer skip titlemenu"
+msgstr "Tarjoa nimikevalikon ohitusta"
+
+msgid "Offer skip mainmenu"
+msgstr "Tarjoa päävalikon ohitusta"
+
+msgid "--- Job defaults -----------------------------------------------------"
+msgstr "--- Oletusasetukset tehtäville ---------------------------------------"
+
+msgid "Write DVDs"
 msgstr "Polta DVD-levy"
 
-msgid "Burn job active"
-msgstr "Polttotehtävä aktiivinen"
+msgid "Job options"
+msgstr "Tehtävän asetukset"
 
-msgid "Please enter the burn plugin"
-msgstr "Siirry \"Polta DVD-levy\"-laajennokseen"
+msgid "Video track"
+msgstr "Kuvaraita"
 
-msgid "Please insert an empty disk and press Ok"
-msgstr "Aseta tyhjä levy asemaan ja paina 'OK'"
+msgid "Audio track"
+msgstr "Ääniraita"
+
+msgid "Subtitle track"
+msgstr "Tekstitysraita"
+
+msgid "page"
+msgstr "sivu"
+
+msgid "Unknown"
+msgstr "Tuntematon"
 
 msgid "DVD with menus"
 msgstr "DVD valikolla"
@@ -96,6 +204,19 @@ msgstr "Transcode"
 msgid "lxdvdrip"
 msgstr "lxdvdrip"
 
+msgid "EPG Title"
+msgstr ""
+
+msgid "EPG Title - Short Text"
+msgstr ""
+
+msgid "EPG Short Text"
+msgstr ""
+
+#, fuzzy
+msgid "Recording"
+msgstr "tallenteet"
+
 msgid "Couldn't convert character sets!"
 msgstr "Merkistömuunnos epäonnistui!"
 
@@ -111,11 +232,23 @@ msgstr "Valikkokuvien luominen epäonnistui!"
 msgid "Couldn't save image file!"
 msgstr "Kuvatiedoston tallentaminen epäonnistui!"
 
-msgid "Recording too big for disc type!"
-msgstr "Tallenne ei mahdu levytyypille!"
+msgid "Versatile convert-and-burn plugin"
+msgstr "Monipuolinen DVD-työkalu"
 
-msgid "Disc too big for disc type!"
-msgstr "Levy ei mahdu levytyypille!"
+msgid "Create DVDs"
+msgstr "Polta DVD-levy"
+
+msgid "Burn job active"
+msgstr "Polttotehtävä aktiivinen"
+
+msgid "Please enter the burn plugin"
+msgstr "Siirry \"Polta DVD-levy\"-laajennokseen"
+
+msgid "Please insert an empty disk and press Ok"
+msgstr "Aseta tyhjä levy asemaan ja paina 'OK'"
+
+msgid "Default"
+msgstr "Oletus"
 
 msgid "A job failed!"
 msgstr "Polttaminen epäonnistui!"
@@ -132,6 +265,26 @@ msgstr "Lista"
 msgid "Status"
 msgstr "status"
 
+#, c-format
+msgid "$Total size: %1$.1f MB %2$s"
+msgstr "Yhteensä: %1$.1f MB %2$s"
+
+msgid "(would be shrinked)"
+msgstr "(joudutaan pienentämään)"
+
+msgid "Aspect ratio"
+msgstr "Kuvasuhde"
+
+msgid "track editor"
+msgstr ""
+
+#, fuzzy
+msgid "title in menu"
+msgstr "Näytä status päävalikossa"
+
+msgid "Choose"
+msgstr "Valitse"
+
 msgid "Move down"
 msgstr "Alaspäin"
 
@@ -147,18 +300,16 @@ msgstr "Kielitunnus"
 msgid "Choose title"
 msgstr "Valitse nimike"
 
+#, fuzzy
+msgid "DVD menu title for "
+msgstr "DVD:n nimi"
+
 #, c-format
 msgid "$Recordings: %1$d, total size: %2$.1f MB"
 msgstr "Tallenteita: %1$d, yhteensä: %2$.1f MB"
 
 msgid "No recordings marked for burning"
 msgstr "Tallenteita ei ole merkitty poltettavaksi"
-
-msgid "Write DVDs"
-msgstr "Polta DVD-levy"
-
-msgid "Choose"
-msgstr "Valitse"
 
 msgid "Analyzing recording..."
 msgstr "Analysoidaan tallennetta..."
@@ -171,9 +322,6 @@ msgstr "DVD:n nimi"
 
 msgid "Archive-ID"
 msgstr "Arkistotunnus"
-
-msgid "Job options"
-msgstr "Tehtävän asetukset"
 
 msgid "No recordings marked"
 msgstr "Ei valittuja tallenteita"
@@ -230,16 +378,6 @@ msgstr "Tehtävää suoritetaan yhä - perutaanko?"
 msgid "Remove job from list?"
 msgstr "Poistetaanko tehtävä listalta?"
 
-#, c-format
-msgid "$Total size: %1$.1f MB %2$s"
-msgstr "Yhteensä: %1$.1f MB %2$s"
-
-msgid "(would be shrinked)"
-msgstr "(joudutaan pienentämään)"
-
-msgid "Aspect ratio"
-msgstr "Kuvasuhde"
-
 msgid "Previous page"
 msgstr "Edellinen sivu"
 
@@ -269,121 +407,3 @@ msgstr "Merkintöjen luku epäonnistui"
 
 msgid "Recording is too short"
 msgstr "Tallenne on liian lyhyt"
-
-msgid "Target"
-msgstr "Kohde"
-
-msgid "Disk type"
-msgstr "Levyn tyyppi"
-
-msgid "DMH-archive"
-msgstr "DMH-arkistointi"
-
-msgid "Skin"
-msgstr "Ulkoasu"
-
-#, fuzzy
-msgid "Skin Aspect Ratio"
-msgstr "Kuvasuhde"
-
-msgid "Chapters"
-msgstr "Kappaleet"
-
-msgid "Disk size"
-msgstr "Levyn koko"
-
-msgid "Cut"
-msgstr "Leikkaa"
-
-msgid "Skip empty titlemenu"
-msgstr "Ohita tyhjä nimikevalikko"
-
-msgid "Skip short mainmenu"
-msgstr "Ohita lyhyt päävalikko"
-
-msgid "--- Common settings --------------------------------------------------"
-msgstr "--- Yleiset asetukset -----------------------------------------------"
-
-msgid "Remove path component"
-msgstr "Poista polku"
-
-msgid "Demux using"
-msgstr "Demuksausohjelmisto"
-
-msgid "Requant using"
-msgstr "Requant-ohjelmisto"
-
-msgid "Burn speed"
-msgstr "Polttonopeus"
-
-msgid "unlimited"
-msgstr "ei rajoitusta"
-
-msgid "Preserve logfiles"
-msgstr "Säilytä lokitiedostot"
-
-msgid "Spare language code"
-msgstr "Oletuskielitunnus"
-
-msgid "Status in main menu"
-msgstr "Näytä status päävalikossa"
-
-msgid "Custom disk size (MB)"
-msgstr "Säädettävä levyn koko (MB)"
-
-msgid "--- Job menu settings ------------------------------------------------"
-msgstr "--- Tehtävävalikon asetukset ----------------------------------------"
-
-msgid "Offer disk type"
-msgstr "Tarjoa levyn tyyppiä"
-
-msgid "Offer chapters"
-msgstr "Tarjoa kappaleita"
-
-msgid "Offer target"
-msgstr "Tarjoa kohdetta"
-
-msgid "Offer disk size"
-msgstr "Tarjoa levyn kokoa"
-
-msgid "Offer cutting"
-msgstr "Tarjoa leikkausta"
-
-msgid "Offer DMH-archive"
-msgstr "Tarjoa DMH-arkistointia"
-
-msgid "Offer skip titlemenu"
-msgstr "Tarjoa nimikevalikon ohitusta"
-
-msgid "Offer skip mainmenu"
-msgstr "Tarjoa päävalikon ohitusta"
-
-msgid "--- Job defaults -----------------------------------------------------"
-msgstr "--- Oletusasetukset tehtäville ---------------------------------------"
-
-msgid "Default"
-msgstr "Oletus"
-
-msgid "Video track"
-msgstr "Kuvaraita"
-
-msgid "Audio track"
-msgstr "Ääniraita"
-
-msgid "Subtitle track"
-msgstr "Tekstitysraita"
-
-msgid "page"
-msgstr "sivu"
-
-msgid "Unknown"
-msgstr "Tuntematon"
-
-#~ msgid "CD-R"
-#~ msgstr "CD-R"
-
-#~ msgid "VDRSync"
-#~ msgstr "VDRSync"
-
-#~ msgid "analog"
-#~ msgstr "analoginen"

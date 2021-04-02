@@ -49,10 +49,13 @@ namespace vdr_burn
 	recording::recording( job* owner_, const cRecording* recording_):
 			m_owner( owner_ ),
 			m_fileName( recording_->FileName() ),
-			m_eventTitle( get_recording_eventtitle(recording_) ),
-			m_eventDescription( get_recording_eventdescription(recording_) ),
-			m_datetime( get_recording_datetime(recording_, ' ') ),
 			m_name( recording_->Name() ),
+			m_title( recording_->Name() ),
+			m_eventTitle( get_recording_event_title(recording_) ),
+			m_eventShortText( get_recording_event_shorttext(recording_) ),
+			m_eventDescription( get_recording_event_description(recording_) ),
+			m_datetime( get_recording_datetime(recording_, ' ') ),
+			m_titleSource( owner_->get_options().TitleType ),
 			m_totalSize( 0, 0 ),
 			m_totalLength( 0, 0 )
 	{
@@ -132,7 +135,7 @@ namespace vdr_burn
 		if (!track.used) return "";
 
 		return proctools::format("{0}/{1}")
-				% (global_setup().DemuxType == demuxtype_projectx ? m_paths.data : m_paths.temp)
+				% m_paths.data
 				% track.filename;
 	}
 
@@ -249,7 +252,7 @@ namespace vdr_burn
 	std::string job::get_iso_path() const
 	{
 		return proctools::format("{0}/{1}.iso")
-			   % BurnParameters.IsoPath % string_replace( m_title, '/', '_' );
+			   % BurnParameters.IsoPath % string_replace( m_jobtitle, '/', '_' );
 	}
 
 	std::string recording::get_graft_point() const
@@ -298,7 +301,7 @@ namespace vdr_burn
 
 	void job::clear()
 	{
-		m_title.clear();
+		m_jobtitle.clear();
 		m_options = job_defaults();
 		m_recordings.clear();
 		m_paths = path_pair();
@@ -308,12 +311,11 @@ namespace vdr_burn
 	void job::append_recording(const cRecording* vdrRecording)
 	{
         recording_scanner scanner( this, vdrRecording );
-    	scanner.scan();
-		//TODO remove non-MPEG2 recordings
+		scanner.scan();
 
 		recording newRec( scanner.get_result() );
-		if ( m_title.empty() )
-			m_title = newRec.get_eventTitle();
+		if ( m_jobtitle.empty() )
+			m_jobtitle = newRec.get_eventTitle();
 		m_recordings.push_back(newRec);
 
 		if (get_requant_factor() > 1 && get_disk_type() >= disktype_countrequant) {

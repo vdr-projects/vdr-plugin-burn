@@ -1,6 +1,29 @@
 VDR Plugin 'burn' Revision History
 ----------------------------------
 
+2011-08-08: Version 0.2.0-beta6
+- fixed building with ENABLE_DMH_ARCHIVE=1 (thanks to Ville Skyttä, bug #475)
+- Finnish translation update (provided by Ville Skyttä, feature #473)
+- Use /dev/dvdrw as writer device by default (suggested by Ville Skyttä, feature #474)
+- changed shell of vdrburn-dvd.sh from sh to bash (reported by tefans@vdr-portal.de)
+- fixed subtitles definition in DVDs without menus
+- updated Italian translation (thanks to Diego Pierotto, feature #492)
+- added Slovak translation (feature #557)
+- fixed resource leak in scanner.c and pes.c
+- do no longer hide H.264 recordings but display them unselectable (there might still be some older recordings 
+  which are not recognized as H.264 recordings if the component descriptor in the info file is uncorrect)
+- fixed unneccesssary relinking with "make all" (bug #482)
+- added default setting if subtitles should be used (caution: default is NO)
+- fixed renaming of spumux file for son subtitles
+- changed default Datadir to /tmp
+- added ionice -c 3 to all disk intensive tasks in vdrburn-dvd.sh
+- fixed invoking of vdrsync.pl if previously selected, removed remaining code (thanks to Ville Skyttä, bug #476, and copperhead@vdr-portal.de)
+- filter out streams which consist only of filler bytes (used as place holder PIDs)
+- track editor page has now a title to avoid crash of remoteosd plugin (thanks to mane77@vdr-portal.de for debugging)
+- refactored help key and ProcessKey of building menu 
+- added recording length (in minutes) to recordings menu
+- fixed possible segfault in status display
+
 2010-12-12: Version 0.2.0-beta5
 - updated DMH archive part of vdrburn-dvd/-archive.sh (thanks to copperhead@vdr-portal.de)
 - made DMH archive optional via compile switch. Enable with ENABLE_DMH_ARCHIVE=1 (thanks to copperhead@vdr-portal.de)
@@ -8,10 +31,11 @@ VDR Plugin 'burn' Revision History
 - removed support for burning CDs (DVD structures on CD-R)
 - removed support for vdrsync.pl, use Project X instead
 - added 100MB spare space in requant factor calculation to avoid oversized ISO images
-- allowed all chars of VDR locale for titels
+- allowed all chars of VDR locale for titles
 - fixed renamed menu names being ignored (reported by mahlzeit@vdr-portal.de)
 - added recording title to track edit menu
-- converted all po files to UTF-8 (thanks to Ville Skyttä for the fi patch which led to that)
+- converted all po files to UTF-8 (thanks to Ville Skyttä for the FI patch (Bug #415) which led to that)
+- replaced make with $(MAKE) in Makefile (Bug #542)
 
 2010-05-23: Version 0.2.0-beta4
 - fixed teletext page calculation (reported by Petri Helin)

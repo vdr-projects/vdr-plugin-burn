@@ -28,7 +28,6 @@ namespace vdr_burn
 		void create_files(const recording& rec);
 
 		bool prepare_job();
-		void prepare_recording();
 		void prepare_demux();
 		void prepare_mplex();
 		bool prepare_device();

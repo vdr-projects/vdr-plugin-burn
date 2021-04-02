@@ -1,0 +1,430 @@
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+#
+# Milan Hrala <hrala.milan@gmail.com>, 2009.
+msgid ""
+msgstr ""
+"Project-Id-Version: burn-0.2.0-beta5\n"
+"Report-Msgid-Bugs-To: <<vdr@smue.org>>\n"
+"POT-Creation-Date: 2011-08-08 14:57+0200\n"
+"PO-Revision-Date: 2011-02-15 20:37+0100\n"
+"Last-Translator: Milan Hrala <hrala.milan@gmail.com>\n"
+"Language-Team: Slovak <hrala.milan@gmail.com>\n"
+"Language: sk\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Lokalize 0.3\n"
+
+msgid "Recording too big for disc type!"
+msgstr "Nahrávka je príliš veľká vzhľadom typ média!"
+
+msgid "Disc too big for disc type!"
+msgstr "Disk je príliš veľký pre typ média!"
+
+msgid "Target"
+msgstr "Ciel"
+
+msgid "Disk type"
+msgstr "Typ média"
+
+msgid "DMH-archive"
+msgstr "DMH-archív"
+
+msgid "Skin"
+msgstr "Vzhlad"
+
+msgid "Skin Aspect Ratio"
+msgstr "Pomer strán vzhľadu"
+
+#, fuzzy
+msgid "Title source"
+msgstr "Titulková stopa"
+
+msgid "Chapters"
+msgstr "Kapitoly"
+
+msgid "Disk size"
+msgstr "Veľkosť disku"
+
+msgid "Cut"
+msgstr "Vystrihnúť"
+
+msgid "Skip empty titlemenu"
+msgstr "Preskoč prázdne menu titulov"
+
+msgid "Skip short mainmenu"
+msgstr "Preskoč hlavné menu"
+
+#, fuzzy
+msgid "Use subtitle tracks"
+msgstr "Titulková stopa"
+
+msgid "--- Common settings --------------------------------------------------"
+msgstr "--- Spoločné nastavenie ----------------------------------------------"
+
+msgid "Remove path component"
+msgstr "Zmazať cestu komponentov"
+
+msgid "Requant using"
+msgstr "Použiť Requant"
+
+msgid "Burn speed"
+msgstr "Rýchlosť napaľovania"
+
+msgid "unlimited"
+msgstr "bez obmedzenia"
+
+msgid "Preserve logfiles"
+msgstr "Uchovávať log súbory"
+
+msgid "Spare language code"
+msgstr "Náhradný kód jazyka"
+
+msgid "Status in main menu"
+msgstr "Stav v hlavnom menu"
+
+msgid "Custom disk size (MB)"
+msgstr "Voliteľná velkosť disku (MB)"
+
+msgid "--- Job menu settings ------------------------------------------------"
+msgstr "--- Nastavenie voľby menu --------------------------------------------"
+
+msgid "Offer disk type"
+msgstr "Ponúknuť typ média"
+
+msgid "Offer chapters"
+msgstr "Ponúknuť kapitoly"
+
+msgid "Offer target"
+msgstr "Ponúknuť ciel"
+
+msgid "Offer disk size"
+msgstr "Ponúknuť veľkosť disku"
+
+msgid "Offer cutting"
+msgstr "Ponúknuť strih"
+
+msgid "Offer DMH-archive"
+msgstr "Ponúknuť DMH-archív"
+
+msgid "Offer skip titlemenu"
+msgstr "Ponúknuť preskočiť menu titulov"
+
+msgid "Offer skip mainmenu"
+msgstr "Ponúknuť preskočiť hlavné menu"
+
+msgid "--- Job defaults -----------------------------------------------------"
+msgstr "--- Predvolené voľby ---------------------------------------------"
+
+msgid "Write DVDs"
+msgstr "Zapísať na disk"
+
+msgid "Job options"
+msgstr "Voľby DVD"
+
+msgid "Video track"
+msgstr "Video stopa"
+
+msgid "Audio track"
+msgstr "Zvuková stopa"
+
+msgid "Subtitle track"
+msgstr "Titulková stopa"
+
+msgid "page"
+msgstr "strana"
+
+msgid "Unknown"
+msgstr "Neznámy"
+
+msgid "DVD with menus"
+msgstr "DVD s menu"
+
+msgid "DVD without menus"
+msgstr "DVD bez menu"
+
+msgid "Archive disk"
+msgstr "Archivovať disk"
+
+msgid "Create ISO only"
+msgstr "Vytvoriť iba iso"
+
+msgid "Write to Disc"
+msgstr "Zapízať na médium"
+
+msgid "Create ISO and write"
+msgstr "Vytvoriť ISO a napáliť"
+
+msgid "No chapters"
+msgstr "Bez kapitol"
+
+msgid "Use editing marks"
+msgstr "Použiť úpravu známok"
+
+msgid "Every 5 minutes"
+msgstr "Každých 5 minút"
+
+msgid "Every 10 minutes"
+msgstr "Každých 10 minút"
+
+msgid "Every 15 minutes"
+msgstr "Každých 15 minút"
+
+msgid "Every 30 minutes"
+msgstr "Každých 30 minút"
+
+msgid "Every hour"
+msgstr "Každú hodinu"
+
+msgid "Single Layer"
+msgstr "Jedno-vrstvové"
+
+msgid "Double Layer"
+msgstr "Dvoj-vrstvové"
+
+msgid "Custom"
+msgstr "Vlastné"
+
+msgid "ProjectX"
+msgstr "ProjectX"
+
+msgid "M2VRequantizer"
+msgstr "M2VRequantizer"
+
+msgid "Transcode"
+msgstr "Transcode"
+
+msgid "lxdvdrip"
+msgstr "lxdvdrip"
+
+msgid "EPG Title"
+msgstr ""
+
+msgid "EPG Title - Short Text"
+msgstr ""
+
+msgid "EPG Short Text"
+msgstr ""
+
+#, fuzzy
+msgid "Recording"
+msgstr "Nahrávky"
+
+msgid "Couldn't convert character sets!"
+msgstr "Nepodarilo sa previesť znakovú sadu!"
+
+msgid "Couldn't open image file!"
+msgstr "Nepodarilo sa otvoriť súbor s obrazom!"
+
+msgid "Couldn't create new image!"
+msgstr "Nepodarilo sa vytvoriť nový obraz!"
+
+msgid "Couldn't render menu images!"
+msgstr "Nepodarilo sa z renderovať obrázok v menu!"
+
+msgid "Couldn't save image file!"
+msgstr "Nepodarilo sa uložiť súbor z obrazom!"
+
+msgid "Versatile convert-and-burn plugin"
+msgstr "Všestranný konvertovací a vypalovací modul"
+
+msgid "Create DVDs"
+msgstr "Vytvoriť DVD-čka"
+
+msgid "Burn job active"
+msgstr "Napalovanie začalo"
+
+msgid "Please enter the burn plugin"
+msgstr "Prosím, chodte do napalovacieho modulu"
+
+msgid "Please insert an empty disk and press Ok"
+msgstr "Prosím vložte prázdne médium a stlačte OK"
+
+msgid "Default"
+msgstr "Predvolený"
+
+msgid "A job failed!"
+msgstr "Chyba úlohy!"
+
+msgid "A job was finished successfully."
+msgstr "Úloha úspešne skončila."
+
+msgid "Recordings"
+msgstr "Nahrávky"
+
+msgid "List"
+msgstr "Zoznam"
+
+msgid "Status"
+msgstr "Stav"
+
+#, c-format
+msgid "$Total size: %1$.1f MB %2$s"
+msgstr "$Celková velkosť: %1$.1f MB %2$s"
+
+msgid "(would be shrinked)"
+msgstr "(bude zmrštená)"
+
+msgid "Aspect ratio"
+msgstr "Pomer strán"
+
+msgid "track editor"
+msgstr ""
+
+#, fuzzy
+msgid "title in menu"
+msgstr "Stav v hlavnom menu"
+
+msgid "Choose"
+msgstr "Vybrať"
+
+msgid "Move down"
+msgstr "Presuň dole"
+
+msgid "Track$Off"
+msgstr "Stopa$Vypnutá"
+
+msgid "Track$On"
+msgstr "Stopa$Zapnutá"
+
+msgid "Language code"
+msgstr "Kód jazyka"
+
+msgid "Choose title"
+msgstr "Zvoliť titul"
+
+#, fuzzy
+msgid "DVD menu title for "
+msgstr "DVD titul"
+
+#, c-format
+msgid "$Recordings: %1$d, total size: %2$.1f MB"
+msgstr "$Recordings: %1$d, celková velkosť: %2$.1f MB"
+
+msgid "No recordings marked for burning"
+msgstr "Žiadne záznamy označené pre napaľovanie"
+
+msgid "Analyzing recording..."
+msgstr "Analyzujem nahrávky ..."
+
+msgid "Job"
+msgstr "Úloha"
+
+msgid "DVD title"
+msgstr "DVD titul"
+
+msgid "Archive-ID"
+msgstr "Archív-ID"
+
+msgid "No recordings marked"
+msgstr "Žiadne nahrávky nie sú označené"
+
+msgid "Button$Start"
+msgstr "Štart"
+
+msgid "Remove"
+msgstr "Vymazať"
+
+msgid "No MPEG2 video track selected!"
+msgstr "Nevybrali ste MPEG2 video!"
+
+msgid "No audio track selected!"
+msgstr "Nevybrali ste zvukovú stopu!"
+
+msgid "Not enough free disk space!"
+msgstr "Nie je dostatok voľného miesta na disku!"
+
+msgid "Remove recording from list?"
+msgstr "Vymazať nahrávku zo zoznamu?"
+
+#, c-format
+msgid "$Job active (Writing: %1$d%%)"
+msgstr "$Úloha aktívna (Zapisuje: %1$d%%)"
+
+msgid "Job active (Converting)"
+msgstr "Úloha aktívna (Konvertuje)"
+
+msgid "No active or waiting jobs present"
+msgstr "Neaktívne alebo čaká na úlohu."
+
+msgid "Canceled jobs"
+msgstr "Zrušené úlohy"
+
+msgid "Erroneous jobs"
+msgstr "Chybné úlohy"
+
+msgid "Restart"
+msgstr "Opakovať štart"
+
+msgid "Retry"
+msgstr "Znova"
+
+msgid "Cancel"
+msgstr "Zrušiť"
+
+msgid "Replace current job?"
+msgstr "Nahradiť súčasnú úlohu?"
+
+msgid "Job still active - really cancel?"
+msgstr "Úloha je aktívna - Naozaj zrušíť?"
+
+msgid "Remove job from list?"
+msgstr "Vymazať úlohu"
+
+msgid "Previous page"
+msgstr "Predchádzajúca strana"
+
+msgid "Next page"
+msgstr "Ďalšia strana"
+
+msgid "Play movie"
+msgstr "Prehrať film"
+
+msgid "Back"
+msgstr "Späť"
+
+msgid "Couldn't read index"
+msgstr "Nemôže prečítať index"
+
+msgid "Couldn't browse recording"
+msgstr "Nemôže prechádzať záznam"
+
+msgid "mp2"
+msgstr "mp2"
+
+msgid "dolby"
+msgstr "dolby"
+
+msgid "Couldn't read marks"
+msgstr "Nemóže čítať značky"
+
+msgid "Recording is too short"
+msgstr "Nahrávka je príliš krátka"
+
+#, fuzzy
+#~ msgid "Button$Select"
+#~ msgstr "Štart"
+
+#, fuzzy
+#~ msgid "title source"
+#~ msgstr "Titulková stopa"
+
+#~ msgid "Demux using"
+#~ msgstr "Použiť Demux"
+
+#, fuzzy
+#~ msgid "EPG Subtitle"
+#~ msgstr "Titulková stopa"
+
+#~ msgid "CD-R"
+#~ msgstr "CD-R"
+
+#~ msgid "VDRSync"
+#~ msgstr "VDRSync"
+
+#~ msgid "iso8859-15"
+#~ msgstr "utf-8"
+
+#~ msgid "analog"
+#~ msgstr "analógové"

@@ -27,6 +27,7 @@ namespace vdr_burn
 		}
 
 		// --- starter --------------------------------------------------------
+		// cycles through menues Recordings -> List -> Status -> Recordings
 
 		starter* starter::m_instance = 0;
 
@@ -122,6 +123,10 @@ namespace vdr_burn
 			m_yellow = yellow;
 			m_blue = starter::get_next_display();
 
+			//isyslog("burn pagebase::set_help %s-%s-%s-%s", m_red.empty() ? 0 : m_red.c_str(),
+			//		m_green.empty() ? 0 : m_green.c_str(),
+			//		m_yellow.empty() ? 0 : m_yellow.c_str(),
+			//		m_blue.c_str());
 			SetHelp(m_red.empty() ? 0 : m_red.c_str(),
 					m_green.empty() ? 0 : m_green.c_str(),
 					m_yellow.empty() ? 0 : m_yellow.c_str(),
@@ -142,24 +147,6 @@ namespace vdr_burn
 		void pagebase::display()
 		{
 			Display();
-			set_help_keys();
-		}
-
-		eOSState pagebase::dispatch_key(eKeys key)
-		{
-			switch (key) {
-			case kOk:     return ok_pressed();
-			case kRed:    return red_pressed();
-			case kGreen:  return green_pressed();
-			case kYellow: return yellow_pressed();
-			case kNone:   check_waiting_user(); return osContinue; //return menu_update();
-			default:      break;
-
-			case kBlue:
-				starter::cycle_display();
-				return osBack;
-			}
-			return osUnknown;
 		}
 
 		eOSState pagebase::ProcessKey(eKeys key)
@@ -174,18 +161,42 @@ namespace vdr_burn
 			if (hadSubMenu && HasSubMenu())
 				return state;
 
-			if (state == osUnknown)
-				state = dispatch_key(key);
-			else if (state == osContinue &&
-					(current != Current() || key == kOk || key == kBack))
-				set_help_keys();
-
-			if ( current >= Count() )
-				return state;
-
-			menu_item_base& item = dynamic_cast< menu_item_base& >( *Get( current ) );
-			if ( !item.is_editing() )
-				menu_update();
+			if (state == osUnknown) {
+				switch (key) {
+					case kOk:
+						state = ok_pressed();
+						break;
+					case kRed:
+						state = red_pressed();
+						break;
+					case kGreen:
+						state = green_pressed();
+						break;
+					case kYellow:
+						state = yellow_pressed();
+						break;
+					case kBlue:
+						starter::cycle_display();
+						return osBack;
+					case kNone:
+						check_waiting_user();
+						if ( (display::status ==  starter::get_current_display()))
+							menu_update();
+						state = osContinue;
+						break;
+					default:
+						break;
+				}
+			}
+			else
+				if (!HasSubMenu()) {
+					if (hadSubMenu) 
+						display();
+					
+					menu_item_base& item = dynamic_cast< menu_item_base& >( *Get( current ) );
+					if (key != kNone && !item.is_editing())
+						set_help_keys();
+				}
 
 			return state;
 		}

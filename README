@@ -34,12 +34,8 @@ boost >= 1.32.0  - http://www.boost.org
   ** http://linux.kompiliert.net/contrib/boost-for-burn-1.33.0.tgz
   ** (see below)
 
-ProjectX >= 0.90.4.00.b29     - http://sourceforge.net/projects/project-x/develop
-  ** Tested with 0.90.4.00.b32
-
-NOT recommended any longer:
-vdrsync.pl       - http://vdrsync.vdrportal.de
-  ** http://vdrsync.vdr-portal.de/releases/vdrsync-050322.tgz
+ProjectX >= 0.91.0     - http://sourceforge.net/projects/project-x/develop
+  ** should run with 0.90.4.00.b29 or higher, but 0.91.0 is recommended
 
 SUBTITLE SUPPORT:
 pxsup2dast       - http://www.guru-group.fi/~too/sw/m2vmp2cut/
@@ -87,15 +83,14 @@ Installation
 
 3b.(optional) Change the default temporary folder, the default DVD writer device
    and the default ISO directory with TMPDIR (default: /tmp),
-   DVDDEV (default: /dev/dvd) and ISODIR (default: /pub/export)
+   DVDDEV (default: /dev/dvdrw) and ISODIR (default: /pub/export)
 
    # make DVDDEV=/dev/cdrecorder ISODIR=/export plugins
 
-4. Copy the scripts vdrburn-dvd.sh, vdrburn-archive.sh (for vdrsync.pl also the program
-   burn-buffers) to some location inside your $PATH.
+4. Copy the scripts vdrburn-dvd.sh, vdrburn-archive.sh to some location
+   inside your $PATH.
 
    # cp PLUGINS/src/burn/*.sh /usr/bin/
-   # cp PLUGINS/src/burn/burn-buffers /usr/bin/burn-buffers
 
 5. Copy the font file and menu image templates into "plugins/burn" inside your
    VDR configuration directory (usually /video0 or /etc/vdr)
@@ -126,7 +121,7 @@ The plugin accepts the following parameters at the VDR command line:
   -d DIR,   --datadir=DIR   use DIR for temporary datafiles
                             (default: /var/spool/video)
   -D DEV    --dvd=DEV       use DEV as DVD Writer
-                            (default: /dev/dvd)
+                            (default: /dev/dvdrw)
   -i DIR    --iso=DIR       use DIR to store ISO images
                             (default: /pub/export)
 

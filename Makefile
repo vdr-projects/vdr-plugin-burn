@@ -72,13 +72,13 @@ OBJS = burn.o chain-vdr.o chain-dvd.o jobs.o logger-vdr.o skins.o \
 
 ifdef ENABLE_DMH_ARCHIVE
 DEFINES += -DENABLE_DMH_ARCHIVE
-else
 OBJS += chain-archive.o
 endif
 
 SUBDIRS = proctools # tinyxml
+SUBLIBS=$(shell for i in $(SUBDIRS); do echo $$i/lib$$i.a; done)
 
-LIBS += proctools/libproctools.a # tinyxml/libtinyxml.a
+LIBS += $(SUBLIBS)
 
 
 ifndef TMPDIR
@@ -86,7 +86,7 @@ TMPDIR=/tmp
 endif
 
 ifndef DVDDEV
-DVDDEV=/dev/dvd
+DVDDEV=/dev/dvdrw
 endif
 
 ifndef ISODIR
@@ -139,19 +139,16 @@ i18n: $(I18Nmsgs)
 
 .PHONY: all dist clean SUBDIRS
 
-all: libvdr-$(PLUGIN).so burn-buffers i18n
+all: SUBDIRS libvdr-$(PLUGIN).so i18n
 
 SUBDIRS:
 	@for dir in $(SUBDIRS); do \
-		make -C $$dir CXX="$(CXX)" CXXFLAGS="$(CXXFLAGS)" lib$$dir.a ; \
+		$(MAKE) -C $$dir CXX="$(CXX)" CXXFLAGS="$(CXXFLAGS)" lib$$dir.a ; \
 	done
 
-libvdr-$(PLUGIN).so: $(OBJS) SUBDIRS Makefile
+libvdr-$(PLUGIN).so: $(OBJS) Makefile $(SUBLIBS)
 	$(CXX) $(CXXFLAGS) -shared $(OBJS) $(LIBS) -o $@
 	@cp $@ $(LIBDIR)/$@.$(APIVERSION)
-
-burn-buffers: buffers.o
-	$(CXX) $(CXXFLAGS) $< -o $@
 
 scan-test: $(OBJS) proctools scan-test.o
 	$(CXX) $(CXXFLAGS) scan-test.o $(OBJS) -o $@ \
@@ -172,10 +169,10 @@ dist: clean
 
 clean:
 	@-rm -f $(PODIR)/*.mo $(PODIR)/*.pot
-	@-rm -f *.o genindex/*.o $(DEPFILE) *.so *.tgz core* *~ burn-buffers \
+	@-rm -f *.o genindex/*.o $(DEPFILE) *.so *.tgz core* *~ \
 		scan-test test t/*.o
 	@for dir in $(SUBDIRS); do \
-		make -C $$dir clean ; \
+		$(MAKE) -C $$dir clean ; \
 	done
 
 ### Implicit rules:
