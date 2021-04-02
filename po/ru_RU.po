@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: VDR 1.5.7\n"
 "Report-Msgid-Bugs-To: <<vdr@smue.org>>\n"
-"POT-Creation-Date: 2011-10-08 13:26+0200\n"
+"POT-Creation-Date: 2011-12-23 20:08+0100\n"
 "PO-Revision-Date: 2008-02-02 22:42+0100\n"
 "Last-Translator: Vyacheslav Dikonov <sdiconov@mail.ru>\n"
 "Language-Team: <vdr@linuxtv.org>\n"
@@ -22,11 +22,81 @@ msgstr "Ошибка при создании DVD!"
 msgid "A job was finished successfully."
 msgstr "DVD создан успешно."
 
-msgid "Recording too big for disc type!"
-msgstr "Запись слишком большая для выбранного типа диска!"
+msgid "DVD with menus"
+msgstr "DVD с меню"
 
-msgid "Disc too big for disc type!"
-msgstr "Диск слишком велик для этого типа!"
+msgid "DVD without menus"
+msgstr "DVD без меню"
+
+msgid "Archive disk"
+msgstr "Архивный диск"
+
+msgid "Create ISO only"
+msgstr "Только создать образ"
+
+msgid "Write to Disc"
+msgstr "Жечь на DVD"
+
+msgid "Create ISO and write"
+msgstr "Создать образ и жечь"
+
+msgid "No chapters"
+msgstr "Без глав"
+
+msgid "Use editing marks"
+msgstr "Использовать монтажные метки"
+
+msgid "Every 5 minutes"
+msgstr "Каждые 5 минут"
+
+msgid "Every 10 minutes"
+msgstr "Каждые 10 минут"
+
+msgid "Every 15 minutes"
+msgstr "Каждые 15 минут"
+
+msgid "Every 30 minutes"
+msgstr "Каждые 30 минут"
+
+msgid "Every hour"
+msgstr "Каждый час"
+
+msgid "Single Layer"
+msgstr "Один слой"
+
+msgid "Double Layer"
+msgstr "Два слоя"
+
+msgid "Custom"
+msgstr "Пользовательский"
+
+msgid "ProjectX"
+msgstr "ProjectX"
+
+msgid "M2VRequantizer"
+msgstr "M2VRequantizer"
+
+msgid "Transcode"
+msgstr "Transcode"
+
+msgid "lxdvdrip"
+msgstr ""
+
+msgid "EPG Title"
+msgstr ""
+
+msgid "EPG Title - Short Text"
+msgstr ""
+
+msgid "EPG Short Text"
+msgstr ""
+
+#, fuzzy
+msgid "Recording"
+msgstr "Записи"
+
+msgid "Couldn't convert character sets!"
+msgstr ""
 
 msgid "Target"
 msgstr "Цель"
@@ -130,90 +200,25 @@ msgstr "Создать DVD"
 msgid "Job options"
 msgstr "Опции заданий"
 
-msgid "Versatile convert-and-burn plugin"
-msgstr "Создание DVD из записей VDR"
+msgid "Default"
+msgstr "По умолчанию"
 
-msgid "Create DVDs"
-msgstr "Создать DVD"
+msgid "Video track"
+msgstr "Дорожка видео"
 
-msgid "Burn job active"
-msgstr "DVD создаётся"
-
-msgid "DVD with menus"
-msgstr "DVD с меню"
-
-msgid "DVD without menus"
-msgstr "DVD без меню"
-
-msgid "Archive disk"
-msgstr "Архивный диск"
-
-msgid "Create ISO only"
-msgstr "Только создать образ"
-
-msgid "Write to Disc"
-msgstr "Жечь на DVD"
-
-msgid "Create ISO and write"
-msgstr "Создать образ и жечь"
-
-msgid "No chapters"
-msgstr "Без глав"
-
-msgid "Use editing marks"
-msgstr "Использовать монтажные метки"
-
-msgid "Every 5 minutes"
-msgstr "Каждые 5 минут"
-
-msgid "Every 10 minutes"
-msgstr "Каждые 10 минут"
-
-msgid "Every 15 minutes"
-msgstr "Каждые 15 минут"
-
-msgid "Every 30 minutes"
-msgstr "Каждые 30 минут"
-
-msgid "Every hour"
-msgstr "Каждый час"
-
-msgid "Single Layer"
-msgstr "Один слой"
-
-msgid "Double Layer"
-msgstr "Два слоя"
-
-msgid "Custom"
-msgstr "Пользовательский"
-
-msgid "ProjectX"
-msgstr "ProjectX"
-
-msgid "M2VRequantizer"
-msgstr "M2VRequantizer"
-
-msgid "Transcode"
-msgstr "Transcode"
-
-msgid "lxdvdrip"
-msgstr ""
-
-msgid "EPG Title"
-msgstr ""
-
-msgid "EPG Title - Short Text"
-msgstr ""
-
-msgid "EPG Short Text"
-msgstr ""
+msgid "Audio track"
+msgstr "Дорожка аудио"
 
 #, fuzzy
-msgid "Recording"
-msgstr "Записи"
+msgid "Subtitle track"
+msgstr "Дорожка видео"
 
-msgid "Couldn't convert character sets!"
-msgstr ""
+#, fuzzy
+msgid "page"
+msgstr "Цель"
+
+msgid "Unknown"
+msgstr "Неизвестно"
 
 msgid "Couldn't open image file!"
 msgstr ""
@@ -233,6 +238,15 @@ msgstr "Пожалуйста, запустите модуль для созда�
 msgid "Please insert an empty disk and press Ok"
 msgstr "Вставьте пустой диск DVD и нажмите ОК"
 
+msgid "Versatile convert-and-burn plugin"
+msgstr "Создание DVD из записей VDR"
+
+msgid "Create DVDs"
+msgstr "Создать DVD"
+
+msgid "Burn job active"
+msgstr "DVD создаётся"
+
 msgid "Recordings"
 msgstr "Записи"
 
@@ -242,25 +256,11 @@ msgstr "Список"
 msgid "Status"
 msgstr "Состояние"
 
-msgid "Video track"
-msgstr "Дорожка видео"
+msgid "Recording too big for disc type!"
+msgstr "Запись слишком большая для выбранного типа диска!"
 
-msgid "Audio track"
-msgstr "Дорожка аудио"
-
-#, fuzzy
-msgid "Subtitle track"
-msgstr "Дорожка видео"
-
-#, fuzzy
-msgid "page"
-msgstr "Цель"
-
-msgid "Unknown"
-msgstr "Неизвестно"
-
-msgid "Default"
-msgstr "По умолчанию"
+msgid "Disc too big for disc type!"
+msgstr "Диск слишком велик для этого типа!"
 
 msgid "track editor"
 msgstr ""

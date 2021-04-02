@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: burn-0.2.0-beta5\n"
 "Report-Msgid-Bugs-To: <<vdr@smue.org>>\n"
-"POT-Creation-Date: 2011-10-08 13:26+0200\n"
+"POT-Creation-Date: 2011-12-23 20:08+0100\n"
 "PO-Revision-Date: 2011-02-15 20:37+0100\n"
 "Last-Translator: Milan Hrala <hrala.milan@gmail.com>\n"
 "Language-Team: Slovak <hrala.milan@gmail.com>\n"
@@ -22,11 +22,81 @@ msgstr "Chyba úlohy!"
 msgid "A job was finished successfully."
 msgstr "Úloha úspešne skončila."
 
-msgid "Recording too big for disc type!"
-msgstr "Nahrávka je príliš veľká vzhľadom typ média!"
+msgid "DVD with menus"
+msgstr "DVD s menu"
 
-msgid "Disc too big for disc type!"
-msgstr "Disk je príliš veľký pre typ média!"
+msgid "DVD without menus"
+msgstr "DVD bez menu"
+
+msgid "Archive disk"
+msgstr "Archivovať disk"
+
+msgid "Create ISO only"
+msgstr "Vytvoriť iba iso"
+
+msgid "Write to Disc"
+msgstr "Zapízať na médium"
+
+msgid "Create ISO and write"
+msgstr "Vytvoriť ISO a napáliť"
+
+msgid "No chapters"
+msgstr "Bez kapitol"
+
+msgid "Use editing marks"
+msgstr "Použiť úpravu známok"
+
+msgid "Every 5 minutes"
+msgstr "Každých 5 minút"
+
+msgid "Every 10 minutes"
+msgstr "Každých 10 minút"
+
+msgid "Every 15 minutes"
+msgstr "Každých 15 minút"
+
+msgid "Every 30 minutes"
+msgstr "Každých 30 minút"
+
+msgid "Every hour"
+msgstr "Každú hodinu"
+
+msgid "Single Layer"
+msgstr "Jedno-vrstvové"
+
+msgid "Double Layer"
+msgstr "Dvoj-vrstvové"
+
+msgid "Custom"
+msgstr "Vlastné"
+
+msgid "ProjectX"
+msgstr "ProjectX"
+
+msgid "M2VRequantizer"
+msgstr "M2VRequantizer"
+
+msgid "Transcode"
+msgstr "Transcode"
+
+msgid "lxdvdrip"
+msgstr "lxdvdrip"
+
+msgid "EPG Title"
+msgstr ""
+
+msgid "EPG Title - Short Text"
+msgstr ""
+
+msgid "EPG Short Text"
+msgstr ""
+
+#, fuzzy
+msgid "Recording"
+msgstr "Nahrávky"
+
+msgid "Couldn't convert character sets!"
+msgstr "Nepodarilo sa previesť znakovú sadu!"
 
 msgid "Target"
 msgstr "Ciel"
@@ -129,90 +199,23 @@ msgstr "Zapísať na disk"
 msgid "Job options"
 msgstr "Voľby DVD"
 
-msgid "Versatile convert-and-burn plugin"
-msgstr "Všestranný konvertovací a vypalovací modul"
+msgid "Default"
+msgstr "Predvolený"
 
-msgid "Create DVDs"
-msgstr "Vytvoriť DVD-čka"
+msgid "Video track"
+msgstr "Video stopa"
 
-msgid "Burn job active"
-msgstr "Napalovanie začalo"
+msgid "Audio track"
+msgstr "Zvuková stopa"
 
-msgid "DVD with menus"
-msgstr "DVD s menu"
+msgid "Subtitle track"
+msgstr "Titulková stopa"
 
-msgid "DVD without menus"
-msgstr "DVD bez menu"
+msgid "page"
+msgstr "strana"
 
-msgid "Archive disk"
-msgstr "Archivovať disk"
-
-msgid "Create ISO only"
-msgstr "Vytvoriť iba iso"
-
-msgid "Write to Disc"
-msgstr "Zapízať na médium"
-
-msgid "Create ISO and write"
-msgstr "Vytvoriť ISO a napáliť"
-
-msgid "No chapters"
-msgstr "Bez kapitol"
-
-msgid "Use editing marks"
-msgstr "Použiť úpravu známok"
-
-msgid "Every 5 minutes"
-msgstr "Každých 5 minút"
-
-msgid "Every 10 minutes"
-msgstr "Každých 10 minút"
-
-msgid "Every 15 minutes"
-msgstr "Každých 15 minút"
-
-msgid "Every 30 minutes"
-msgstr "Každých 30 minút"
-
-msgid "Every hour"
-msgstr "Každú hodinu"
-
-msgid "Single Layer"
-msgstr "Jedno-vrstvové"
-
-msgid "Double Layer"
-msgstr "Dvoj-vrstvové"
-
-msgid "Custom"
-msgstr "Vlastné"
-
-msgid "ProjectX"
-msgstr "ProjectX"
-
-msgid "M2VRequantizer"
-msgstr "M2VRequantizer"
-
-msgid "Transcode"
-msgstr "Transcode"
-
-msgid "lxdvdrip"
-msgstr "lxdvdrip"
-
-msgid "EPG Title"
-msgstr ""
-
-msgid "EPG Title - Short Text"
-msgstr ""
-
-msgid "EPG Short Text"
-msgstr ""
-
-#, fuzzy
-msgid "Recording"
-msgstr "Nahrávky"
-
-msgid "Couldn't convert character sets!"
-msgstr "Nepodarilo sa previesť znakovú sadu!"
+msgid "Unknown"
+msgstr "Neznámy"
 
 msgid "Couldn't open image file!"
 msgstr "Nepodarilo sa otvoriť súbor s obrazom!"
@@ -232,6 +235,15 @@ msgstr "Prosím, chodte do napalovacieho modulu"
 msgid "Please insert an empty disk and press Ok"
 msgstr "Prosím vložte prázdne médium a stlačte OK"
 
+msgid "Versatile convert-and-burn plugin"
+msgstr "Všestranný konvertovací a vypalovací modul"
+
+msgid "Create DVDs"
+msgstr "Vytvoriť DVD-čka"
+
+msgid "Burn job active"
+msgstr "Napalovanie začalo"
+
 msgid "Recordings"
 msgstr "Nahrávky"
 
@@ -241,23 +253,11 @@ msgstr "Zoznam"
 msgid "Status"
 msgstr "Stav"
 
-msgid "Video track"
-msgstr "Video stopa"
+msgid "Recording too big for disc type!"
+msgstr "Nahrávka je príliš veľká vzhľadom typ média!"
 
-msgid "Audio track"
-msgstr "Zvuková stopa"
-
-msgid "Subtitle track"
-msgstr "Titulková stopa"
-
-msgid "page"
-msgstr "strana"
-
-msgid "Unknown"
-msgstr "Neznámy"
-
-msgid "Default"
-msgstr "Predvolený"
+msgid "Disc too big for disc type!"
+msgstr "Disk je príliš veľký pre typ média!"
 
 msgid "track editor"
 msgstr ""

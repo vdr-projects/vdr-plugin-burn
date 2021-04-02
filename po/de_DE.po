@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: VDR 1.5.7\n"
 "Report-Msgid-Bugs-To: <<vdr@smue.org>>\n"
-"POT-Creation-Date: 2011-10-08 13:26+0200\n"
+"POT-Creation-Date: 2011-12-23 20:08+0100\n"
 "PO-Revision-Date: 2010-12-11-19:50+0100\n"
 "Last-Translator: Christoph Haubrich\n"
 "Language-Team: <vdr@linuxtv.org>\n"
@@ -22,11 +22,80 @@ msgstr "Ein Auftrag ist fehlgeschlagen!"
 msgid "A job was finished successfully."
 msgstr "Ein Auftrag war erfolgreich."
 
-msgid "Recording too big for disc type!"
-msgstr "Aufnahme zu groß für Disk-Typ!"
+msgid "DVD with menus"
+msgstr "DVD mit Menüs"
 
-msgid "Disc too big for disc type!"
-msgstr "Disc zu groß für diese Art!"
+msgid "DVD without menus"
+msgstr "DVD ohne Menüs"
+
+msgid "Archive disk"
+msgstr "Archiv-Disk"
+
+msgid "Create ISO only"
+msgstr "Nur Abbild erzeugen"
+
+msgid "Write to Disc"
+msgstr "Nur brennen"
+
+msgid "Create ISO and write"
+msgstr "Abbild erzeugen und brennen"
+
+msgid "No chapters"
+msgstr "Keine Kapitel"
+
+msgid "Use editing marks"
+msgstr "Schnittmarken benutzen"
+
+msgid "Every 5 minutes"
+msgstr "Jede 5 Minuten"
+
+msgid "Every 10 minutes"
+msgstr "Jede 10 Minuten"
+
+msgid "Every 15 minutes"
+msgstr "Jede viertel Stunde"
+
+msgid "Every 30 minutes"
+msgstr "Jede halbe Stunde"
+
+msgid "Every hour"
+msgstr "Jede Stunde"
+
+msgid "Single Layer"
+msgstr "Single Layer"
+
+msgid "Double Layer"
+msgstr "Double Layer"
+
+msgid "Custom"
+msgstr "Benutzerdefiniert"
+
+msgid "ProjectX"
+msgstr "ProjectX"
+
+msgid "M2VRequantizer"
+msgstr "M2VRequantizer"
+
+msgid "Transcode"
+msgstr "Transcode"
+
+msgid "lxdvdrip"
+msgstr "lxdvdrip"
+
+msgid "EPG Title"
+msgstr "EPG Titel"
+
+msgid "EPG Title - Short Text"
+msgstr "EPG Titel - Kurzbeschreibung"
+
+msgid "EPG Short Text"
+msgstr "EPG Kurzbeschreibung"
+
+msgid "Recording"
+msgstr "Aufzeichnung"
+
+msgid "Couldn't convert character sets!"
+msgstr "Konnte Zeichensatz nicht konvertieren!"
 
 msgid "Target"
 msgstr "Ziel"
@@ -127,89 +196,23 @@ msgstr "DVDs brennen"
 msgid "Job options"
 msgstr "Jobeinstellungen"
 
-msgid "Versatile convert-and-burn plugin"
-msgstr "Universelles Umwandlungs- und Brennplugin"
+msgid "Default"
+msgstr "Vorgabe"
 
-msgid "Create DVDs"
-msgstr "DVDs erstellen"
+msgid "Video track"
+msgstr "Videospur"
 
-msgid "Burn job active"
-msgstr "Brennjob läuft"
+msgid "Audio track"
+msgstr "Tonspur"
 
-msgid "DVD with menus"
-msgstr "DVD mit Menüs"
+msgid "Subtitle track"
+msgstr "Untertitel"
 
-msgid "DVD without menus"
-msgstr "DVD ohne Menüs"
+msgid "page"
+msgstr "Seite"
 
-msgid "Archive disk"
-msgstr "Archiv-Disk"
-
-msgid "Create ISO only"
-msgstr "Nur Abbild erzeugen"
-
-msgid "Write to Disc"
-msgstr "Nur brennen"
-
-msgid "Create ISO and write"
-msgstr "Abbild erzeugen und brennen"
-
-msgid "No chapters"
-msgstr "Keine Kapitel"
-
-msgid "Use editing marks"
-msgstr "Schnittmarken benutzen"
-
-msgid "Every 5 minutes"
-msgstr "Jede 5 Minuten"
-
-msgid "Every 10 minutes"
-msgstr "Jede 10 Minuten"
-
-msgid "Every 15 minutes"
-msgstr "Jede viertel Stunde"
-
-msgid "Every 30 minutes"
-msgstr "Jede halbe Stunde"
-
-msgid "Every hour"
-msgstr "Jede Stunde"
-
-msgid "Single Layer"
-msgstr "Single Layer"
-
-msgid "Double Layer"
-msgstr "Double Layer"
-
-msgid "Custom"
-msgstr "Benutzerdefiniert"
-
-msgid "ProjectX"
-msgstr "ProjectX"
-
-msgid "M2VRequantizer"
-msgstr "M2VRequantizer"
-
-msgid "Transcode"
-msgstr "Transcode"
-
-msgid "lxdvdrip"
-msgstr "lxdvdrip"
-
-msgid "EPG Title"
-msgstr "EPG Titel"
-
-msgid "EPG Title - Short Text"
-msgstr "EPG Titel - Kurzbeschreibung"
-
-msgid "EPG Short Text"
-msgstr "EPG Kurzbeschreibung"
-
-msgid "Recording"
-msgstr "Aufzeichnung"
-
-msgid "Couldn't convert character sets!"
-msgstr "Konnte Zeichensatz nicht konvertieren!"
+msgid "Unknown"
+msgstr "Unbekannt"
 
 msgid "Couldn't open image file!"
 msgstr "Kann Abbilddatei nicht öffnen!"
@@ -229,6 +232,15 @@ msgstr "Bitte Brenn-Plugin aufrufen"
 msgid "Please insert an empty disk and press Ok"
 msgstr "Bitte legen Sie eine leere DVD ein und drücken Sie Ok"
 
+msgid "Versatile convert-and-burn plugin"
+msgstr "Universelles Umwandlungs- und Brennplugin"
+
+msgid "Create DVDs"
+msgstr "DVDs erstellen"
+
+msgid "Burn job active"
+msgstr "Brennjob läuft"
+
 msgid "Recordings"
 msgstr "Aufzeichnungen"
 
@@ -238,23 +250,11 @@ msgstr "Liste"
 msgid "Status"
 msgstr "Status"
 
-msgid "Video track"
-msgstr "Videospur"
+msgid "Recording too big for disc type!"
+msgstr "Aufnahme zu groß für Disk-Typ!"
 
-msgid "Audio track"
-msgstr "Tonspur"
-
-msgid "Subtitle track"
-msgstr "Untertitel"
-
-msgid "page"
-msgstr "Seite"
-
-msgid "Unknown"
-msgstr "Unbekannt"
-
-msgid "Default"
-msgstr "Vorgabe"
+msgid "Disc too big for disc type!"
+msgstr "Disc zu groß für diese Art!"
 
 msgid "track editor"
 msgstr "Spureneditor"

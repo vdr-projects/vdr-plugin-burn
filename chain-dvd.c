@@ -264,6 +264,7 @@ namespace vdr_burn
 		author->put_environment("DVDAUTHOR_PATH", xml.get_author_path());
 		author->put_environment("ISO_FILE",       get_job().get_iso_path());
 		author->put_environment("DVD_DEVICE",     BurnParameters.DvdDevice);
+		author->put_environment("VIDEO_FORMAT",   (25.0 == m_currentRecording->get_FramesPerSecond() ? "PAL" : "NTSC"));
 		add_process(author);
 		return true;
 	}

@@ -198,6 +198,9 @@ namespace vdr_burn
 			}
 			else
 			{
+				if ( current >= Count() )
+					return state;
+
 				if (!HasSubMenu()) {
 					if (hadSubMenu) 
 						menu_update();
@@ -206,7 +209,9 @@ namespace vdr_burn
 					if (key != kNone && !item.is_editing())
 						menu_update();
 				}
-				
+
+				if (state == osContinue && (current != Current() || key == kOk || key == kBack))
+					set_help_keys();
 			}
 			
 			return state;

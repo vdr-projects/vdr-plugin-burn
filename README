@@ -1,7 +1,7 @@
 This is a plugin for the Video Disk Recorder (VDR).
 
-Written by:                  Sascha Volkenandt <sascha at akv-soft dot de>
-Current developer:           Christoph Haubrich <christoph.haubrich (AT) web.de>
+Originally Written by:       Sascha Volkenandt <sascha at akv-soft dot de>
+Currently developed by       Christoph Haubrich <christoph.haubrich (AT) web.de>
 
 Project's homepage:          http://projects.vdr-developer.org/projects/show/plg-burn
 
@@ -26,8 +26,6 @@ Requirements (not up to date!)
 ------------
 
 g++ >= 3.3       - http://gcc.gnu.org/
-  ** Tested with 3.3.5 (Debian)
-  ** Always compile-checked with 4.1
 
 boost >= 1.32.0  - http://www.boost.org
   ** If not available for your distribution, you can also use
@@ -35,33 +33,25 @@ boost >= 1.32.0  - http://www.boost.org
   ** (see below)
 
 ProjectX >= 0.91.0     - http://sourceforge.net/projects/project-x/develop
-  ** should run with 0.90.4.00.b29 or higher, but 0.91.0 is recommended
+  ** should run with 0.90.4.00.b29 or newer beta versions, but 0.91.0 or higher is recommended
 
 SUBTITLE SUPPORT:
 pxsup2dast       - http://www.guru-group.fi/~too/sw/m2vmp2cut/
 
 requant          - http://metakine.com/files
-  ** ATTN: Currently only the snapshot from around July 2004 is supported
-  ** For convenience, I've uploaded the package to:
-  ** http://www.xeatre.tv/community/burn/contrib/M2VRequantizer.tar.gz
 
 GD               - http://www.boutell.com/gd/
-  ** Texted with 2.0.33 (Debian Sarge: libgd2-noxpm[-dev] or libgd2-xpm[-dev])
-  ** needs at least PNG and FreeType support
 
 dvdauthor        - http://dvdauthor.sourceforge.net
   ** 0.6.14 or higher
 
 growisofs
 (dvd+rwtools)    - http://fy.chalmers.se/~appro/linux/DVD+RW
-  ** Tested with 5.21
-  ** needs mkisofs (tested 2.01)
 
 png2yuv
 mpeg2enc
 mplex
 (mjpegtools)     - http://mjpeg.sourceforge.net/
-  ** Tested with 1.9.0.0
 
 Installation
 ------------
@@ -79,7 +69,11 @@ Installation
 
 3. Recompile VDR and Plugins
 
-   # make plugins-clean clean vdr plugins
+   # make plugins-clean clean all plugins
+
+   If your VDR is patched for teletext subtitles (see ttxtsubs plugin) then the
+   burn plugin will also be compiled with teletext subtitle support.
+   DVB subtitle support is always compiled in.
 
 3b.(optional) Change the default temporary folder, the default DVD writer device
    and the default ISO directory with TMPDIR (default: /tmp),
@@ -88,7 +82,7 @@ Installation
    # make DVDDEV=/dev/cdrecorder ISODIR=/export plugins
 
 4. Copy the scripts vdrburn-dvd.sh, vdrburn-archive.sh to some location
-   inside your $PATH.
+   inside your $PATH, e.g.
 
    # cp PLUGINS/src/burn/*.sh /usr/local/bin/
 
@@ -96,6 +90,10 @@ Installation
    inside your VDR configuration directory (usually /video0 or /etc/vdr)
 
    # cp -a PLUGINS/src/burn/burn /etc/vdr/plugins/
+
+   Afterwards adapt the pathes and file names in
+   /etc/vdr/plugins/vdrburn-dvd.conf so that they point to the correct java and
+   Project X jar file.
 
 6. (optional) Create a directory "skins" in "plugins/burn" inside your VDR
    configuration directory. Create sub-directories for each skin you'd like
@@ -160,23 +158,27 @@ button. Editing is done as known from other VDR menus (like when editing
 channel names). Press "Ok" to confirm and save the title.
 
 You can also delete recordings from that list and change the order of
-recordingswith the "green" and "yellow" buttons. You can add recordings by
+recordings with the "green" and "yellow" buttons. You can add recordings by
 leaving the plugin and selecting addigional recordings from the recordings
 menu.
 
 Pressing "Ok" on a recording will open a tracks submenu. Here, you can deselect
 certain audio- or subtitle-tracks with the "red" button (be careful to leave at
-least one audio track active), and reorder them with the "green" button. Also the 
-language code can be modified if neccessary.
+least one audio track active), and reorder them with the "green" button. Also
+the language code can be modified if neccessary.
 The recording title can also be edited in this menu by pressing the "right" 
-button or replaced with some predefined values by pressing the red button. The
-predefined values are the EPG title, EPG title plus EPG short text, only the 
-EPG short text and recording name. Not all selections may be available for all 
-recordings e.g. if there is no short text defined in EPG. By selecting an entry
-and pressing the ok button the text is copied to the track menu. It can still 
-be edited by  pressing the "right" button. Editing is done the same way as 
-editing the disc title. Press "Ok" to confirm and save the recording title or 
-press "back" to discard the changes.
+button or can be replaced with some predefined values by pressing the red
+button. The predefined values are:
+  - the EPG title
+  - EPG title and EPG short text
+  - only the EPG short text
+  - recording name.
+Not all selections may be available for all recordings e.g. if there is no
+short text defined in EPG only the EPG title and recording name appear (and are
+usually identical). By selecting an entry and pressing the ok button the text
+is copied to the track menu. It can still be edited by  pressing the "right"
+button. Editing is done the same way as editing the disc title. Press "Ok" to
+confirm and save the recording title or press "back" to discard the changes.
 Press "back" to leave the submenu.
 
 Between the recording titles and the disc info, you see a progressbar which
@@ -195,7 +197,7 @@ finished. Anyway, you will be asked to place an empty disc into the drive if
 you forget it.
 
 You will notice that the display changes after you pressed the "red" button.
-You can switch between all displays using the "blue" button. This way you
+You can switch through all displays using the "blue" button. This way you
 can enqueue additional jobs while one job is processed. In the status display,
 you can also see a hint on the progress (although the bar is not too precise)
 and whether a job crashed for some reason. If a job is marked as "crashed",
@@ -207,6 +209,6 @@ crashed jobs to alter the settings and try again with the "green" button.
 
 Caveats
 -------
-
 - No transcoding is done (will fail with non-DVD-compliant DVB-streams)
-- does not support HD recordings
+- does not support HD recordings or creating Blu-ray discs; only SD recordings
+  on DVDs are supported

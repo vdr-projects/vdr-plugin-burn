@@ -218,12 +218,27 @@ case $1 in
 		RECORDING_DMH="$RECPATH"/"$UPPERRECDIR"_DVD/"$RECDIR"
 		
 		mkdir -p "$RECORDING_DMH"
-		echo "Copying $TEMP_PATH/INDEX_${TRACK_ON_DVD}/index.vdr -> "$RECORDING_DMH"/index"
-		cp "$TEMP_PATH/INDEX_${TRACK_ON_DVD}/index.vdr" "$RECORDING_DMH"/index
+		# Old style Records ("index.vdr")
+		if [ -f "$RECORDING_PATH/index.vdr" ]; then
+			echo "Copying $TEMP_PATH/INDEX_${TRACK_ON_DVD}/index.vdr -> "$RECORDING_DMH"/index.vdr"
+			cp "$TEMP_PATH/INDEX_${TRACK_ON_DVD}/index.vdr" "$RECORDING_DMH"/index.vdr
+		# New style Records ("index")
+		elif [ -f "$RECORDING_PATH/index" ]; then
+			echo "Copying $TEMP_PATH/INDEX_${TRACK_ON_DVD}/index.vdr -> "$RECORDING_DMH"/index"
+			cp "$TEMP_PATH/INDEX_${TRACK_ON_DVD}/index.vdr" "$RECORDING_DMH"/index
+		fi
 		echo "Moving $TEMP_PATH/INDEX_${TRACK_ON_DVD}/index.vdr -> $DVDAUTHOR_PATH/VIDEO_TS/index_${TRACK_ON_DVD}.vdr"
 		mv "$TEMP_PATH/INDEX_${TRACK_ON_DVD}/index.vdr" "$DVDAUTHOR_PATH/VIDEO_TS/index_${TRACK_ON_DVD}.vdr"
-		cp "$RECORDING_PATH"/info "$RECORDING_DMH"/info
-		if [ -f "$RECORDING_PATH/info" ]; then
+		# Old style Records ("info.vdr")
+		if [ -f "$RECORDING_PATH/info.vdr" ]; then
+			echo "Copying $RECORDING_PATH/info.vdr -> $RECORDING_DMH/info.vdr"
+			cp "$RECORDING_PATH"/info.vdr "$RECORDING_DMH"/info.vdr
+			echo "Copying $RECORDING_PATH/info.vdr -> $DVDAUTHOR_PATH/VIDEO_TS/info_${TRACK_ON_DVD}.vdr"
+			cp "$RECORDING_PATH/info.vdr" "$DVDAUTHOR_PATH/VIDEO_TS/info_${TRACK_ON_DVD}.vdr"
+		# New style Records ("info")
+		elif [ -f "$RECORDING_PATH/info" ]; then
+			echo "Copying $RECORDING_PATH/info -> $RECORDING_DMH/info"
+			cp "$RECORDING_PATH"/info "$RECORDING_DMH"/info
 			echo "Copying $RECORDING_PATH/info -> $DVDAUTHOR_PATH/VIDEO_TS/info_${TRACK_ON_DVD}.vdr"
 			cp "$RECORDING_PATH/info" "$DVDAUTHOR_PATH/VIDEO_TS/info_${TRACK_ON_DVD}.vdr"
 		fi

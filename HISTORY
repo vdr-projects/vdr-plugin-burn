@@ -1,6 +1,11 @@
 VDR Plugin 'burn' Revision History
 ----------------------------------
 
+2011-12-28: Version 0.2.0
+- fixed display of help keys in recordings menu when first entry is a directory (reported by Keine_Ahnung@vdr-portal.de)
+- added support for DMH Archive DVD with old video dir format (thanks to Keine_Ahnung@vdr-portal.de)
+- added support for dvdauthor 0.7.0 by exporting VIDEO_FORMAT
+
 2011-10-08: Version 0.2.0-beta7
 - fixed compiling on VDR 1.6
 - adapted to VDR 1.7.20 and removed erroneously introduced dependency on liemikuutio patch

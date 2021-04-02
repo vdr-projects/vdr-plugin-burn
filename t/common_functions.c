@@ -2,6 +2,7 @@
 #include "common.h"
 #include <string>
 #include <boost/test/unit_test.hpp>
+#include "proctools/shellescape.h"
 
 using boost::unit_test::test_suite;
 

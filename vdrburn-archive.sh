@@ -54,8 +54,15 @@ case $1 in
 		
 		mkdir -p "$RECORDING_DMH"
 		cp "$CONFIG_PATH/counters/standard" "$RECORDING_DMH"/dvd.vdr
-		cp "$RECORDING_PATH"/info "$RECORDING_DMH"/info
-		cp "$RECORDING_PATH"/index "$RECORDING_DMH"/index
+		# Old style Records ("index.vdr"/"info.vdr")
+		if [ -f "$RECORDING_PATH"/index.vdr ]; then
+			cp "$RECORDING_PATH"/info.vdr "$RECORDING_DMH"/info.vdr
+			cp "$RECORDING_PATH"/index.vdr "$RECORDING_DMH"/index.vdr
+		# New style Records ("index"/"info")
+		elif [ -f "$RECORDING_PATH"/index ]; then
+			cp "$RECORDING_PATH"/info "$RECORDING_DMH"/info
+			cp "$RECORDING_PATH"/index "$RECORDING_DMH"/index
+		fi
 	;;
 
 	archivemark)

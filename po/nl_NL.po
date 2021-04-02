@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: VDR 1.5.7\n"
 "Report-Msgid-Bugs-To: <<vdr@smue.org>>\n"
-"POT-Creation-Date: 2011-10-08 13:26+0200\n"
+"POT-Creation-Date: 2011-12-23 20:08+0100\n"
 "PO-Revision-Date: 2008-02-02 22:42+0100\n"
 "Last-Translator: Carel Willemse <carel.willemse@online.nl>\n"
 "Language-Team: <vdr@linuxtv.org>\n"
@@ -22,11 +22,81 @@ msgstr "Opdracht mislukt!"
 msgid "A job was finished successfully."
 msgstr "Er is een opdracht afgerond"
 
-msgid "Recording too big for disc type!"
-msgstr "Opname te groot voor dit type Disk!"
+msgid "DVD with menus"
+msgstr "DVD met menus"
 
-msgid "Disc too big for disc type!"
-msgstr "Dis te groot voor gekozen conversie!"
+msgid "DVD without menus"
+msgstr "DVD zonder menus"
+
+msgid "Archive disk"
+msgstr "Archiefdisk"
+
+msgid "Create ISO only"
+msgstr "Alleen ISO image maken"
+
+msgid "Write to Disc"
+msgstr "Alleen branden"
+
+msgid "Create ISO and write"
+msgstr "ISO image maken en branden"
+
+msgid "No chapters"
+msgstr "Geen hoofdstukken"
+
+msgid "Use editing marks"
+msgstr "Gebruik bewerkingsmarkeringen"
+
+msgid "Every 5 minutes"
+msgstr "Iedere 5 minuten"
+
+msgid "Every 10 minutes"
+msgstr "Iedere 10 minuten"
+
+msgid "Every 15 minutes"
+msgstr "Ieder kwartier"
+
+msgid "Every 30 minutes"
+msgstr "Ieder half uur"
+
+msgid "Every hour"
+msgstr "Ieder heel uur"
+
+msgid "Single Layer"
+msgstr "Single Layer"
+
+msgid "Double Layer"
+msgstr "Double Layer"
+
+msgid "Custom"
+msgstr "Gebruiker-gedefinieerd"
+
+msgid "ProjectX"
+msgstr "ProjectX"
+
+msgid "M2VRequantizer"
+msgstr "M2VRequantizer"
+
+msgid "Transcode"
+msgstr "Transcode"
+
+msgid "lxdvdrip"
+msgstr "lxdvdrip"
+
+msgid "EPG Title"
+msgstr ""
+
+msgid "EPG Title - Short Text"
+msgstr ""
+
+msgid "EPG Short Text"
+msgstr ""
+
+#, fuzzy
+msgid "Recording"
+msgstr "Opnamen"
+
+msgid "Couldn't convert character sets!"
+msgstr "Kan karaktersets niet converteren!"
 
 msgid "Target"
 msgstr "Bestemming"
@@ -130,90 +200,23 @@ msgstr "DVDs branden"
 msgid "Job options"
 msgstr "Opdrachtinstellingen"
 
-msgid "Versatile convert-and-burn plugin"
-msgstr "Universele 'converteer en brand' plugin"
+msgid "Default"
+msgstr "Standaardinstelling"
 
-msgid "Create DVDs"
-msgstr "DVDs maken"
+msgid "Video track"
+msgstr "Videospoor"
 
-msgid "Burn job active"
-msgstr "Brandopdracht aktief"
+msgid "Audio track"
+msgstr "Audiospoor"
 
-msgid "DVD with menus"
-msgstr "DVD met menus"
+msgid "Subtitle track"
+msgstr "Ondertitelingspoor"
 
-msgid "DVD without menus"
-msgstr "DVD zonder menus"
+msgid "page"
+msgstr "pagina"
 
-msgid "Archive disk"
-msgstr "Archiefdisk"
-
-msgid "Create ISO only"
-msgstr "Alleen ISO image maken"
-
-msgid "Write to Disc"
-msgstr "Alleen branden"
-
-msgid "Create ISO and write"
-msgstr "ISO image maken en branden"
-
-msgid "No chapters"
-msgstr "Geen hoofdstukken"
-
-msgid "Use editing marks"
-msgstr "Gebruik bewerkingsmarkeringen"
-
-msgid "Every 5 minutes"
-msgstr "Iedere 5 minuten"
-
-msgid "Every 10 minutes"
-msgstr "Iedere 10 minuten"
-
-msgid "Every 15 minutes"
-msgstr "Ieder kwartier"
-
-msgid "Every 30 minutes"
-msgstr "Ieder half uur"
-
-msgid "Every hour"
-msgstr "Ieder heel uur"
-
-msgid "Single Layer"
-msgstr "Single Layer"
-
-msgid "Double Layer"
-msgstr "Double Layer"
-
-msgid "Custom"
-msgstr "Gebruiker-gedefinieerd"
-
-msgid "ProjectX"
-msgstr "ProjectX"
-
-msgid "M2VRequantizer"
-msgstr "M2VRequantizer"
-
-msgid "Transcode"
-msgstr "Transcode"
-
-msgid "lxdvdrip"
-msgstr "lxdvdrip"
-
-msgid "EPG Title"
-msgstr ""
-
-msgid "EPG Title - Short Text"
-msgstr ""
-
-msgid "EPG Short Text"
-msgstr ""
-
-#, fuzzy
-msgid "Recording"
-msgstr "Opnamen"
-
-msgid "Couldn't convert character sets!"
-msgstr "Kan karaktersets niet converteren!"
+msgid "Unknown"
+msgstr "Onbekend"
 
 msgid "Couldn't open image file!"
 msgstr "Kan afbeeldingbestand niet openen!"
@@ -233,6 +236,15 @@ msgstr "Start burn-plugin a.u.b."
 msgid "Please insert an empty disk and press Ok"
 msgstr "Plaats een lege DVD en druk OK"
 
+msgid "Versatile convert-and-burn plugin"
+msgstr "Universele 'converteer en brand' plugin"
+
+msgid "Create DVDs"
+msgstr "DVDs maken"
+
+msgid "Burn job active"
+msgstr "Brandopdracht aktief"
+
 msgid "Recordings"
 msgstr "Opnamen"
 
@@ -242,23 +254,11 @@ msgstr "Lijst"
 msgid "Status"
 msgstr "Status"
 
-msgid "Video track"
-msgstr "Videospoor"
+msgid "Recording too big for disc type!"
+msgstr "Opname te groot voor dit type Disk!"
 
-msgid "Audio track"
-msgstr "Audiospoor"
-
-msgid "Subtitle track"
-msgstr "Ondertitelingspoor"
-
-msgid "page"
-msgstr "pagina"
-
-msgid "Unknown"
-msgstr "Onbekend"
-
-msgid "Default"
-msgstr "Standaardinstelling"
+msgid "Disc too big for disc type!"
+msgstr "Dis te groot voor gekozen conversie!"
 
 msgid "track editor"
 msgstr ""

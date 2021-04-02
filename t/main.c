@@ -1,5 +1,6 @@
 #include <boost/test/unit_test.hpp>
 #include "t/common_functions.h"
+#include "proctools/shellescape.h"
 
 #include "scanner.h"
 

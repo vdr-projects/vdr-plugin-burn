@@ -11,7 +11,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: VDR 1.5.7\n"
 "Report-Msgid-Bugs-To: <<vdr@smue.org>>\n"
-"POT-Creation-Date: 2011-10-08 13:26+0200\n"
+"POT-Creation-Date: 2011-12-23 20:08+0100\n"
 "PO-Revision-Date: 2010-12-13 18:42+0200\n"
 "Last-Translator: Ville Skyttä <ville.skytta@iki.fi>\n"
 "Language-Team: Finnish <gnome-fi-laatu@lists.sourceforge.net>\n"
@@ -28,11 +28,81 @@ msgstr "Polttaminen epäonnistui!"
 msgid "A job was finished successfully."
 msgstr "Polttaminen onnistui."
 
-msgid "Recording too big for disc type!"
-msgstr "Tallenne ei mahdu levytyypille!"
+msgid "DVD with menus"
+msgstr "DVD valikolla"
 
-msgid "Disc too big for disc type!"
-msgstr "Levy ei mahdu levytyypille!"
+msgid "DVD without menus"
+msgstr "DVD ilman valikkoa"
+
+msgid "Archive disk"
+msgstr "arkistolevy"
+
+msgid "Create ISO only"
+msgstr "vain levyimage"
+
+msgid "Write to Disc"
+msgstr "vain poltto"
+
+msgid "Create ISO and write"
+msgstr "levyimage ja poltto"
+
+msgid "No chapters"
+msgstr "ei kappaleita"
+
+msgid "Use editing marks"
+msgstr "leikkausmerkinnät"
+
+msgid "Every 5 minutes"
+msgstr "joka 5. minuutti"
+
+msgid "Every 10 minutes"
+msgstr "joka 10. minuutti"
+
+msgid "Every 15 minutes"
+msgstr "joka 15. minuutti"
+
+msgid "Every 30 minutes"
+msgstr "joka 30. minuutti"
+
+msgid "Every hour"
+msgstr "kerran tunnissa"
+
+msgid "Single Layer"
+msgstr "yksikerros"
+
+msgid "Double Layer"
+msgstr "kaksikerros"
+
+msgid "Custom"
+msgstr "säädettävä"
+
+msgid "ProjectX"
+msgstr "ProjectX"
+
+msgid "M2VRequantizer"
+msgstr "M2VRequantizer"
+
+msgid "Transcode"
+msgstr "Transcode"
+
+msgid "lxdvdrip"
+msgstr "lxdvdrip"
+
+msgid "EPG Title"
+msgstr ""
+
+msgid "EPG Title - Short Text"
+msgstr ""
+
+msgid "EPG Short Text"
+msgstr ""
+
+#, fuzzy
+msgid "Recording"
+msgstr "tallenteet"
+
+msgid "Couldn't convert character sets!"
+msgstr "Merkistömuunnos epäonnistui!"
 
 msgid "Target"
 msgstr "Kohde"
@@ -135,90 +205,23 @@ msgstr "Polta DVD-levy"
 msgid "Job options"
 msgstr "Tehtävän asetukset"
 
-msgid "Versatile convert-and-burn plugin"
-msgstr "Monipuolinen DVD-työkalu"
+msgid "Default"
+msgstr "Oletus"
 
-msgid "Create DVDs"
-msgstr "Polta DVD-levy"
+msgid "Video track"
+msgstr "Kuvaraita"
 
-msgid "Burn job active"
-msgstr "Polttotehtävä aktiivinen"
+msgid "Audio track"
+msgstr "Ääniraita"
 
-msgid "DVD with menus"
-msgstr "DVD valikolla"
+msgid "Subtitle track"
+msgstr "Tekstitysraita"
 
-msgid "DVD without menus"
-msgstr "DVD ilman valikkoa"
+msgid "page"
+msgstr "sivu"
 
-msgid "Archive disk"
-msgstr "arkistolevy"
-
-msgid "Create ISO only"
-msgstr "vain levyimage"
-
-msgid "Write to Disc"
-msgstr "vain poltto"
-
-msgid "Create ISO and write"
-msgstr "levyimage ja poltto"
-
-msgid "No chapters"
-msgstr "ei kappaleita"
-
-msgid "Use editing marks"
-msgstr "leikkausmerkinnät"
-
-msgid "Every 5 minutes"
-msgstr "joka 5. minuutti"
-
-msgid "Every 10 minutes"
-msgstr "joka 10. minuutti"
-
-msgid "Every 15 minutes"
-msgstr "joka 15. minuutti"
-
-msgid "Every 30 minutes"
-msgstr "joka 30. minuutti"
-
-msgid "Every hour"
-msgstr "kerran tunnissa"
-
-msgid "Single Layer"
-msgstr "yksikerros"
-
-msgid "Double Layer"
-msgstr "kaksikerros"
-
-msgid "Custom"
-msgstr "säädettävä"
-
-msgid "ProjectX"
-msgstr "ProjectX"
-
-msgid "M2VRequantizer"
-msgstr "M2VRequantizer"
-
-msgid "Transcode"
-msgstr "Transcode"
-
-msgid "lxdvdrip"
-msgstr "lxdvdrip"
-
-msgid "EPG Title"
-msgstr ""
-
-msgid "EPG Title - Short Text"
-msgstr ""
-
-msgid "EPG Short Text"
-msgstr ""
-
-#, fuzzy
-msgid "Recording"
-msgstr "tallenteet"
-
-msgid "Couldn't convert character sets!"
-msgstr "Merkistömuunnos epäonnistui!"
+msgid "Unknown"
+msgstr "Tuntematon"
 
 msgid "Couldn't open image file!"
 msgstr "Kuvatiedoston avaaminen epäonnistui!"
@@ -238,6 +241,15 @@ msgstr "Siirry \"Polta DVD-levy\"-laajennokseen"
 msgid "Please insert an empty disk and press Ok"
 msgstr "Aseta tyhjä levy asemaan ja paina 'OK'"
 
+msgid "Versatile convert-and-burn plugin"
+msgstr "Monipuolinen DVD-työkalu"
+
+msgid "Create DVDs"
+msgstr "Polta DVD-levy"
+
+msgid "Burn job active"
+msgstr "Polttotehtävä aktiivinen"
+
 msgid "Recordings"
 msgstr "tallenteet"
 
@@ -247,23 +259,11 @@ msgstr "Lista"
 msgid "Status"
 msgstr "status"
 
-msgid "Video track"
-msgstr "Kuvaraita"
+msgid "Recording too big for disc type!"
+msgstr "Tallenne ei mahdu levytyypille!"
 
-msgid "Audio track"
-msgstr "Ääniraita"
-
-msgid "Subtitle track"
-msgstr "Tekstitysraita"
-
-msgid "page"
-msgstr "sivu"
-
-msgid "Unknown"
-msgstr "Tuntematon"
-
-msgid "Default"
-msgstr "Oletus"
+msgid "Disc too big for disc type!"
+msgstr "Levy ei mahdu levytyypille!"
 
 msgid "track editor"
 msgstr ""
