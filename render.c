@@ -55,7 +55,7 @@ namespace vdr_burn
 		for (skin::menu_list::const_iterator it = m_job.get_skin().get_main_menu_titles().begin();
 			 rec != m_job.get_recordings().end() && it != m_job.get_skin().get_main_menu_titles().end();
 			 ++it, ++rec)
-			menuPage.draw_text( it->region, convert_to_utf8( rec->get_title() ) );
+			menuPage.draw_text( it->region, convert_to_utf8( rec->get_eventTitle() ) );
 
 		menuPage.save( m_job.get_menu_background( Page ) );
 		return true;
@@ -107,6 +107,7 @@ namespace vdr_burn
 		render.put_environment( "MENU_XML", config.get_xml_path( page ) );
 		render.put_environment( "MENU_M2V", item.get_paths().data + "/menu-background.m2v" );
 		render.put_environment( "MENU_MPEG", item.get_menu_mpeg( page ) );
+		render.put_environment( "MENU_ASPECT", item.get_menu_aspect() );
 		m_chain.execute( render );
 
 		// TODO error message passing
@@ -135,14 +136,14 @@ namespace vdr_burn
 		image background( m_job.get_skin().get_background() );
 		menuPage.draw_image( point( 0, 0 ), background );
 
-		menuPage.draw_text( m_job.get_skin().get_title_menu_header(), convert_to_utf8( m_current->get_title() ) );
+		menuPage.draw_text( m_job.get_skin().get_title_menu_header(), convert_to_utf8( m_current->get_eventTitle() ) );
 		menuPage.draw_text( m_job.get_skin().get_title_menu_play().region, convert_to_utf8( tr("Play movie") ) );
 
 		// Create "Back"-Button unless SkipMainmenu or if there are other tracks
 		if( !m_job.get_options().SkipMainmenu || m_job.get_recordings().size() > 1 )
 			menuPage.draw_text( m_job.get_skin().get_title_menu_exit().region, convert_to_utf8( tr("Back") ) );
 
-		Lines = menuPage.draw_text( m_job.get_skin().get_title_menu_text(), convert_to_utf8( m_current->get_summary() ), Lines );
+		Lines = menuPage.draw_text( m_job.get_skin().get_title_menu_text(), convert_to_utf8( m_current->get_eventDescription() ), Lines );
 
 		if (Lines != -1)
 			menuPage.draw_text( m_job.get_skin().get_title_menu_next().region, convert_to_utf8( tr("Next page") ) );

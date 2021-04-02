@@ -10,7 +10,7 @@
 #include "menuburn.h"
 #include "menuitems.h"
 #include "common.h"
-#if APIVERSNUM < 10507  
+#if APIVERSNUM < 10507
 #include "i18n.h"
 #endif
 #include <algorithm>
@@ -91,7 +91,7 @@ bool cBurnParameters::ProcessArgs(int argc, char *argv[])
 			PROCTOOLS_INIT_PROPERTY( RemovePath,          false ),
 			PROCTOOLS_INIT_PROPERTY( CustomDiskSize,      200 ),
 			PROCTOOLS_INIT_PROPERTY( BurnSpeed,           0 ),
-			PROCTOOLS_INIT_PROPERTY( DemuxType,           demuxtype_vdrsync ),
+			PROCTOOLS_INIT_PROPERTY( DemuxType,           demuxtype_projectx ),
 			PROCTOOLS_INIT_PROPERTY( RequantType,         requanttype_metakine ),
 			PROCTOOLS_INIT_PROPERTY( PreserveLogFiles,    false ),
 			PROCTOOLS_INIT_PROPERTY( DefaultLanguage,     0 ),
@@ -100,7 +100,9 @@ bool cBurnParameters::ProcessArgs(int argc, char *argv[])
 			PROCTOOLS_INIT_PROPERTY( OfferChapters,       true ),
 			PROCTOOLS_INIT_PROPERTY( OfferDiskSize,       true ),
 			PROCTOOLS_INIT_PROPERTY( OfferStoreMode,      true ),
+#ifdef ENABLE_DMH_ARCHIVE
 			PROCTOOLS_INIT_PROPERTY( OfferDmhArchiveMode, true ),
+#endif
 			PROCTOOLS_INIT_PROPERTY( OfferCutOnDemux,     true ),
 			PROCTOOLS_INIT_PROPERTY( OfferSkipTitlemenu,  true ),
 			PROCTOOLS_INIT_PROPERTY( OfferSkipMainmenu,   true )
@@ -118,9 +120,12 @@ bool cBurnParameters::ProcessArgs(int argc, char *argv[])
 	job_options::job_options():
 			PROCTOOLS_INIT_PROPERTY( DiskType,            disktype_dvd_menu ),
 			PROCTOOLS_INIT_PROPERTY( SkinIndex,           0 ),
+			PROCTOOLS_INIT_PROPERTY( SkinAspectIndex,     0 ),
 			PROCTOOLS_INIT_PROPERTY( ChaptersMode,        chaptersmode_10 ),
 			PROCTOOLS_INIT_PROPERTY( StoreMode,           storemode_burn ),
+#ifdef ENABLE_DMH_ARCHIVE
 			PROCTOOLS_INIT_PROPERTY( DmhArchiveMode,      true ),
+#endif
 			PROCTOOLS_INIT_PROPERTY( DiskSize,            disksize_singlelayer ),
 			PROCTOOLS_INIT_PROPERTY( CutOnDemux,          false ),
 			PROCTOOLS_INIT_PROPERTY( SkipTitlemenu,       true ),
@@ -152,10 +157,13 @@ bool cBurnParameters::ProcessArgs(int argc, char *argv[])
 			m_storeModeItem( 0 ),
 			m_diskTypeItem( 0 ),
 			m_skinItem( 0 ),
+			m_skinAspectItem( 0 ),
 			m_chaptersItem( 0 ),
 			m_diskSizeItem( 0 ),
 			m_cutItem( 0 ),
+#ifdef ENABLE_DMH_ARCHIVE
 			m_archiveItem( 0 ),
+#endif
 			m_skipTitleItem( 0 ),
 			m_skipMainItem( 0 ),
 			m_options( options_ ),
@@ -173,11 +181,16 @@ bool cBurnParameters::ProcessArgs(int argc, char *argv[])
 		if ( m_showAll || global_setup().OfferDiskType )
 			Add( m_diskTypeItem = new menu::list_edit_item( tr("Disk type"), m_options.DiskType, disktype_strings ) );
 
+#ifdef ENABLE_DMH_ARCHIVE
 		if ( m_showAll || global_setup().OfferDmhArchiveMode )
 			Add( m_archiveItem = new menu::bool_edit_item( tr("DMH-archive"), m_options.DmhArchiveMode ) );
+#endif
 
 		if ( m_showAll || skin_list::get().size() > 0 )
 			Add( m_skinItem = new menu::list_edit_item( tr("Skin"), m_options.SkinIndex, skin_list::get_names(), false ) );
+
+		if ( m_showAll || skin_list::get().size() > 0 )
+			Add( m_skinAspectItem = new menu::list_edit_item( tr("Skin Aspect Ratio"), m_options.SkinAspectIndex, skinaspect_strings ) );
 
 		if ( m_showAll || global_setup().OfferChapters )
 			Add( m_chaptersItem = new menu::list_edit_item( tr("Chapters"), m_options.ChaptersMode, chaptersmode_strings ) );
@@ -219,7 +232,9 @@ bool cBurnParameters::ProcessArgs(int argc, char *argv[])
 		Add( new menu::bool_edit_item( tr("Offer target"), m_setup.OfferStoreMode ) );
 		Add( new menu::bool_edit_item( tr("Offer disk size"), m_setup.OfferDiskSize ) );
 		Add( new menu::bool_edit_item( tr("Offer cutting"), m_setup.OfferCutOnDemux ) );
+#ifdef ENABLE_DMH_ARCHIVE
 		Add( new menu::bool_edit_item( tr("Offer DMH-archive"), m_setup.OfferDmhArchiveMode ) );
+#endif
 		Add( new menu::bool_edit_item( tr("Offer skip titlemenu"), m_setup.OfferSkipTitlemenu ) );
 		Add( new menu::bool_edit_item( tr("Offer skip mainmenu"), m_setup.OfferSkipMainmenu ) );
 
@@ -264,15 +279,19 @@ bool cBurnParameters::ProcessArgs(int argc, char *argv[])
 
 	void job_options_editor::check_item_states()
 	{
+#ifdef ENABLE_DMH_ARCHIVE
 		if ( m_options.DiskType == disktype_archive ) {
 			m_options.DmhArchiveMode = true;
 			m_options.CutOnDemux = false;
 		} else {
 			if ( !global_setup().OfferDmhArchiveMode )
 				m_options.DmhArchiveMode = job_defaults().DmhArchiveMode;
+#endif
 			if ( !global_setup().OfferCutOnDemux )
 				m_options.CutOnDemux = job_defaults().CutOnDemux;
+#ifdef ENABLE_DMH_ARCHIVE
 		}
+#endif
 
 //		m_archiveItem->set_value( m_options.DiskType == disktype_archive ? true : bool( m_options.DmhArchiveMode ) );
 //		m_cutItem->set_value( m_options.DiskType == disktype_archive ? false : bool( m_options.CutOnDemux ) );
@@ -280,17 +299,25 @@ bool cBurnParameters::ProcessArgs(int argc, char *argv[])
 		m_infoTextItem->update( m_options.CutOnDemux );
 		m_infoBarItem->update( m_options.CutOnDemux );
 
+#ifdef ENABLE_DMH_ARCHIVE
 		if ( m_archiveItem != 0 ) {
 			m_archiveItem->set_value( m_options.DmhArchiveMode );
 			m_archiveItem->SetSelectable( m_options.DiskType < disktype_archive );
 		}
-		if ( m_skinItem != 0 )
+#endif
+		if ( m_skinItem != 0 ) {
 			m_skinItem->SetSelectable( m_options.DiskType == disktype_dvd_menu );
+			m_skinAspectItem->SetSelectable( m_options.DiskType == disktype_dvd_menu );
+		}
+#ifdef ENABLE_DMH_ARCHIVE
 		if ( m_chaptersItem != 0 )
 			m_chaptersItem->SetSelectable( m_options.DiskType < disktype_archive );
+#endif
 		if ( m_cutItem != 0 ) {
 			m_cutItem->set_value( m_options.CutOnDemux );
+#ifdef ENABLE_DMH_ARCHIVE
 			m_cutItem->SetSelectable( m_options.DiskType < disktype_archive );
+#endif
 		}
 		if ( m_skipTitleItem != 0 )
 			m_skipTitleItem->SetSelectable( m_options.DiskType == disktype_dvd_menu );

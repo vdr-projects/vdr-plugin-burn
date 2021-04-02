@@ -34,8 +34,10 @@ namespace vdr_burn
 		bool prepare_device();
 		bool prepare_burning();
 		bool prepare_cutmarks();
+#ifdef ENABLE_DMH_ARCHIVE
 		bool prepare_dmh_archive();
 		bool prepare_archive_mark();
+#endif
 
 	private:
 		friend class chain_vdr;

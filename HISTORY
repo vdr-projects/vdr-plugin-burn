@@ -1,7 +1,19 @@
 VDR Plugin 'burn' Revision History
 ----------------------------------
 
-2010-0x-xx: Version 0.2.0-beta4
+2010-12-12: Version 0.2.0-beta5
+- updated DMH archive part of vdrburn-dvd/-archive.sh (thanks to copperhead@vdr-portal.de)
+- made DMH archive optional via compile switch. Enable with ENABLE_DMH_ARCHIVE=1 (thanks to copperhead@vdr-portal.de)
+- replaced offsetof by __builtin_ofsetof in scanner.c as it caused problems on some distris (suggested by TomJoad@vdr-portal.de)
+- removed support for burning CDs (DVD structures on CD-R)
+- removed support for vdrsync.pl, use Project X instead
+- added 100MB spare space in requant factor calculation to avoid oversized ISO images
+- allowed all chars of VDR locale for titels
+- fixed renamed menu names being ignored (reported by mahlzeit@vdr-portal.de)
+- added recording title to track edit menu
+- converted all po files to UTF-8 (thanks to Ville Skyttä for the fi patch which led to that)
+
+2010-05-23: Version 0.2.0-beta4
 - fixed teletext page calculation (reported by Petri Helin)
 - refactored handling of subtitles (dvb and teletext). Subtitels are now intergrated in the standard job handling
 - hide recordings from selection which have H.264_AVC as stream content type in their component

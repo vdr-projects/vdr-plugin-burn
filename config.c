@@ -101,7 +101,7 @@ namespace vdr_burn
 
 		for (int i = 0; i < pages; ++i) {
 			m_file << "      <pgc" << (i == 0 ? " entry=\"root\"" : "") << ">" << endl;
-			if (rec->get_summary() == "" && m_job.get_skip_titlemenu())
+			if (rec->get_eventDescription() == "" && m_job.get_skip_titlemenu())
 				m_file << "        <pre>jump title 1 chapter 1;</pre>" << endl;
 			else {
 				if ( i == 0) {
@@ -115,7 +115,6 @@ namespace vdr_burn
 					  	   << "        </pre>" << endl;
 				}
 				m_file << "        <vob file=\"" << rec->get_menu_mpeg(i) << "\" pause=\"inf\"/>"
-					// TODO observe pause=inf
 					   << endl;
 
 				if (i > 0)

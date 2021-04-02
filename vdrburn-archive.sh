@@ -43,7 +43,19 @@ case $1 in
 	;;
 
 	recordingmark)
-		cp "$CONFIG_PATH/counters/standard" "$RECORDING_PATH/dvd.vdr"
+		cd "$RECORDING_PATH"
+		RECDIR=$(basename $(pwd))
+		cd ..
+		UPPERRECDIR=$(basename $(pwd))
+		cd ..
+		RECPATH=$(pwd)
+		
+		RECORDING_DMH="$RECPATH"/"$UPPERRECDIR"_DVD/"$RECDIR"
+		
+		mkdir -p "$RECORDING_DMH"
+		cp "$CONFIG_PATH/counters/standard" "$RECORDING_DMH"/dvd.vdr
+		cp "$RECORDING_PATH"/info "$RECORDING_DMH"/info
+		cp "$RECORDING_PATH"/index "$RECORDING_DMH"/index
 	;;
 
 	archivemark)

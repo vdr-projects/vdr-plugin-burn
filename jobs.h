@@ -44,8 +44,8 @@ namespace vdr_burn {
 
 		job*                   m_owner;
 		std::string            m_fileName;
-		std::string            m_title;
-		std::string            m_summary;
+		std::string            m_eventTitle;
+		std::string            m_eventDescription;
 		std::string            m_datetime;
 		path_pair              m_paths;
 		std::string            m_name;
@@ -71,8 +71,8 @@ namespace vdr_burn {
 
 		const path_pair& get_paths() const { return m_paths; }
 		const std::string& get_filename() const { return m_fileName; }
-		const std::string& get_title() const { return m_title; }
-		const std::string& get_summary() const { return m_summary; }
+		const std::string& get_eventTitle() const { return m_eventTitle; }
+		const std::string& get_eventDescription() const { return m_eventDescription; }
 		const std::string& get_datetime() const { return m_datetime; }
 		const std::string& get_name() const { return m_name; }
 		const bool get_PesRecording() const { return m_isPesRecording; }
@@ -91,6 +91,7 @@ namespace vdr_burn {
 		std::string get_spumux_path(int number) const;
 		std::string get_subtitle_path(int number) const;
 		std::string get_menu_background(int Page) const;
+		std::string get_menu_aspect() const;
 		std::string get_buttons_normal() const;
 		std::string get_buttons_highlight(int Page) const;
 		std::string get_buttons_select(int Page) const;
@@ -216,7 +217,6 @@ namespace vdr_burn {
 		bool set_options( const job_options& options_, std::string& error_ );
 
 		void set_paths(const path_pair& paths);
-		//void set_title(const char* title) { strncpy(m_title, title, JOBNAMELEN); }
 
 		// progress monitoring
 		int get_progress() const;
@@ -232,7 +232,9 @@ namespace vdr_burn {
 		std::string& get_title() { return m_title; }
 		const std::string& get_title() const { return m_title; }
 		int get_disk_type() const { return m_options.DiskType; }
+#ifdef ENABLE_DMH_ARCHIVE
 		bool get_dmh_archive_mode() const { return m_options.DmhArchiveMode; }
+#endif
 		int get_store_mode() const { return m_options.StoreMode; }
 		int get_chapters_mode() const { return m_options.ChaptersMode; }
 		int get_disk_size() const { return m_options.DiskSize; }
@@ -246,12 +248,15 @@ namespace vdr_burn {
 
 		std::string get_iso_path() const;
 		std::string get_menu_background(int Page) const;
+		std::string get_menu_aspect() const;
 		std::string get_buttons_normal() const;
 		std::string get_buttons_highlight(int Page) const;
 		std::string get_menu_mpeg(int Page) const;
 		std::string get_volume_id() const;
 
+#ifdef ENABLE_DMH_ARCHIVE
 		static std::string get_archive_id();
+#endif
 	};
 
 //	inline
@@ -264,6 +269,13 @@ namespace vdr_burn {
 	std::string job::get_menu_background(int page) const
 	{
 		return proctools::format("{0}/menu-bg-{1}.png") % m_paths.data % page;
+	}
+
+	inline
+	std::string job::get_menu_aspect() const
+	{
+		return std::string ( skinaspect_strings[m_options.SkinAspectIndex] );
+
 	}
 
 	inline

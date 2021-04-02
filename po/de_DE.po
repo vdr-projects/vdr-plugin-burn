@@ -7,12 +7,12 @@ msgid ""
 msgstr ""
 "Project-Id-Version: VDR 1.5.7\n"
 "Report-Msgid-Bugs-To: <<vdr@smue.org>>\n"
-"POT-Creation-Date: 2010-05-02 22:10+0200\n"
-"PO-Revision-Date: 2008-02-02 22:42+0100\n"
-"Last-Translator: Klaus Schmidinger <kls@cadsoft.de>\n"
+"POT-Creation-Date: 2010-12-11 14:10+0100\n"
+"PO-Revision-Date: 2010-12-11-19:50+0100\n"
+"Last-Translator: Christoph Haubrich\n"
 "Language-Team: <vdr@linuxtv.org>\n"
 "MIME-Version: 1.0\n"
-"Content-Type: text/plain; charset=ISO-8859-15\n"
+"Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
 msgid "Versatile convert-and-burn plugin"
@@ -22,19 +22,19 @@ msgid "Create DVDs"
 msgstr "DVDs erstellen"
 
 msgid "Burn job active"
-msgstr "Brennjob läuft"
+msgstr "Brennjob lÃ¤uft"
 
 msgid "Please enter the burn plugin"
 msgstr "Bitte Brenn-Plugin aufrufen"
 
 msgid "Please insert an empty disk and press Ok"
-msgstr "Bitte legen Sie eine leere DVD ein und drücken Sie Ok"
+msgstr "Bitte legen Sie eine leere DVD ein und drÃ¼cken Sie Ok"
 
 msgid "DVD with menus"
-msgstr "DVD mit Menüs"
+msgstr "DVD mit MenÃ¼s"
 
 msgid "DVD without menus"
-msgstr "DVD ohne Menüs"
+msgstr "DVD ohne MenÃ¼s"
 
 msgid "Archive disk"
 msgstr "Archiv-Disk"
@@ -75,14 +75,8 @@ msgstr "Single Layer"
 msgid "Double Layer"
 msgstr "Double Layer"
 
-msgid "CD-R"
-msgstr "CD-R"
-
 msgid "Custom"
 msgstr "Benutzerdefiniert"
-
-msgid "VDRSync"
-msgstr "VDRSync"
 
 msgid "ProjectX"
 msgstr "ProjectX"
@@ -100,7 +94,7 @@ msgid "Couldn't convert character sets!"
 msgstr ""
 
 msgid "Couldn't open image file!"
-msgstr "Kann Abbilddatei nicht öffnen!"
+msgstr "Kann Abbilddatei nicht Ã¶ffnen!"
 
 msgid "Couldn't create new image!"
 msgstr ""
@@ -112,10 +106,10 @@ msgid "Couldn't save image file!"
 msgstr ""
 
 msgid "Recording too big for disc type!"
-msgstr "Aufnahme zu groß für Disk-Typ!"
+msgstr "Aufnahme zu groÃŸ fÃ¼r Disk-Typ!"
 
 msgid "Disc too big for disc type!"
-msgstr "Disc zu groß für diese Art!"
+msgstr "Disc zu groÃŸ fÃ¼r diese Art!"
 
 msgid "A job failed!"
 msgstr "Ein Auftrag ist fehlgeschlagen!"
@@ -145,11 +139,11 @@ msgid "Language code"
 msgstr "Sprachkennung"
 
 msgid "Choose title"
-msgstr "Titel wählen"
+msgstr "Titel wÃ¤hlen"
 
 #, c-format
 msgid "$Recordings: %1$d, total size: %2$.1f MB"
-msgstr "Aufzeichnungen: %1$d, Gesamtgröße: %2$.1f MB"
+msgstr "Aufzeichnungen: %1$d, GesamtgrÃ¶ÃŸe: %2$.1f MB"
 
 msgid "No recordings marked for burning"
 msgstr "Keine Aufzeichnungen zum Brennen markiert"
@@ -158,7 +152,7 @@ msgid "Write DVDs"
 msgstr "DVDs brennen"
 
 msgid "Choose"
-msgstr "Wählen"
+msgstr "WÃ¤hlen"
 
 msgid "Analyzing recording..."
 msgstr "Aufzeichnung wird analysiert..."
@@ -185,10 +179,10 @@ msgid "Remove"
 msgstr "Entfernen"
 
 msgid "No MPEG2 video track selected!"
-msgstr "Keine MPEG2-Videospur ausgewählt!"
+msgstr "Keine MPEG2-Videospur ausgewÃ¤hlt!"
 
 msgid "No audio track selected!"
-msgstr "Keine Tonspur ausgewählt!"
+msgstr "Keine Tonspur ausgewÃ¤hlt!"
 
 msgid "Not enough free disk space!"
 msgstr "Nicht genug Plattenplatz!"
@@ -204,16 +198,16 @@ msgid "Job active (Converting)"
 msgstr "Auftrag aktiv (Konvertiere)"
 
 msgid "No active or waiting jobs present"
-msgstr "Keine aktiven oder wartenden Aufträge vorhanden"
+msgstr "Keine aktiven oder wartenden AuftrÃ¤ge vorhanden"
 
 msgid "Canceled jobs"
-msgstr "Abgebrochene Aufträge"
+msgstr "Abgebrochene AuftrÃ¤ge"
 
 msgid "Erroneous jobs"
-msgstr "Fehlerhafte Aufträge"
+msgstr "Fehlerhafte AuftrÃ¤ge"
 
 msgid "Restart"
-msgstr "Überarbeiten"
+msgstr "Ãœberarbeiten"
 
 msgid "Retry"
 msgstr "Wiederholen"
@@ -222,7 +216,7 @@ msgid "Cancel"
 msgstr "Abbrechen"
 
 msgid "Replace current job?"
-msgstr "Gegenwärtigen Auftrag ersetzen?"
+msgstr "GegenwÃ¤rtigen Auftrag ersetzen?"
 
 msgid "Job still active - really cancel?"
 msgstr "Auftrag noch aktiv - wirklich beenden?"
@@ -232,25 +226,25 @@ msgstr "Auftrag aus Liste entfernen?"
 
 #, c-format
 msgid "$Total size: %1$.1f MB %2$s"
-msgstr "Gesamtgröße: %1$.1f MB %2$s"
+msgstr "GesamtgrÃ¶ÃŸe: %1$.1f MB %2$s"
 
 msgid "(would be shrinked)"
-msgstr "(würden geschrumpft)"
+msgstr "(wÃ¼rden geschrumpft)"
 
 msgid "Aspect ratio"
-msgstr "Seitenverhältnis"
+msgstr "SeitenverhÃ¤ltnis"
 
 msgid "Previous page"
 msgstr "Vorherige Seite"
 
 msgid "Next page"
-msgstr "Nächste Seite"
+msgstr "NÃ¤chste Seite"
 
 msgid "Play movie"
 msgstr "Film abspielen"
 
 msgid "Back"
-msgstr "zurück"
+msgstr "zurÃ¼ck"
 
 msgid "Couldn't read index"
 msgstr "Konnte Index nicht lesen"
@@ -259,7 +253,7 @@ msgid "Couldn't browse recording"
 msgstr "Konnte Aufzeichnung nicht durchsuchen"
 
 msgid "mp2"
-msgstr ""
+msgstr "mp2"
 
 msgid "dolby"
 msgstr "dolby"
@@ -282,20 +276,23 @@ msgstr "DMH-Archiv"
 msgid "Skin"
 msgstr "Aussehen"
 
+msgid "Skin Aspect Ratio"
+msgstr "MenÃ¼-SeitenverhÃ¤ltnis"
+
 msgid "Chapters"
 msgstr "Kapitel"
 
 msgid "Disk size"
-msgstr "Grösse der Disk"
+msgstr "GrÃ¶ÃŸe der Disk"
 
 msgid "Cut"
 msgstr "Schneiden"
 
 msgid "Skip empty titlemenu"
-msgstr "Leeres Titelmenü überspringen"
+msgstr "Leeres TitelmenÃ¼ Ã¼berspringen"
 
 msgid "Skip short mainmenu"
-msgstr "Kurzes Hauptmenü überspringen"
+msgstr "Kurzes HauptmenÃ¼ Ã¼berspringen"
 
 msgid "--- Common settings --------------------------------------------------"
 msgstr "--- Allgemeine Einstellungen -----------------------------------------"
@@ -322,13 +319,13 @@ msgid "Spare language code"
 msgstr "Ersatzsprachkennung"
 
 msgid "Status in main menu"
-msgstr "Status im Hauptmenü"
+msgstr "Status im HauptmenÃ¼"
 
 msgid "Custom disk size (MB)"
-msgstr "Benutzerdef. Grösse (MB)"
+msgstr "Benutzerdef. GrÃ¶ÃŸe (MB)"
 
 msgid "--- Job menu settings ------------------------------------------------"
-msgstr "--- Jobmenü-Einstellungen --------------------------------------------"
+msgstr "--- JobmenÃ¼-Einstellungen --------------------------------------------"
 
 msgid "Offer disk type"
 msgstr "Art der DVD anbieten"
@@ -340,7 +337,7 @@ msgid "Offer target"
 msgstr "Ziel anbieten"
 
 msgid "Offer disk size"
-msgstr "Grösse der Disk anbieten"
+msgstr "GrÃ¶ÃŸe der Disk anbieten"
 
 msgid "Offer cutting"
 msgstr "Schneiden anbieten"
@@ -349,10 +346,10 @@ msgid "Offer DMH-archive"
 msgstr "DMH-Archiv anbieten"
 
 msgid "Offer skip titlemenu"
-msgstr "Titelmenü überspringen anbieten"
+msgstr "TitelmenÃ¼ Ã¼berspringen anbieten"
 
 msgid "Offer skip mainmenu"
-msgstr "Hauptmenü überspringen anbieten"
+msgstr "HauptmenÃ¼ Ã¼berspringen anbieten"
 
 msgid "--- Job defaults -----------------------------------------------------"
 msgstr "--- Standard Job-Einstellungen ---------------------------------------"
@@ -374,3 +371,12 @@ msgstr "Seite"
 
 msgid "Unknown"
 msgstr "Unbekannt"
+
+#~ msgid "title"
+#~ msgstr "Titel"
+
+#~ msgid "CD-R"
+#~ msgstr "CD-R"
+
+#~ msgid "VDRSync"
+#~ msgstr "VDRSync"

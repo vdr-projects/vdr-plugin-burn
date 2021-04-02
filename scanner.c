@@ -173,7 +173,8 @@ namespace vdr_burn
         }
 
         struct dirent* entry;
-        char entryBuffer[offsetof(struct dirent, d_name) + NAME_MAX + 1];
+        //char entryBuffer[offsetof(struct dirent, d_name) + NAME_MAX + 1];
+        char entryBuffer[__builtin_offsetof(struct dirent, d_name) + NAME_MAX + 1];
         int result;
         while ((result = readdir_r(videoDir, (struct dirent*)entryBuffer, &entry)) == 0 && entry != 0) {
             string fileName( entry->d_name );

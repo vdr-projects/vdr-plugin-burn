@@ -1,6 +1,5 @@
 #include "chain-vdr.h"
 #include "chain-dvd.h"
-#include "chain-archive.h"
 #include "logger-vdr.h"
 #include "setup.h"
 #include "menuburn.h"
@@ -12,6 +11,10 @@
 #include <vdr/config.h>
 #include <sys/time.h>
 #include <sys/resource.h>
+
+#ifdef ENABLE_DMH_ARCHIVE
+#include "chain-archive.h"
+#endif
 
 namespace vdr_burn
 {
@@ -55,7 +58,9 @@ namespace vdr_burn
 		case disktype_dvd_menu:
 		case disktype_dvd_nomenu: return new chain_dvd(job);
 
+#ifdef ENABLE_DMH_ARCHIVE
 		case disktype_archive:    return new chain_archive(job);
+#endif
 		}
 
 		logger::error( "chain_vdr::create_chain requested for unknown disktype" );

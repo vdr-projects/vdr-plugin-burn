@@ -1,37 +1,40 @@
 # VDR plugin language source file.
 # Copyright (C) 2007 Klaus Schmidinger <kls@cadsoft.de>
 # This file is distributed under the same license as the VDR package.
-# Hannu Savolainen <hannu@opensound.com>, 2002
-# Jaakko Hyv‰tti <jaakko@hyvatti.iki.fi>, 2002
-# Niko Tarnanen <niko.tarnanen@hut.fi>, 2003
-# Rolf Ahrenberg <rahrenbe@cc.hut.fi>, 2003
 #
+# Hannu Savolainen <hannu@opensound.com>, 2002.
+# Jaakko Hyv√§tti <jaakko@hyvatti.iki.fi>, 2002.
+# Niko Tarnanen <niko.tarnanen@hut.fi>, 2003.
+# Rolf Ahrenberg <rahrenbe@cc.hut.fi>, 2003.
+# Ville Skytt√§ <ville.skytta@iki.fi>, 2010.
 msgid ""
 msgstr ""
 "Project-Id-Version: VDR 1.5.7\n"
 "Report-Msgid-Bugs-To: <<vdr@smue.org>>\n"
-"POT-Creation-Date: 2010-05-02 22:10+0200\n"
-"PO-Revision-Date: 2008-02-02 22:42+0100\n"
-"Last-Translator: Rolf Ahrenberg <rahrenbe@cc.hut.fi>\n"
-"Language-Team: <vdr@linuxtv.org>\n"
+"POT-Creation-Date: 2010-12-11 19:52+0100\n"
+"PO-Revision-Date: 2010-08-28 23:46+0300\n"
+"Last-Translator: Ville Skytt√§ <ville.skytta@iki.fi>\n"
+"Language-Team: Finnish <gnome-fi-laatu@lists.sourceforge.net>\n"
 "MIME-Version: 1.0\n"
-"Content-Type: text/plain; charset=ISO-8859-15\n"
+"Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Lokalize 1.0\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 msgid "Versatile convert-and-burn plugin"
-msgstr "Monipuolinen DVD-tyˆkalu"
+msgstr "Monipuolinen DVD-ty√∂kalu"
 
 msgid "Create DVDs"
 msgstr "Polta DVD-levy"
 
 msgid "Burn job active"
-msgstr "Polttoteht‰v‰ aktiivinen"
+msgstr "Polttoteht√§v√§ aktiivinen"
 
 msgid "Please enter the burn plugin"
 msgstr "Siirry \"Polta DVD-levy\"-laajennokseen"
 
 msgid "Please insert an empty disk and press Ok"
-msgstr "Aseta tyhj‰ levy asemaan ja paina 'OK'"
+msgstr "Aseta tyhj√§ levy asemaan ja paina 'OK'"
 
 msgid "DVD with menus"
 msgstr "DVD valikolla"
@@ -55,7 +58,7 @@ msgid "No chapters"
 msgstr "ei kappaleita"
 
 msgid "Use editing marks"
-msgstr "leikkausmerkinn‰t"
+msgstr "leikkausmerkinn√§t"
 
 msgid "Every 5 minutes"
 msgstr "joka 5. minuutti"
@@ -78,14 +81,8 @@ msgstr "yksikerros"
 msgid "Double Layer"
 msgstr "kaksikerros"
 
-msgid "CD-R"
-msgstr "CD-R"
-
 msgid "Custom"
-msgstr "s‰‰dett‰v‰"
-
-msgid "VDRSync"
-msgstr "VDRSync"
+msgstr "s√§√§dett√§v√§"
 
 msgid "ProjectX"
 msgstr "ProjectX"
@@ -97,22 +94,22 @@ msgid "Transcode"
 msgstr "Transcode"
 
 msgid "lxdvdrip"
-msgstr ""
+msgstr "lxdvdrip"
 
 msgid "Couldn't convert character sets!"
-msgstr ""
+msgstr "Merkist√∂muunnos ep√§onnistui!"
 
 msgid "Couldn't open image file!"
-msgstr ""
+msgstr "Kuvatiedoston avaaminen ep√§onnistui!"
 
 msgid "Couldn't create new image!"
-msgstr ""
+msgstr "Uuden kuvan luominen ep√§onnistui!"
 
 msgid "Couldn't render menu images!"
-msgstr ""
+msgstr "Valikkokuvien luominen ep√§onnistui!"
 
 msgid "Couldn't save image file!"
-msgstr ""
+msgstr "Kuvatiedoston tallentaminen ep√§onnistui!"
 
 msgid "Recording too big for disc type!"
 msgstr "Tallenne ei mahdu levytyypille!"
@@ -121,7 +118,7 @@ msgid "Disc too big for disc type!"
 msgstr "Levy ei mahdu levytyypille!"
 
 msgid "A job failed!"
-msgstr "Polttaminen ep‰onnistui!"
+msgstr "Polttaminen ep√§onnistui!"
 
 msgid "A job was finished successfully."
 msgstr "Polttaminen onnistui."
@@ -136,23 +133,23 @@ msgid "Status"
 msgstr "status"
 
 msgid "Move down"
-msgstr "Alasp‰in"
+msgstr "Alasp√§in"
 
 msgid "Track$Off"
 msgstr "Poissa"
 
 msgid "Track$On"
-msgstr "P‰‰ll‰"
+msgstr "P√§√§ll√§"
 
 msgid "Language code"
 msgstr "Kielitunnus"
 
 msgid "Choose title"
-msgstr ""
+msgstr "Valitse nimike"
 
 #, c-format
 msgid "$Recordings: %1$d, total size: %2$.1f MB"
-msgstr "Tallenteita: %1$d, yhteens‰: %2$.1f MB"
+msgstr "Tallenteita: %1$d, yhteens√§: %2$.1f MB"
 
 msgid "No recordings marked for burning"
 msgstr "Tallenteita ei ole merkitty poltettavaksi"
@@ -167,7 +164,7 @@ msgid "Analyzing recording..."
 msgstr "Analysoidaan tallennetta..."
 
 msgid "Job"
-msgstr "teht‰v‰"
+msgstr "teht√§v√§"
 
 msgid "DVD title"
 msgstr "DVD:n nimi"
@@ -176,7 +173,7 @@ msgid "Archive-ID"
 msgstr "Arkistotunnus"
 
 msgid "Job options"
-msgstr "Teht‰v‰n asetukset"
+msgstr "Teht√§v√§n asetukset"
 
 msgid "No recordings marked"
 msgstr "Ei valittuja tallenteita"
@@ -187,59 +184,58 @@ msgstr "Aloita"
 msgid "Remove"
 msgstr "Poista"
 
-#, fuzzy
 msgid "No MPEG2 video track selected!"
-msgstr "Yht‰‰n kuvaraitaa ei ole valittu!"
+msgstr "Yht√§√§n MPEG2-kuvaraitaa ei ole valittu!"
 
 msgid "No audio track selected!"
-msgstr "Yht‰‰n ‰‰niraitaa ei ole valittu!"
+msgstr "Yht√§√§n √§√§niraitaa ei ole valittu!"
 
 msgid "Not enough free disk space!"
-msgstr "Liian v‰h‰n vapaata levytilaa!"
+msgstr "Liian v√§h√§n vapaata levytilaa!"
 
 msgid "Remove recording from list?"
 msgstr "Poistetaanko tallenne listalta?"
 
 #, c-format
 msgid "$Job active (Writing: %1$d%%)"
-msgstr "Teht‰v‰‰ suoritetaan (poltto: %1$d%%)"
+msgstr "Teht√§v√§√§ suoritetaan (poltto: %1$d%%)"
 
 msgid "Job active (Converting)"
-msgstr "Teht‰v‰‰ suoritetaan (konvertointi)"
+msgstr "Teht√§v√§√§ suoritetaan (konvertointi)"
 
 msgid "No active or waiting jobs present"
-msgstr "Ei aktiivisia eik‰ odottavia teht‰vi‰"
+msgstr "Ei aktiivisia eik√§ odottavia teht√§vi√§"
 
 msgid "Canceled jobs"
-msgstr "Perutut teht‰v‰t"
+msgstr "Perutut teht√§v√§t"
 
 msgid "Erroneous jobs"
-msgstr "Ep‰onnistuneet teht‰v‰t"
+msgstr "Ep√§onnistuneet teht√§v√§t"
 
 msgid "Restart"
 msgstr "Aloita uudelleen"
 
 msgid "Retry"
-msgstr "Yrit‰ uudelleen"
+msgstr "Yrit√§ uudelleen"
 
 msgid "Cancel"
 msgstr "Peru"
 
 msgid "Replace current job?"
-msgstr "Korvataanko nykyinen teht‰v‰?"
+msgstr "Korvataanko nykyinen teht√§v√§?"
 
 msgid "Job still active - really cancel?"
-msgstr "Teht‰v‰‰ suoritetaan yh‰ - perutaanko?"
+msgstr "Teht√§v√§√§ suoritetaan yh√§ - perutaanko?"
 
 msgid "Remove job from list?"
-msgstr "Poistetaanko teht‰v‰ listalta?"
+msgstr "Poistetaanko teht√§v√§ listalta?"
 
 #, c-format
 msgid "$Total size: %1$.1f MB %2$s"
-msgstr "Yhteens‰: %1$.1f MB %2$s"
+msgstr "Yhteens√§: %1$.1f MB %2$s"
 
 msgid "(would be shrinked)"
-msgstr "(joudutaan pienent‰m‰‰n)"
+msgstr "(joudutaan pienent√§m√§√§n)"
 
 msgid "Aspect ratio"
 msgstr "Kuvasuhde"
@@ -257,19 +253,19 @@ msgid "Back"
 msgstr "Takaisin"
 
 msgid "Couldn't read index"
-msgstr "Indeksin lukeminen ep‰onnistui!"
+msgstr "Indeksin lukeminen ep√§onnistui!"
 
 msgid "Couldn't browse recording"
-msgstr "Tallenteen selaaminen ep‰onnistui!"
+msgstr "Tallenteen selaaminen ep√§onnistui!"
 
 msgid "mp2"
-msgstr ""
+msgstr "mp2"
 
 msgid "dolby"
 msgstr "dolby"
 
 msgid "Couldn't read marks"
-msgstr ""
+msgstr "Merkint√∂jen luku ep√§onnistui"
 
 msgid "Recording is too short"
 msgstr "Tallenne on liian lyhyt"
@@ -286,6 +282,10 @@ msgstr "DMH-arkistointi"
 msgid "Skin"
 msgstr "Ulkoasu"
 
+#, fuzzy
+msgid "Skin Aspect Ratio"
+msgstr "Kuvasuhde"
+
 msgid "Chapters"
 msgstr "Kappaleet"
 
@@ -296,10 +296,10 @@ msgid "Cut"
 msgstr "Leikkaa"
 
 msgid "Skip empty titlemenu"
-msgstr "Ohita tyhj‰ nimikevalikko"
+msgstr "Ohita tyhj√§ nimikevalikko"
 
 msgid "Skip short mainmenu"
-msgstr "Ohita lyhyt p‰‰valikko"
+msgstr "Ohita lyhyt p√§√§valikko"
 
 msgid "--- Common settings --------------------------------------------------"
 msgstr "--- Yleiset asetukset -----------------------------------------------"
@@ -320,22 +320,22 @@ msgid "unlimited"
 msgstr "ei rajoitusta"
 
 msgid "Preserve logfiles"
-msgstr "S‰ilyt‰ lokitiedostot"
+msgstr "S√§ilyt√§ lokitiedostot"
 
 msgid "Spare language code"
 msgstr "Oletuskielitunnus"
 
 msgid "Status in main menu"
-msgstr "N‰yt‰ status p‰‰valikossa"
+msgstr "N√§yt√§ status p√§√§valikossa"
 
 msgid "Custom disk size (MB)"
-msgstr "S‰‰dett‰v‰ levyn koko (MB)"
+msgstr "S√§√§dett√§v√§ levyn koko (MB)"
 
 msgid "--- Job menu settings ------------------------------------------------"
-msgstr "--- Teht‰v‰valikon asetukset ----------------------------------------"
+msgstr "--- Teht√§v√§valikon asetukset ----------------------------------------"
 
 msgid "Offer disk type"
-msgstr "Tarjoa levyn tyyppi‰"
+msgstr "Tarjoa levyn tyyppi√§"
 
 msgid "Offer chapters"
 msgstr "Tarjoa kappaleita"
@@ -356,10 +356,10 @@ msgid "Offer skip titlemenu"
 msgstr "Tarjoa nimikevalikon ohitusta"
 
 msgid "Offer skip mainmenu"
-msgstr "Tarjoa p‰‰valikon ohitusta"
+msgstr "Tarjoa p√§√§valikon ohitusta"
 
 msgid "--- Job defaults -----------------------------------------------------"
-msgstr "--- Oletusasetukset teht‰ville ---------------------------------------"
+msgstr "--- Oletusasetukset teht√§ville ---------------------------------------"
 
 msgid "Default"
 msgstr "Oletus"
@@ -368,18 +368,22 @@ msgid "Video track"
 msgstr "Kuvaraita"
 
 msgid "Audio track"
-msgstr "ƒ‰niraita"
+msgstr "√Ñ√§niraita"
 
-#, fuzzy
 msgid "Subtitle track"
-msgstr "Kuvaraita"
+msgstr "Tekstitysraita"
 
-#, fuzzy
 msgid "page"
-msgstr "Kohde"
+msgstr "sivu"
 
 msgid "Unknown"
 msgstr "Tuntematon"
+
+#~ msgid "CD-R"
+#~ msgstr "CD-R"
+
+#~ msgid "VDRSync"
+#~ msgstr "VDRSync"
 
 #~ msgid "analog"
 #~ msgstr "analoginen"

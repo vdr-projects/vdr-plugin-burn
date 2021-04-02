@@ -118,10 +118,16 @@ namespace vdr_burn
 	{
 		disktype_dvd_menu,
 		disktype_dvd_nomenu,
+#ifdef ENABLE_DMH_ARCHIVE
 		disktype_archive
+#endif
 	};
 
+#ifdef ENABLE_DMH_ARCHIVE
 	const int disktype_count( disktype_archive + 1 );
+#else
+	const int disktype_count( disktype_dvd_nomenu + 1 );
+#endif
 	const int disktype_countrequant( disktype_dvd_nomenu + 1 );
 	extern const char* disktype_strings[disktype_count];
 
@@ -136,6 +142,17 @@ namespace vdr_burn
 
 	const int storemode_count( storemode_createburn + 1 );
 	extern const char* storemode_strings[storemode_count];
+
+	//!--- skinaspect ----------------------------------------------------------
+
+	enum skinaspect
+	{
+		skinaspect_16_9,
+		skinaspect_4_3
+	};
+
+	const int skinaspect_count( skinaspect_4_3 + 1 );
+	extern const char* skinaspect_strings[skinaspect_count];
 
 	//!--- chaptersmode -------------------------------------------------------
 
@@ -160,7 +177,6 @@ namespace vdr_burn
 	{
 		disksize_singlelayer,
 		disksize_doublelayer,
-		disksize_cdr,
 		disksize_custom
 	};
 
@@ -172,7 +188,7 @@ namespace vdr_burn
 
 	enum demuxtype
 	{
-		demuxtype_vdrsync,
+		//demuxtype_vdrsync,
 		demuxtype_projectx
 	};
 
@@ -191,37 +207,35 @@ namespace vdr_burn
 	const int requanttype_count = requanttype_lxdvdrip + 1;
 	extern const char* requanttype_strings[requanttype_count];
 
-extern const char *TitleChars;
-
-int ScanPageCount(const std::string& Path);
-std::string progress_bar(double current, double total, int length = 20);
+	int ScanPageCount(const std::string& Path);
+	std::string progress_bar(double current, double total, int length = 20);
 	void trim_left( std::string& text_, const char* characters_, std::string::size_type offset_ = 0 );
 
 	//!--- recording helper functions -----------------------------------------
 
 	std::string get_recording_datetime(const cRecording* recording_, char delimiter = '\t');
 	std::string get_recording_osd_line(const cRecording* recording_, int level);
-	std::string get_recording_title(const cRecording* recording_);
-	std::string get_recording_description(const cRecording* recording_);
+	std::string get_recording_eventtitle(const cRecording* recording_);
+	std::string get_recording_eventdescription(const cRecording* recording_);
 	std::string get_recording_name(const cRecording* recording);
 
-std::string string_replace( const std::string& text, char from, char to );
-bool elapsed_since(time_t& timestamp, time_t difference);
-std::string int_to_string(int value, int base, bool prefix = false);
-std::string clean_path_name(const std::string& text);
-std::string convert_to_utf8( const std::string& text );
+	std::string string_replace( const std::string& text, char from, char to );
+	bool elapsed_since(time_t& timestamp, time_t difference);
+	std::string int_to_string(int value, int base, bool prefix = false);
+	std::string clean_path_name(const std::string& text);
+	std::string convert_to_utf8( const std::string& text );
 
-template<typename FwdIt, typename Fn>
-std::string join_strings(FwdIt first, FwdIt last, Fn func, std::string delimiter)
-{
-	return proctools::sum(first, last, std::string( "" ), func, delimiter);
-}
+	template<typename FwdIt, typename Fn>
+	std::string join_strings(FwdIt first, FwdIt last, Fn func, std::string delimiter)
+	{
+		return proctools::sum(first, last, std::string( "" ), func, delimiter);
+	}
 
-template<typename FwdIt, typename Fn>
-size_pair::size_type accumulate_size(FwdIt first, FwdIt last, Fn func)
-{
-	return proctools::sum( first, last, size_pair::size_type( 0 ), func );
-}
+	template<typename FwdIt, typename Fn>
+	size_pair::size_type accumulate_size(FwdIt first, FwdIt last, Fn func)
+	{
+		return proctools::sum( first, last, size_pair::size_type( 0 ), func );
+	}
 
 }
 

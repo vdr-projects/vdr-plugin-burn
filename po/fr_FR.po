@@ -10,12 +10,12 @@ msgid ""
 msgstr ""
 "Project-Id-Version: VDR 1.5.7\n"
 "Report-Msgid-Bugs-To: <<vdr@smue.org>>\n"
-"POT-Creation-Date: 2010-05-02 22:10+0200\n"
+"POT-Creation-Date: 2010-12-11 14:10+0100\n"
 "PO-Revision-Date: 2008-02-02 22:42+0100\n"
 "Last-Translator: Nicolas Huillard <nhuillard@e-dition.fr>\n"
 "Language-Team: <vdr@linuxtv.org>\n"
 "MIME-Version: 1.0\n"
-"Content-Type: text/plain; charset=ISO-8859-1\n"
+"Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
 msgid "Versatile convert-and-burn plugin"
@@ -25,7 +25,7 @@ msgid "Create DVDs"
 msgstr "Graver des DVD"
 
 msgid "Burn job active"
-msgstr "T‚che de gravure est active"
+msgstr "T√¢che de gravure est active"
 
 msgid "Please enter the burn plugin"
 msgstr ""
@@ -37,19 +37,19 @@ msgid "DVD with menus"
 msgstr "DVD avec menu"
 
 msgid "DVD without menus"
-msgstr ""
+msgstr "DVD avec pas de menu"
 
 msgid "Archive disk"
 msgstr "Disque archive"
 
 msgid "Create ISO only"
-msgstr "CrÈer seulement l'image"
+msgstr "Cr√©er seulement l'image"
 
 msgid "Write to Disc"
 msgstr "Seulement graver"
 
 msgid "Create ISO and write"
-msgstr "CrÈer l'image et graver"
+msgstr "Cr√©er l'image et graver"
 
 msgid "No chapters"
 msgstr "Pas de chapitre"
@@ -78,14 +78,8 @@ msgstr "Simple couche"
 msgid "Double Layer"
 msgstr "Double couche"
 
-msgid "CD-R"
-msgstr "CD-R"
-
 msgid "Custom"
-msgstr "DÈfinit par l'utilisateur"
-
-msgid "VDRSync"
-msgstr "VDRSync"
+msgstr "D√©finit par l'utilisateur"
 
 msgid "ProjectX"
 msgstr "ProjectX"
@@ -121,10 +115,10 @@ msgid "Disc too big for disc type!"
 msgstr ""
 
 msgid "A job failed!"
-msgstr "La t‚che a echouÈe!"
+msgstr "La t√¢che a echou√©e!"
 
 msgid "A job was finished successfully."
-msgstr "La t‚che est accomplie."
+msgstr "La t√¢che est accomplie."
 
 msgid "Recordings"
 msgstr "enregistrement"
@@ -155,7 +149,7 @@ msgid "$Recordings: %1$d, total size: %2$.1f MB"
 msgstr "Enregistrements: %1$d, Taille totale: %2$.1fMo"
 
 msgid "No recordings marked for burning"
-msgstr "Aucun enregistrement marquÈ pour la gravure"
+msgstr "Aucun enregistrement marqu√© pour la gravure"
 
 msgid "Write DVDs"
 msgstr "Gravure DVD"
@@ -167,7 +161,7 @@ msgid "Analyzing recording..."
 msgstr "Analyser l'enregistrement..."
 
 msgid "Job"
-msgstr "T‚che"
+msgstr "T√¢che"
 
 msgid "DVD title"
 msgstr "Titre du DVD"
@@ -179,7 +173,7 @@ msgid "Job options"
 msgstr ""
 
 msgid "No recordings marked"
-msgstr "Pas d'enregistrements marquÈs pour la gravure"
+msgstr "Pas d'enregistrements marqu√©s pour la gravure"
 
 msgid "Button$Start"
 msgstr "Graver"
@@ -189,10 +183,10 @@ msgstr "Enlever"
 
 #, fuzzy
 msgid "No MPEG2 video track selected!"
-msgstr "Pas de piste vidÈo sÈlectionnÈe!"
+msgstr "Pas de piste vid√©o s√©lectionn√©e!"
 
 msgid "No audio track selected!"
-msgstr "Pas de piste audio sÈlectionnÈe!"
+msgstr "Pas de piste audio s√©lectionn√©e!"
 
 msgid "Not enough free disk space!"
 msgstr "Pas assez d'espace disponible sur le disque!"
@@ -205,22 +199,22 @@ msgid "$Job active (Writing: %1$d%%)"
 msgstr "Travail actif (Gravure:  %1$d%%)"
 
 msgid "Job active (Converting)"
-msgstr "T‚che active (convertion)"
+msgstr "T√¢che active (convertion)"
 
 msgid "No active or waiting jobs present"
-msgstr "Pas de t‚ches o˘ d'activÈs prÈsente"
+msgstr "Pas de t√¢ches o√π d'activ√©s pr√©sente"
 
 msgid "Canceled jobs"
-msgstr "T‚ches imterrompues"
+msgstr "T√¢ches imterrompues"
 
 msgid "Erroneous jobs"
-msgstr "T‚ches erronÈe"
+msgstr "T√¢ches erron√©e"
 
 msgid "Restart"
 msgstr "Repris"
 
 msgid "Retry"
-msgstr "RÈpÈter"
+msgstr "R√©p√©ter"
 
 msgid "Cancel"
 msgstr "Interrompre"
@@ -229,10 +223,10 @@ msgid "Replace current job?"
 msgstr "Remplacer le travail actuel?"
 
 msgid "Job still active - really cancel?"
-msgstr "T‚che encore active - vraiment intÈrompre?"
+msgstr "T√¢che encore active - vraiment int√©rompre?"
 
 msgid "Remove job from list?"
-msgstr "Enlever la t‚che de la liste?"
+msgstr "Enlever la t√¢che de la liste?"
 
 #, c-format
 msgid "$Total size: %1$.1f MB %2$s"
@@ -245,7 +239,7 @@ msgid "Aspect ratio"
 msgstr ""
 
 msgid "Previous page"
-msgstr "La page prÈcÈdante"
+msgstr "La page pr√©c√©dante"
 
 msgid "Next page"
 msgstr "La prochaine page"
@@ -286,6 +280,9 @@ msgstr "Archivage DMH"
 msgid "Skin"
 msgstr "Apparence"
 
+msgid "Skin Aspect Ratio"
+msgstr ""
+
 msgid "Chapters"
 msgstr "Chapitre"
 
@@ -308,7 +305,7 @@ msgid "Remove path component"
 msgstr "Couper de chemin"
 
 msgid "Demux using"
-msgstr "DemultiplÈxeur"
+msgstr "Demultipl√©xeur"
 
 msgid "Requant using"
 msgstr ""
@@ -329,7 +326,7 @@ msgid "Status in main menu"
 msgstr ""
 
 msgid "Custom disk size (MB)"
-msgstr "Taille dÈfinit par l'utilisateur (Mo)"
+msgstr "Taille d√©finit par l'utilisateur (Mo)"
 
 msgid "--- Job menu settings ------------------------------------------------"
 msgstr ""
@@ -362,17 +359,17 @@ msgid "--- Job defaults -----------------------------------------------------"
 msgstr ""
 
 msgid "Default"
-msgstr "Par dÈfaut"
+msgstr "Par d√©faut"
 
 msgid "Video track"
-msgstr "Piste vidÈo"
+msgstr "Piste vid√©o"
 
 msgid "Audio track"
 msgstr "Piste audio"
 
 #, fuzzy
 msgid "Subtitle track"
-msgstr "Piste vidÈo"
+msgstr "Piste vid√©o"
 
 #, fuzzy
 msgid "page"
@@ -380,3 +377,13 @@ msgstr "Cible"
 
 msgid "Unknown"
 msgstr "inconnue"
+
+#, fuzzy
+#~ msgid "title"
+#~ msgstr "Titre du DVD"
+
+#~ msgid "CD-R"
+#~ msgstr "CD-R"
+
+#~ msgid "VDRSync"
+#~ msgstr "VDRSync"

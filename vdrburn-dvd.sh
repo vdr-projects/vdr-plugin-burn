@@ -77,9 +77,11 @@ echo "Script invokation: $*"
 
 case $1 in
 	render)
+		ASPECT="-a 3" # 16:9
+		[ "z$MENU_ASPECT" = "z4:3" ] && ASPECT="-a 2" # 4:3
+
 		png2yuv -j "$MENU_BACKGROUND" -f 25 -n 1 -I t -L 1 | \
-		mpeg2enc -f 8 -n p -o "$MENU_M2V"
-		#mpeg2enc -f 8 -n p -a 3 -o "$MENU_M2V" # for 16:9 menus
+		mpeg2enc -f 8 -n p $ASPECT -o "$MENU_M2V"
 		mplex -f 8 -o /dev/stdout "$MENU_M2V" "$MENU_SOUNDTRACK" | \
 		spumux -v 2 "$MENU_XML" > "$MENU_MPEG"
 	;;
@@ -216,7 +218,7 @@ case $1 in
 		echo "Creating $TEMP_PATH/INDEX_${TRACK_ON_DVD}"
 		mkdir -p "$TEMP_PATH/INDEX_${TRACK_ON_DVD}"
 		cd "$DVDAUTHOR_PATH/VIDEO_TS/"
-    		for i in $(seq 1 99) ; do
+		for i in $(seq 1 99) ; do
 			if [ -f "VTS_${TRACK_ON_DVD}_$i.VOB" ] ; then
 				vdr_file=`printf "%03d.vdr" $i`
 				echo "Linking $DVDAUTHOR_PATH/VIDEO_TS/VTS_${TRACK_ON_DVD}_$i.VOB -> $TEMP_PATH/INDEX_${TRACK_ON_DVD}/$vdr_file"
@@ -225,24 +227,35 @@ case $1 in
 				break
 			fi
 		done
-	        cd "$TEMP_PATH/INDEX_${TRACK_ON_DVD}"
+		cd "$TEMP_PATH/INDEX_${TRACK_ON_DVD}"
 		genindex
 		if [ "$?" != "0" ] ; then
 			exit 1
 		fi
-		echo "Copying $TEMP_PATH/INDEX_${TRACK_ON_DVD}/index.vdr -> $RECORDING_PATH/index_archive.vdr"
-		cp "$TEMP_PATH/INDEX_${TRACK_ON_DVD}/index.vdr" "$RECORDING_PATH/index_archive.vdr"
+		
+		cd "$RECORDING_PATH"
+		RECDIR=$(basename $(pwd))
+		cd ..
+		UPPERRECDIR=$(basename $(pwd))
+		cd ..
+		RECPATH=$(pwd)
+		RECORDING_DMH="$RECPATH"/"$UPPERRECDIR"_DVD/"$RECDIR"
+		
+		mkdir -p "$RECORDING_DMH"
+		echo "Copying $TEMP_PATH/INDEX_${TRACK_ON_DVD}/index.vdr -> "$RECORDING_DMH"/index"
+		cp "$TEMP_PATH/INDEX_${TRACK_ON_DVD}/index.vdr" "$RECORDING_DMH"/index
 		echo "Moving $TEMP_PATH/INDEX_${TRACK_ON_DVD}/index.vdr -> $DVDAUTHOR_PATH/VIDEO_TS/index_${TRACK_ON_DVD}.vdr"
 		mv "$TEMP_PATH/INDEX_${TRACK_ON_DVD}/index.vdr" "$DVDAUTHOR_PATH/VIDEO_TS/index_${TRACK_ON_DVD}.vdr"
-		if [ -f "$RECORDING_PATH/info.vdr" ]; then
-			echo "Copying $RECORDING_PATH/info.vdr -> $DVDAUTHOR_PATH/VIDEO_TS/info_${TRACK_ON_DVD}.vdr"
-			cp "$RECORDING_PATH/info.vdr" "$DVDAUTHOR_PATH/VIDEO_TS/info_${TRACK_ON_DVD}.vdr"
+		cp "$RECORDING_PATH"/info "$RECORDING_DMH"/info
+		if [ -f "$RECORDING_PATH/info" ]; then
+			echo "Copying $RECORDING_PATH/info -> $DVDAUTHOR_PATH/VIDEO_TS/info_${TRACK_ON_DVD}.vdr"
+			cp "$RECORDING_PATH/info" "$DVDAUTHOR_PATH/VIDEO_TS/info_${TRACK_ON_DVD}.vdr"
 		fi
 		echo "Deleting $TEMP_PATH/INDEX_${TRACK_ON_DVD}"
 		rm -rf "$TEMP_PATH/INDEX_${TRACK_ON_DVD}"
-		echo "Creating $RECORDING_PATH/dvd.vdr"
-		cp "$CONFIG_PATH/counters/standard" "$RECORDING_PATH/dvd.vdr"
-		printf "%04d\n" $(echo ${TRACK_ON_DVD} | sed 's/^0*//') >> "$RECORDING_PATH/dvd.vdr"
+		echo "Creating "$RECORDING_DMH"/dvd.vdr"
+		cp "$CONFIG_PATH/counters/standard" "$RECORDING_DMH"/dvd.vdr
+		printf "%04d\n" $(echo ${TRACK_ON_DVD} | sed 's/^0*//') >> "$RECORDING_DMH"/dvd.vdr
 	;;
 
 	archivemark)
@@ -265,15 +278,6 @@ case $1 in
 				  -V "$DISC_ID" -dvd-video "$DVDAUTHOR_PATH"
 	;;
 
-	burndircd)
-		SPEED=""
-		if [ $BURN_SPEED -gt 0 ]; then
-			SPEED="speed=$(($BURN_SPEED * 4))"
-		fi
-		mkisofs -V "$DISC_ID" -dvd-video "$DVDAUTHOR_PATH" \
-			| cdrecord "dev=$DVD_DEVICE" driveropts=burnfree fs=10m $SPEED -
-	;;
-
 	pipeiso)
 		mkisofs -V "$DISC_ID" -dvd-video "$DVDAUTHOR_PATH" \
 			| tee "$ISO_FILE" > "$ISO_PIPE"
@@ -286,14 +290,6 @@ case $1 in
 		fi
 		growisofs -use-the-force-luke=tty $SPEED -dvd-compat \
 				  -Z "$DVD_DEVICE=$ISO_PIPE"
-	;;
-
-	burnisocd)
-		SPEED=""
-		if [ $BURN_SPEED -gt 0 ]; then
-			SPEED="speed=$(($BURN_SPEED * 4))"
-		fi
-		cdrecord "dev=$DVD_DEVICE" driveropts=burnfree $SPEED fs=10m "$ISO_PIPE"
 	;;
 
 	*)

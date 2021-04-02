@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: VDR 1.5.7\n"
 "Report-Msgid-Bugs-To: <<vdr@smue.org>>\n"
-"POT-Creation-Date: 2010-01-31 17:54+0100\n"
+"POT-Creation-Date: 2010-12-11 14:10+0100\n"
 "PO-Revision-Date: 2008-02-02 22:42+0100\n"
 "Last-Translator: Carel Willemse <carel.willemse@online.nl>\n"
 "Language-Team: <vdr@linuxtv.org>\n"
@@ -75,14 +75,8 @@ msgstr "Single Layer"
 msgid "Double Layer"
 msgstr "Double Layer"
 
-msgid "CD-R"
-msgstr "CD-R"
-
 msgid "Custom"
 msgstr "Gebruiker-gedefinieerd"
-
-msgid "VDRSync"
-msgstr "VDRSync"
 
 msgid "ProjectX"
 msgstr "ProjectX"
@@ -282,6 +276,10 @@ msgstr "DMH-Archief"
 msgid "Skin"
 msgstr "Uiterlijk"
 
+#, fuzzy
+msgid "Skin Aspect Ratio"
+msgstr "Beeldverhouding"
+
 msgid "Chapters"
 msgstr "Hoofdstukken"
 
@@ -374,3 +372,13 @@ msgstr "pagina"
 
 msgid "Unknown"
 msgstr "Onbekend"
+
+#, fuzzy
+#~ msgid "title"
+#~ msgstr "Titel van de DVD"
+
+#~ msgid "CD-R"
+#~ msgstr "CD-R"
+
+#~ msgid "VDRSync"
+#~ msgstr "VDRSync"

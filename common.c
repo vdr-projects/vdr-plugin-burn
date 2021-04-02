@@ -35,12 +35,21 @@ namespace vdr_burn
 	// --- disktype -----------------------------------------------------------
 
 	const char* disktype_strings[disktype_count] =
+#ifdef ENABLE_DMH_ARCHIVE
 			{ tr("DVD with menus"), tr("DVD without menus"), tr("Archive disk") };
+#else
+			{ tr("DVD with menus"), tr("DVD without menus") };
+#endif
 
 	// --- storemode ----------------------------------------------------------
 
 	const char* storemode_strings[storemode_count] =
 			{ tr("Create ISO only"), tr("Write to Disc"), tr("Create ISO and write") };
+
+	// --- skinaspecttype -----------------------------------------------------------
+
+	const char* skinaspect_strings[skinaspect_count] =
+			{ "16:9", "4:3" };
 
 	// --- chaptersmode -------------------------------------------------------
 
@@ -54,25 +63,21 @@ namespace vdr_burn
 	// --- disksize -----------------------------------------------------------
 
 	const char* disksize_strings[disksize_count] =
-			{ tr("Single Layer"), tr("Double Layer"), tr("CD-R"), tr("Custom") };
+			{ tr("Single Layer"), tr("Double Layer"), tr("Custom") };
 
 	const int disksize_values[disksize_count] =
-			{ 4472, 7944, 690, -1 };
+			{ 4472,               7944,               -1           };
 
 	// --- demuxtype ----------------------------------------------------------
 
 	const char* demuxtype_strings[demuxtype_count] =
-			{ tr("VDRSync"), tr("ProjectX") };
+			{ tr("ProjectX") };
+			//{ tr("VDRSync"), tr("ProjectX") };
 
 	// --- requanttype --------------------------------------------------------
 
 	const char* requanttype_strings[requanttype_count] =
 			{ tr("M2VRequantizer"), tr("Transcode") , tr("lxdvdrip") };
-
-const char *TitleChars = "abcdefghijklmnopqrstuvwxyz"
-						 "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
-						 "0123456789"
-						 "�������:- ";
 
 int ScanPageCount(const std::string& Path)
 {
@@ -158,12 +163,14 @@ string get_recording_osd_line(const cRecording* recording_, int level)
 
 		result << get_recording_datetime(recording_);
 
+#ifdef ENABLE_DMH_ARCHIVE
 		ostringstream archivePath;
 		archivePath << recording_->FileName() << "/dvd.vdr";
 		if (access(archivePath.str().c_str(), F_OK) == 0)
 			result << 'A';
 		else
 			result << ' ';
+#endif
 
 		result << (recording_->IsNew() ? '*' : ' ') << '\t' << name;
 		return result.str();
@@ -180,15 +187,15 @@ string get_recording_osd_line(const cRecording* recording_, int level)
 	return result.str();
 }
 
-std::string get_recording_title(const cRecording* recording_)
+std::string get_recording_eventtitle(const cRecording* recording_)
 {
-	if (recording_->Info()->Title() != 0) {
+	if ((recording_->Info()) && (recording_->Info()->Title())) {
 		return recording_->Info()->Title();
 	}
 	else return recording_->Name();
 }
 
-std::string get_recording_description(const cRecording* recording_)
+std::string get_recording_eventdescription(const cRecording* recording_)
 {
 	string description;
 	if (recording_->Info()->ShortText() != 0) {

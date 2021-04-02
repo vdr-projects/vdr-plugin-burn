@@ -90,21 +90,27 @@ namespace vdr_burn
 			refresh();
 		}
 
+		#define HEAD_LINES 2
+
 		void track_editor::refresh()
 		{
 			int current = Current();
 			Clear();
 			m_indices.clear();
+
+			Add( new menu::text_item(m_recording.m_eventTitle) );
+			Add( new menu::text_item( "" ) );
+
 			for_each(m_tracks.begin(), m_tracks.end(),
 					 bind( &track_editor::add_track, this, _1 ));
-			SetCurrent(Get(current == -1 ? 0 : current));
+			SetCurrent(Get(current == -1 ? HEAD_LINES : current));
 			set_help_keys();
 			Display();
 		}
 
 		bool track_editor::can_move_down()
 		{
-			track_info_list::size_type current( m_indices[Current()] );
+			track_info_list::size_type current( m_indices[Current()-HEAD_LINES] );
 			if (current == m_tracks.size() - 1 || m_tracks[current].get_is_video())
 				return false;
 			return true;
@@ -164,8 +170,9 @@ namespace vdr_burn
 			if (!can_move_down())
 				return;
 
-			track_info_list::size_type current( m_indices[Current()] );
+			track_info_list::size_type current( m_indices[Current()-HEAD_LINES] );
 			std::swap(m_tracks[current], m_tracks[current + 1]);
+			SetCurrent(Get(Current() +2));
 			refresh();
 		}
 
@@ -269,18 +276,18 @@ namespace vdr_burn
 				string recName( rec->Name() );
 
 				// remove H.264 videos
-				bool H264_found = false;
+				bool is_H264 = false;
 				if (rec->Info() && rec->Info()->Components()) {
 					const cComponents *Components = rec->Info()->Components();
 					for (int i = 0; i < Components->NumComponents(); i++) {
 						const tComponent *p = Components->Component(i);
 						if (p->stream == etsi::sc_video_H264_AVC) {
 							//isyslog("burn: removing H.264 recording %s", rec->Name());
-							H264_found = true;
+							is_H264 = true;
 							break;
 						}
 					}
-					if (H264_found)
+					if (is_H264)
 						continue;
 				}
 
@@ -398,8 +405,10 @@ namespace vdr_burn
 		// --- job_editor -----------------------------------------------------
 
 		job_editor::job_editor():
-				pagebase( str( boost::format( "%1$s - %2$s" ) % tr("Write DVDs") % tr("Job") ), 16 ),
-				m_archiveIdItem( 0 )
+				pagebase( str( boost::format( "%1$s - %2$s" ) % tr("Write DVDs") % tr("Job") ), 16 )
+#ifdef ENABLE_DMH_ARCHIVE
+				, m_archiveIdItem( 0 )
+#endif
 		{
 			job& pending( manager::get_pending() );
 			Add( m_infoTextItem = new menu::size_text_item( pending ) );
@@ -421,8 +430,10 @@ namespace vdr_burn
 			}
 
 			Add( new menu::text_item( "" ) );
-			Add( new menu::string_edit_item( tr("DVD title"), pending.get_title(), TitleChars ) );
+			Add( new menu::string_edit_item( tr("DVD title"), pending.get_title(), NULL ) );
+#ifdef ENABLE_DMH_ARCHIVE
 			Add( m_archiveIdItem = new menu::text_item( str( boost::format( "%1$s:\t%2$s" ) % tr("Archive-ID") % pending.get_archive_id() ), true ) );
+#endif
 			Add( new menu::text_item( "" ) );
 			Add( m_jobOptionsItem = new menu::text_item( str( boost::format( "%1$s..." ) % tr("Job options") ), true ) );
 
@@ -434,7 +445,9 @@ namespace vdr_burn
 			while ( Count() > 3 )
 				Del( 3 );
 			m_recordingItems.clear();
+#ifdef ENABLE_DMH_ARCHIVE
 			m_archiveIdItem = 0;
+#endif
 			m_jobOptionsItem = 0;
 
 			text_item* item;
@@ -469,8 +482,10 @@ namespace vdr_burn
 			m_infoTextItem->update();
 			m_infoBarItem->update();
 
+#ifdef ENABLE_DMH_ARCHIVE
 			if ( m_archiveIdItem != 0 )
 				m_archiveIdItem->SetSelectable( manager::get_pending().get_options().DmhArchiveMode );
+#endif
 
 			display();
 			return osContinue;
@@ -488,8 +503,10 @@ namespace vdr_burn
 				return osContinue;
 
 			recording_edit_item& item = static_cast< recording_edit_item& >( *current );
+#ifdef ENABLE_DMH_ARCHIVE
 			if ( pending.get_disk_type() >= disktype_archive )
 				return osContinue;
+#endif
 
 			return AddSubMenu( new track_editor( *this, *item.get_recording() ) );
 		}

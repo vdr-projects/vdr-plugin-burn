@@ -129,7 +129,9 @@ namespace vdr_burn
 			recording_items m_recordingItems;
 			menu::size_text_item* m_infoTextItem;
 			menu::size_bar_item* m_infoBarItem;
+#ifdef ENABLE_DMH_ARCHIVE
 			menu::text_item* m_archiveIdItem;
+#endif
 			menu::text_item* m_jobOptionsItem;
 
 			void show_empty_list();

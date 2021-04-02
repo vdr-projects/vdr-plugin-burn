@@ -11,7 +11,6 @@
 #include "setup.h"
 #include "scanner.h"
 #include "chain-dvd.h"
-#include "chain-archive.h"
 #include "adaptor.h"
 #include "filter.h"
 #include "tracks.h"
@@ -32,6 +31,10 @@
 #include <vdr/videodir.h>
 #include <vdr/plugin.h>
 
+#ifdef ENABLE_DMH_ARCHIVE
+#include "chain-archive.h"
+#endif
+
 namespace vdr_burn
 {
 	using namespace std;
@@ -46,8 +49,8 @@ namespace vdr_burn
 	recording::recording( job* owner_, const cRecording* recording_):
 			m_owner( owner_ ),
 			m_fileName( recording_->FileName() ),
-			m_title( get_recording_title(recording_) ),
-			m_summary( get_recording_description(recording_) ),
+			m_eventTitle( get_recording_eventtitle(recording_) ),
+			m_eventDescription( get_recording_eventdescription(recording_) ),
 			m_datetime( get_recording_datetime(recording_, ' ') ),
 			m_name( recording_->Name() ),
 			m_totalSize( 0, 0 ),
@@ -167,6 +170,11 @@ namespace vdr_burn
 				",");
 		// XXX too much knowledge: ignored_cids, used by vdrsync.pl, must be
 		// pure hex, so do not prefix
+	}
+
+	std::string recording::get_menu_aspect() const
+	{
+		return std::string ( skinaspect_strings[m_owner->get_options().SkinAspectIndex] );
 	}
 
 #ifdef TTXT_SUBTITLES
@@ -305,7 +313,7 @@ namespace vdr_burn
 
 		recording newRec( scanner.get_result() );
 		if ( m_title.empty() )
-			m_title = newRec.get_title();
+			m_title = newRec.get_eventTitle();
 		m_recordings.push_back(newRec);
 
 		if (get_requant_factor() > 1 && get_disk_type() >= disktype_countrequant) {
@@ -342,7 +350,7 @@ namespace vdr_burn
 				size_pair::size_type( double( get_tracks_size( cut_, track_info::streamtype_video ) ) * 1.04 );
 
 		return videoSize > diskFree
-				 ? double( videoSize ) / diskFree
+				 ? double( videoSize + MEGABYTE(100) ) / diskFree
 				 : 1;
 	}
 
@@ -417,6 +425,7 @@ namespace vdr_burn
 		return disksize_values[m_options.DiskSize];
 	}
 
+#ifdef ENABLE_DMH_ARCHIVE
 	std::string job::get_archive_id()
 	{
 		std::string archive_id = "";
@@ -430,5 +439,6 @@ namespace vdr_burn
 		f.close();
 		return archive_id;
 	}
+#endif
 
 }

@@ -65,10 +65,16 @@ DEFINES  += -DPLUGIN_NAME='"$(PLUGIN)"' -DPLUGIN_NAME_I18N='"$(PLUGIN)"' -D_GNU_
 ### The object files (add further files here):
 
 OBJS = burn.o chain-vdr.o chain-dvd.o jobs.o logger-vdr.o skins.o \
-	   chain-archive.o manager.o menuburn.o menubase.o \
+	   manager.o menuburn.o menubase.o \
 	   etsi-const.o tracks.o scanner.o gdwrapper.o iconvwrapper.o \
-           menuitems.o setup.o common.o config.o render.o \
+	   menuitems.o setup.o common.o config.o render.o \
 	   genindex/pes.o
+
+ifdef ENABLE_DMH_ARCHIVE
+DEFINES += -DENABLE_DMH_ARCHIVE
+else
+OBJS += chain-archive.o
+endif
 
 SUBDIRS = proctools # tinyxml
 

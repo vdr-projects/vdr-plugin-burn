@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: VDR 1.5.7\n"
 "Report-Msgid-Bugs-To: <<vdr@smue.org>>\n"
-"POT-Creation-Date: 2010-05-02 22:10+0200\n"
+"POT-Creation-Date: 2010-12-11 14:10+0100\n"
 "PO-Revision-Date: 2008-02-02 22:42+0100\n"
 "Last-Translator: Vyacheslav Dikonov <sdiconov@mail.ru>\n"
 "Language-Team: <vdr@linuxtv.org>\n"
@@ -75,14 +75,8 @@ msgstr "Один слой"
 msgid "Double Layer"
 msgstr "Два слоя"
 
-msgid "CD-R"
-msgstr "CD-R"
-
 msgid "Custom"
 msgstr "Пользовательский"
-
-msgid "VDRSync"
-msgstr "VDRSync"
 
 msgid "ProjectX"
 msgstr "ProjectX"
@@ -283,6 +277,10 @@ msgstr "Архив DMH"
 msgid "Skin"
 msgstr "Внешний вид"
 
+#, fuzzy
+msgid "Skin Aspect Ratio"
+msgstr "Соотношение сторон"
+
 msgid "Chapters"
 msgstr "Главы"
 
@@ -377,6 +375,16 @@ msgstr "Цель"
 
 msgid "Unknown"
 msgstr "Неизвестно"
+
+#, fuzzy
+#~ msgid "title"
+#~ msgstr "Название DVD"
+
+#~ msgid "CD-R"
+#~ msgstr "CD-R"
+
+#~ msgid "VDRSync"
+#~ msgstr "VDRSync"
 
 #~ msgid "analog"
 #~ msgstr "аналоговый"

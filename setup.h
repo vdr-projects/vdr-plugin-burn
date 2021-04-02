@@ -52,7 +52,9 @@ extern cBurnParameters BurnParameters;
 		proctools::property< bool > OfferChapters;
 		proctools::property< bool > OfferDiskSize;
 		proctools::property< bool > OfferStoreMode;
+#ifdef ENABLE_DMH_ARCHIVE
 		proctools::property< bool > OfferDmhArchiveMode;
+#endif
 		proctools::property< bool > OfferCutOnDemux;
 		proctools::property< bool > OfferSkipTitlemenu;
 		proctools::property< bool > OfferSkipMainmenu;
@@ -68,9 +70,12 @@ extern cBurnParameters BurnParameters;
 	{
 		proctools::property< int >  DiskType;
 		proctools::property< int >  SkinIndex;
+		proctools::property< int >  SkinAspectIndex;
 		proctools::property< int >  ChaptersMode;
 		proctools::property< int >  StoreMode;
+#ifdef ENABLE_DMH_ARCHIVE
 		proctools::property< bool > DmhArchiveMode;
+#endif
 		proctools::property< int >  DiskSize;
 		proctools::property< bool > CutOnDemux;
 		proctools::property< bool > SkipTitlemenu;
@@ -95,10 +100,13 @@ extern cBurnParameters BurnParameters;
 		menu::list_edit_item* m_storeModeItem;
 		menu::list_edit_item* m_diskTypeItem;
 		menu::list_edit_item* m_skinItem;
+		menu::list_edit_item* m_skinAspectItem;
 		menu::list_edit_item* m_chaptersItem;
 		menu::list_edit_item* m_diskSizeItem;
 		menu::bool_edit_item* m_cutItem;
+#ifdef ENABLE_DMH_ARCHIVE
 		menu::bool_edit_item* m_archiveItem;
+#endif
 		menu::bool_edit_item* m_skipTitleItem;
 		menu::bool_edit_item* m_skipMainItem;
 

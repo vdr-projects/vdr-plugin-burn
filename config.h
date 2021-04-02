@@ -73,9 +73,8 @@ namespace vdr_burn
 		  << "      autooutline=\"infer\"" << std::endl
  		  << "      outlinewidth=\"5\"" << std::endl
 		  << "      autoorder=\"columns\"/>" << std::endl
-		  << "  </stream>\n"
-		  << "</subpictures>"
-		  << std::endl;
+		  << "  </stream>" << std::endl
+		  << "</subpictures>" << std::endl;
 	}
 
 	// --- dvdauthor_xml  -----------------------------------------------------

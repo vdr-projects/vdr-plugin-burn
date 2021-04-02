@@ -179,14 +179,19 @@ namespace vdr_burn
 			}
 			else if (proc->name() == "author") {
 				m_step = burn;
+#ifndef ENABLE_DMH_ARCHIVE
+				return prepare_burning();
+#else
 				if(get_job().get_dmh_archive_mode()) {
-				  m_currentRecording = get_recordings().begin();
-				  return prepare_dmh_archive();
+					m_currentRecording = get_recordings().begin();
+					return prepare_dmh_archive();
 				} else {
-				  // no DMH-archive wanted, so go directly to burning
-				  return prepare_burning();
+					// no DMH-archive wanted, so go directly to burning
+					return prepare_burning();
 				}
+#endif
 			}
+#ifdef ENABLE_DMH_ARCHIVE
 			else if (proc->name() == "dmharchive") {
 				++m_currentRecording;
 				if (m_currentRecording != get_recordings().end()) {
@@ -198,6 +203,7 @@ namespace vdr_burn
 			else if (proc->name() == "archivemark") {
 				return prepare_burning();
 			}
+#endif
 			return true;
 		}
 
@@ -428,13 +434,7 @@ namespace vdr_burn
 
 		case storemode_burn:
 			{
-				const char* burn_call;
-				if (get_job().get_disk_size() == disksize_cdr)
-					burn_call = "burndircd";
-				else
-					burn_call = "burndir";
-
-				shellprocess* burn = new shellprocess( "burn", shellescape( "vdrburn-dvd.sh" ) + burn_call );
+				shellprocess* burn = new shellprocess( "burn", shellescape( "vdrburn-dvd.sh" ) + "burndir" );
 				burn->put_environment("DVDAUTHOR_PATH", dvdauthor_xml::get_author_path(get_job()));
 				burn->put_environment("DVD_DEVICE", BurnParameters.DvdDevice);
 				burn->put_environment("BURN_SPEED", global_setup().BurnSpeed);
@@ -456,13 +456,7 @@ namespace vdr_burn
 				pipe->put_environment("DISC_ID",        get_job().get_volume_id());
 				add_process(pipe);
 
- 				const char* burn_call;
- 				if (get_job().get_disk_size() == disksize_cdr)
- 					burn_call = "burnisocd";
- 				else
- 					burn_call = "burniso";
-
- 				shellprocess* burn = new shellprocess( "burn", shellescape( "vdrburn-dvd.sh" ) + burn_call );
+ 				shellprocess* burn = new shellprocess( "burn", shellescape( "vdrburn-dvd.sh" ) + "burniso" );
 				burn->put_environment("DVD_DEVICE", BurnParameters.DvdDevice);
 				burn->put_environment("ISO_PIPE",   fifofmt.str());
 				burn->put_environment("BURN_SPEED", global_setup().BurnSpeed);
@@ -476,9 +470,6 @@ namespace vdr_burn
 
 	bool chain_dvd::prepare_cutmarks()
 	{
-		if (global_setup().DemuxType == demuxtype_vdrsync)
-			return true;
-
 		cMarks marks;
 #if VDRVERSNUM >= 10703
 		if (!marks.Load(m_currentRecording->get_filename().c_str(), m_currentRecording->get_FramesPerSecond(), m_currentRecording->get_PesRecording()) || !marks.Count())
@@ -529,6 +520,7 @@ namespace vdr_burn
 		return true;
 	}
 
+#ifdef ENABLE_DMH_ARCHIVE
 	bool chain_dvd::prepare_dmh_archive()
 	{
 		shellprocess* dmharchive = new shellprocess( "dmharchive", shellescape( "vdrburn-dvd.sh" ) + "dmharchive" );
@@ -553,4 +545,5 @@ namespace vdr_burn
 		add_process(archivemark);
 		return true;
 	}
+#endif
 }
