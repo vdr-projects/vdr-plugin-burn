@@ -258,7 +258,7 @@ namespace vdr_burn
 		prepare_demux();
 
 		// start authoring
-		shellprocess* author = new shellprocess( "author", shellescape( "vdrburn-dvd.sh" ) + "author" );
+		shellprocess* author = new shellprocess( "author", shellescape( VDRBURN_DVD_CMD ) + "author" );
 		make_dir(xml.get_author_path());
 		author->put_environment("DVDAUTHOR_XML",  xml.get_xml_path());
 		author->put_environment("DVDAUTHOR_PATH", xml.get_author_path());
@@ -274,7 +274,7 @@ namespace vdr_burn
 		m_pxAudioIndex = 0;
 
 		// processes
-		shellprocess* demux = new shellprocess( "demux", shellescape( "vdrburn-dvd.sh" ) + "demux" );
+		shellprocess* demux = new shellprocess( "demux", shellescape( VDRBURN_DVD_CMD ) + "demux" );
 		demux->put_environment("RECORDING_PATH", m_currentRecording->get_filename());
 		demux->put_environment("IGNORE_TRACKS",  m_currentRecording->get_ignored_cids());
 		demux->put_environment("USED_TRACKS",    m_currentRecording->get_used_cids());
@@ -301,7 +301,7 @@ namespace vdr_burn
 			else
 				requant_call = "lxrequant";
 
-			shellprocess* requant = new shellprocess( "requant", shellescape( "vdrburn-dvd.sh" ) + requant_call );
+			shellprocess* requant = new shellprocess( "requant", shellescape( VDRBURN_DVD_CMD ) + requant_call );
 			requant->put_environment("VIDEO_FILE",     m_currentRecording->get_video_track_path());
 			requant->put_environment("REQUANT_FILE",   m_currentRecording->get_requant_path());
 			requant->put_environment("REQUANT_FACTOR", get_job().get_requant_factor());
@@ -315,7 +315,7 @@ namespace vdr_burn
 		const_track_filter::iterator subtitleTrack = subtitleTracks.begin();
 		while  (subtitleTrack != subtitleTracks.end()) {
 			make_fifo( m_currentRecording->get_subtitle_path(subtitletrack_no) );
-			shellprocess* subtitle = new shellprocess( str ( boost::format( "subtitle%d" ) % subtitletrack_no), shellescape( "vdrburn-dvd.sh" ) + "subtitle" );
+			shellprocess* subtitle = new shellprocess( str ( boost::format( "subtitle%d" ) % subtitletrack_no), shellescape( VDRBURN_DVD_CMD ) + "subtitle" );
 			subtitle->put_environment("NUMBER",         subtitletrack_no);
 			if (subtitleTrack->subtitle.type == track_info::subtitletype_teletext)
 				subtitle->put_environment("TTXTPAGE",       subtitleTrack->subtitle.teletextpage);
@@ -331,7 +331,7 @@ namespace vdr_burn
 			subtitletrack_no++;
 		}
 
-		shellprocess* mplex = new shellprocess( "mplex", shellescape( "vdrburn-dvd.sh" ) + "mplex" );
+		shellprocess* mplex = new shellprocess( "mplex", shellescape( VDRBURN_DVD_CMD ) + "mplex" );
 		mplex->put_environment("MOVIE_FILE",
 				subtitleTracks.begin() != subtitleTracks.end()
 					? m_currentRecording->get_subtitle_path(0)
@@ -407,7 +407,7 @@ namespace vdr_burn
 		switch (get_job().get_store_mode()) {
 		case storemode_create:
 			{
-				shellprocess* burn = new shellprocess( "burn", shellescape( "vdrburn-dvd.sh" ) + "mkiso" );
+				shellprocess* burn = new shellprocess( "burn", shellescape( VDRBURN_DVD_CMD ) + "mkiso" );
 				burn->put_environment("DVDAUTHOR_PATH",
 								  dvdauthor_xml::get_author_path(get_job()));
 				burn->put_environment("ISO_FILE", get_job().get_iso_path());
@@ -418,7 +418,7 @@ namespace vdr_burn
 
 		case storemode_burn:
 			{
-				shellprocess* burn = new shellprocess( "burn", shellescape( "vdrburn-dvd.sh" ) + "burndir" );
+				shellprocess* burn = new shellprocess( "burn", shellescape( VDRBURN_DVD_CMD ) + "burndir" );
 				burn->put_environment("DVDAUTHOR_PATH", dvdauthor_xml::get_author_path(get_job()));
 				burn->put_environment("DVD_DEVICE", BurnParameters.DvdDevice);
 				burn->put_environment("BURN_SPEED", global_setup().BurnSpeed);
@@ -433,14 +433,14 @@ namespace vdr_burn
 				fifofmt % get_paths().temp;
 				make_fifo( fifofmt.str() );
 
-				shellprocess* pipe = new shellprocess( "pipe", shellescape( "vdrburn-dvd.sh" ) + "pipeiso" );
+				shellprocess* pipe = new shellprocess( "pipe", shellescape( VDRBURN_DVD_CMD ) + "pipeiso" );
 				pipe->put_environment("DVDAUTHOR_PATH", dvdauthor_xml::get_author_path(get_job()));
 				pipe->put_environment("ISO_FILE",       get_job().get_iso_path());
 				pipe->put_environment("ISO_PIPE",       fifofmt.str());
 				pipe->put_environment("DISC_ID",        get_job().get_volume_id());
 				add_process(pipe);
 
- 				shellprocess* burn = new shellprocess( "burn", shellescape( "vdrburn-dvd.sh" ) + "burniso" );
+ 				shellprocess* burn = new shellprocess( "burn", shellescape( VDRBURN_DVD_CMD ) + "burniso" );
 				burn->put_environment("DVD_DEVICE", BurnParameters.DvdDevice);
 				burn->put_environment("ISO_PIPE",   fifofmt.str());
 				burn->put_environment("BURN_SPEED", global_setup().BurnSpeed);
@@ -493,7 +493,7 @@ namespace vdr_burn
 #ifdef ENABLE_DMH_ARCHIVE
 	bool chain_dvd::prepare_dmh_archive()
 	{
-		shellprocess* dmharchive = new shellprocess( "dmharchive", shellescape( "vdrburn-dvd.sh" ) + "dmharchive" );
+		shellprocess* dmharchive = new shellprocess( "dmharchive", shellescape( VDRBURN_DVD_CMD ) + "dmharchive" );
 		dmharchive->put_environment("DVDAUTHOR_PATH", dvdauthor_xml::get_author_path(get_job()));
 		dmharchive->put_environment("RECORDING_PATH", m_currentRecording->get_filename());
 		dmharchive->put_environment("TEMP_PATH",  m_currentRecording->get_paths().temp);
@@ -508,7 +508,7 @@ namespace vdr_burn
 
 	bool chain_dvd::prepare_archive_mark()
 	{
-		shellprocess* archivemark = new shellprocess( "archivemark", shellescape( "vdrburn-dvd.sh" ) + "archivemark" );
+		shellprocess* archivemark = new shellprocess( "archivemark", shellescape( VDRBURN_DVD_CMD ) + "archivemark" );
 		archivemark->put_environment("DVDAUTHOR_PATH", dvdauthor_xml::get_author_path(get_job()));
 		archivemark->put_environment("CONFIG_PATH",    plugin::get_config_path());
 

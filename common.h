@@ -18,6 +18,9 @@
 #define JOBNAMELEN 255
 #define MAXATRACKS (MAXAPIDS + MAXDPIDS)
 
+#define VDRBURN_ARCHIVE_CMD "/usr/share/vdr-plugin-burn/vdrburn-archive.sh"
+#define VDRBURN_DVD_CMD     "/usr/share/vdr-plugin-burn/vdrburn-dvd.sh"
+
 class cRecording;
 
 namespace vdr_burn

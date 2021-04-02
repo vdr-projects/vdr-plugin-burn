@@ -94,7 +94,7 @@ bool procchain_dvd::initialize()
 
 	make_dir("data/dvdauthor");
 
-	proc = new shellprocess("author", "vdrburn-dvd.sh author");
+	proc = new shellprocess("author", VDRBURN_DVD_CMD" author");
 	proc->put_environment("DVDAUTHOR_PATH", "data/dvdauthor");
 	add_process(proc);
 
@@ -117,13 +117,13 @@ void procchain_dvd::finished(const process* process)
 
 void procchain_dvd::prepare_recording()
 {
-	process *proc = new shellprocess("demux", "vdrburn-dvd.sh demux");
+	process *proc = new shellprocess("demux", VDRBURN_DVD_CMD" demux");
 	proc->put_environment("RECORDING_PATH", recs[m_index].path);
 	proc->put_environment("VIDEO_FILE", recs[m_index].video);
 	proc->put_environment("MPEG_PATH", recs[m_index].temp);
 	add_process(proc);
 
-	proc = new shellprocess("mplex", "vdrburn-dvd.sh mplex");
+	proc = new shellprocess("mplex", VDRBURN_DVD_CMD" mplex");
 	proc->put_environment("VIDEO_FILE", recs[m_index].video);
 	proc->put_environment("AUDIO_FILES", recs[m_index].audio);
 	proc->put_environment("MOVIE_FILE", recs[m_index].movie);

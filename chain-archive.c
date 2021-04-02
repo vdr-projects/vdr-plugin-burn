@@ -69,7 +69,7 @@ namespace vdr_burn
 		switch (get_job().get_store_mode()) {
 		case storemode_create:
 			{
-				shellprocess* burn = new shellprocess( "burn", shellescape( "vdrburn-archive.sh" ) + "mkiso" );
+				shellprocess* burn = new shellprocess( "burn", shellescape( VDRBURN_ARCHIVE_CMD ) + "mkiso" );
 				burn->put_environment("ISO_FILE",     get_job().get_iso_path());
 				burn->put_environment("GRAFT_POINTS", graftPoints);
 				burn->put_environment("DISC_ID",      get_job().get_volume_id());
@@ -79,7 +79,7 @@ namespace vdr_burn
 
 		case storemode_burn:
 			{
-				shellprocess *burn = new shellprocess( "burn", shellescape( "vdrburn-archive.sh" ) + "burndir" );
+				shellprocess *burn = new shellprocess( "burn", shellescape( VDRBURN_ARCHIVE_CMD ) + "burndir" );
 				burn->put_environment("DVD_DEVICE",   BurnParameters.DvdDevice);
 				burn->put_environment("GRAFT_POINTS", graftPoints);
 				burn->put_environment("BURN_SPEED",   global_setup().BurnSpeed);
@@ -93,7 +93,7 @@ namespace vdr_burn
 				string fifo = format("{0}/burnfifo") % get_paths().temp;
 				make_fifo(fifo);
 
-				shellprocess* pipe = new shellprocess( "pipe", shellescape( "vdrburn-archive.sh" ) + "pipeiso" );
+				shellprocess* pipe = new shellprocess( "pipe", shellescape( VDRBURN_ARCHIVE_CMD ) + "pipeiso" );
 				pipe->put_environment("CONFIG_PATH",  plugin::get_config_path());
 				pipe->put_environment("GRAFT_POINTS", graftPoints);
 				pipe->put_environment("ISO_FILE",     get_job().get_iso_path());
@@ -101,7 +101,7 @@ namespace vdr_burn
 				pipe->put_environment("DISC_ID",      get_job().get_volume_id());
 				add_process(pipe);
 
-				shellprocess* burn = new shellprocess( "burn", shellescape( "vdrburn-archive.sh" ) + "burniso" );
+				shellprocess* burn = new shellprocess( "burn", shellescape( VDRBURN_ARCHIVE_CMD ) + "burniso" );
 				burn->put_environment("DVD_DEVICE",   BurnParameters.DvdDevice);
 				burn->put_environment("ISO_PIPE",     fifo);
 				burn->put_environment("BURN_SPEED",   global_setup().BurnSpeed);
@@ -114,7 +114,7 @@ namespace vdr_burn
 
 	bool chain_archive::prepare_recording_mark()
 	{
-		shellprocess* recordingmark = new shellprocess( "recordingmark", shellescape( "vdrburn-archive.sh" ) + "recordingmark" );
+		shellprocess* recordingmark = new shellprocess( "recordingmark", shellescape( VDRBURN_ARCHIVE_CMD ) + "recordingmark" );
 		recordingmark->put_environment("RECORDING_PATH", m_current->get_filename());
 		recordingmark->put_environment("CONFIG_PATH", plugin::get_config_path());
 
@@ -124,7 +124,7 @@ namespace vdr_burn
 
 	bool chain_archive::prepare_archive_mark()
 	{
-		shellprocess* archivemark = new shellprocess( "archivemark", shellescape( "vdrburn-archive.sh" ) + "archivemark" );
+		shellprocess* archivemark = new shellprocess( "archivemark", shellescape( VDRBURN_ARCHIVE_CMD ) + "archivemark" );
 		archivemark->put_environment("CONFIG_PATH", plugin::get_config_path());
 
 		add_process(archivemark);
