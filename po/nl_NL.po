@@ -6,8 +6,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: VDR 1.5.7\n"
-"Report-Msgid-Bugs-To: <<vdr@smue.org>>\n"
-"POT-Creation-Date: 2011-12-23 20:08+0100\n"
+"Report-Msgid-Bugs-To: <see README>\n"
+"POT-Creation-Date: 2013-02-11 10:16+0100\n"
 "PO-Revision-Date: 2008-02-02 22:42+0100\n"
 "Last-Translator: Carel Willemse <carel.willemse@online.nl>\n"
 "Language-Team: <vdr@linuxtv.org>\n"
@@ -16,11 +16,20 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-msgid "A job failed!"
-msgstr "Opdracht mislukt!"
+msgid "Versatile convert-and-burn plugin"
+msgstr "Universele 'converteer en brand' plugin"
 
-msgid "A job was finished successfully."
-msgstr "Er is een opdracht afgerond"
+msgid "Create DVDs"
+msgstr "DVDs maken"
+
+msgid "Burn job active"
+msgstr "Brandopdracht aktief"
+
+msgid "Please enter the burn plugin"
+msgstr "Start burn-plugin a.u.b."
+
+msgid "Please insert an empty disk and press Ok"
+msgstr "Plaats een lege DVD en druk OK"
 
 msgid "DVD with menus"
 msgstr "DVD met menus"
@@ -34,10 +43,12 @@ msgstr "Archiefdisk"
 msgid "Create ISO only"
 msgstr "Alleen ISO image maken"
 
-msgid "Write to Disc"
+#, fuzzy
+msgid "Burn to Disc only"
 msgstr "Alleen branden"
 
-msgid "Create ISO and write"
+#, fuzzy
+msgid "Create ISO and burn"
 msgstr "ISO image maken en branden"
 
 msgid "No chapters"
@@ -97,6 +108,188 @@ msgstr "Opnamen"
 
 msgid "Couldn't convert character sets!"
 msgstr "Kan karaktersets niet converteren!"
+
+msgid "Couldn't open image file!"
+msgstr "Kan afbeeldingbestand niet openen!"
+
+msgid "Couldn't create new image!"
+msgstr "kan geen nieuwe afbeelding maken!"
+
+msgid "Couldn't render menu images!"
+msgstr "Kan geen menu afbeeldingen maken!"
+
+msgid "Couldn't save image file!"
+msgstr "Kan afbeeldingbestand niet opslaan!"
+
+msgid "Recording too big for disc type!"
+msgstr "Opname te groot voor dit type Disk!"
+
+msgid "Disc too big for disc type!"
+msgstr "Dis te groot voor gekozen conversie!"
+
+msgid "A job failed!"
+msgstr "Opdracht mislukt!"
+
+msgid "A job was finished successfully."
+msgstr "Er is een opdracht afgerond"
+
+msgid "Recordings"
+msgstr "Opnamen"
+
+msgid "List"
+msgstr "Lijst"
+
+msgid "Status"
+msgstr "Status"
+
+msgid "track editor"
+msgstr ""
+
+#, fuzzy
+msgid "title in menu"
+msgstr "Status im hoofdmenu"
+
+msgid "Choose"
+msgstr "Kiezen"
+
+msgid "Move down"
+msgstr "Naar beneden"
+
+msgid "Track$Off"
+msgstr "Uit"
+
+msgid "Track$On"
+msgstr "Aan"
+
+msgid "Language code"
+msgstr "Taalcode"
+
+msgid "Choose title"
+msgstr "Kies titel"
+
+#, fuzzy
+msgid "DVD menu title for "
+msgstr "Titel van de DVD"
+
+#, c-format
+msgid "$Recordings: %1$d, total size: %2$.1f MB"
+msgstr "Opnamen: %1$d, Totale grootte: %2$.1f MB"
+
+msgid "No recordings marked for burning"
+msgstr "Er zijn geen opnamen geselecteerd om te branden"
+
+msgid "Write DVDs"
+msgstr "DVDs branden"
+
+msgid "Analyzing recording..."
+msgstr "Opname wordt geanalyseerd..."
+
+msgid "Job"
+msgstr "Opdracht"
+
+msgid "DVD title"
+msgstr "Titel van de DVD"
+
+msgid "Archive-ID"
+msgstr "Archief-ID"
+
+msgid "Job options"
+msgstr "Opdrachtinstellingen"
+
+msgid "No recordings marked"
+msgstr "Geen opnamen gemarkeerd"
+
+msgid "Button$Start"
+msgstr "Starten"
+
+msgid "Remove"
+msgstr "Verwijderen"
+
+msgid "No MPEG2 video track selected!"
+msgstr "Geen MPEG2 videospoor geselecteerd!"
+
+msgid "No audio track selected!"
+msgstr "geen audiospoor geselecteerd!"
+
+msgid "Not enough free disk space!"
+msgstr "Onvoldoende opslagcapaciteit!"
+
+msgid "Remove recording from list?"
+msgstr "Opname uit lijst verwijderen?"
+
+#, c-format
+msgid "$Job active (Writing: %1$d%%)"
+msgstr "Opdracht actief (Schrijft: %1$d%%)"
+
+msgid "Job active (Converting)"
+msgstr "Opdracht actief (Converteert)"
+
+msgid "No active or waiting jobs present"
+msgstr "Geen actieve of wachtende opdrachtsen aanwezig"
+
+msgid "Canceled jobs"
+msgstr "Afgebroken opdrachtsen"
+
+msgid "Erroneous jobs"
+msgstr "Foutieve opdrachtsen"
+
+msgid "Restart"
+msgstr "Herstart"
+
+msgid "Retry"
+msgstr "Herhalen"
+
+msgid "Cancel"
+msgstr "Afbreken"
+
+msgid "Replace current job?"
+msgstr "Huidig opdracht vervangen?"
+
+msgid "Job still active - really cancel?"
+msgstr "Opdracht nog actief - werkelijk afbreken?"
+
+msgid "Remove job from list?"
+msgstr "Opdracht uit lijst verwijderen?"
+
+#, c-format
+msgid "$Total size: %1$.1f MB %2$s"
+msgstr "totale grootte: %1$.1f MB %2$s"
+
+msgid "(would be shrinked)"
+msgstr "(zal worden gecomprimeerd)"
+
+msgid "Aspect ratio"
+msgstr "Beeldverhouding"
+
+msgid "Previous page"
+msgstr "Vorige pagina"
+
+msgid "Next page"
+msgstr "Volgende pagina"
+
+msgid "Play movie"
+msgstr "Film afspelen"
+
+msgid "Back"
+msgstr "Terug"
+
+msgid "Couldn't read index"
+msgstr "Kan index niet lezen!"
+
+msgid "Couldn't browse recording"
+msgstr "Kan niet zoeken naar opname"
+
+msgid "mp2"
+msgstr "mp2"
+
+msgid "dolby"
+msgstr "dolby"
+
+msgid "Couldn't read marks"
+msgstr "Kan bewerkingsmarkeringen niet lezen"
+
+msgid "Recording is too short"
+msgstr "Opname is te kort"
 
 msgid "Target"
 msgstr "Bestemming"
@@ -194,12 +387,6 @@ msgstr "Stel negeren hoofdmenu voor"
 msgid "--- Job defaults -----------------------------------------------------"
 msgstr "--- Standaard Opdrachtinstellingen ------------------------------------"
 
-msgid "Write DVDs"
-msgstr "DVDs branden"
-
-msgid "Job options"
-msgstr "Opdrachtinstellingen"
-
 msgid "Default"
 msgstr "Standaardinstelling"
 
@@ -217,188 +404,3 @@ msgstr "pagina"
 
 msgid "Unknown"
 msgstr "Onbekend"
-
-msgid "Couldn't open image file!"
-msgstr "Kan afbeeldingbestand niet openen!"
-
-msgid "Couldn't create new image!"
-msgstr "kan geen nieuwe afbeelding maken!"
-
-msgid "Couldn't render menu images!"
-msgstr "Kan geen menu afbeeldingen maken!"
-
-msgid "Couldn't save image file!"
-msgstr "Kan afbeeldingbestand niet opslaan!"
-
-msgid "Please enter the burn plugin"
-msgstr "Start burn-plugin a.u.b."
-
-msgid "Please insert an empty disk and press Ok"
-msgstr "Plaats een lege DVD en druk OK"
-
-msgid "Versatile convert-and-burn plugin"
-msgstr "Universele 'converteer en brand' plugin"
-
-msgid "Create DVDs"
-msgstr "DVDs maken"
-
-msgid "Burn job active"
-msgstr "Brandopdracht aktief"
-
-msgid "Recordings"
-msgstr "Opnamen"
-
-msgid "List"
-msgstr "Lijst"
-
-msgid "Status"
-msgstr "Status"
-
-msgid "Recording too big for disc type!"
-msgstr "Opname te groot voor dit type Disk!"
-
-msgid "Disc too big for disc type!"
-msgstr "Dis te groot voor gekozen conversie!"
-
-msgid "track editor"
-msgstr ""
-
-#, fuzzy
-msgid "title in menu"
-msgstr "Status im hoofdmenu"
-
-msgid "Choose"
-msgstr "Kiezen"
-
-msgid "Move down"
-msgstr "Naar beneden"
-
-msgid "Track$Off"
-msgstr "Uit"
-
-msgid "Track$On"
-msgstr "Aan"
-
-msgid "Language code"
-msgstr "Taalcode"
-
-msgid "Choose title"
-msgstr "Kies titel"
-
-#, fuzzy
-msgid "DVD menu title for "
-msgstr "Titel van de DVD"
-
-#, c-format
-msgid "$Recordings: %1$d, total size: %2$.1f MB"
-msgstr "Opnamen: %1$d, Totale grootte: %2$.1f MB"
-
-msgid "No recordings marked for burning"
-msgstr "Er zijn geen opnamen geselecteerd om te branden"
-
-msgid "Analyzing recording..."
-msgstr "Opname wordt geanalyseerd..."
-
-msgid "Job"
-msgstr "Opdracht"
-
-msgid "DVD title"
-msgstr "Titel van de DVD"
-
-msgid "Archive-ID"
-msgstr "Archief-ID"
-
-msgid "No recordings marked"
-msgstr "Geen opnamen gemarkeerd"
-
-msgid "Button$Start"
-msgstr "Starten"
-
-msgid "Remove"
-msgstr "Verwijderen"
-
-msgid "No MPEG2 video track selected!"
-msgstr "Geen MPEG2 videospoor geselecteerd!"
-
-msgid "No audio track selected!"
-msgstr "geen audiospoor geselecteerd!"
-
-msgid "Not enough free disk space!"
-msgstr "Onvoldoende opslagcapaciteit!"
-
-msgid "Remove recording from list?"
-msgstr "Opname uit lijst verwijderen?"
-
-#, c-format
-msgid "$Job active (Writing: %1$d%%)"
-msgstr "Opdracht actief (Schrijft: %1$d%%)"
-
-msgid "Job active (Converting)"
-msgstr "Opdracht actief (Converteert)"
-
-msgid "No active or waiting jobs present"
-msgstr "Geen actieve of wachtende opdrachtsen aanwezig"
-
-msgid "Canceled jobs"
-msgstr "Afgebroken opdrachtsen"
-
-msgid "Erroneous jobs"
-msgstr "Foutieve opdrachtsen"
-
-msgid "Restart"
-msgstr "Herstart"
-
-msgid "Retry"
-msgstr "Herhalen"
-
-msgid "Cancel"
-msgstr "Afbreken"
-
-msgid "Replace current job?"
-msgstr "Huidig opdracht vervangen?"
-
-msgid "Job still active - really cancel?"
-msgstr "Opdracht nog actief - werkelijk afbreken?"
-
-msgid "Remove job from list?"
-msgstr "Opdracht uit lijst verwijderen?"
-
-#, c-format
-msgid "$Total size: %1$.1f MB %2$s"
-msgstr "totale grootte: %1$.1f MB %2$s"
-
-msgid "(would be shrinked)"
-msgstr "(zal worden gecomprimeerd)"
-
-msgid "Aspect ratio"
-msgstr "Beeldverhouding"
-
-msgid "Previous page"
-msgstr "Vorige pagina"
-
-msgid "Next page"
-msgstr "Volgende pagina"
-
-msgid "Play movie"
-msgstr "Film afspelen"
-
-msgid "Back"
-msgstr "Terug"
-
-msgid "Couldn't read index"
-msgstr "Kan index niet lezen!"
-
-msgid "Couldn't browse recording"
-msgstr "Kan niet zoeken naar opname"
-
-msgid "mp2"
-msgstr "mp2"
-
-msgid "dolby"
-msgstr "dolby"
-
-msgid "Couldn't read marks"
-msgstr "Kan bewerkingsmarkeringen niet lezen"
-
-msgid "Recording is too short"
-msgstr "Opname is te kort"

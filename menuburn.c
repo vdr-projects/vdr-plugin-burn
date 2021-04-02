@@ -309,6 +309,9 @@ namespace vdr_burn
 		void recordings::display()
 		{
 			cThreadLock RecordingsLock(&Recordings);
+#if VDRVERSNUM >= 10729
+			GetRecordingsSortMode(m_basePath.c_str());
+#endif
 			Recordings.Sort();
 
 			int current = Current();
@@ -355,7 +358,8 @@ namespace vdr_burn
 
 				menu::recording_item* item = new menu::recording_item(rec, m_pathLevel);
 				string itemText( item->Text() );
-				item->SetSelectable(!is_H264);
+				if (!item->is_directory() && is_H264)
+                    item->SetSelectable(false);
 				if (itemText.length() != 0 && (lastItem == 0 || itemText != lastText)) {
 					// select directory we are coming from as current item
 					if (recName.find(m_lastPath) == 0 && rec->Name()[m_lastPath.length()] == '~') {
@@ -459,6 +463,15 @@ namespace vdr_burn
 			return osContinue;
 		}
 
+#if VDRVERSNUM >= 10729
+		eOSState recordings::zero_pressed()
+		{
+			IncRecordingsSortMode(m_basePath.c_str());
+			display();
+			return osContinue;
+		}
+#endif
+		
 		/// --- job_editor -----------------------------------------------------
 
 		job_editor::job_editor():

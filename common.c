@@ -44,7 +44,7 @@ namespace vdr_burn
 	// --- storemode ----------------------------------------------------------
 
 	const char* storemode_strings[storemode_count] =
-			{ tr("Create ISO only"), tr("Write to Disc"), tr("Create ISO and write") };
+			{ tr("Create ISO only"), tr("Burn to Disc only"), tr("Create ISO and burn") };
 
 	// --- skinaspecttype -----------------------------------------------------------
 

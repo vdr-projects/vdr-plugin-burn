@@ -180,6 +180,11 @@ namespace vdr_burn
 					case kBlue:
 						starter::cycle_display();
 						return osBack;
+#if VDRVERSNUM >= 10729
+					case k0:
+						state = zero_pressed();
+						break;
+#endif
 					case kNone:
 						check_waiting_user();
 						if ( display::status ==  starter::get_current_display() ) {

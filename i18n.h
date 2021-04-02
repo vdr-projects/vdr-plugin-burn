@@ -20,19 +20,7 @@ namespace vdr_burn
 	// Implemented as a Meyers-Singleton
 	class i18n
 	{
-	private:
-		static const tI18nPhrase m_phrases[];
-
-		int m_osdLanguage;
-
-	protected:
-		static i18n& get();
-
 	public:
-		i18n();
-
-		static const tI18nPhrase* get_phrases() { return m_phrases; }
-
 		static const char* translate( const char* text );
 	};
 

@@ -24,8 +24,8 @@
 #include <list>
 #include <dirent.h>
 #include <sys/stat.h>
-#include "vdr/remux.h"
-#include "vdr/device.h"
+#include <vdr/remux.h>
+#include <vdr/device.h>
 #include "libsi/si.h"
 
 
@@ -177,7 +177,6 @@ namespace vdr_burn
         }
 
         struct dirent* entry;
-        //char entryBuffer[offsetof(struct dirent, d_name) + NAME_MAX + 1];
         char entryBuffer[__builtin_offsetof(struct dirent, d_name) + NAME_MAX + 1];
         int result;
         while ((result = readdir_r(videoDir, (struct dirent*)entryBuffer, &entry)) == 0 && entry != 0) {
@@ -405,12 +404,16 @@ namespace vdr_burn
 				if (!PmtFound) {
 					if ( Pid == 0)
 						PatPmtParser.ParsePat(DataPtr, TS_SIZE);
+#if VDRVERSNUM < 10733
 					else if (Pid == PatPmtParser.PmtPid())
+#else
+                    else if (PatPmtParser.IsPmtPid(Pid))
+#endif
 						PatPmtParser.ParsePmt(DataPtr, TS_SIZE);
 					else if (PatPmtParser.GetVersions(PatVersion, PmtVersion)) {
 						PmtFound = true;
 						int streams = 0;
-						logger::debug(format( "PID found: PMT PID=0x{0}, Vpid=0x{1}, Vtype=0x{2}") % format::base( PatPmtParser.PmtPid(), 16 ) % format::base( PatPmtParser.Vpid(), 16 ) % format::base( PatPmtParser.Vtype(), 16 ));
+						logger::debug(format( "PID found: Vpid=0x{1}, Vtype=0x{2}") % format::base( PatPmtParser.Vpid(), 16 ) % format::base( PatPmtParser.Vtype(), 16 ));
 						if ( PatPmtParser.Vpid() && (PatPmtParser.Vtype() == 2)) { // accept only MPEG2
 							track_info track( PatPmtParser.Vpid(), track_info::streamtype_video );
 							m_tracks.push_back( track );

@@ -69,13 +69,13 @@ bool cBurnParameters::ProcessArgs(int argc, char *argv[])
 	}
 
 	if (stat(IsoPath.c_str(), &sbuf) != 0) {
-		isyslog("burn: couldn't stat %s, assuming writing to disc only", IsoPath.c_str());
+		isyslog("burn: couldn't stat %s, assuming burning to disc only", IsoPath.c_str());
 		IsoPath.clear();
 	}
 
 	if (DvdDevice.empty() && IsoPath.empty()) {
-		esyslog("ERROR[burn]: no targets left, check --dvd and --iso");
-		fprintf(stderr, "ERROR[burn]: no targets left, check --dvd and --iso\n");
+		esyslog("ERROR[burn]: no targets left, check --dvd and --iso parameters");
+		fprintf(stderr, "ERROR[burn]: no targets left, check --dvd and --iso parameters\n");
 		return false;
 	}
 
@@ -132,6 +132,14 @@ bool cBurnParameters::ProcessArgs(int argc, char *argv[])
 			PROCTOOLS_INIT_PROPERTY( SkipMainmenu,        true ),
 			PROCTOOLS_INIT_PROPERTY( UseSubtitleTracks,   false )
 	{
+		if ( BurnParameters.fixedStoreMode )
+		{
+			if ( BurnParameters.DvdDevice.empty() )
+				StoreMode = storemode_create;
+			else
+				StoreMode = storemode_burn;
+			isyslog("burn: setting fixed storemode to %s", BurnParameters.DvdDevice.empty()?"ISO":"burn");
+		}
 	}
 
 	bool job_options::set( const std::string& name_, const std::string& value_ )
@@ -139,10 +147,6 @@ bool cBurnParameters::ProcessArgs(int argc, char *argv[])
 		if ( name_ != StoreMode.name() || !BurnParameters.fixedStoreMode )
 			return proctools::property_bag::set( name_, value_ );
 
-		if ( BurnParameters.DvdDevice.empty() )
-			StoreMode = storemode_create;
-		else if ( BurnParameters.IsoPath.empty() )
-			StoreMode = storemode_burn;
 		return true;
 	}
 

@@ -6,8 +6,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: VDR 1.5.7\n"
-"Report-Msgid-Bugs-To: <<vdr@smue.org>>\n"
-"POT-Creation-Date: 2011-12-23 20:08+0100\n"
+"Report-Msgid-Bugs-To: <see README>\n"
+"POT-Creation-Date: 2013-02-11 10:16+0100\n"
 "PO-Revision-Date: 2008-02-02 22:42+0100\n"
 "Last-Translator: Vyacheslav Dikonov <sdiconov@mail.ru>\n"
 "Language-Team: <vdr@linuxtv.org>\n"
@@ -16,11 +16,20 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-msgid "A job failed!"
-msgstr "Ошибка при создании DVD!"
+msgid "Versatile convert-and-burn plugin"
+msgstr "Создание DVD из записей VDR"
 
-msgid "A job was finished successfully."
-msgstr "DVD создан успешно."
+msgid "Create DVDs"
+msgstr "Создать DVD"
+
+msgid "Burn job active"
+msgstr "DVD создаётся"
+
+msgid "Please enter the burn plugin"
+msgstr "Пожалуйста, запустите модуль для создания DVD"
+
+msgid "Please insert an empty disk and press Ok"
+msgstr "Вставьте пустой диск DVD и нажмите ОК"
 
 msgid "DVD with menus"
 msgstr "DVD с меню"
@@ -34,10 +43,12 @@ msgstr "Архивный диск"
 msgid "Create ISO only"
 msgstr "Только создать образ"
 
-msgid "Write to Disc"
+#, fuzzy
+msgid "Burn to Disc only"
 msgstr "Жечь на DVD"
 
-msgid "Create ISO and write"
+#, fuzzy
+msgid "Create ISO and burn"
 msgstr "Создать образ и жечь"
 
 msgid "No chapters"
@@ -97,6 +108,190 @@ msgstr "Записи"
 
 msgid "Couldn't convert character sets!"
 msgstr ""
+
+msgid "Couldn't open image file!"
+msgstr ""
+
+msgid "Couldn't create new image!"
+msgstr ""
+
+msgid "Couldn't render menu images!"
+msgstr ""
+
+msgid "Couldn't save image file!"
+msgstr ""
+
+msgid "Recording too big for disc type!"
+msgstr "Запись слишком большая для выбранного типа диска!"
+
+msgid "Disc too big for disc type!"
+msgstr "Диск слишком велик для этого типа!"
+
+msgid "A job failed!"
+msgstr "Ошибка при создании DVD!"
+
+msgid "A job was finished successfully."
+msgstr "DVD создан успешно."
+
+msgid "Recordings"
+msgstr "Записи"
+
+msgid "List"
+msgstr "Список"
+
+msgid "Status"
+msgstr "Состояние"
+
+msgid "track editor"
+msgstr ""
+
+#, fuzzy
+msgid "title in menu"
+msgstr "Состояние в главном меню"
+
+msgid "Choose"
+msgstr "Выбрать"
+
+msgid "Move down"
+msgstr "Вниз"
+
+msgid "Track$Off"
+msgstr "Выкл."
+
+msgid "Track$On"
+msgstr "Вкл."
+
+msgid "Language code"
+msgstr "Код языка"
+
+#, fuzzy
+msgid "Choose title"
+msgstr "Выбрать"
+
+#, fuzzy
+msgid "DVD menu title for "
+msgstr "Название DVD"
+
+#, c-format
+msgid "$Recordings: %1$d, total size: %2$.1f MB"
+msgstr "Записей: %1$d, общий размер: %2$.1f МБ"
+
+msgid "No recordings marked for burning"
+msgstr "Нет записей для создания DVD"
+
+msgid "Write DVDs"
+msgstr "Создать DVD"
+
+msgid "Analyzing recording..."
+msgstr "Анализирую записи..."
+
+msgid "Job"
+msgstr "Задание"
+
+msgid "DVD title"
+msgstr "Название DVD"
+
+msgid "Archive-ID"
+msgstr "ID Архива"
+
+msgid "Job options"
+msgstr "Опции заданий"
+
+msgid "No recordings marked"
+msgstr "Нет выбраных записей"
+
+msgid "Button$Start"
+msgstr "Пуск"
+
+msgid "Remove"
+msgstr "Удалить"
+
+#, fuzzy
+msgid "No MPEG2 video track selected!"
+msgstr "Видео-дорожка не выбрана!"
+
+msgid "No audio track selected!"
+msgstr "Аудио-дорожка не выбрана!"
+
+msgid "Not enough free disk space!"
+msgstr "Недостаточно места на диске"
+
+msgid "Remove recording from list?"
+msgstr "Удалить записи из списка?"
+
+#, c-format
+msgid "$Job active (Writing: %1$d%%)"
+msgstr "Задание выполняется (Запись: %1$d%%)"
+
+msgid "Job active (Converting)"
+msgstr "Задание выполняется (Конвертация)"
+
+msgid "No active or waiting jobs present"
+msgstr "Нет выполняемых или ждущих заданий"
+
+msgid "Canceled jobs"
+msgstr "Отменённые задания"
+
+msgid "Erroneous jobs"
+msgstr "Задания, прерванные по причине ошибки"
+
+msgid "Restart"
+msgstr "Перестартовать"
+
+msgid "Retry"
+msgstr "Повторить"
+
+msgid "Cancel"
+msgstr "Отменить"
+
+msgid "Replace current job?"
+msgstr "Заменить действующее задание?"
+
+msgid "Job still active - really cancel?"
+msgstr "Задание выполняется - действительно отменить?"
+
+msgid "Remove job from list?"
+msgstr "Удалить задание из списка"
+
+#, c-format
+msgid "$Total size: %1$.1f MB %2$s"
+msgstr "Общий размер: %1$.1f МБ %2$s"
+
+msgid "(would be shrinked)"
+msgstr "(будет сжато)"
+
+msgid "Aspect ratio"
+msgstr "Соотношение сторон"
+
+msgid "Previous page"
+msgstr "Назад"
+
+msgid "Next page"
+msgstr "Далее"
+
+msgid "Play movie"
+msgstr "Воспроизвести"
+
+msgid "Back"
+msgstr "Меню"
+
+msgid "Couldn't read index"
+msgstr "Не смог прочитать индекс!"
+
+msgid "Couldn't browse recording"
+msgstr "Не смог пролистать записи!"
+
+msgid "mp2"
+msgstr "mp2"
+
+msgid "dolby"
+msgstr "dolby"
+
+msgid "Couldn't read marks"
+msgstr "Не смог прочитать метки!"
+
+msgid "Recording is too short"
+msgstr "Запись слишком короткая"
 
 msgid "Target"
 msgstr "Цель"
@@ -194,12 +389,6 @@ msgstr "Предлагать пропуск пустого главного ме
 msgid "--- Job defaults -----------------------------------------------------"
 msgstr "--- Стандартные настройки заданий ------------------------------------"
 
-msgid "Write DVDs"
-msgstr "Создать DVD"
-
-msgid "Job options"
-msgstr "Опции заданий"
-
 msgid "Default"
 msgstr "По умолчанию"
 
@@ -219,190 +408,3 @@ msgstr "Цель"
 
 msgid "Unknown"
 msgstr "Неизвестно"
-
-msgid "Couldn't open image file!"
-msgstr ""
-
-msgid "Couldn't create new image!"
-msgstr ""
-
-msgid "Couldn't render menu images!"
-msgstr ""
-
-msgid "Couldn't save image file!"
-msgstr ""
-
-msgid "Please enter the burn plugin"
-msgstr "Пожалуйста, запустите модуль для создания DVD"
-
-msgid "Please insert an empty disk and press Ok"
-msgstr "Вставьте пустой диск DVD и нажмите ОК"
-
-msgid "Versatile convert-and-burn plugin"
-msgstr "Создание DVD из записей VDR"
-
-msgid "Create DVDs"
-msgstr "Создать DVD"
-
-msgid "Burn job active"
-msgstr "DVD создаётся"
-
-msgid "Recordings"
-msgstr "Записи"
-
-msgid "List"
-msgstr "Список"
-
-msgid "Status"
-msgstr "Состояние"
-
-msgid "Recording too big for disc type!"
-msgstr "Запись слишком большая для выбранного типа диска!"
-
-msgid "Disc too big for disc type!"
-msgstr "Диск слишком велик для этого типа!"
-
-msgid "track editor"
-msgstr ""
-
-#, fuzzy
-msgid "title in menu"
-msgstr "Состояние в главном меню"
-
-msgid "Choose"
-msgstr "Выбрать"
-
-msgid "Move down"
-msgstr "Вниз"
-
-msgid "Track$Off"
-msgstr "Выкл."
-
-msgid "Track$On"
-msgstr "Вкл."
-
-msgid "Language code"
-msgstr "Код языка"
-
-#, fuzzy
-msgid "Choose title"
-msgstr "Выбрать"
-
-#, fuzzy
-msgid "DVD menu title for "
-msgstr "Название DVD"
-
-#, c-format
-msgid "$Recordings: %1$d, total size: %2$.1f MB"
-msgstr "Записей: %1$d, общий размер: %2$.1f МБ"
-
-msgid "No recordings marked for burning"
-msgstr "Нет записей для создания DVD"
-
-msgid "Analyzing recording..."
-msgstr "Анализирую записи..."
-
-msgid "Job"
-msgstr "Задание"
-
-msgid "DVD title"
-msgstr "Название DVD"
-
-msgid "Archive-ID"
-msgstr "ID Архива"
-
-msgid "No recordings marked"
-msgstr "Нет выбраных записей"
-
-msgid "Button$Start"
-msgstr "Пуск"
-
-msgid "Remove"
-msgstr "Удалить"
-
-#, fuzzy
-msgid "No MPEG2 video track selected!"
-msgstr "Видео-дорожка не выбрана!"
-
-msgid "No audio track selected!"
-msgstr "Аудио-дорожка не выбрана!"
-
-msgid "Not enough free disk space!"
-msgstr "Недостаточно места на диске"
-
-msgid "Remove recording from list?"
-msgstr "Удалить записи из списка?"
-
-#, c-format
-msgid "$Job active (Writing: %1$d%%)"
-msgstr "Задание выполняется (Запись: %1$d%%)"
-
-msgid "Job active (Converting)"
-msgstr "Задание выполняется (Конвертация)"
-
-msgid "No active or waiting jobs present"
-msgstr "Нет выполняемых или ждущих заданий"
-
-msgid "Canceled jobs"
-msgstr "Отменённые задания"
-
-msgid "Erroneous jobs"
-msgstr "Задания, прерванные по причине ошибки"
-
-msgid "Restart"
-msgstr "Перестартовать"
-
-msgid "Retry"
-msgstr "Повторить"
-
-msgid "Cancel"
-msgstr "Отменить"
-
-msgid "Replace current job?"
-msgstr "Заменить действующее задание?"
-
-msgid "Job still active - really cancel?"
-msgstr "Задание выполняется - действительно отменить?"
-
-msgid "Remove job from list?"
-msgstr "Удалить задание из списка"
-
-#, c-format
-msgid "$Total size: %1$.1f MB %2$s"
-msgstr "Общий размер: %1$.1f МБ %2$s"
-
-msgid "(would be shrinked)"
-msgstr "(будет сжато)"
-
-msgid "Aspect ratio"
-msgstr "Соотношение сторон"
-
-msgid "Previous page"
-msgstr "Назад"
-
-msgid "Next page"
-msgstr "Далее"
-
-msgid "Play movie"
-msgstr "Воспроизвести"
-
-msgid "Back"
-msgstr "Меню"
-
-msgid "Couldn't read index"
-msgstr "Не смог прочитать индекс!"
-
-msgid "Couldn't browse recording"
-msgstr "Не смог пролистать записи!"
-
-msgid "mp2"
-msgstr "mp2"
-
-msgid "dolby"
-msgstr "dolby"
-
-msgid "Couldn't read marks"
-msgstr "Не смог прочитать метки!"
-
-msgid "Recording is too short"
-msgstr "Запись слишком короткая"

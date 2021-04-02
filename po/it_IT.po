@@ -8,8 +8,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: VDR 1.5.7\n"
-"Report-Msgid-Bugs-To: <<vdr@smue.org>>\n"
-"POT-Creation-Date: 2011-12-23 20:08+0100\n"
+"Report-Msgid-Bugs-To: <see README>\n"
+"POT-Creation-Date: 2013-02-11 10:16+0100\n"
 "PO-Revision-Date: 2010-12-30 20:15+0100\n"
 "Last-Translator: Diego Pierotto <vdr-italian@tiscali.it>\n"
 "Language-Team:  <vdr@linuxtv.org>\n"
@@ -21,11 +21,20 @@ msgstr ""
 "X-Poedit-Country: ITALY\n"
 "X-Poedit-SourceCharset: utf-8\n"
 
-msgid "A job failed!"
-msgstr "Lavoro fallito!"
+msgid "Versatile convert-and-burn plugin"
+msgstr "Conversione e masterizzazione DVD"
 
-msgid "A job was finished successfully."
-msgstr "Lavoro completato con successo."
+msgid "Create DVDs"
+msgstr "Crea DVD"
+
+msgid "Burn job active"
+msgstr "Masterizza lavoro attivo"
+
+msgid "Please enter the burn plugin"
+msgstr "Attiva il plugin 'Burn'"
+
+msgid "Please insert an empty disk and press Ok"
+msgstr "Inserisci un disco vuoto e premi OK"
 
 msgid "DVD with menus"
 msgstr "DVD con menu"
@@ -39,10 +48,12 @@ msgstr "Disco archivio"
 msgid "Create ISO only"
 msgstr "Crea solo immagine"
 
-msgid "Write to Disc"
+#, fuzzy
+msgid "Burn to Disc only"
 msgstr "Scrivi su disco"
 
-msgid "Create ISO and write"
+#, fuzzy
+msgid "Create ISO and burn"
 msgstr "Crea immagine e scrivi"
 
 msgid "No chapters"
@@ -102,6 +113,188 @@ msgstr "Registrazioni"
 
 msgid "Couldn't convert character sets!"
 msgstr "Impossibile convertire insieme di caratteri!"
+
+msgid "Couldn't open image file!"
+msgstr "Impossibile aprire file immagine!"
+
+msgid "Couldn't create new image!"
+msgstr "Impossibile creare nuova immagine!"
+
+msgid "Couldn't render menu images!"
+msgstr "Impossibile mostrare immagini del menu!"
+
+msgid "Couldn't save image file!"
+msgstr "Impossibile salvare file immagine!"
+
+msgid "Recording too big for disc type!"
+msgstr "Registrazione troppo grande per tipo disco!"
+
+msgid "Disc too big for disc type!"
+msgstr "Supporto troppo grande per tipo disco!"
+
+msgid "A job failed!"
+msgstr "Lavoro fallito!"
+
+msgid "A job was finished successfully."
+msgstr "Lavoro completato con successo."
+
+msgid "Recordings"
+msgstr "Registrazioni"
+
+msgid "List"
+msgstr "Lavori"
+
+msgid "Status"
+msgstr "Stato"
+
+msgid "track editor"
+msgstr ""
+
+#, fuzzy
+msgid "title in menu"
+msgstr "Stato nel menu principale"
+
+msgid "Choose"
+msgstr "Seleziona"
+
+msgid "Move down"
+msgstr "Sposta giù"
+
+msgid "Track$Off"
+msgstr "Disattiva"
+
+msgid "Track$On"
+msgstr "Attiva"
+
+msgid "Language code"
+msgstr "Codice lingua"
+
+msgid "Choose title"
+msgstr "Seleziona titolo"
+
+#, fuzzy
+msgid "DVD menu title for "
+msgstr "Titolo DVD"
+
+#, c-format
+msgid "$Recordings: %1$d, total size: %2$.1f MB"
+msgstr "Registrazioni: %1$d, dimensione totale: %2$.1f MB"
+
+msgid "No recordings marked for burning"
+msgstr "Nessuna reg. selezionata per la scrittura"
+
+msgid "Write DVDs"
+msgstr "Scrivi DVD"
+
+msgid "Analyzing recording..."
+msgstr "Analisi registrazione..."
+
+msgid "Job"
+msgstr "Lavori"
+
+msgid "DVD title"
+msgstr "Titolo DVD"
+
+msgid "Archive-ID"
+msgstr "ID archivio"
+
+msgid "Job options"
+msgstr "Opzioni lavori"
+
+msgid "No recordings marked"
+msgstr "Nessuna registrazione selezionata"
+
+msgid "Button$Start"
+msgstr "Avvia"
+
+msgid "Remove"
+msgstr "Rimuovi"
+
+msgid "No MPEG2 video track selected!"
+msgstr "Nessuna traccia video MPEG2 selezionata!"
+
+msgid "No audio track selected!"
+msgstr "Nessuna traccia audio selezionata!"
+
+msgid "Not enough free disk space!"
+msgstr "Spazio su disco insufficiente!"
+
+msgid "Remove recording from list?"
+msgstr "Rimuovere registrazione dalla lista?"
+
+#, c-format
+msgid "$Job active (Writing: %1$d%%)"
+msgstr "Lavoro attivo (Scrittura: %1$d%%)"
+
+msgid "Job active (Converting)"
+msgstr "Lavoro attivo (Conversione)"
+
+msgid "No active or waiting jobs present"
+msgstr "Nessun lavoro attivo o presente in coda"
+
+msgid "Canceled jobs"
+msgstr "Lavori annullati"
+
+msgid "Erroneous jobs"
+msgstr "Lavori errati"
+
+msgid "Restart"
+msgstr "Riavvia"
+
+msgid "Retry"
+msgstr "Riprova"
+
+msgid "Cancel"
+msgstr "Annulla"
+
+msgid "Replace current job?"
+msgstr "Sostituire lavoro attuale?"
+
+msgid "Job still active - really cancel?"
+msgstr "Lavoro attivo - sicuro di annullarlo?"
+
+msgid "Remove job from list?"
+msgstr "Rimuovere lavoro dalla lista?"
+
+#, c-format
+msgid "$Total size: %1$.1f MB %2$s"
+msgstr "Dimensione totale: %1$.1f MB %2$s"
+
+msgid "(would be shrinked)"
+msgstr "(deve essere compressa)"
+
+msgid "Aspect ratio"
+msgstr "Formato video"
+
+msgid "Previous page"
+msgstr "Pagina precedente"
+
+msgid "Next page"
+msgstr "Pagina successiva"
+
+msgid "Play movie"
+msgstr "Riproduci video"
+
+msgid "Back"
+msgstr "Indietro"
+
+msgid "Couldn't read index"
+msgstr "Impossibile leggere index"
+
+msgid "Couldn't browse recording"
+msgstr "Impossibile sfogliare registrazione"
+
+msgid "mp2"
+msgstr "mp2"
+
+msgid "dolby"
+msgstr "dolby"
+
+msgid "Couldn't read marks"
+msgstr "Impossibile leggere marcatori"
+
+msgid "Recording is too short"
+msgstr "Registrazione troppo breve"
 
 msgid "Target"
 msgstr "Lavoro"
@@ -198,12 +391,6 @@ msgstr "Proponi salto menu principale"
 msgid "--- Job defaults -----------------------------------------------------"
 msgstr "--- Valori predefiniti dei lavori -------------------------------"
 
-msgid "Write DVDs"
-msgstr "Scrivi DVD"
-
-msgid "Job options"
-msgstr "Opzioni lavori"
-
 msgid "Default"
 msgstr "Predefinita"
 
@@ -221,188 +408,3 @@ msgstr "pagina"
 
 msgid "Unknown"
 msgstr "Sconosciuta"
-
-msgid "Couldn't open image file!"
-msgstr "Impossibile aprire file immagine!"
-
-msgid "Couldn't create new image!"
-msgstr "Impossibile creare nuova immagine!"
-
-msgid "Couldn't render menu images!"
-msgstr "Impossibile mostrare immagini del menu!"
-
-msgid "Couldn't save image file!"
-msgstr "Impossibile salvare file immagine!"
-
-msgid "Please enter the burn plugin"
-msgstr "Attiva il plugin 'Burn'"
-
-msgid "Please insert an empty disk and press Ok"
-msgstr "Inserisci un disco vuoto e premi OK"
-
-msgid "Versatile convert-and-burn plugin"
-msgstr "Conversione e masterizzazione DVD"
-
-msgid "Create DVDs"
-msgstr "Crea DVD"
-
-msgid "Burn job active"
-msgstr "Masterizza lavoro attivo"
-
-msgid "Recordings"
-msgstr "Registrazioni"
-
-msgid "List"
-msgstr "Lavori"
-
-msgid "Status"
-msgstr "Stato"
-
-msgid "Recording too big for disc type!"
-msgstr "Registrazione troppo grande per tipo disco!"
-
-msgid "Disc too big for disc type!"
-msgstr "Supporto troppo grande per tipo disco!"
-
-msgid "track editor"
-msgstr ""
-
-#, fuzzy
-msgid "title in menu"
-msgstr "Stato nel menu principale"
-
-msgid "Choose"
-msgstr "Seleziona"
-
-msgid "Move down"
-msgstr "Sposta giù"
-
-msgid "Track$Off"
-msgstr "Disattiva"
-
-msgid "Track$On"
-msgstr "Attiva"
-
-msgid "Language code"
-msgstr "Codice lingua"
-
-msgid "Choose title"
-msgstr "Seleziona titolo"
-
-#, fuzzy
-msgid "DVD menu title for "
-msgstr "Titolo DVD"
-
-#, c-format
-msgid "$Recordings: %1$d, total size: %2$.1f MB"
-msgstr "Registrazioni: %1$d, dimensione totale: %2$.1f MB"
-
-msgid "No recordings marked for burning"
-msgstr "Nessuna reg. selezionata per la scrittura"
-
-msgid "Analyzing recording..."
-msgstr "Analisi registrazione..."
-
-msgid "Job"
-msgstr "Lavori"
-
-msgid "DVD title"
-msgstr "Titolo DVD"
-
-msgid "Archive-ID"
-msgstr "ID archivio"
-
-msgid "No recordings marked"
-msgstr "Nessuna registrazione selezionata"
-
-msgid "Button$Start"
-msgstr "Avvia"
-
-msgid "Remove"
-msgstr "Rimuovi"
-
-msgid "No MPEG2 video track selected!"
-msgstr "Nessuna traccia video MPEG2 selezionata!"
-
-msgid "No audio track selected!"
-msgstr "Nessuna traccia audio selezionata!"
-
-msgid "Not enough free disk space!"
-msgstr "Spazio su disco insufficiente!"
-
-msgid "Remove recording from list?"
-msgstr "Rimuovere registrazione dalla lista?"
-
-#, c-format
-msgid "$Job active (Writing: %1$d%%)"
-msgstr "Lavoro attivo (Scrittura: %1$d%%)"
-
-msgid "Job active (Converting)"
-msgstr "Lavoro attivo (Conversione)"
-
-msgid "No active or waiting jobs present"
-msgstr "Nessun lavoro attivo o presente in coda"
-
-msgid "Canceled jobs"
-msgstr "Lavori annullati"
-
-msgid "Erroneous jobs"
-msgstr "Lavori errati"
-
-msgid "Restart"
-msgstr "Riavvia"
-
-msgid "Retry"
-msgstr "Riprova"
-
-msgid "Cancel"
-msgstr "Annulla"
-
-msgid "Replace current job?"
-msgstr "Sostituire lavoro attuale?"
-
-msgid "Job still active - really cancel?"
-msgstr "Lavoro attivo - sicuro di annullarlo?"
-
-msgid "Remove job from list?"
-msgstr "Rimuovere lavoro dalla lista?"
-
-#, c-format
-msgid "$Total size: %1$.1f MB %2$s"
-msgstr "Dimensione totale: %1$.1f MB %2$s"
-
-msgid "(would be shrinked)"
-msgstr "(deve essere compressa)"
-
-msgid "Aspect ratio"
-msgstr "Formato video"
-
-msgid "Previous page"
-msgstr "Pagina precedente"
-
-msgid "Next page"
-msgstr "Pagina successiva"
-
-msgid "Play movie"
-msgstr "Riproduci video"
-
-msgid "Back"
-msgstr "Indietro"
-
-msgid "Couldn't read index"
-msgstr "Impossibile leggere index"
-
-msgid "Couldn't browse recording"
-msgstr "Impossibile sfogliare registrazione"
-
-msgid "mp2"
-msgstr "mp2"
-
-msgid "dolby"
-msgstr "dolby"
-
-msgid "Couldn't read marks"
-msgstr "Impossibile leggere marcatori"
-
-msgid "Recording is too short"
-msgstr "Registrazione troppo breve"

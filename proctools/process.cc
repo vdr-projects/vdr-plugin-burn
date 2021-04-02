@@ -1,3 +1,5 @@
+#include <sys/time.h>
+#include <sys/resource.h>
 #include "process.h"
 #include "chain.h"
 #include "logger.h"

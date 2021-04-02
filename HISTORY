@@ -1,6 +1,17 @@
 VDR Plugin 'burn' Revision History
 ----------------------------------
 
+2013-02-15: Version 0.2.1
+- removed unneccesary i18n definitions to compile with 1.7.27+
+- fixed fsf address (thanks to marco@vdr-developer.org, bug #1086)
+- fixed "PRIO_PGRP not found" (thanks to marco@vdr-developer.org, bug #1085)
+- added support to sort recordings in VDR 1.7.29+
+- added support for VDR 1.7.33 (bug #1180)
+- minor target description update
+- fixed wrong unchangeable storemode in case of missing DVD writer device (bug #1187)
+- added support for Makefile of VDR 1.7.36+
+- fixed display of directories with MPEG2 and H.264 recordings
+
 2011-12-28: Version 0.2.0
 - fixed display of help keys in recordings menu when first entry is a directory (reported by Keine_Ahnung@vdr-portal.de)
 - added support for DMH Archive DVD with old video dir format (thanks to Keine_Ahnung@vdr-portal.de)
@@ -42,7 +53,7 @@ VDR Plugin 'burn' Revision History
 2010-12-12: Version 0.2.0-beta5
 - updated DMH archive part of vdrburn-dvd/-archive.sh (thanks to copperhead@vdr-portal.de)
 - made DMH archive optional via compile switch. Enable with ENABLE_DMH_ARCHIVE=1 (thanks to copperhead@vdr-portal.de)
-- replaced offsetof by __builtin_ofsetof in scanner.c as it caused problems on some distris (suggested by TomJoad@vdr-portal.de)
+- replaced offsetof by __builtin_offsetof in scanner.c as it caused problems on some distris (suggested by TomJoad@vdr-portal.de)
 - removed support for burning CDs (DVD structures on CD-R)
 - removed support for vdrsync.pl, use Project X instead
 - added 100MB spare space in requant factor calculation to avoid oversized ISO images
