@@ -176,6 +176,9 @@ bool cBurnParameters::ProcessArgs(int argc, char *argv[])
 			m_options( options_ ),
 			m_showAll( showAll_ )
 	{
+#if APIVERSNUM > 10733
+        SetMenuCategory(mcPluginSetup);
+#endif
 	}
 
 	void job_options_base::add_job_options()

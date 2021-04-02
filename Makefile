@@ -1,12 +1,15 @@
 #
 # Makefile for the burn Video Disk Recorder plugin
 #
+# See the main source file 'burn.c' for copyright information and
+# how to reach the author.
+#
 # $Id:$
 
 # The official name of this plugin.
 # This name will be used in the '-P...' option of VDR to load the plugin.
 # By default the main source file also carries this name.
-#
+
 PLUGIN = burn
 
 ### The version number of this plugin (taken from the main source file):
@@ -18,9 +21,9 @@ VERSION = $(shell grep 'const char\* plugin::VERSION *=' $(PLUGIN).c | awk '{ pr
 
 # Use package data if installed...otherwise assume we're under the VDR source directory:
 PKGCFG = $(if $(VDRDIR),$(shell pkg-config --variable=$(1) $(VDRDIR)/vdr.pc),$(shell pkg-config --variable=$(1) vdr || pkg-config --variable=$(1) ../../../vdr.pc))
-LIBDIR = $(DESTDIR)$(call PKGCFG,libdir)
-LOCDIR = $(DESTDIR)$(call PKGCFG,locdir)
-PLGCFG = $(DESTDIR)$(call PKGCFG,plgcfg)
+LIBDIR = $(call PKGCFG,libdir)
+LOCDIR = $(call PKGCFG,locdir)
+PLGCFG = $(call PKGCFG,plgcfg)
 #
 TMPDIR ?= /tmp
 
@@ -56,7 +59,7 @@ else
 	DEFINES += -DNDEBUG
 endif
 
-### The version number of VDR (taken from VDR's "config.h"):
+### The version number of VDR's plugin API (taken from VDR's "config.h"):
 
 APIVERSION = $(shell sed -ne '/define APIVERSION/s/^.*"\(.*\)".*$$/\1/p' $(VDRDIR)/config.h)
 
@@ -78,6 +81,10 @@ OLD_I18N = 1
 i18n install-i18n:
 
 endif
+else
+### Allow user defined options to overwrite defaults:
+
+-include $(PLGCFG)
 endif # compatibility section
 
 ### The name of the distribution archive:
@@ -126,7 +133,7 @@ ifndef ISODIR
 ISODIR=/pub/export
 endif
 
-# compile only with ttxtsub support if core VDR is patched
+### compile only with ttxtsub support if core VDR is patched
 ifneq ($(strip $(wildcard $(VDRDIR)/vdrttxtsubshooks.h)),)
 DEFINES += -DTTXT_SUBTITLES
 endif
@@ -142,7 +149,7 @@ all: SUBDIRS $(SOFILE) i18n
 %.o: %.c
 	$(CXX) $(CXXFLAGS) -c $(DEFINES) $(INCLUDES) -o $@ $<
 
-# Dependencies:
+### Dependencies:
 
 MAKEDEP = $(CXX) -MM -MG
 DEPFILE = .dependencies

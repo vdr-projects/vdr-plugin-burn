@@ -1,6 +1,10 @@
 VDR Plugin 'burn' Revision History
 ----------------------------------
 
+2013-02-23: Version 0.2.2
+- fixed false DESTDIR in Makefile and added include of PLGCFG (reported by Zoolook@vdrportal.de)
+- added menu category to job_options_base to avoid confusion of skin plugins
+
 2013-02-15: Version 0.2.1
 - removed unneccesary i18n definitions to compile with 1.7.27+
 - fixed fsf address (thanks to marco@vdr-developer.org, bug #1086)
