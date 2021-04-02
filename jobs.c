@@ -224,9 +224,14 @@ namespace vdr_burn
 			int count = 0;
 			stringstream result("0");
 			while (mark != NULL) {
-				if (++count % 2 == 0 && marks.GetNext(mark->position) != NULL)
-					result << "," << *IndexToHMSF(mark->position, false);
-				mark = marks.GetNext(mark->position);
+#if VDRVERSNUM >= 10721
+				int position = mark->Position();
+#else
+				int position = mark->position;
+#endif
+				if (++count % 2 == 0 && marks.GetNext(position) != NULL)
+					result << "," << *IndexToHMSF(position, false);
+				mark = marks.GetNext(position);
 			}
 			logger::info("chapter marks generated: " + result.str());
 			return result.str();
@@ -310,7 +315,7 @@ namespace vdr_burn
 
 	void job::append_recording(const cRecording* vdrRecording)
 	{
-        recording_scanner scanner( this, vdrRecording );
+		recording_scanner scanner( this, vdrRecording );
 		scanner.scan();
 
 		recording newRec( scanner.get_result() );

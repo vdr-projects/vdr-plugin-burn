@@ -82,7 +82,7 @@ namespace vdr_burn
 					pesidparser >> setbase(16) >> pesid;
 
 					if (pesid >= 0xe0 && pesid <= 0xef) { // video stream
-						m_currentRecording->set_track_path( pid ? pid : pesid, "vdrsync.mpv");
+						//m_currentRecording->set_track_path( pid ? pid : pesid, "vdrsync.mpv");
 						logger::info( str( boost::format( "px found id: 0x%04x/0x%02x, vdrsync.mpv" ) % pid % pesid ) );
 					}
 					else if (pesid >= 0xc0 && pesid <= 0xdf) {
@@ -225,7 +225,6 @@ namespace vdr_burn
 		make_dir(rec.get_paths().data);
 
 		// fifos for video track and muxed movie
-		make_fifo(rec.get_video_track_path());
 		make_fifo(rec.get_movie_path());
 		make_fifo(rec.get_requant_path());
 
@@ -471,7 +470,11 @@ namespace vdr_burn
 		ofstream cutfile( str( boost::format("%s/px.cut") % m_currentRecording->get_paths().data ).c_str() );
 
 		for (cMark *mark = marks.First(); mark != 0; mark = marks.Next(mark)) {
+#if VDRVERSNUM >= 10721
+			int pos = mark->Position();
+#else
 			int pos = mark->position;
+#endif
 #if VDRVERSNUM >= 10703
 			uint16_t filenumber;
 			off_t offset;

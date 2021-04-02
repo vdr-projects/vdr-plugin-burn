@@ -11,7 +11,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: VDR 1.5.7\n"
 "Report-Msgid-Bugs-To: <<vdr@smue.org>>\n"
-"POT-Creation-Date: 2011-08-08 14:57+0200\n"
+"POT-Creation-Date: 2011-10-08 13:26+0200\n"
 "PO-Revision-Date: 2010-12-13 18:42+0200\n"
 "Last-Translator: Ville Skyttä <ville.skytta@iki.fi>\n"
 "Language-Team: Finnish <gnome-fi-laatu@lists.sourceforge.net>\n"
@@ -21,6 +21,12 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: Lokalize 1.1\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+msgid "A job failed!"
+msgstr "Polttaminen epäonnistui!"
+
+msgid "A job was finished successfully."
+msgstr "Polttaminen onnistui."
 
 msgid "Recording too big for disc type!"
 msgstr "Tallenne ei mahdu levytyypille!"
@@ -129,20 +135,14 @@ msgstr "Polta DVD-levy"
 msgid "Job options"
 msgstr "Tehtävän asetukset"
 
-msgid "Video track"
-msgstr "Kuvaraita"
+msgid "Versatile convert-and-burn plugin"
+msgstr "Monipuolinen DVD-työkalu"
 
-msgid "Audio track"
-msgstr "Ääniraita"
+msgid "Create DVDs"
+msgstr "Polta DVD-levy"
 
-msgid "Subtitle track"
-msgstr "Tekstitysraita"
-
-msgid "page"
-msgstr "sivu"
-
-msgid "Unknown"
-msgstr "Tuntematon"
+msgid "Burn job active"
+msgstr "Polttotehtävä aktiivinen"
 
 msgid "DVD with menus"
 msgstr "DVD valikolla"
@@ -232,29 +232,11 @@ msgstr "Valikkokuvien luominen epäonnistui!"
 msgid "Couldn't save image file!"
 msgstr "Kuvatiedoston tallentaminen epäonnistui!"
 
-msgid "Versatile convert-and-burn plugin"
-msgstr "Monipuolinen DVD-työkalu"
-
-msgid "Create DVDs"
-msgstr "Polta DVD-levy"
-
-msgid "Burn job active"
-msgstr "Polttotehtävä aktiivinen"
-
 msgid "Please enter the burn plugin"
 msgstr "Siirry \"Polta DVD-levy\"-laajennokseen"
 
 msgid "Please insert an empty disk and press Ok"
 msgstr "Aseta tyhjä levy asemaan ja paina 'OK'"
-
-msgid "Default"
-msgstr "Oletus"
-
-msgid "A job failed!"
-msgstr "Polttaminen epäonnistui!"
-
-msgid "A job was finished successfully."
-msgstr "Polttaminen onnistui."
 
 msgid "Recordings"
 msgstr "tallenteet"
@@ -265,15 +247,23 @@ msgstr "Lista"
 msgid "Status"
 msgstr "status"
 
-#, c-format
-msgid "$Total size: %1$.1f MB %2$s"
-msgstr "Yhteensä: %1$.1f MB %2$s"
+msgid "Video track"
+msgstr "Kuvaraita"
 
-msgid "(would be shrinked)"
-msgstr "(joudutaan pienentämään)"
+msgid "Audio track"
+msgstr "Ääniraita"
 
-msgid "Aspect ratio"
-msgstr "Kuvasuhde"
+msgid "Subtitle track"
+msgstr "Tekstitysraita"
+
+msgid "page"
+msgstr "sivu"
+
+msgid "Unknown"
+msgstr "Tuntematon"
+
+msgid "Default"
+msgstr "Oletus"
 
 msgid "track editor"
 msgstr ""
@@ -377,6 +367,16 @@ msgstr "Tehtävää suoritetaan yhä - perutaanko?"
 
 msgid "Remove job from list?"
 msgstr "Poistetaanko tehtävä listalta?"
+
+#, c-format
+msgid "$Total size: %1$.1f MB %2$s"
+msgstr "Yhteensä: %1$.1f MB %2$s"
+
+msgid "(would be shrinked)"
+msgstr "(joudutaan pienentämään)"
+
+msgid "Aspect ratio"
+msgstr "Kuvasuhde"
 
 msgid "Previous page"
 msgstr "Edellinen sivu"

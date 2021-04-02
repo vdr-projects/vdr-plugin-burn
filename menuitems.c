@@ -136,7 +136,7 @@ namespace menu
 			m_new(0)
 	{
 		if (level < recording_->HierarchyLevels())
-			m_name = Text() + 2;
+			m_name = Text() + 3;
 	}
 
 	void recording_item::add_entry(bool isNew)
@@ -144,7 +144,7 @@ namespace menu
 		++m_total;
 		if (isNew)
 			++m_new;
-		SetText(cString::sprintf("%d\t%d\t%s", m_total, m_new,
+		SetText(cString::sprintf("%d\t%d\t\t%s", m_total, m_new,
 								 m_name.c_str()));
 	}
 

@@ -110,6 +110,8 @@ namespace menu
 
 	private:
 		static user_wait m_waitInfo;
+		job* last_active_job;
+		int last_percent;
 
 		using cOsdMenu::Display;
 

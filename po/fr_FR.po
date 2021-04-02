@@ -10,7 +10,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: VDR 1.5.7\n"
 "Report-Msgid-Bugs-To: <<vdr@smue.org>>\n"
-"POT-Creation-Date: 2011-08-08 14:57+0200\n"
+"POT-Creation-Date: 2011-10-08 13:26+0200\n"
 "PO-Revision-Date: 2008-02-02 22:42+0100\n"
 "Last-Translator: Nicolas Huillard <nhuillard@e-dition.fr>\n"
 "Language-Team: <vdr@linuxtv.org>\n"
@@ -18,6 +18,12 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+
+msgid "A job failed!"
+msgstr "La tâche a echouée!"
+
+msgid "A job was finished successfully."
+msgstr "La tâche est accomplie."
 
 msgid "Recording too big for disc type!"
 msgstr "Enregistrement trop volumineux pour ce type de disque!"
@@ -126,22 +132,14 @@ msgstr "Gravure DVD"
 msgid "Job options"
 msgstr ""
 
-msgid "Video track"
-msgstr "Piste vidéo"
+msgid "Versatile convert-and-burn plugin"
+msgstr "Plugin convertiseur et graveur universel"
 
-msgid "Audio track"
-msgstr "Piste audio"
+msgid "Create DVDs"
+msgstr "Graver des DVD"
 
-#, fuzzy
-msgid "Subtitle track"
-msgstr "Piste vidéo"
-
-#, fuzzy
-msgid "page"
-msgstr "Cible"
-
-msgid "Unknown"
-msgstr "inconnue"
+msgid "Burn job active"
+msgstr "Tâche de gravure est active"
 
 msgid "DVD with menus"
 msgstr "DVD avec menu"
@@ -231,29 +229,11 @@ msgstr ""
 msgid "Couldn't save image file!"
 msgstr ""
 
-msgid "Versatile convert-and-burn plugin"
-msgstr "Plugin convertiseur et graveur universel"
-
-msgid "Create DVDs"
-msgstr "Graver des DVD"
-
-msgid "Burn job active"
-msgstr "Tâche de gravure est active"
-
 msgid "Please enter the burn plugin"
 msgstr ""
 
 msgid "Please insert an empty disk and press Ok"
 msgstr "Veuilliez introduire un DVD vierge et appuyez sur OK"
-
-msgid "Default"
-msgstr "Par défaut"
-
-msgid "A job failed!"
-msgstr "La tâche a echouée!"
-
-msgid "A job was finished successfully."
-msgstr "La tâche est accomplie."
 
 msgid "Recordings"
 msgstr "enregistrement"
@@ -264,15 +244,25 @@ msgstr "Liste"
 msgid "Status"
 msgstr "Status"
 
-#, c-format
-msgid "$Total size: %1$.1f MB %2$s"
-msgstr "Volume total: %1$.1f MO %2$s"
+msgid "Video track"
+msgstr "Piste vidéo"
 
-msgid "(would be shrinked)"
-msgstr ""
+msgid "Audio track"
+msgstr "Piste audio"
 
-msgid "Aspect ratio"
-msgstr ""
+#, fuzzy
+msgid "Subtitle track"
+msgstr "Piste vidéo"
+
+#, fuzzy
+msgid "page"
+msgstr "Cible"
+
+msgid "Unknown"
+msgstr "inconnue"
+
+msgid "Default"
+msgstr "Par défaut"
 
 msgid "track editor"
 msgstr ""
@@ -377,6 +367,16 @@ msgstr "Tâche encore active - vraiment intérompre?"
 
 msgid "Remove job from list?"
 msgstr "Enlever la tâche de la liste?"
+
+#, c-format
+msgid "$Total size: %1$.1f MB %2$s"
+msgstr "Volume total: %1$.1f MO %2$s"
+
+msgid "(would be shrinked)"
+msgstr ""
+
+msgid "Aspect ratio"
+msgstr ""
 
 msgid "Previous page"
 msgstr "La page précédante"

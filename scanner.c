@@ -105,7 +105,11 @@ namespace vdr_burn
 
     void marks_scanner::operator()(const cMark& mark)
     {
+#if VDRVERSNUM >= 10721
+        m_state.reset( m_state->process(mark.Position()) );
+#else
         m_state.reset( m_state->process(mark.position) );
+#endif
     }
 
  	// --- recording_index -----------------------------------------------------
@@ -764,7 +768,11 @@ namespace vdr_burn
 			logger::debug( "marks available, skipping 10 seconds from first mark" );
 
 			adaptor::list_iterator<cMark> mark( marks );
+#if VDRVERSNUM >= 10721
+			startIndex += mark->Position();
+#else
 			startIndex += mark->position;
+#endif
 		} else
 			logger::debug( "no marks found, skipping 10 seconds into movie" );
 

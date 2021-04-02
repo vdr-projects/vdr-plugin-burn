@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 
 # For DEBUG Output - can be left since logfiles are deleted when job finishes
 set -x

@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: VDR 1.5.7\n"
 "Report-Msgid-Bugs-To: <<vdr@smue.org>>\n"
-"POT-Creation-Date: 2011-08-08 14:57+0200\n"
+"POT-Creation-Date: 2011-10-08 13:26+0200\n"
 "PO-Revision-Date: 2008-02-02 22:42+0100\n"
 "Last-Translator: Carel Willemse <carel.willemse@online.nl>\n"
 "Language-Team: <vdr@linuxtv.org>\n"
@@ -15,6 +15,12 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+
+msgid "A job failed!"
+msgstr "Opdracht mislukt!"
+
+msgid "A job was finished successfully."
+msgstr "Er is een opdracht afgerond"
 
 msgid "Recording too big for disc type!"
 msgstr "Opname te groot voor dit type Disk!"
@@ -124,20 +130,14 @@ msgstr "DVDs branden"
 msgid "Job options"
 msgstr "Opdrachtinstellingen"
 
-msgid "Video track"
-msgstr "Videospoor"
+msgid "Versatile convert-and-burn plugin"
+msgstr "Universele 'converteer en brand' plugin"
 
-msgid "Audio track"
-msgstr "Audiospoor"
+msgid "Create DVDs"
+msgstr "DVDs maken"
 
-msgid "Subtitle track"
-msgstr "Ondertitelingspoor"
-
-msgid "page"
-msgstr "pagina"
-
-msgid "Unknown"
-msgstr "Onbekend"
+msgid "Burn job active"
+msgstr "Brandopdracht aktief"
 
 msgid "DVD with menus"
 msgstr "DVD met menus"
@@ -227,29 +227,11 @@ msgstr "Kan geen menu afbeeldingen maken!"
 msgid "Couldn't save image file!"
 msgstr "Kan afbeeldingbestand niet opslaan!"
 
-msgid "Versatile convert-and-burn plugin"
-msgstr "Universele 'converteer en brand' plugin"
-
-msgid "Create DVDs"
-msgstr "DVDs maken"
-
-msgid "Burn job active"
-msgstr "Brandopdracht aktief"
-
 msgid "Please enter the burn plugin"
 msgstr "Start burn-plugin a.u.b."
 
 msgid "Please insert an empty disk and press Ok"
 msgstr "Plaats een lege DVD en druk OK"
-
-msgid "Default"
-msgstr "Standaardinstelling"
-
-msgid "A job failed!"
-msgstr "Opdracht mislukt!"
-
-msgid "A job was finished successfully."
-msgstr "Er is een opdracht afgerond"
 
 msgid "Recordings"
 msgstr "Opnamen"
@@ -260,15 +242,23 @@ msgstr "Lijst"
 msgid "Status"
 msgstr "Status"
 
-#, c-format
-msgid "$Total size: %1$.1f MB %2$s"
-msgstr "totale grootte: %1$.1f MB %2$s"
+msgid "Video track"
+msgstr "Videospoor"
 
-msgid "(would be shrinked)"
-msgstr "(zal worden gecomprimeerd)"
+msgid "Audio track"
+msgstr "Audiospoor"
 
-msgid "Aspect ratio"
-msgstr "Beeldverhouding"
+msgid "Subtitle track"
+msgstr "Ondertitelingspoor"
+
+msgid "page"
+msgstr "pagina"
+
+msgid "Unknown"
+msgstr "Onbekend"
+
+msgid "Default"
+msgstr "Standaardinstelling"
 
 msgid "track editor"
 msgstr ""
@@ -372,6 +362,16 @@ msgstr "Opdracht nog actief - werkelijk afbreken?"
 
 msgid "Remove job from list?"
 msgstr "Opdracht uit lijst verwijderen?"
+
+#, c-format
+msgid "$Total size: %1$.1f MB %2$s"
+msgstr "totale grootte: %1$.1f MB %2$s"
+
+msgid "(would be shrinked)"
+msgstr "(zal worden gecomprimeerd)"
+
+msgid "Aspect ratio"
+msgstr "Beeldverhouding"
 
 msgid "Previous page"
 msgstr "Vorige pagina"

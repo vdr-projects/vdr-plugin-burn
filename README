@@ -90,10 +90,10 @@ Installation
 4. Copy the scripts vdrburn-dvd.sh, vdrburn-archive.sh to some location
    inside your $PATH.
 
-   # cp PLUGINS/src/burn/*.sh /usr/bin/
+   # cp PLUGINS/src/burn/*.sh /usr/local/bin/
 
-5. Copy the font file and menu image templates into "plugins/burn" inside your
-   VDR configuration directory (usually /video0 or /etc/vdr)
+5. Copy the font file, menu image templates and config files into "plugins/burn" 
+   inside your VDR configuration directory (usually /video0 or /etc/vdr)
 
    # cp -a PLUGINS/src/burn/burn /etc/vdr/plugins/
 
@@ -150,12 +150,14 @@ explanation.
 To start a new DVD Project, you first have to mark one or several recordings
 for burning. You will be shown the recordings upon entering the plugin's
 submenu. Navigate as usual, and press the "red" button to select a recording.
+Recordings recognizes as HD recordings will be displayed but are not 
+selectable.
 
 Now, you can switch to the job view with the "blue" button. You will see
 an overview of the selected recordings along with some additional information.
-You can edit the recording and disc titles by selecting such an entry and
-pressing the "right" button. Editing is done as known from other VDR menus
-(like when editing channel names). Press "Ok" to confirm and save the title.
+You can edit the disc title by selecting the entry and pressing the "right" 
+button. Editing is done as known from other VDR menus (like when editing 
+channel names). Press "Ok" to confirm and save the title.
 
 You can also delete recordings from that list and change the order of
 recordingswith the "green" and "yellow" buttons. You can add recordings by
@@ -165,7 +167,17 @@ menu.
 Pressing "Ok" on a recording will open a tracks submenu. Here, you can deselect
 certain audio- or subtitle-tracks with the "red" button (be careful to leave at
 least one audio track active), and reorder them with the "green" button. Also the 
-language code can be modified if neccessary. Press "back" to leave the submenu.
+language code can be modified if neccessary.
+The recording title can also be edited in this menu by pressing the "right" 
+button or replaced with some predefined values by pressing the red button. The
+predefined values are the EPG title, EPG title plus EPG short text, only the 
+EPG short text and recording name. Not all selections may be available for all 
+recordings e.g. if there is no short text defined in EPG. By selecting an entry
+and pressing the ok button the text is copied to the track menu. It can still 
+be edited by  pressing the "right" button. Editing is done the same way as 
+editing the disc title. Press "Ok" to confirm and save the recording title or 
+press "back" to discard the changes.
+Press "back" to leave the submenu.
 
 Between the recording titles and the disc info, you see a progressbar which
 shows how much space the recordings would consume on a 4,7GB DVD+-R(W). If

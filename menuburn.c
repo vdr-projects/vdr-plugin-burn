@@ -283,7 +283,7 @@ namespace vdr_burn
 		/// --- recordings -----------------------------------------------------
 
 		recordings::recordings():
-				pagebase( "", 9, 7, 3),
+				pagebase( "", 9, 6, 6),
 				m_pathLevel(0),
 				m_pathChanged(false),
 				m_recordingCount(0)
@@ -717,7 +717,7 @@ namespace vdr_burn
 			manager::lock man_lock;
 
 			string green, yellow;
-			if (item != 0 && item->get_job() == manager::get_active()) {
+			if (item != 0 && item->get_job()) {
 				if (item->get_job()->get_is_canceled())
 					green = tr("Restart");
 				else if (item->get_job()->get_return_status() == process::error)
@@ -733,7 +733,6 @@ namespace vdr_burn
 
 		eOSState status::menu_update()
 		{
-			set_help_keys();
 			display();
 			return osContinue;
 		}

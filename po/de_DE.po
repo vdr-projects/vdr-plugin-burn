@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: VDR 1.5.7\n"
 "Report-Msgid-Bugs-To: <<vdr@smue.org>>\n"
-"POT-Creation-Date: 2011-08-08 14:57+0200\n"
+"POT-Creation-Date: 2011-10-08 13:26+0200\n"
 "PO-Revision-Date: 2010-12-11-19:50+0100\n"
 "Last-Translator: Christoph Haubrich\n"
 "Language-Team: <vdr@linuxtv.org>\n"
@@ -15,6 +15,12 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+
+msgid "A job failed!"
+msgstr "Ein Auftrag ist fehlgeschlagen!"
+
+msgid "A job was finished successfully."
+msgstr "Ein Auftrag war erfolgreich."
 
 msgid "Recording too big for disc type!"
 msgstr "Aufnahme zu groß für Disk-Typ!"
@@ -121,20 +127,14 @@ msgstr "DVDs brennen"
 msgid "Job options"
 msgstr "Jobeinstellungen"
 
-msgid "Video track"
-msgstr "Videospur"
+msgid "Versatile convert-and-burn plugin"
+msgstr "Universelles Umwandlungs- und Brennplugin"
 
-msgid "Audio track"
-msgstr "Tonspur"
+msgid "Create DVDs"
+msgstr "DVDs erstellen"
 
-msgid "Subtitle track"
-msgstr "Untertitel"
-
-msgid "page"
-msgstr "Seite"
-
-msgid "Unknown"
-msgstr "Unbekannt"
+msgid "Burn job active"
+msgstr "Brennjob läuft"
 
 msgid "DVD with menus"
 msgstr "DVD mit Menüs"
@@ -223,29 +223,11 @@ msgstr "Konnte Menübilder nicht erstellen!"
 msgid "Couldn't save image file!"
 msgstr "Konnte Abbild nicht sichern!"
 
-msgid "Versatile convert-and-burn plugin"
-msgstr "Universelles Umwandlungs- und Brennplugin"
-
-msgid "Create DVDs"
-msgstr "DVDs erstellen"
-
-msgid "Burn job active"
-msgstr "Brennjob läuft"
-
 msgid "Please enter the burn plugin"
 msgstr "Bitte Brenn-Plugin aufrufen"
 
 msgid "Please insert an empty disk and press Ok"
 msgstr "Bitte legen Sie eine leere DVD ein und drücken Sie Ok"
-
-msgid "Default"
-msgstr "Vorgabe"
-
-msgid "A job failed!"
-msgstr "Ein Auftrag ist fehlgeschlagen!"
-
-msgid "A job was finished successfully."
-msgstr "Ein Auftrag war erfolgreich."
 
 msgid "Recordings"
 msgstr "Aufzeichnungen"
@@ -256,15 +238,23 @@ msgstr "Liste"
 msgid "Status"
 msgstr "Status"
 
-#, c-format
-msgid "$Total size: %1$.1f MB %2$s"
-msgstr "Gesamtgröße: %1$.1f MB %2$s"
+msgid "Video track"
+msgstr "Videospur"
 
-msgid "(would be shrinked)"
-msgstr "(würden geschrumpft)"
+msgid "Audio track"
+msgstr "Tonspur"
 
-msgid "Aspect ratio"
-msgstr "Seitenverhältnis"
+msgid "Subtitle track"
+msgstr "Untertitel"
+
+msgid "page"
+msgstr "Seite"
+
+msgid "Unknown"
+msgstr "Unbekannt"
+
+msgid "Default"
+msgstr "Vorgabe"
 
 msgid "track editor"
 msgstr "Spureneditor"
@@ -367,6 +357,16 @@ msgstr "Auftrag noch aktiv - wirklich beenden?"
 msgid "Remove job from list?"
 msgstr "Auftrag aus Liste entfernen?"
 
+#, c-format
+msgid "$Total size: %1$.1f MB %2$s"
+msgstr "Gesamtgröße: %1$.1f MB %2$s"
+
+msgid "(would be shrinked)"
+msgstr "(würden geschrumpft)"
+
+msgid "Aspect ratio"
+msgstr "Seitenverhältnis"
+
 msgid "Previous page"
 msgstr "Vorherige Seite"
 
@@ -396,4 +396,3 @@ msgstr "Konnte Marken nicht lesen"
 
 msgid "Recording is too short"
 msgstr "Aufzeichnung ist zu kurz"
-

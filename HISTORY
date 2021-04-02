@@ -1,6 +1,16 @@
 VDR Plugin 'burn' Revision History
 ----------------------------------
 
+2011-10-08: Version 0.2.0-beta7
+- fixed compiling on VDR 1.6
+- adapted to VDR 1.7.20 and removed erroneously introduced dependency on liemikuutio patch
+- removed video fifo which was only required by vdrsync.pl
+- removed deprecated direct member access if compiled with VDR 1.7.21+
+- fixed indention of folders in recording menu
+- adapted recordings menu to VDR 1.7.21 layout
+- fixed status menu updates
+- outsourced settings for Project X to vdrburn-dvd.conf (thanks to Keine_Ahnung@vdr-portal.de for the idea and code snippets)
+
 2011-08-08: Version 0.2.0-beta6
 - fixed building with ENABLE_DMH_ARCHIVE=1 (thanks to Ville Skyttä, bug #475)
 - Finnish translation update (provided by Ville Skyttä, feature #473)

@@ -6,8 +6,7 @@ set -x
 # To make the script exit whenever a command fails (MUST NOT BE REMOVED)
 set -e
 
-# TODO
-# Variables passed in (not up-to-date):
+# environment variables set by the burn plugin:
 
 # RECORDING_PATH	(demux, recordingmark, dmharchive)
 #					Path of VDR recording (/video0/%Bla/2004-01-...rec)
@@ -40,7 +39,7 @@ set -e
 #					Fifo where the created ISO should be piped into
 # DVD_DEVICE		(burn, author)
 #					Full path- and filename of the DVD burner device
-# CONFIG_PATH			(pipe, recordingmark, archivemark, demux, dmharchive)
+# CONFIG_PATH		(pipe, recordingmark, archivemark, demux, dmharchive)
 #					Full path to burn's config directory
 # TEMP_PATH			(dmharchive)
 #					Full path to burn's temp directory (namely the same as $MPEG_TMP_PATH)
@@ -58,16 +57,6 @@ set -e
 # MENU_MPEG			(render)
 
 
-
-
-
-if [ -z $JAVA_HOME ]; then
-	export JAVA_HOME=/opt/j2re1.4.2
-fi
-
-if [ -z $PROJECTX_HOME ]; then
-	export PROJECTX_HOME=/opt/ProjectX
-fi
 
 # Some versions of growisofs refuse to start when run with sudo, and may
 # misdetect this condition if vdr itself is started from a sudo session.
@@ -89,6 +78,12 @@ case $1 in
 	;;
 
 	demux)
+		[ -r $CONFIG_PATH/vdrburn-dvd.conf ] && . $CONFIG_PATH/vdrburn-dvd.conf
+		[ -z "$JAVA_EXE" ] && JAVA_EXE=$(which java)
+
+		[ ! -x "$JAVA_EXE" ] && echo "ERROR: java executable \"$JAVA_EXE\" not found" && exit 1
+		[ ! -r "$PROJECTX_JAR" ] && echo "ERROR: Project X jar file \"$PROJECTX_JAR\" not found" && exit 1
+
 		test -e "$MPEG_TMP_PATH/convert" && rm "$MPEG_TMP_PATH/convert"
 		ln -s "$RECORDING_PATH" "$MPEG_TMP_PATH/convert"
 
@@ -97,8 +92,8 @@ case $1 in
 			CUT="-cut $MPEG_DATA_PATH/px.cut"
 		fi
 
-		$IO_NICE $JAVA_HOME/bin/java -Djava.awt.headless=true \
-				-jar $PROJECTX_HOME/ProjectX.jar \
+		$IO_NICE $JAVA_EXE -Djava.awt.headless=true \
+				-jar $PROJECTX_JAR \
 				-ini $CONFIG_PATH/ProjectX.ini \
 				$TTXT_OPTS \
 				$CUT -id $USED_TRACKS \

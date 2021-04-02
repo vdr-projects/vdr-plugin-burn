@@ -104,6 +104,8 @@ namespace vdr_burn
 		pagebase::pagebase(const string& title, int tab0, int tab1, int tab2):
 				cOsdMenu(title.c_str(), tab0, tab1, tab2)
 		{
+			last_active_job = NULL;
+			last_percent = -1;
 		}
 
 		pagebase::~pagebase()
@@ -180,8 +182,14 @@ namespace vdr_burn
 						return osBack;
 					case kNone:
 						check_waiting_user();
-						if ( (display::status ==  starter::get_current_display()))
-							menu_update();
+						if ( display::status ==  starter::get_current_display() ) {
+							int percent = manager::get_active() ? manager::get_active()->get_progress() : -1;
+							if ( (last_active_job != manager::get_active()) || last_percent != percent ) {
+								last_active_job = manager::get_active();
+								last_percent = percent;
+								menu_update();
+							}
+						}
 						state = osContinue;
 						break;
 					default:
@@ -189,15 +197,18 @@ namespace vdr_burn
 				}
 			}
 			else
+			{
 				if (!HasSubMenu()) {
 					if (hadSubMenu) 
-						display();
+						menu_update();
 					
 					menu_item_base& item = dynamic_cast< menu_item_base& >( *Get( current ) );
 					if (key != kNone && !item.is_editing())
-						set_help_keys();
+						menu_update();
 				}
-
+				
+			}
+			
 			return state;
 		}
 

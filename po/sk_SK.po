@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: burn-0.2.0-beta5\n"
 "Report-Msgid-Bugs-To: <<vdr@smue.org>>\n"
-"POT-Creation-Date: 2011-08-08 14:57+0200\n"
+"POT-Creation-Date: 2011-10-08 13:26+0200\n"
 "PO-Revision-Date: 2011-02-15 20:37+0100\n"
 "Last-Translator: Milan Hrala <hrala.milan@gmail.com>\n"
 "Language-Team: Slovak <hrala.milan@gmail.com>\n"
@@ -15,6 +15,12 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: Lokalize 0.3\n"
+
+msgid "A job failed!"
+msgstr "Chyba úlohy!"
+
+msgid "A job was finished successfully."
+msgstr "Úloha úspešne skončila."
 
 msgid "Recording too big for disc type!"
 msgstr "Nahrávka je príliš veľká vzhľadom typ média!"
@@ -123,20 +129,14 @@ msgstr "Zapísať na disk"
 msgid "Job options"
 msgstr "Voľby DVD"
 
-msgid "Video track"
-msgstr "Video stopa"
+msgid "Versatile convert-and-burn plugin"
+msgstr "Všestranný konvertovací a vypalovací modul"
 
-msgid "Audio track"
-msgstr "Zvuková stopa"
+msgid "Create DVDs"
+msgstr "Vytvoriť DVD-čka"
 
-msgid "Subtitle track"
-msgstr "Titulková stopa"
-
-msgid "page"
-msgstr "strana"
-
-msgid "Unknown"
-msgstr "Neznámy"
+msgid "Burn job active"
+msgstr "Napalovanie začalo"
 
 msgid "DVD with menus"
 msgstr "DVD s menu"
@@ -226,29 +226,11 @@ msgstr "Nepodarilo sa z renderovať obrázok v menu!"
 msgid "Couldn't save image file!"
 msgstr "Nepodarilo sa uložiť súbor z obrazom!"
 
-msgid "Versatile convert-and-burn plugin"
-msgstr "Všestranný konvertovací a vypalovací modul"
-
-msgid "Create DVDs"
-msgstr "Vytvoriť DVD-čka"
-
-msgid "Burn job active"
-msgstr "Napalovanie začalo"
-
 msgid "Please enter the burn plugin"
 msgstr "Prosím, chodte do napalovacieho modulu"
 
 msgid "Please insert an empty disk and press Ok"
 msgstr "Prosím vložte prázdne médium a stlačte OK"
-
-msgid "Default"
-msgstr "Predvolený"
-
-msgid "A job failed!"
-msgstr "Chyba úlohy!"
-
-msgid "A job was finished successfully."
-msgstr "Úloha úspešne skončila."
 
 msgid "Recordings"
 msgstr "Nahrávky"
@@ -259,15 +241,23 @@ msgstr "Zoznam"
 msgid "Status"
 msgstr "Stav"
 
-#, c-format
-msgid "$Total size: %1$.1f MB %2$s"
-msgstr "$Celková velkosť: %1$.1f MB %2$s"
+msgid "Video track"
+msgstr "Video stopa"
 
-msgid "(would be shrinked)"
-msgstr "(bude zmrštená)"
+msgid "Audio track"
+msgstr "Zvuková stopa"
 
-msgid "Aspect ratio"
-msgstr "Pomer strán"
+msgid "Subtitle track"
+msgstr "Titulková stopa"
+
+msgid "page"
+msgstr "strana"
+
+msgid "Unknown"
+msgstr "Neznámy"
+
+msgid "Default"
+msgstr "Predvolený"
 
 msgid "track editor"
 msgstr ""
@@ -371,6 +361,16 @@ msgstr "Úloha je aktívna - Naozaj zrušíť?"
 
 msgid "Remove job from list?"
 msgstr "Vymazať úlohu"
+
+#, c-format
+msgid "$Total size: %1$.1f MB %2$s"
+msgstr "$Celková velkosť: %1$.1f MB %2$s"
+
+msgid "(would be shrinked)"
+msgstr "(bude zmrštená)"
+
+msgid "Aspect ratio"
+msgstr "Pomer strán"
 
 msgid "Previous page"
 msgstr "Predchádzajúca strana"

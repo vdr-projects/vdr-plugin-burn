@@ -100,9 +100,9 @@ namespace vdr_burn
 
 		if (global_setup().PreserveLogFiles) {
 			string target = BurnParameters.IsoPath.empty() ? BurnParameters.TempPath : BurnParameters.IsoPath;
+			logger::debug(format ("moving detail log to {0}/vdrburn-{1}.log") % target % m_job.get_title() );
 			execute( shellescape( "cp" ) + get_log_path() +
 					 str( format( "{0}/vdrburn-{1}.log" ) % target % m_job.get_title() ) );
-			logger::debug(format ("moving detail log to {0}/vdrburn-{1}.log") % target % m_job.get_title() );
 		}
 	}
 
