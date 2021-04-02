@@ -10,9 +10,6 @@
 #include "menuburn.h"
 #include "menuitems.h"
 #include "common.h"
-#if APIVERSNUM < 10507
-#include "i18n.h"
-#endif
 #include <algorithm>
 #include <boost/bind.hpp>
 #include <boost/format.hpp>
@@ -30,10 +27,10 @@ namespace vdr_burn
 cBurnParameters BurnParameters;
 
 cBurnParameters::cBurnParameters():
-		DataPath(TMPDIR),
-		TempPath(TMPDIR),
-		DvdDevice(DVDDEV),
-		IsoPath(ISODIR),
+		DataPath(BURN_TMPDIR),
+		TempPath(BURN_TMPDIR),
+		DvdDevice(BURN_DVDDEV),
+		IsoPath(BURN_ISODIR),
 		fixedStoreMode( false ),
 		KeepTempFiles (false)
 {
@@ -91,7 +88,7 @@ bool cBurnParameters::ProcessArgs(int argc, char *argv[])
 			PROCTOOLS_INIT_PROPERTY( RemovePath,          false ),
 			PROCTOOLS_INIT_PROPERTY( CustomDiskSize,      200 ),
 			PROCTOOLS_INIT_PROPERTY( BurnSpeed,           0 ),
-			PROCTOOLS_INIT_PROPERTY( RequantType,         requanttype_metakine ),
+			PROCTOOLS_INIT_PROPERTY( RequantType,         requanttype_m2vrequantiser ),
 			PROCTOOLS_INIT_PROPERTY( PreserveLogFiles,    false ),
 			PROCTOOLS_INIT_PROPERTY( DefaultLanguage,     0 ),
 			PROCTOOLS_INIT_PROPERTY( MainMenuStatus,      true ),
@@ -176,9 +173,7 @@ bool cBurnParameters::ProcessArgs(int argc, char *argv[])
 			m_options( options_ ),
 			m_showAll( showAll_ )
 	{
-#if APIVERSNUM > 10733
         SetMenuCategory(mcPluginSetup);
-#endif
 	}
 
 	void job_options_base::add_job_options()

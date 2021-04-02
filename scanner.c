@@ -26,7 +26,7 @@
 #include <sys/stat.h>
 #include <vdr/remux.h>
 #include <vdr/device.h>
-#include "libsi/si.h"
+#include <libsi/si.h>
 
 
 #define DEBUG(x...) isyslog(x)
@@ -105,22 +105,14 @@ namespace vdr_burn
 
     void marks_scanner::operator()(const cMark& mark)
     {
-#if VDRVERSNUM >= 10721
         m_state.reset( m_state->process(mark.Position()) );
-#else
-        m_state.reset( m_state->process(mark.position) );
-#endif
     }
 
  	// --- recording_index -----------------------------------------------------
 
     recording_index::recording_index(const string& fileName, const bool IsPesRecording):
             m_fileName( fileName ),
-#if VDRVERSNUM >= 10703
             m_index( fileName.c_str(), false, IsPesRecording )
-#else
-            m_index( fileName.c_str(), false )
-#endif
     {
         if (!m_index.Ok()) {
             logger::error( format("couldn't read index from {0}") % m_fileName);
@@ -132,18 +124,11 @@ namespace vdr_burn
 
     uint64_t recording_index::get_bytepos(int index, bool frameEnd)
     {
-#if VDRVERSNUM >= 10703
         uint16_t fileNo;
         off_t offset;
         int length;
         bool independant;
         if (!m_index.Get(index, &fileNo, &offset, &independant, &length))
-#else
-        uchar fileNo;
-        int offset;
-        int length;
-        if (!m_index.Get(index, &fileNo, &offset, 0, &length))
-#endif
             return npos;
 
         --fileNo;
@@ -153,17 +138,10 @@ namespace vdr_burn
 
     pair<int, int> recording_index::get_position(int index)
     {
-#if VDRVERSNUM >= 10703
         uint16_t fileNo;
         off_t offset;
         if (!m_index.Get(index, &fileNo, &offset))
             return make_pair(-1, -1);
-#else
-        uchar fileNo;
-        int offset;
-        if (!m_index.Get(index, &fileNo, &offset))
-            return make_pair(-1, -1);
-#endif
 
         return make_pair(fileNo, offset);
     }
@@ -306,9 +284,7 @@ namespace vdr_burn
         pes_scanner(const std::string& fileName, const bool IsPesRecording);
 
         track_info_list& pes_scan(const vdr_file::position& first, const vdr_file::position& last);
-#if VDRVERSNUM >= 10711
         track_info_list& ts_scan (cPatPmtParser& PatPmtParser, const vdr_file::position& first, const vdr_file::position& last, const bool UseSubtitleTracks);
-#endif
 
     protected:
         virtual int Action1(int type, int pid, uchar* data, int length);
@@ -325,9 +301,7 @@ namespace vdr_burn
 
 		struct PidConverter {
 			int Pid;
-#if VDRVERSNUM >= 10711
 			cTsToPes *TsToPes;
-#endif
 			unsigned int packets;
 			unsigned int PesID;
 		} ;
@@ -384,13 +358,12 @@ namespace vdr_burn
         return m_tracks;
     }
 
-#if VDRVERSNUM >= 10711
 	track_info_list& pes_scanner::ts_scan(cPatPmtParser& PatPmtParser, const vdr_file::position& start, const vdr_file::position& end, const bool UseSubtitleTracks)
 	{
 		logger::debug(format( "scanning ts positions: {0}/{1}-{2}/{3}") % start.first % start.second % end.first % end.second);
 
 		bool PmtFound = false;
-		int PatVersion, PmtVersion;
+		int PatVersion, PmtVersion, pmtPid;
 
 		PatPmtParser.Reset();
 		m_vdrFile.seek(start);
@@ -404,16 +377,14 @@ namespace vdr_burn
 				if (!PmtFound) {
 					if ( Pid == 0)
 						PatPmtParser.ParsePat(DataPtr, TS_SIZE);
-#if VDRVERSNUM < 10733
-					else if (Pid == PatPmtParser.PmtPid())
-#else
-                    else if (PatPmtParser.IsPmtPid(Pid))
-#endif
-						PatPmtParser.ParsePmt(DataPtr, TS_SIZE);
+                    else if (PatPmtParser.IsPmtPid(Pid)) {
+						pmtPid = Pid;
+                        PatPmtParser.ParsePmt(DataPtr, TS_SIZE);
+                    }
 					else if (PatPmtParser.GetVersions(PatVersion, PmtVersion)) {
 						PmtFound = true;
 						int streams = 0;
-						logger::debug(format( "PID found: Vpid=0x{1}, Vtype=0x{2}") % format::base( PatPmtParser.Vpid(), 16 ) % format::base( PatPmtParser.Vtype(), 16 ));
+						logger::debug(format( "PID found: PMT PID=0x{0}, Vpid=0x{1}, Vtype=0x{2}") % format::base( pmtPid, 16 ) % format::base( PatPmtParser.Vpid(), 16 ) % format::base( PatPmtParser.Vtype(), 16 ));
 						if ( PatPmtParser.Vpid() && (PatPmtParser.Vtype() == 2)) { // accept only MPEG2
 							track_info track( PatPmtParser.Vpid(), track_info::streamtype_video );
 							m_tracks.push_back( track );
@@ -530,7 +501,6 @@ namespace vdr_burn
 
 		return m_tracks;
     }
-#endif
 
     template<unsigned int N>
     uchar* pes_scanner::find_payload(uchar* data, int length, const payload_header (&patterns)[N])
@@ -735,9 +705,7 @@ namespace vdr_burn
 			m_itemToScan( recording ),
 			m_totalSize( 0, 0 ),
 			m_totalLength( 0, 0 ),
-#if VDRVERSNUM >= 10711
 			m_PatPmtParser( false ),
-#endif
 			m_scanResult( owner, recording ),
 			m_useSubtitleTracks( owner->get_options().UseSubtitleTracks )
 	{
@@ -749,17 +717,10 @@ namespace vdr_burn
 
 		cMarks marks;
 		bool marks_loaded = false;
-#if VDRVERSNUM >= 10703
         recording_index index( m_scanResult.get_filename(), m_itemToScan->IsPesRecording() );
         const int frames_into_movie = 10 *  m_itemToScan->FramesPerSecond();
         const int frames_to_scan = 10 *  m_itemToScan->FramesPerSecond();
 		marks_loaded = marks.Load(m_itemToScan->FileName(), m_itemToScan->FramesPerSecond(), m_itemToScan->IsPesRecording());
-#else
-        recording_index index( m_scanResult.get_filename() );
-        static const int frames_into_movie = 10 * FRAMESPERSEC;
-        static const int frames_to_scan = 10 * FRAMESPERSEC;
-		marks_loaded = marks.Load(m_itemToScan->FileName());
-#endif
 
         if (!marks_loaded) {
             logger::error(format( "couldn't read marks from {0}" ) % m_itemToScan->FileName());
@@ -771,11 +732,7 @@ namespace vdr_burn
 			logger::debug( "marks available, skipping 10 seconds from first mark" );
 
 			adaptor::list_iterator<cMark> mark( marks );
-#if VDRVERSNUM >= 10721
 			startIndex += mark->Position();
-#else
-			startIndex += mark->position;
-#endif
 		} else
 			logger::debug( "no marks found, skipping 10 seconds into movie" );
 
@@ -788,20 +745,12 @@ namespace vdr_burn
 			marks.Add(index.get_last_index());
 		}
 
-#if VDRVERSNUM >= 10703
 		bool isPesRecording = m_itemToScan->IsPesRecording();
 
 		pes_scanner pes( m_scanResult.get_filename(), isPesRecording );
 
 		track_info_list& tracks = isPesRecording ?  pes.pes_scan(index.get_position(startIndex), index.get_position(startIndex + frames_to_scan)) :
 													pes.ts_scan(m_PatPmtParser, index.get_position(startIndex), index.get_position(startIndex + frames_to_scan), m_useSubtitleTracks);
-#else
-		bool isPesRecording = true;
-
-		pes_scanner pes( m_scanResult.get_filename(), isPesRecording );
-
-		track_info_list& tracks = pes.pes_scan(index.get_position(startIndex), index.get_position(startIndex + frames_to_scan));
-#endif
 
 		scan_track_descriptions( tracks );
 
@@ -962,13 +911,8 @@ namespace vdr_burn
 
     void recording_scanner::scan_audio_track_size(track_info& track)
     {
-#if VDRVERSNUM >= 10703
     	track.size.uncut = uint64_t( track.bitrate ) * 1000 * m_totalLength.uncut / m_itemToScan->FramesPerSecond() / 8;
     	track.size.cut = uint64_t( track.bitrate ) * 1000 * m_totalLength.cut / m_itemToScan->FramesPerSecond() / 8;
-#else
-    	track.size.uncut = uint64_t( track.bitrate ) * 1000 * m_totalLength.uncut / FRAMESPERSEC / 8;
-    	track.size.cut = uint64_t( track.bitrate ) * 1000 * m_totalLength.cut / FRAMESPERSEC / 8;
-#endif
     }
 
     void recording_scanner::scan_video_track_size(track_info& track)

@@ -160,7 +160,7 @@ namespace gdwrapper
 		string wrappedText = wrap_text( region.boundaries.width, lineh, text, region.font );
 
 		int y_ = region.boundaries.y;
-		int lines = 0, width_, height_;
+		int lines = 0, width_; //, height_;
 		int white = gdImageColorResolveAlpha(m_image, 255, 255, 255, 0);
 		int bounds[8];
 
@@ -177,7 +177,7 @@ namespace gdwrapper
 				gdImageStringFT( 0, bounds, 0, const_cast<char*>( fontPath.c_str() ),
 								 region.font.size, 0, 0, 0, const_cast<char*>( line.c_str() ) );
 				width_ = bounds[2] - bounds[0] + 1;
-				height_ = bounds[3] - bounds[1] + 1;
+				//height_ = bounds[3] - bounds[1] + 1;
 				if ( region.align == 0 )
 					gdImageStringFT( m_image, bounds, white, const_cast<char*>( fontPath.c_str() ),
 									 region.font.size, 0, region.boundaries.x, y_ + lineh,
@@ -201,7 +201,7 @@ namespace gdwrapper
 			gdImageStringFT( 0, bounds, 0, const_cast<char*>( fontPath.c_str() ), region.font.size, 0, 0, 0,
 							 const_cast<char*>( rest.c_str() ) );
 			width_ = bounds[2] - bounds[0] + 1;
-			height_ = bounds[3] - bounds[1] + 1;
+			//height_ = bounds[3] - bounds[1] + 1;
 			if (region.align == 0)
 				gdImageStringFT( m_image, bounds, white, const_cast<char*>( fontPath.c_str() ),
 								 region.font.size, 0, region.boundaries.x, y_ + lineh, const_cast<char*>( rest.c_str() ) );

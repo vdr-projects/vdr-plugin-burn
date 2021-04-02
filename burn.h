@@ -21,7 +21,8 @@ namespace vdr_burn
 		plugin();
 		virtual ~plugin();
 
-		static std::string get_config_path() { return m_configPath; }
+        static std::string get_config_path() { return m_configPath; }
+        static std::string get_resource_path() { return m_resourcePath; }
 		static std::string get_character_encoding();
 
 		virtual const char* Version() { return VERSION; }
@@ -30,11 +31,7 @@ namespace vdr_burn
 		virtual bool ProcessArgs(int argc, char *argv[]);
 		virtual bool Start();
 		virtual void Stop();
-#ifndef APIVERSION
-		virtual bool Active();
-#else
 		virtual cString Active();
-#endif
 		virtual const char *MainMenuEntry();
 		virtual cOsdObject *MainMenuAction();
 		virtual cMenuSetupPage *SetupMenu();
@@ -45,7 +42,8 @@ namespace vdr_burn
 		static const char* DESCRIPTION;
 		static const char* MAINMENUENTRY;
 
-		static std::string m_configPath;
+        static std::string m_configPath;
+        static std::string m_resourcePath;
 
 		std::string m_mainMenuEntry;
 	};

@@ -103,7 +103,7 @@ namespace vdr_burn
 		// TODO: move rendering into chain
 		shellprocess render( "render", shellescape( "vdrburn-dvd.sh" ) + "render" );
 		render.put_environment( "MENU_BACKGROUND", item.get_menu_background( page ) );
-		render.put_environment( "MENU_SOUNDTRACK", plugin::get_config_path() + "/menu-silence.mp2" );
+		render.put_environment( "MENU_SOUNDTRACK", plugin::get_resource_path() + "/menu-silence.mp2" );
 		render.put_environment( "MENU_XML", config.get_xml_path( page ) );
 		render.put_environment( "MENU_M2V", item.get_paths().data + "/menu-background.m2v" );
 		render.put_environment( "MENU_MPEG", item.get_menu_mpeg( page ) );

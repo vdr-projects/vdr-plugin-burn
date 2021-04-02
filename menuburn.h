@@ -99,9 +99,7 @@ namespace vdr_burn
 			virtual bool menu_closing();
 			virtual eOSState ok_pressed();
 			virtual eOSState red_pressed();
-#if VDRVERSNUM >= 10729
 			virtual eOSState zero_pressed();
-#endif
 
 		private:
 			std::string m_basePath;

@@ -86,7 +86,7 @@ namespace vdr_burn
 		default_button = button;
 	}
 
-	// --- skin_list ----------------------------------------------------------
+	// --- skin_file_checker ----------------------------------------------------------
 
 	class skin_file_checker
 	{
@@ -106,6 +106,8 @@ namespace vdr_burn
 	private:
 		std::string m_pathPrefix;
 	};
+
+    // --- skin_list ----------------------------------------------------------
 
 	string skin_list::check_skin_files( const std::string& pathOnly, const std::string& filePrefix, bool fatal )
 	{

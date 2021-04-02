@@ -308,12 +308,15 @@ namespace vdr_burn
 
 		void recordings::display()
 		{
-			cThreadLock RecordingsLock(&Recordings);
-#if VDRVERSNUM >= 10729
+#if defined(APIVERSNUM) && APIVERSNUM >= 20301
+			LOCK_RECORDINGS_WRITE;  // for sort is a write lock required
 			GetRecordingsSortMode(m_basePath.c_str());
-#endif
+			Recordings->Sort();
+#else
+			cThreadLock RecordingsLock(&Recordings);
+			GetRecordingsSortMode(m_basePath.c_str());
 			Recordings.Sort();
-
+#endif
 			int current = Current();
 			Clear();
 			m_recordingCount = 0;
@@ -333,11 +336,16 @@ namespace vdr_burn
 
 			recording_item *lastItem = 0;
 			string lastText;
+#if defined(APIVERSNUM) && APIVERSNUM >= 20301
+			for (cRecording *rec = Recordings->First(); rec != NULL; rec = Recordings->Next(rec)) {
+#else
 			for (cRecording *rec = Recordings.First(); rec != NULL; rec = Recordings.Next(rec)) {
+#endif
 				string recName( rec->Name() );
 
 				// find H.264 videos
 				bool is_H264 = false;
+				bool is_MPEG2 = false;
 				if (rec->Info() && rec->Info()->Components()) {
 					const cComponents *Components = rec->Info()->Components();
 					for (int i = 0; i < Components->NumComponents(); i++) {
@@ -345,6 +353,9 @@ namespace vdr_burn
 						if (p->stream == etsi::sc_video_H264_AVC) {
 							is_H264 = true;
 							break;
+						} 
+						if (p->stream == etsi::sc_video_MPEG2) {
+							is_MPEG2 = true;
 						}
 					}
 				}
@@ -358,8 +369,8 @@ namespace vdr_burn
 
 				menu::recording_item* item = new menu::recording_item(rec, m_pathLevel);
 				string itemText( item->Text() );
-				if (!item->is_directory() && is_H264)
-                    item->SetSelectable(false);
+				if (!item->is_directory() && (is_H264 | !is_MPEG2))
+					item->SetSelectable(false);
 				if (itemText.length() != 0 && (lastItem == 0 || itemText != lastText)) {
 					// select directory we are coming from as current item
 					if (recName.find(m_lastPath) == 0 && rec->Name()[m_lastPath.length()] == '~') {
@@ -463,14 +474,12 @@ namespace vdr_burn
 			return osContinue;
 		}
 
-#if VDRVERSNUM >= 10729
 		eOSState recordings::zero_pressed()
 		{
 			IncRecordingsSortMode(m_basePath.c_str());
 			display();
 			return osContinue;
 		}
-#endif
 		
 		/// --- job_editor -----------------------------------------------------
 

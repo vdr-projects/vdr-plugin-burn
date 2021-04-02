@@ -101,10 +101,10 @@ case $1 in
 				$(ls "$MPEG_TMP_PATH/convert/"[0-9][0-9][0-9]*.*)
 	;;
 
-	requant)
+	M2Vrequantiser)
 		REQUANT_FACTOR=$(echo "$REQUANT_FACTOR" | tr ',' '.')
-		echo requant $REQUANT_FACTOR 3 $VIDEO_SIZE
-		$IO_NICE requant $REQUANT_FACTOR 3 $VIDEO_SIZE < "$VIDEO_FILE" > "$REQUANT_FILE"
+		echo M2VRequantiser $REQUANT_FACTOR $VIDEO_SIZE
+		$IO_NICE M2VRequantiser $REQUANT_FACTOR $VIDEO_SIZE < "$VIDEO_FILE" > "$REQUANT_FILE"
 		rm -f "$VIDEO_FILE"
 	;;
 

@@ -296,8 +296,8 @@ namespace vdr_burn
 			const char* requant_call;
 			if ( global_setup().RequantType == requanttype_transcode )
 				requant_call = "tcrequant";
-			else if ( global_setup().RequantType == requanttype_metakine )
-				requant_call = "requant";
+			else if ( global_setup().RequantType == requanttype_m2vrequantiser )
+				requant_call = "M2Vrequantiser";
 			else
 				requant_call = "lxrequant";
 
@@ -455,38 +455,20 @@ namespace vdr_burn
 	bool chain_dvd::prepare_cutmarks()
 	{
 		cMarks marks;
-#if VDRVERSNUM >= 10703
 		if (!marks.Load(m_currentRecording->get_filename().c_str(), m_currentRecording->get_FramesPerSecond(), m_currentRecording->get_PesRecording()) || !marks.Count())
 			return false;
 
 		cIndexFile ifile( m_currentRecording->get_filename().c_str(), false, m_currentRecording->get_PesRecording() );
-#else
-		if (!marks.Load(m_currentRecording->get_filename().c_str()) || !marks.Count())
-			return false;
-
-		cIndexFile ifile( m_currentRecording->get_filename().c_str(), false);
-#endif
 
 		// convert marks to bytepos
 		ofstream cutfile( str( boost::format("%s/px.cut") % m_currentRecording->get_paths().data ).c_str() );
 
 		for (cMark *mark = marks.First(); mark != 0; mark = marks.Next(mark)) {
-#if VDRVERSNUM >= 10721
 			int pos = mark->Position();
-#else
-			int pos = mark->position;
-#endif
-#if VDRVERSNUM >= 10703
 			uint16_t filenumber;
 			off_t offset;
 
 			ifile.Get(pos, &filenumber, &offset);
-#else
-			uchar filenumber;
-			int offset;
-			ifile.Get(pos, &filenumber, &offset, 0, 0);
-
-#endif
 			uint64_t bytepos = offset;
 			boost::format filefmt( m_currentRecording->get_PesRecording() ? "%s/%03d.vdr" :  "%s/%05d.ts" );
 

@@ -50,31 +50,26 @@ namespace vdr_burn
 			m_owner( owner_ ),
 			m_fileName( recording_->FileName() ),
 			m_name( recording_->Name() ),
-			m_title( recording_->Name() ),
 			m_eventTitle( get_recording_event_title(recording_) ),
 			m_eventShortText( get_recording_event_shorttext(recording_) ),
 			m_eventDescription( get_recording_event_description(recording_) ),
 			m_datetime( get_recording_datetime(recording_, ' ') ),
+			m_isPesRecording( recording_->IsPesRecording() ),
+			m_framesPerSecond( recording_->FramesPerSecond() ),
 			m_titleSource( owner_->get_options().TitleType ),
 			m_totalSize( 0, 0 ),
 			m_totalLength( 0, 0 )
 	{
-#if VDRVERSNUM >= 10703
-		m_isPesRecording  = recording_->IsPesRecording();
-		m_framesPerSecond = recording_->FramesPerSecond();
-#else
-		m_isPesRecording = true;
-		m_framesPerSecond = FRAMESPERSEC;
-#endif
 		std::string::size_type pos;
 		if ( global_setup().RemovePath && ( pos = m_name.rfind( '~' ) ) != std::string::npos )
 			m_name.erase( 0, pos + 1 );
 
-        for ( pos = 0;; ++pos ) {
-            trim_left( m_name, "%@", pos );
-            if ( ( pos = m_name.find( '~', pos ) ) == std::string::npos )
-                break;
-        }
+		for ( pos = 0;; ++pos ) {
+			trim_left( m_name, "%@", pos );
+			if ( ( pos = m_name.find( '~', pos ) ) == std::string::npos )
+				break;
+		}
+		m_title = m_name;
 	}
 
 //	size_pair::size_type recording::get_total_size() const
@@ -224,11 +219,7 @@ namespace vdr_burn
 			int count = 0;
 			stringstream result("0");
 			while (mark != NULL) {
-#if VDRVERSNUM >= 10721
 				int position = mark->Position();
-#else
-				int position = mark->position;
-#endif
 				if (++count % 2 == 0 && marks.GetNext(position) != NULL)
 					result << "," << *IndexToHMSF(position, false);
 				mark = marks.GetNext(position);
@@ -263,7 +254,11 @@ namespace vdr_burn
 	std::string recording::get_graft_point() const
 	{
 		return proctools::format("{0}={1}")
+#if APIVERSNUM > 20101
+			   % m_fileName.substr(std::string(cVideoDirectory::Name()).length())
+#else
 			   % m_fileName.substr(std::string(VideoDirectory).length())
+#endif
 			   % m_fileName;
 	}
 

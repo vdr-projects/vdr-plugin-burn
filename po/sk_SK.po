@@ -1,12 +1,12 @@
-# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
-# This file is distributed under the same license as the PACKAGE package.
+# Copyright (C) 2011
+# This file is distributed under the same license as the burn package.
 #
 # Milan Hrala <hrala.milan@gmail.com>, 2009.
 msgid ""
 msgstr ""
 "Project-Id-Version: burn-0.2.0-beta5\n"
 "Report-Msgid-Bugs-To: <see README>\n"
-"POT-Creation-Date: 2013-02-11 10:16+0100\n"
+"POT-Creation-Date: 2016-03-28 17:21+0200\n"
 "PO-Revision-Date: 2011-02-15 20:37+0100\n"
 "Last-Translator: Milan Hrala <hrala.milan@gmail.com>\n"
 "Language-Team: Slovak <hrala.milan@gmail.com>\n"
@@ -84,7 +84,8 @@ msgstr "Vlastné"
 msgid "ProjectX"
 msgstr "ProjectX"
 
-msgid "M2VRequantizer"
+#, fuzzy
+msgid "M2VRequantiser"
 msgstr "M2VRequantizer"
 
 msgid "Transcode"
@@ -127,10 +128,12 @@ msgstr "Nahrávka je príliš veľká vzhľadom typ média!"
 msgid "Disc too big for disc type!"
 msgstr "Disk je príliš veľký pre typ média!"
 
-msgid "A job failed!"
+#, fuzzy
+msgid "A burn job failed!"
 msgstr "Chyba úlohy!"
 
-msgid "A job was finished successfully."
+#, fuzzy
+msgid "A burn job was finished successfully."
 msgstr "Úloha úspešne skončila."
 
 msgid "Recordings"

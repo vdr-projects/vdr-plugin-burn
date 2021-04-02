@@ -13,99 +13,82 @@ See the file COPYING for license information.
 Purpose
 -------
 
-This Plugin enables VDR to write compliant DVDs from VDR recordings while
-being able to control the process and to watch progress from inside VDRs
-on-screen-display. If the selected recordings don't fit the DVD, the video
+This Plugin enables VDR to create standard compliant DVDs from VDR SD recordings
+while being able to control the process and to watch progress from inside VDRs
+on-screen-display. If the selected recordings don't fit onto the DVD, the video
 tracks are requantized (shrinked) automatically.
 
-The created menus support multipage-descriptions (in case the recording summary
+The created menus support multipage-descriptions (in case the recording description
 exceeds one page).
 
 
-Requirements (not up to date!)
+Requirements
 ------------
+            minimal         recommended
+Software    version           version   URL
+            
+VDR         2.0.0           >= 2.0.0    http://www.tvdr.de/download.htm
+boost       1.32.0          >= 1.46     http://www.boost.org
+ProjectX    0.90.4.00.b29   >= 0.91.0   http://sourceforge.net/projects/project-x/develop
+GD                          >= 2.0      http://www.boutell.com/gd/
+dvdauthor   0.6.14          >= 0.7.0    http://dvdauthor.sourceforge.net
+dvd+rwtools                 >= 7.1      http://fy.chalmers.se/~appro/linux/DVD+RW   (contains growisofs)
+mjpegtools                  >= 2.0.0    http://mjpeg.sourceforge.net/               (contains png2yuv, mpeg2enc and mplex)
 
-g++ >= 3.3       - http://gcc.gnu.org/
+for optional shrinking one of the requantizers:
+M2VRequantiser              => 1.1      https://launchpad.net/m2vrequantiser
+requant_lxdvdrip            => 1.77     http://sourceforge.net/projects/lxdvdrip/
 
-boost >= 1.32.0  - http://www.boost.org
-  ** If not available for your distribution, you can also use
-  ** http://linux.kompiliert.net/contrib/boost-for-burn-1.33.0.tgz
-  ** (see below)
+requant (http://metakine.com/files) and tcrequant (formerly part of transcode) seem to be discontinued and are therefore no longer recommended
 
-ProjectX >= 0.91.0     - http://sourceforge.net/projects/project-x/develop
-  ** should run with 0.90.4.00.b29 or newer beta versions, but 0.91.0 or higher is recommended
+for optional subtitle support:
+pxsup2dast                              http://www.guru-group.fi/~too/sw/m2vmp2cut/
 
-SUBTITLE SUPPORT:
-pxsup2dast       - http://www.guru-group.fi/~too/sw/m2vmp2cut/
 
-requant          - http://metakine.com/files
-
-GD               - http://www.boutell.com/gd/
-
-dvdauthor        - http://dvdauthor.sourceforge.net
-  ** 0.6.14 or higher
-
-growisofs
-(dvd+rwtools)    - http://fy.chalmers.se/~appro/linux/DVD+RW
-
-png2yuv
-mpeg2enc
-mplex
-(mjpegtools)     - http://mjpeg.sourceforge.net/
 
 Installation
 ------------
 
 1. Untar the archive inside VDR's plugin-source folder
 
-   # tar xvfz -C PLUGINS/src vdr-burn-0.2.0.tgz
+   # tar xvfz -C PLUGINS/src vdr-burn-0.3.0.tgz
 
-2. (optional) If your distributor doesn't provide development packages for the
-   boost libraries (at lease 1.32.0), download the boost-for-burn package from
-   the URL posted in the Requirements section above, and untar it inside the
-   plugin's source directory
+2. Install the required development packages of boost and GD.
 
-   # tar xvfz -C PLUGINS/src/burn boost-for-burn-1.33.0.tgz
+3. Recompile Plugins
 
-3. Recompile VDR and Plugins
-
-   # make plugins-clean clean all plugins
+   # make plugins-clean plugins
 
    If your VDR is patched for teletext subtitles (see ttxtsubs plugin) then the
-   burn plugin will also be compiled with teletext subtitle support.
+   burn plugin will automatically be compiled with teletext subtitle support.
    DVB subtitle support is always compiled in.
 
-3b.(optional) Change the default temporary folder, the default DVD writer device
-   and the default ISO directory with TMPDIR (default: /tmp),
-   DVDDEV (default: /dev/dvdrw) and ISODIR (default: /pub/export)
+   Optionally you can change some defaults:
+   - default temporary folder   BURN_TMPDIR (default: /tmp) must be a UNIX filesystem
+   - default DVD writer device  BURN_DVDDEV (default: /dev/dvdrw)
+   - default ISO directory      BURN_ISODIR (default: /pub/export)
 
-   # make DVDDEV=/dev/cdrecorder ISODIR=/export plugins
+   e.g.:
+   # make BURN_DVDDEV=/dev/cdrecorder BURN_ISODIR=/export plugins
 
-4. Copy the scripts vdrburn-dvd.sh, vdrburn-archive.sh to some location
-   inside your $PATH, e.g.
+4. Install Plugins
 
-   # cp PLUGINS/src/burn/*.sh /usr/local/bin/
+   # make install-plugins
 
-5. Copy the font file, menu image templates and config files into "plugins/burn" 
-   inside your VDR configuration directory (usually /video0 or /etc/vdr)
-
-   # cp -a PLUGINS/src/burn/burn /etc/vdr/plugins/
-
-   Afterwards adapt the pathes and file names in
-   /etc/vdr/plugins/vdrburn-dvd.conf so that they point to the correct java and
-   Project X jar file.
-
-6. (optional) Create a directory "skins" in "plugins/burn" inside your VDR
-   configuration directory. Create sub-directories for each skin you'd like
+   This will install the plugin library, scripts, config files and resources into
+   the locations defined by VDR.
+   Please adapt the settings in <CONFIG>/plugins/vdrburn-dvd.conf to reflect
+   the correct Java and Project X jar file.
+   
+5. (optional) Create a directory "skins" in "plugins/burn" inside your VDR
+   resource directory. Create sub-directories for each skin you'd like
    to be offered by the plugin. Place menu-bg.png and/or menu-button.png files
    inside to use them as skins for the menus of your DVDs.
 
-   # mkdir /etc/vdr/plugins/burn/skins
-   # mkdir /etc/vdr/plugins/burn/skins/Star_Trek_TNG
+   # mkdir <RESOURCE>/plugins/burn/skins
+   # mkdir <RESOURCE>/plugins/burn/skins/Star_Trek_TNG
    # cp ~/images/star_trek_pal.png \
-           /etc/vdr/plugins/burn/skins/Star_Trek_TNG/menu-bg.png
-
-7. Enjoy! :-)
+           <RESOURCE>/plugins/burn/skins/Star_Trek_TNG/menu-bg.png
 
 
 Parameters
@@ -124,7 +107,7 @@ The plugin accepts the following parameters at the VDR command line:
                             (default: /pub/export)
 
 So when you want your ISO images stored on /largefiles and use dvd writer
-/dev/sr0 then the VDR command line should look like this:
+/dev/sr0 then the VDR start command line should look like this:
 
   /usr/sbin/vdr -P"burn -i /largefiles -D /dev/sr0"
 
@@ -135,77 +118,104 @@ Usage
 -----
 
 When starting VDR and the Plugin, you can specify the directory where the
-temporary files will reside, your DVD recorder device, and optionally a
-directory where the optional ISO is placed. If you specify both a dvd recorder
-and an iso directory here or at compile time (see above, 3b), you can choose
+temporary files will reside, your DVD writer device, and optionally a
+directory where the optional ISO is placed. If you specify both a dvd writer
+and an iso directory here or at compile time (see 3. above), you can choose
 in the OSD what actions the plugin will take (create an ISO, burn on-the-fly,
 or do both). Additionally, you have to define a temporary directory and a data
 directory. The temporary directory MUST reside on a filesystem capable of
-handling symlinks and fifos, while the data directory must reside on a
-filesystem with enough free disk space. See vdr -P burn -h for a syntax
-explanation.
+handling symlinks and fifos (which all UNIX filesystems do, but not VFAT),
+while the data directory must reside on a filesystem with enough free disk
+space. See vdr -P burn -h for a syntax explanation.
 
-To start a new DVD Project, you first have to mark one or several recordings
-for burning. You will be shown the recordings upon entering the plugin's
-submenu. Navigate as usual, and press the "red" button to select a recording.
-Recordings recognizes as HD recordings will be displayed but are not 
-selectable.
+To start a new DVD Project, enter the burn menu from VDR's main menu and you'll
+see all your VDR recordings. You can navigate as usual through folders. Press
+the "red" button to select a recording for burning. Selected recordings do
+no longer appear in the list. Recordings recognized as HD recordings will be
+displayed but are not selectable.
+The total size of the selected recodings is shown in the upper bar. Be sure not
+to select too many recordings to fit onto one DVD. Shrinking works best when
+the recording should only be a few percent smaller.
 
-Now, you can switch to the job view with the "blue" button. You will see
-an overview of the selected recordings along with some additional information.
-You can edit the disc title by selecting the entry and pressing the "right" 
-button. Editing is done as known from other VDR menus (like when editing 
-channel names). Press "Ok" to confirm and save the title.
+After finishing the selection you can switch to the job view with the "blue"
+button. You will see an overview of the selected recordings along with some
+additional information.
+On each recording entry you can press "enter" to get into the tracks submenu.
+Here you can choose another name for this recording in the DVD main menu with
+the "red" button. You can choose between:
+  * EPG title
+  * EPG title - EPG short text  (if short text exists in recordings info file)
+  * EPG short text              (if short text exists in recordings info file)
+  * recording name as it is stored on disk
 
-You can also delete recordings from that list and change the order of
-recordings with the "green" and "yellow" buttons. You can add recordings by
-leaving the plugin and selecting addigional recordings from the recordings
-menu.
-
-Pressing "Ok" on a recording will open a tracks submenu. Here, you can deselect
-certain audio- or subtitle-tracks with the "red" button (be careful to leave at
-least one audio track active), and reorder them with the "green" button. Also
-the language code can be modified if neccessary.
-The recording title can also be edited in this menu by pressing the "right" 
-button or can be replaced with some predefined values by pressing the red
-button. The predefined values are:
-  - the EPG title
-  - EPG title and EPG short text
-  - only the EPG short text
-  - recording name.
 Not all selections may be available for all recordings e.g. if there is no
 short text defined in EPG only the EPG title and recording name appear (and are
 usually identical). By selecting an entry and pressing the ok button the text
 is copied to the track menu. It can still be edited by  pressing the "right"
-button. Editing is done the same way as editing the disc title. Press "Ok" to
-confirm and save the recording title or press "back" to discard the changes.
-Press "back" to leave the submenu.
+button. Editing is done as known from other VDR menus (like when editing
+channel names). Press "Ok" to confirm and save the recording title or press
+"back" to discard the changes.
+
+Below the title all tracks of that recording are listed. For the video track
+you can choose the aspect ratio, for audio and subtitle tracks you can choose
+if they should be taken over to the DVD and correct the language if neccessary
+(be careful to leave the video and at least one audio track active).
+Press "Ok" to get back to the previous menu with all selected recordings.
+
+There you can edit the disc title by selecting the entry below all recordings
+and pressing the "right" button. Editing is done as known from other VDR menus
+(like when editing channel names). Press "Ok" to confirm and save the title.
+
+Under job settings you can change several settings for this one job like the
+burn target (DVD or ISO image), the menu skin, chapter marks and if the
+cutting marks should be taken into account during conversion.
+The second possible DVD type, "Archive-Disc", just burns the VDR recording
+structure onto the DVD without shrinking, useful in conjunction with the
+Media-Detection Plugin, which can detect and play such discs. Please be aware
+that Archive-DVD is currently not actively maintained and is only provided as-is.
+With "Ok" you confirm the settings an get back to the previous menu.
+
+From the recording list you can also re-order the selected recordings by moving
+one down with the "green" button and delete it from the list with the "yellow"
+button. To add additional recordings switch to the recording list (two times
+"blue" button) and select them there.
 
 Between the recording titles and the disc info, you see a progressbar which
 shows how much space the recordings would consume on a 4,7GB DVD+-R(W). If
 space exceeds a limit, an additional warning "Recordings could be shrinked!"
 is displayed.
 
-The second possible DVD type, "Archive-Disc", just burns the VDR recording
-structure onto the DVD without shrinking, useful in conjunction with the
-Media-Detection Plugin, which can detect and play such discs.
-
-Pressing "red" now starts the necessary processes. If you place an empty
-DVD+-R(W) into your drive, the job will run and finish, and after some time
-(depending on the speed of your computer) the tray will open and the disc is
-finished. Anyway, you will be asked to place an empty disc into the drive if
-you forget it.
+Pressing the "red" button will start the conversion and launch several
+processes in the background. If you place an empty DVD+-R(W) into your DVD
+writer, the job will run and finish, and after some time (depending on the
+speed of your computer) the tray will open and the disc is finished. Anyway,
+you will be asked to place an empty disc into the drive if you forget it.
 
 You will notice that the display changes after you pressed the "red" button.
 You can switch through all displays using the "blue" button. This way you
 can enqueue additional jobs while one job is processed. In the status display,
 you can also see a hint on the progress (although the bar is not too precise)
 and whether a job crashed for some reason. If a job is marked as "crashed",
-you could examine the logfiles in /video/.vdr-burn.XXXXX. All intermediate
-files (including logs) are deleted if you remove the erroneous job from the
-status display (using the "yellow" button). You can also re-edit canceled or
-crashed jobs to alter the settings and try again with the "green" button.
+you could find the coresponding logfile in <BURN_ISODIR>/vdrburn-<dvd title>.log
+for examination, which requires command line access to the VDR.
+All intermediate files (including logs) are deleted if you remove the erroneous
+job from the status display (using the "yellow" button). You can also re-edit
+canceled or crashed jobs to alter the settings and try again with the "green"
+button.
 
+Hints
+-----
+* Do not shrink to much as this will produce artifacts.
+* if mplex fails with "too many buffer underruns" but the recordings plays
+  fine in VDR then you might suffer from too restrict error handling in mplex
+  as discussed here:
+  http://www.vdr-portal.de/board16-video-disk-recorder/board99-distributionen/board96-yavdr/p917494-0-2-problem-mit-burn-plugin/#post917494
+  The patch mjpegtools-2.0.0-mplex-underruns.diff in the patches folder fixes
+  this.
+* If mplex does not find an audio track like here:
+     [mplex] **ERROR: [mplex] Unable to read from ....../VDRSYNC.0/.
+  then your Project X is likely to old.
+  Check your Project X version in the logfile, it should to be 0.91.0 or higher !
 
 Caveats
 -------

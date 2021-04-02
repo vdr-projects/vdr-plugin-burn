@@ -23,9 +23,12 @@ VERSION = $(shell grep 'const char\* plugin::VERSION *=' $(PLUGIN).c | awk '{ pr
 PKGCFG = $(if $(VDRDIR),$(shell pkg-config --variable=$(1) $(VDRDIR)/vdr.pc),$(shell pkg-config --variable=$(1) vdr || pkg-config --variable=$(1) ../../../vdr.pc))
 LIBDIR = $(call PKGCFG,libdir)
 LOCDIR = $(call PKGCFG,locdir)
+BINDIR = $(call PKGCFG,bindir)
+CFGDIR = $(call PKGCFG,configdir)/plugins/$(PLUGIN)
+RESDIR = $(call PKGCFG,resdir)/plugins/$(PLUGIN)
 PLGCFG = $(call PKGCFG,plgcfg)
 #
-TMPDIR ?= /tmp
+BURN_TMPDIR ?= /tmp
 
 ### The compiler options:
 
@@ -36,56 +39,9 @@ export CXXFLAGS = $(call PKGCFG,cxxflags)
 
 APIVERSION = $(call PKGCFG,apiversion)
 
-
-### Backward compatibility stuff
-ifeq ($(LOCDIR),)
-### The C++ compiler and options:
-
-CXX      ?= g++
-CXXFLAGS ?= -O3 -Wall -Woverloaded-virtual -fPIC
-
-### The directory environment:
-
-VDRDIR = ../../..
-LIBDIR = ../../lib
-
-### Allow user defined options to overwrite defaults:
-
--include $(VDRDIR)/Make.config
-
-ifdef DEBUG
-	CXXFLAGS = -g -Wall -Woverloaded-virtual -fPIC
-else
-	DEFINES += -DNDEBUG
-endif
-
-### The version number of VDR's plugin API (taken from VDR's "config.h"):
-
-APIVERSION = $(shell sed -ne '/define APIVERSION/s/^.*"\(.*\)".*$$/\1/p' $(VDRDIR)/config.h)
-
-LOCDIR = $(VDRDIR)/locale
-
-### Includes and Defines (add further entries here):
-
-DEFINES += -D_GNU_SOURCE
-
-INCLUDES += -I$(VDRDIR)/include
-
-### Run 'install' for target 'all':
-
-all: install
-
-ifeq ($(shell grep 'I18N_DEFAULT_LOCALE' $(VDRDIR)/i18n.h),)
-OLD_I18N = 1
-
-i18n install-i18n:
-
-endif
-else
 ### Allow user defined options to overwrite defaults:
 
 -include $(PLGCFG)
-endif # compatibility section
 
 ### The name of the distribution archive:
 
@@ -121,16 +77,16 @@ SUBLIBS=$(shell for i in $(SUBDIRS); do echo $$i/lib$$i.a; done)
 LIBS += $(SUBLIBS)
 
 
-ifndef TMPDIR
-TMPDIR=/tmp
+ifndef BURN_TMPDIR
+BURN_TMPDIR=/tmp
 endif
 
-ifndef DVDDEV
-DVDDEV=/dev/dvdrw
+ifndef BURN_DVDDEV
+BURN_DVDDEV=/dev/dvdrw
 endif
 
-ifndef ISODIR
-ISODIR=/pub/export
+ifndef BURN_ISODIR
+BURN_ISODIR=/pub/export
 endif
 
 ### compile only with ttxtsub support if core VDR is patched
@@ -138,7 +94,7 @@ ifneq ($(strip $(wildcard $(VDRDIR)/vdrttxtsubshooks.h)),)
 DEFINES += -DTTXT_SUBTITLES
 endif
 
-DEFINES += -DTMPDIR='"$(TMPDIR)"' -DDVDDEV='"$(DVDDEV)"' -DISODIR='"$(ISODIR)"'
+DEFINES += -DBURN_TMPDIR='"$(BURN_TMPDIR)"' -DBURN_DVDDEV='"$(BURN_DVDDEV)"' -DBURN_ISODIR='"$(BURN_ISODIR)"'
 
 ### The main target:
 
@@ -202,6 +158,18 @@ $(SOFILE): $(OBJS) Makefile $(SUBLIBS)
 install-lib: $(SOFILE)
 	install -D $^ $(DESTDIR)$(LIBDIR)/$^.$(APIVERSION)
 
+install-sh:
+	install -d $(DESTDIR)$(BINDIR)
+	cp -an scripts/* $(DESTDIR)$(BINDIR)
+
+install-conf:
+	install -d $(DESTDIR)$(CFGDIR)
+	cp -an config/* $(DESTDIR)$(CFGDIR)
+
+install-res:
+	install -d $(DESTDIR)$(RESDIR)
+	cp -an resource/* $(DESTDIR)$(RESDIR)
+
 scan-test: $(OBJS) proctools scan-test.o
 	$(CXX) $(CXXFLAGS) scan-test.o $(OBJS) -o $@ \
 		$(LIBS) -ljpeg -lpthread -ldl -lcap \
@@ -210,34 +178,24 @@ scan-test: $(OBJS) proctools scan-test.o
 gd-test: gdwrapper.o gdtest.o
 	$(CXX) $(CXXFLAGS) $^ -o $@ $(LIBS)
 
-install: install-lib install-i18n
+install: install-lib install-sh install-res install-conf install-i18n
 
 dist: $(I18Npo) clean
-	@-rm -rf $(TMPDIR)/vdrdist/$(ARCHIVE)
-	@mkdir -p $(TMPDIR)/vdrdist/$(ARCHIVE)
-	@cp -a * $(TMPDIR)/vdrdist/$(ARCHIVE)
-	@tar czf $(PACKAGE).tgz -C $(TMPDIR)/vdrdist $(ARCHIVE)
-	@-rm -rf $(TMPDIR)/vdrdist
+	@-rm -rf $(BURN_TMPDIR)/vdrdist/$(ARCHIVE)
+	@mkdir -p $(BURN_TMPDIR)/vdrdist/$(ARCHIVE)
+	@cp -a * $(BURN_TMPDIR)/vdrdist/$(ARCHIVE)
+	@tar czf $(PACKAGE).tgz -C $(BURN_TMPDIR)/vdrdist $(ARCHIVE)
+	@-rm -rf $(BURN_TMPDIR)/vdrdist
 	@echo Distribution package created as $(PACKAGE).tgz
 
 
 clean:
 	@-rm -f $(PODIR)/*.mo $(PODIR)/*.pot
 	@-rm -f *.o genindex/*.o $(DEPFILE) *.so *.tgz core* *~ \
-		scan-test test t/*.o
+		scan-test test scripts/*~
 	@for dir in $(SUBDIRS); do \
 		$(MAKE) -C $$dir clean ; \
 	done
-
-### Unit testing
-
-TESTOBJS = t/main.o t/common_functions.o
-
-test: $(TESTOBJS) $(OBJS) proctools
-	$(CXX) $(CXXFLAGS) $(TESTOBJS) $(OBJS) -o $@ $(LIBS) \
-		-lboost_unit_test_framework -ljpeg -lpthread -ldl -lcap \
-		$(shell ls $(VDRDIR)/*.o | grep -v vdr.o) $(VDRDIR)/libsi/libsi.a
-	./test
 
 env:
 	@echo "Configuration:"

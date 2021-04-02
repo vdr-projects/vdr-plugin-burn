@@ -65,9 +65,7 @@ namespace vdr_burn
 		const cRecording* m_itemToScan;
 		size_pair m_totalSize;
 		length_pair m_totalLength;
-#if VDRVERSNUM >= 10711
 		cPatPmtParser m_PatPmtParser;
-#endif
 		recording m_scanResult;
 		bool m_useSubtitleTracks;
 	};

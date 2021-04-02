@@ -7,13 +7,13 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: VDR 1.5.7\n"
+"Project-Id-Version: VDR 2.0.0\n"
 "Report-Msgid-Bugs-To: <see README>\n"
-"POT-Creation-Date: 2013-02-11 10:16+0100\n"
+"POT-Creation-Date: 2016-03-28 17:21+0200\n"
 "PO-Revision-Date: 2010-12-30 20:15+0100\n"
 "Last-Translator: Diego Pierotto <vdr-italian@tiscali.it>\n"
 "Language-Team:  <vdr@linuxtv.org>\n"
-"Language: \n"
+"Language: it\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -89,7 +89,8 @@ msgstr "Personalizzata"
 msgid "ProjectX"
 msgstr "ProjectX"
 
-msgid "M2VRequantizer"
+#, fuzzy
+msgid "M2VRequantiser"
 msgstr "M2VRequantizer"
 
 msgid "Transcode"
@@ -132,10 +133,12 @@ msgstr "Registrazione troppo grande per tipo disco!"
 msgid "Disc too big for disc type!"
 msgstr "Supporto troppo grande per tipo disco!"
 
-msgid "A job failed!"
+#, fuzzy
+msgid "A burn job failed!"
 msgstr "Lavoro fallito!"
 
-msgid "A job was finished successfully."
+#, fuzzy
+msgid "A burn job was finished successfully."
 msgstr "Lavoro completato con successo."
 
 msgid "Recordings"

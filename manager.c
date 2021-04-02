@@ -118,11 +118,11 @@ namespace vdr_burn
 				m_canceled.push_back(m_active);
 			else if (m_active->get_return_status() == process::error) {
 				m_erroneous.push_back(m_active);
-				Skins.QueueMessage(mtError, tr("A job failed!"), 10, 0);
+				Skins.QueueMessage(mtError, tr("A burn job failed!"), 10, 0);
 			}
 			else {
 				delete m_active;
-				Skins.QueueMessage(mtInfo, tr("A job was finished successfully."), 10, 0);
+				Skins.QueueMessage(mtInfo, tr("A burn job was finished successfully."), 10, 0);
 			}
 			m_active = 0;
 		}

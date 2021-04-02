@@ -77,7 +77,7 @@ namespace vdr_burn
 	// --- requanttype --------------------------------------------------------
 
 	const char* requanttype_strings[requanttype_count] =
-			{ tr("M2VRequantizer"), tr("Transcode"), tr("lxdvdrip") };
+			{ tr("M2VRequantiser"), tr("Transcode"), tr("lxdvdrip") };
 
 	// --- titletype --------------------------------------------------------
 
@@ -138,13 +138,7 @@ std::string progress_bar(double current, double total, int length)
 
 string get_recording_datetime(const cRecording* recording_, char delimiter)
 {
-	string title = recording_->Title('\t', false, -1
-#ifdef LIEMIKUUTIO
-#if LIEMIKUUTIO <= 130
-									 , true
-#endif
-#endif
-									);
+	string title = recording_->Title('\t', false, -1);
 
 	string::iterator it = title.begin();
 	for (int i = 0; i < 2 && it != title.end(); ++i)
@@ -181,29 +175,11 @@ string get_recording_osd_line(const cRecording* recording_, int level)
 
 		string RecLength("--");
 
-#if VDRVERSNUM >= 10721
-		// VDR 1.7.21+
 		int minutes = recording_->LengthInSeconds() / 60;
 		stringstream RecLen;
 		RecLen << (minutes / 60) << ":" << setw(2) << setfill('0')  << (minutes % 60);
 			
 		result << '\t' << RecLen.str() << (recording_->IsNew() ? '*' : ' ') << '\t' << name;
-#else
-#if VDRVERSNUM < 10703
-		// VDR 1.6
-		cIndexFile *index = new cIndexFile(recording_->FileName(), false);
-		int minutes = index->Last() < 0 ? -1 : index->Last() / SecondsToFrames(60);
-#else
-		// VDR 1.7.3-1.7.20
-		cIndexFile *index = new cIndexFile(recording_->FileName(), false, recording_->IsPesRecording());
-		int length = index->Last();
-		int minutes = length < 0 ? -1 : length / SecondsToFrames(60, recording_->FramesPerSecond());
-#endif
-		if (minutes >= 0)
-			RecLength = string(format( "{0}'") % minutes);
-
-		result << (recording_->IsNew() ? '*' : ' ') << '\t' << RecLength << '\t' << name;
-#endif
 		return result.str();
 	}
 

@@ -101,9 +101,7 @@ namespace menu
 		virtual bool menu_closing() { return true; }
 		virtual eOSState menu_update() { return osContinue; }
 		virtual eOSState ok_pressed() { return osContinue; }
-#if VDRVERSNUM >= 10729
 		virtual eOSState zero_pressed() { return osContinue; }
-#endif
 		virtual eOSState red_pressed() { return osContinue; }
 		virtual eOSState green_pressed() { return osContinue; }
 		virtual eOSState yellow_pressed() { return osContinue; }

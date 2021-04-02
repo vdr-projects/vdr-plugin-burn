@@ -1,6 +1,21 @@
 VDR Plugin 'burn' Revision History
 ----------------------------------
 
+2016-03-xx: Version 0.3.0
+- removed compatibility code of VDR < 2.0 - burn now requires VDR 2.0.0 or higher
+- removed test directory
+- fixed display of pmtPid (thanks to lhanisch, bug #1285)
+- added support for RESDIR: resources are now automatically installed into RESDIR
+- added description to README and patch file for mplex to avoid abort if only a few "buffer underruns" are detected (feature #1324)
+- prefixed TMPDIR, DVDDEV and ISODIR in Makefile by BURN_ to avoid problems with other plugins
+- README updated
+- fixed warnings for po files
+- fixed gdwrapper warning
+- added support for cVideoDirectory of VDR 2.1.2+
+- replace requant with m2vrequant (feature #1673 by anonymous)
+- added 50-burn.conf for conf.d mechanism
+- added support for VDR 2.3.1
+
 2013-02-23: Version 0.2.2
 - fixed false DESTDIR in Makefile and added include of PLGCFG (reported by Zoolook@vdrportal.de)
 - added menu category to job_options_base to avoid confusion of skin plugins

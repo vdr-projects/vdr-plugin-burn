@@ -21,16 +21,9 @@
 #include <vdr/plugin.h>
 #include <vdr/videodir.h>
 
-// plugin needs VDR 1.6.0 or 1.7.11+
-#if VDRVERSNUM < 10600
-#error This plugin requires VDR 1.6.0 or VDR 1.7.11+
-#endif
-
-
-#if VDRVERSNUM >= 10699
-#if VDRVERSNUM <= 10710
-#error This plugin requires VDR 1.6.0 or VDR 1.7.11+
-#endif
+// plugin needs VDR 2.0.0 or higher
+#if VDRVERSNUM < 20000
+#error The BURN plugin requires VDR 2.0.0 or higher
 #endif
 
 #ifdef TTXT_SUBTITLES
@@ -45,11 +38,12 @@ namespace vdr_burn
 	using namespace std;
 	using proctools::format;
 
-	const char* plugin::VERSION        = "0.2.2";
+	const char* plugin::VERSION        = "0.3.0";
 	const char* plugin::DESCRIPTION    = trNOOP("Versatile convert-and-burn plugin");
 	const char* plugin::MAINMENUENTRY  = tr("Create DVDs");
 
-	string plugin::m_configPath;
+    string plugin::m_configPath;
+    string plugin::m_resourcePath;
 
 	plugin::plugin():
 			m_mainMenuEntry( tr(MAINMENUENTRY) )
@@ -96,12 +90,13 @@ namespace vdr_burn
 
 	bool plugin::Start()
 	{
-		m_configPath = ConfigDirectory(PLUGIN_NAME);
+        m_configPath = ConfigDirectory(PLUGIN_NAME);
+        m_resourcePath = ResourceDirectory(PLUGIN_NAME);
 
 		manager::start();
 		logger_vdr::start();
-		gdwrapper::setup::set_font_path( m_configPath + "/fonts" );
-		if ( !skin_list::get().load( get_config_path() ) )
+		gdwrapper::setup::set_font_path( get_resource_path() + "/fonts" );
+		if ( !skin_list::get().load( get_resource_path() ) )
 			return false;
 
 		logger_vdr::startup_finished();
@@ -114,19 +109,11 @@ namespace vdr_burn
 		logger_vdr::stop();
 	}
 
-#ifndef APIVERSION
-	bool plugin::Active()
-#else
 	cString plugin::Active()
-#endif
 	{
-#ifndef APIVERSION
-		return manager::get_is_busy();
-#else
 		if (manager::get_is_busy())
 			return tr("Burn job active");
 		return 0;
-#endif
 	}
 
 	const char *plugin::MainMenuEntry()

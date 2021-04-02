@@ -9,9 +9,9 @@
 # Ville Skyttä <ville.skytta@iki.fi>, 2010.
 msgid ""
 msgstr ""
-"Project-Id-Version: VDR 1.5.7\n"
+"Project-Id-Version: VDR 2.0.0\n"
 "Report-Msgid-Bugs-To: <see README>\n"
-"POT-Creation-Date: 2013-02-11 10:16+0100\n"
+"POT-Creation-Date: 2016-03-28 17:21+0200\n"
 "PO-Revision-Date: 2010-12-13 18:42+0200\n"
 "Last-Translator: Ville Skyttä <ville.skytta@iki.fi>\n"
 "Language-Team: Finnish <gnome-fi-laatu@lists.sourceforge.net>\n"
@@ -90,7 +90,8 @@ msgstr "säädettävä"
 msgid "ProjectX"
 msgstr "ProjectX"
 
-msgid "M2VRequantizer"
+#, fuzzy
+msgid "M2VRequantiser"
 msgstr "M2VRequantizer"
 
 msgid "Transcode"
@@ -133,10 +134,12 @@ msgstr "Tallenne ei mahdu levytyypille!"
 msgid "Disc too big for disc type!"
 msgstr "Levy ei mahdu levytyypille!"
 
-msgid "A job failed!"
+#, fuzzy
+msgid "A burn job failed!"
 msgstr "Polttaminen epäonnistui!"
 
-msgid "A job was finished successfully."
+#, fuzzy
+msgid "A burn job was finished successfully."
 msgstr "Polttaminen onnistui."
 
 msgid "Recordings"

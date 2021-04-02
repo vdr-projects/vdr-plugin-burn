@@ -198,7 +198,7 @@ namespace vdr_burn
 
 	enum requanttype
 	{
-		requanttype_metakine,
+		requanttype_m2vrequantiser,
 		requanttype_transcode,
 		requanttype_lxdvdrip,
 	};
